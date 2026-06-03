@@ -83,6 +83,8 @@ export function FormWizard() {
   const [data, setData] = useState<FormData>(EMPTY);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState(false);
 
   const set = (field: keyof FormData) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -110,6 +112,8 @@ export function FormWizard() {
 
   async function handlePay() {
     if (!validateStep3()) return;
+    if (!consent) { setConsentError(true); return; }
+    setConsentError(false);
     setLoading(true);
     try {
       const res = await fetch("/api/checkout", {
@@ -306,6 +310,23 @@ export function FormWizard() {
               <div className="text-2xl font-bold text-gray-900">29 zł</div>
             </div>
           </div>
+
+          <label className={`flex items-start gap-3 mb-5 cursor-pointer p-3 rounded-xl border transition-colors ${consentError ? "border-red-300 bg-red-50" : "border-gray-200 hover:bg-gray-50"}`}>
+            <input
+              type="checkbox"
+              checked={consent}
+              onChange={e => { setConsent(e.target.checked); setConsentError(false); }}
+              className="mt-0.5 shrink-0 w-4 h-4 accent-indigo-600"
+            />
+            <span className="text-xs text-gray-600 leading-relaxed">
+              Akceptuję{" "}
+              <a href="/regulamin" target="_blank" className="text-indigo-600 underline underline-offset-2">Regulamin</a>
+              {" "}i{" "}
+              <a href="/polityka" target="_blank" className="text-indigo-600 underline underline-offset-2">Politykę prywatności</a>
+              . Wyrażam zgodę na natychmiastowe dostarczenie treści cyfrowej i jestem świadomy/a, że z chwilą dostarczenia pisma tracę prawo odstąpienia od umowy zgodnie z art. 38 pkt 13 ustawy o prawach konsumenta.
+            </span>
+          </label>
+          {consentError && <p className="text-xs text-red-500 font-medium -mt-3 mb-4">Musisz zaakceptować regulamin przed opłaceniem</p>}
 
           <button
             onClick={handlePay}

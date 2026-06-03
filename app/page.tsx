@@ -220,6 +220,14 @@ export default function HomePage() {
         <a href="mailto:hello@writeback.pl" className="hover:text-gray-900 transition-colors underline underline-offset-2">
           hello@writeback.pl
         </a>
+        {" · "}
+        <Link href="/regulamin" className="hover:text-gray-900 transition-colors underline underline-offset-2">
+          Regulamin
+        </Link>
+        {" · "}
+        <Link href="/polityka" className="hover:text-gray-900 transition-colors underline underline-offset-2">
+          Polityka prywatności
+        </Link>
       </footer>
 
     </div>
