@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import Anthropic from "@anthropic-ai/sdk";
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import { PDFDocument, rgb } from "pdf-lib";
+import fontkit from "@pdf-lib/fontkit";
 import { Resend } from "resend";
+import fs from "fs";
+import path from "path";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
@@ -63,63 +66,100 @@ Tylko gotowe pismo, bez komentarzy. Nie używaj markdownu — zwykły tekst.`,
 
   // Generuj PDF
   const pdfDoc = await PDFDocument.create();
-  const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-  const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+  pdfDoc.registerFontkit(fontkit);
 
-  const page = pdfDoc.addPage([595, 842]); // A4
-  const { width, height } = page.getSize();
-  const margin = 60;
-  const maxWidth = width - margin * 2;
-  const lineHeight = 16;
-  let y = height - margin;
+  const fontDir = path.join(process.cwd(), "public", "fonts");
+  const regularBytes = fs.readFileSync(path.join(fontDir, "Lato-Regular.ttf"));
+  const boldBytes = fs.readFileSync(path.join(fontDir, "Lato-Bold.ttf"));
+  const font = await pdfDoc.embedFont(regularBytes);
+  const boldFont = await pdfDoc.embedFont(boldBytes);
 
-  function wrapText(text: string, maxW: number, fontSize: number, f: typeof font) {
+  const W = 595, H = 842;
+  const marginX = 64, marginY = 56;
+  const contentW = W - marginX * 2;
+  let page = pdfDoc.addPage([W, H]);
+  let y = H - marginY;
+
+  const INDIGO: [number, number, number] = [0.31, 0.27, 0.9];
+  const GRAY: [number, number, number] = [0.45, 0.45, 0.45];
+  const BLACK: [number, number, number] = [0.1, 0.1, 0.1];
+
+  function wrap(text: string, maxW: number, size: number, f: typeof font) {
     const words = text.split(" ");
     const lines: string[] = [];
-    let current = "";
-    for (const word of words) {
-      const test = current ? current + " " + word : word;
-      if (f.widthOfTextAtSize(test, fontSize) > maxW) {
-        if (current) lines.push(current);
-        current = word;
-      } else {
-        current = test;
-      }
+    let cur = "";
+    for (const w of words) {
+      const test = cur ? cur + " " + w : w;
+      if (f.widthOfTextAtSize(test, size) > maxW) { if (cur) lines.push(cur); cur = w; }
+      else cur = test;
     }
-    if (current) lines.push(current);
+    if (cur) lines.push(cur);
     return lines;
   }
 
-  function drawText(text: string, opts: { fontSize?: number; bold?: boolean; color?: [number, number, number] } = {}) {
-    const fs = opts.fontSize ?? 10;
-    const f = opts.bold ? boldFont : font;
-    const [r, g, b] = opts.color ?? [0, 0, 0];
-
-    if (text === "") { y -= lineHeight * 0.7; return; }
-
-    const lines = wrapText(text, maxWidth, fs, f);
-    for (const line of lines) {
-      if (y < margin + lineHeight) {
-        pdfDoc.addPage([595, 842]);
-        y = height - margin;
-      }
-      page.drawText(line, { x: margin, y, size: fs, font: f, color: rgb(r, g, b) });
-      y -= lineHeight;
+  function newPageIfNeeded(needed: number) {
+    if (y - needed < marginY) {
+      page = pdfDoc.addPage([W, H]);
+      y = H - marginY;
     }
   }
 
-  // Header
-  drawText("PISMO REKLAMACYJNE", { fontSize: 14, bold: true });
-  drawText("Wygenerowane przez writeback.pl", { fontSize: 8, color: [0.6, 0.6, 0.6] });
-  y -= 10;
+  function drawLine(text: string, opts: { size?: number; bold?: boolean; color?: [number, number, number]; x?: number; maxW?: number } = {}) {
+    const size = opts.size ?? 10;
+    const f = opts.bold ? boldFont : font;
+    const [r, g, b] = opts.color ?? BLACK;
+    const x = opts.x ?? marginX;
+    const maxW = opts.maxW ?? contentW;
+    if (!text) { y -= size * 0.8; return; }
+    const lines = wrap(text, maxW, size, f);
+    for (const line of lines) {
+      newPageIfNeeded(size + 4);
+      page.drawText(line, { x, y, size, font: f, color: rgb(r, g, b) });
+      y -= size + 4;
+    }
+  }
 
-  // Treść pisma
+  // ── Header bar ──
+  page.drawRectangle({ x: 0, y: H - 36, width: W, height: 36, color: rgb(...INDIGO) });
+  page.drawText("writeback.pl", { x: marginX, y: H - 24, size: 11, font: boldFont, color: rgb(1, 1, 1) });
+  const dateStr = `Wygenerowano: ${today}`;
+  const dateW = font.widthOfTextAtSize(dateStr, 8);
+  page.drawText(dateStr, { x: W - marginX - dateW, y: H - 23, size: 8, font, color: rgb(0.85, 0.85, 1) });
+
+  y = H - 36 - 32;
+
+  // ── Tytuł ──
+  drawLine("PISMO REKLAMACYJNE", { size: 15, bold: true, color: [0.1, 0.1, 0.15] });
+  y -= 4;
+  page.drawRectangle({ x: marginX, y, width: 48, height: 2, color: rgb(...INDIGO) });
+  y -= 18;
+
+  // ── Treść pisma ──
   const paragraphs = pismoText.split("\n");
   for (const para of paragraphs) {
     const trimmed = para.trim();
-    if (!trimmed) { drawText(""); continue; }
-    const isBold = trimmed.toUpperCase() === trimmed && trimmed.length < 60;
-    drawText(trimmed, { bold: isBold });
+    if (!trimmed) { y -= 6; continue; }
+    const isHeading = trimmed === trimmed.toUpperCase() && trimmed.length > 3 && trimmed.length < 80;
+    if (isHeading) {
+      y -= 4;
+      drawLine(trimmed, { size: 10, bold: true, color: [0.15, 0.15, 0.2] });
+      y -= 2;
+    } else {
+      drawLine(trimmed, { size: 10, color: BLACK });
+    }
+  }
+
+  // ── Footer na każdej stronie ──
+  const pageCount = pdfDoc.getPageCount();
+  for (let i = 0; i < pageCount; i++) {
+    const p = pdfDoc.getPage(i);
+    p.drawLine({ start: { x: marginX, y: marginY - 8 }, end: { x: W - marginX, y: marginY - 8 }, thickness: 0.5, color: rgb(0.85, 0.85, 0.85) });
+    p.drawText("Dokument wygenerowany przez writeback.pl · Narzędzie do tworzenia pism, nie porada prawna", {
+      x: marginX, y: marginY - 20, size: 7, font, color: rgb(...GRAY),
+    });
+    const pageNum = `${i + 1} / ${pageCount}`;
+    const pgW = font.widthOfTextAtSize(pageNum, 7);
+    p.drawText(pageNum, { x: W - marginX - pgW, y: marginY - 20, size: 7, font, color: rgb(...GRAY) });
   }
 
   const pdfBytes = await pdfDoc.save();
