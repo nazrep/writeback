@@ -21,7 +21,7 @@ export default function PolitykaPrywatnosci() {
 
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-3">1. Administrator danych osobowych</h2>
-            <p>Administratorem Twoich danych osobowych jest <strong>Maciej Perzankowski</strong>, prowadzący działalność gospodarczą, Skierniewice, NIP: 8361881457 (dalej: „Administrator").</p>
+            <p>Administratorem Twoich danych osobowych jest <strong>Maciej Perzankowski</strong>, prowadzący działalność gospodarczą pod nazwą <strong>Maciej Perzankowski Software Solutions</strong>, ul. 19-go Lutego 8/14, 96-100 Skierniewice, NIP: 8361881457, REGON: 52381424900000 (dalej: „Administrator").</p>
             <p className="mt-2">Kontakt z Administratorem w sprawach dotyczących ochrony danych osobowych: <strong>hello@writeback.pl</strong></p>
           </section>
 
