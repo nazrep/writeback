@@ -35,9 +35,9 @@ function ProgressBar({ step }: { step: number }) {
             <div className="flex flex-col items-center">
               <div className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                 i < step
-                  ? "bg-blue-600 text-white"
+                  ? "bg-indigo-600 text-white"
                   : i === step
-                  ? "bg-blue-600 text-white ring-4 ring-blue-100"
+                  ? "bg-indigo-600 text-white ring-4 ring-indigo-100"
                   : "bg-gray-100 text-gray-400"
               }`}>
                 {i < step ? (
@@ -47,11 +47,11 @@ function ProgressBar({ step }: { step: number }) {
                 ) : i + 1}
               </div>
               <span className={`text-xs mt-2 whitespace-nowrap font-medium ${
-                i === step ? "text-gray-900" : i < step ? "text-blue-600" : "text-gray-400"
+                i === step ? "text-gray-900" : i < step ? "text-indigo-600" : "text-gray-400"
               }`}>{label}</span>
             </div>
             {i < STEPS.length - 1 && (
-              <div className={`flex-1 h-px mt-4 mx-2 transition-colors ${i < step ? "bg-blue-600" : "bg-gray-200"}`} />
+              <div className={`flex-1 h-px mt-4 mx-2 transition-colors ${i < step ? "bg-indigo-600" : "bg-gray-200"}`} />
             )}
           </div>
         ))}
@@ -60,7 +60,7 @@ function ProgressBar({ step }: { step: number }) {
   );
 }
 
-const inputCls = "w-full border border-gray-300 rounded-lg px-3.5 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white";
+const inputCls = "w-full border border-gray-300 rounded-lg px-3.5 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-white";
 const textareaCls = inputCls + " resize-none";
 
 function Field({ label, required, hint, error, children }: {
@@ -138,14 +138,14 @@ export function FormWizard() {
           <div className="space-y-3">
             <button
               onClick={() => setStep(1)}
-              className="w-full text-left border-2 border-blue-600 bg-blue-50 rounded-xl px-5 py-4 hover:bg-blue-100 transition-colors group"
+              className="w-full text-left border-2 border-indigo-600 bg-indigo-50 rounded-xl px-5 py-4 hover:bg-indigo-100 transition-colors group"
             >
               <div className="flex items-center justify-between">
                 <div>
                   <div className="font-semibold text-sm text-gray-900">Reklamacja do sklepu internetowego</div>
                   <div className="text-xs text-gray-600 mt-1">Produkt nie dotarł, uszkodzony, niezgodny z opisem, odmowa zwrotu</div>
                 </div>
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 ml-4 text-blue-600">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 ml-4 text-indigo-600">
                   <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
@@ -159,10 +159,10 @@ export function FormWizard() {
               <div key={label} className="border border-gray-100 rounded-xl px-5 py-4 bg-gray-50 cursor-not-allowed">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="font-medium text-sm text-gray-400">{label}</div>
+                    <div className="font-medium text-sm text-gray-500">{label}</div>
                     <div className="text-xs text-gray-400 mt-0.5">{desc}</div>
                   </div>
-                  <span className="text-xs text-gray-400 bg-gray-100 px-2.5 py-1 rounded-md shrink-0 ml-4">Wkrótce</span>
+                  <span className="text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md shrink-0 ml-4">Wkrótce</span>
                 </div>
               </div>
             ))}
@@ -223,7 +223,7 @@ export function FormWizard() {
             </button>
             <button
               onClick={() => { if (validateStep2()) setStep(2); }}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-sm font-semibold transition-colors"
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl text-sm font-semibold transition-colors"
             >
               Dalej →
             </button>
@@ -237,8 +237,8 @@ export function FormWizard() {
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Twoje dane i dane sklepu</h1>
           <p className="text-gray-600 text-sm mb-8">Potrzebujemy ich żeby wygenerować pismo</p>
           <div className="space-y-5">
-            <div className="bg-blue-50 border border-blue-100 rounded-xl p-5">
-              <h3 className="text-xs font-bold text-blue-700 uppercase tracking-wider mb-4">Twoje dane</h3>
+            <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-5">
+              <h3 className="text-xs font-bold text-indigo-700 uppercase tracking-wider mb-4">Twoje dane</h3>
               <div className="space-y-4">
                 <Field label="Imię i nazwisko" required error={errors.imie_nazwisko}>
                   <input className={inputCls} placeholder="Anna Kowalska" value={data.imie_nazwisko} onChange={set("imie_nazwisko")} />
@@ -269,7 +269,7 @@ export function FormWizard() {
             </button>
             <button
               onClick={() => { if (validateStep3()) setStep(3); }}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-sm font-semibold transition-colors"
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl text-sm font-semibold transition-colors"
             >
               Sprawdź zamówienie →
             </button>
@@ -310,7 +310,7 @@ export function FormWizard() {
           <button
             onClick={handlePay}
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed text-white py-4 rounded-xl font-bold text-base transition-colors shadow-lg shadow-blue-200"
+            className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white py-4 rounded-xl font-bold text-base transition-colors shadow-lg shadow-indigo-200"
           >
             {loading ? "Przekierowuję do płatności..." : "Opłać i pobierz pismo — 29 zł"}
           </button>
