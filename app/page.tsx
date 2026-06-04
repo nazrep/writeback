@@ -130,7 +130,7 @@ export default function HomePage() {
           </span>
           <span className="flex items-center gap-1.5">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="#6b7280" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            Generowane przez Claude AI (Anthropic)
+            Właściwe przepisy prawa polskiego
           </span>
         </div>
       </section>

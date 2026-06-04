@@ -2,6 +2,121 @@
 
 import { useState } from "react";
 
+const DOC_TYPES = [
+  {
+    id: "sklep",
+    label: "Reklamacja do sklepu internetowego",
+    desc: "Produkt nie dotarł, uszkodzony, niezgodny z opisem, odmowa zwrotu",
+    subjectLabel: "Nazwa produktu",
+    subjectPlaceholder: "np. Słuchawki Sony WH-1000XM5",
+    kwotaLabel: "Cena (zł)",
+    kwotaPlaceholder: "1299",
+    dataLabel: "Data zakupu",
+    refLabel: "Numer zamówienia",
+    refPlaceholder: "np. TS/2026/05/44821",
+    orgLabel: "Nazwa sklepu",
+    orgPlaceholder: "np. TechShop Sp. z o.o. / Allegro.pl",
+    orgAdresLabel: "Adres sklepu",
+    orgAdresHint: "Opcjonalnie — znajdziesz w regulaminie lub stopce strony",
+    opisPlaceholder: "Opisz dokładnie co się wydarzyło — kiedy zamówiłeś, co poszło nie tak, jak zareagował sklep...",
+    podjeteLabel: "Co już próbowałeś?",
+    podjetePlaceholder: "np. Kontaktowałem się przez czat 3 razy, sklep nie odpowiada...",
+    zadaniePlaceholder: "np. Zwrotu 1299 zł / Wymiany na nowy produkt",
+    summaryOrg: "Sklep",
+    summarySubject: "Produkt",
+  },
+  {
+    id: "bank",
+    label: "Reklamacja do banku / ubezpieczyciela",
+    desc: "Nieautoryzowana transakcja, odmowa wypłaty, błędna opłata",
+    subjectLabel: "Produkt / usługa",
+    subjectPlaceholder: "np. Karta kredytowa, polisa NNW, konto oszczędnościowe",
+    kwotaLabel: "Kwota sporu (zł)",
+    kwotaPlaceholder: "500",
+    dataLabel: "Data zdarzenia",
+    refLabel: "Numer umowy / rachunku",
+    refPlaceholder: "Opcjonalnie",
+    orgLabel: "Nazwa banku / ubezpieczyciela",
+    orgPlaceholder: "np. PKO BP S.A.",
+    orgAdresLabel: "Adres banku / ubezpieczyciela",
+    orgAdresHint: "Opcjonalnie",
+    opisPlaceholder: "Opisz dokładnie co się stało — data, kwota, co bank odmówił i dlaczego...",
+    podjeteLabel: "Kontakt z bankiem",
+    podjetePlaceholder: "np. Dzwoniłem na infolinię, odpisali że sprawa zamknięta...",
+    zadaniePlaceholder: "np. Zwrotu 500 zł za nieautoryzowaną transakcję",
+    summaryOrg: "Bank / ubezpieczyciel",
+    summarySubject: "Usługa",
+  },
+  {
+    id: "zus",
+    label: "Odwołanie od decyzji ZUS / US",
+    desc: "Odmowa świadczenia, zawyżona składka, decyzja podatkowa",
+    subjectLabel: "Czego dotyczy decyzja",
+    subjectPlaceholder: "np. Odmowa zasiłku chorobowego",
+    kwotaLabel: "Kwota sporu (zł)",
+    kwotaPlaceholder: "Opcjonalnie",
+    dataLabel: "Data decyzji",
+    refLabel: "Numer decyzji",
+    refPlaceholder: "np. ZUS/2026/05/12345",
+    orgLabel: "Nazwa organu",
+    orgPlaceholder: "np. ZUS Oddział w Warszawie, Urząd Skarbowy",
+    orgAdresLabel: "Adres organu",
+    orgAdresHint: "Opcjonalnie",
+    opisPlaceholder: "Opisz decyzję — jakie świadczenie odmówiono, z jakiego powodu według organu...",
+    podjeteLabel: "Wcześniejsze kroki",
+    podjetePlaceholder: "np. Złożyłem wniosek 3 maja, decyzja odmowna z 20 maja...",
+    zadaniePlaceholder: "np. Uchylenia decyzji i przyznania zasiłku chorobowego za okres...",
+    summaryOrg: "Organ",
+    summarySubject: "Przedmiot odwołania",
+  },
+  {
+    id: "umowa",
+    label: "Wypowiedzenie umowy",
+    desc: "Internet, gym, prąd, telefon — bez kar umownych",
+    subjectLabel: "Typ umowy",
+    subjectPlaceholder: "np. Umowa o internet światłowodowy, karnety na siłownię",
+    kwotaLabel: "Miesięczna opłata (zł)",
+    kwotaPlaceholder: "89",
+    dataLabel: "Data zawarcia umowy",
+    refLabel: "Numer umowy",
+    refPlaceholder: "Opcjonalnie",
+    orgLabel: "Nazwa firmy",
+    orgPlaceholder: "np. Orange Polska S.A.",
+    orgAdresLabel: "Adres firmy",
+    orgAdresHint: "Opcjonalnie",
+    opisPlaceholder: "Opisz umowę — na jaki czas zawarta, czy minął okres wypowiedzenia, dlaczego wypowiadasz...",
+    podjeteLabel: "Kontakt z firmą",
+    podjetePlaceholder: "np. Dzwoniłem na infolinię, zastraszali karą umowną...",
+    zadaniePlaceholder: "np. Rozwiązania umowy bez opłat dodatkowych z dniem...",
+    summaryOrg: "Firma",
+    summarySubject: "Umowa",
+  },
+  {
+    id: "uokik",
+    label: "Skarga do UOKiK / Rzecznika Praw Konsumentów",
+    desc: "Gdy sklep nie odpowiada na reklamację, nieuczciwe praktyki",
+    subjectLabel: "Przedmiot skargi",
+    subjectPlaceholder: "np. Sklep ignoruje reklamację od 2 miesięcy",
+    kwotaLabel: "Wartość sporu (zł)",
+    kwotaPlaceholder: "1299",
+    dataLabel: "Data wysłania reklamacji do firmy",
+    refLabel: "Numer poprzedniej reklamacji",
+    refPlaceholder: "Opcjonalnie",
+    orgLabel: "Firma której dotyczy skarga",
+    orgPlaceholder: "np. TechShop Sp. z o.o.",
+    orgAdresLabel: "Adres firmy",
+    orgAdresHint: "Opcjonalnie",
+    opisPlaceholder: "Opisz co się stało — kiedy wysłałeś reklamację do sklepu, jak reagował, co próbowałeś...",
+    podjeteLabel: "Historia kontaktu z firmą",
+    podjetePlaceholder: "np. Wysłałem reklamację 1 maja, sklep milczy; ponowiłem 15 maja...",
+    zadaniePlaceholder: "np. Wszczęcia postępowania i nakazania zwrotu 1299 zł",
+    summaryOrg: "Firma",
+    summarySubject: "Przedmiot skargi",
+  },
+] as const;
+
+type DocTypeId = typeof DOC_TYPES[number]["id"];
+
 type FormData = {
   produkt: string;
   cena: string;
@@ -34,10 +149,8 @@ function ProgressBar({ step }: { step: number }) {
           <div key={i} className="flex items-start flex-1 last:flex-none">
             <div className="flex flex-col items-center">
               <div className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                i < step
-                  ? "bg-indigo-600 text-white"
-                  : i === step
-                  ? "bg-indigo-600 text-white ring-4 ring-indigo-100"
+                i < step ? "bg-indigo-600 text-white"
+                  : i === step ? "bg-indigo-600 text-white ring-4 ring-indigo-100"
                   : "bg-gray-100 text-gray-400"
               }`}>
                 {i < step ? (
@@ -80,11 +193,14 @@ function Field({ label, required, hint, error, children }: {
 
 export function FormWizard() {
   const [step, setStep] = useState(0);
+  const [docType, setDocType] = useState<DocTypeId | null>(null);
   const [data, setData] = useState<FormData>(EMPTY);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [consent, setConsent] = useState(false);
   const [consentError, setConsentError] = useState(false);
+
+  const type = DOC_TYPES.find(t => t.id === docType) ?? DOC_TYPES[0];
 
   const set = (field: keyof FormData) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -92,9 +208,10 @@ export function FormWizard() {
 
   function validateStep2() {
     const e: Partial<Record<keyof FormData, string>> = {};
-    if (!data.produkt.trim()) e.produkt = "Wpisz nazwę produktu";
-    if (!data.cena.trim()) e.cena = "Wpisz kwotę";
-    if (!data.opis.trim()) e.opis = "Opisz co się stało";
+    if (!data.produkt.trim()) e.produkt = "To pole jest wymagane";
+    if (!data.cena.trim() && docType !== "zus") e.cena = "Wpisz kwotę";
+    if (!data.data_zakupu) e.data_zakupu = "Wybierz datę";
+    if (!data.opis.trim()) e.opis = "Opisz sytuację";
     if (!data.zadanie.trim()) e.zadanie = "Wpisz czego żądasz";
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -105,7 +222,8 @@ export function FormWizard() {
     if (!data.imie_nazwisko.trim()) e.imie_nazwisko = "Wpisz imię i nazwisko";
     if (!data.adres.trim()) e.adres = "Wpisz adres zamieszkania";
     if (!data.email.trim()) e.email = "Wpisz adres email";
-    if (!data.nazwa_sklepu.trim()) e.nazwa_sklepu = "Wpisz nazwę sklepu";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) e.email = "Nieprawidłowy adres email";
+    if (!data.nazwa_sklepu.trim()) e.nazwa_sklepu = "To pole jest wymagane";
     setErrors(e);
     return Object.keys(e).length === 0;
   }
@@ -119,15 +237,24 @@ export function FormWizard() {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, doc_type: docType }),
       });
+      if (!res.ok) throw new Error();
       const json = await res.json();
       if (json.url) window.location.href = json.url;
+      else throw new Error();
     } catch {
-      alert("Coś poszło nie tak. Spróbuj ponownie.");
+      alert("Coś poszło nie tak. Spróbuj ponownie lub napisz na hello@writeback.pl");
     } finally {
       setLoading(false);
     }
+  }
+
+  function selectType(id: DocTypeId) {
+    setDocType(id);
+    setData(EMPTY);
+    setErrors({});
+    setStep(1);
   }
 
   return (
@@ -140,35 +267,22 @@ export function FormWizard() {
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Jaki masz problem?</h1>
           <p className="text-gray-600 text-sm mb-8">Wybierz typ pisma które chcesz napisać</p>
           <div className="space-y-3">
-            <button
-              onClick={() => setStep(1)}
-              className="w-full text-left border-2 border-indigo-600 bg-indigo-50 rounded-xl px-5 py-4 hover:bg-indigo-100 transition-colors group"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="font-semibold text-sm text-gray-900">Reklamacja do sklepu internetowego</div>
-                  <div className="text-xs text-gray-600 mt-1">Produkt nie dotarł, uszkodzony, niezgodny z opisem, odmowa zwrotu</div>
-                </div>
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 ml-4 text-indigo-600">
-                  <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-            </button>
-            {[
-              { label: "Reklamacja do banku / ubezpieczyciela", desc: "Nieautoryzowana transakcja, odmowa wypłaty" },
-              { label: "Odwołanie od decyzji ZUS / US", desc: "Odmowa świadczenia, zawyżona składka" },
-              { label: "Wypowiedzenie umowy", desc: "Internet, gym, prąd, telefon" },
-              { label: "Skarga do UOKiK / Rzecznika", desc: "Gdy sklep nie odpowiada na reklamację" },
-            ].map(({ label, desc }) => (
-              <div key={label} className="border border-gray-100 rounded-xl px-5 py-4 bg-gray-50 cursor-not-allowed">
+            {DOC_TYPES.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => selectType(t.id)}
+                className="w-full text-left border-2 border-transparent bg-gray-50 hover:border-indigo-600 hover:bg-indigo-50 rounded-xl px-5 py-4 transition-colors group"
+              >
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="font-medium text-sm text-gray-500">{label}</div>
-                    <div className="text-xs text-gray-400 mt-0.5">{desc}</div>
+                    <div className="font-semibold text-sm text-gray-900">{t.label}</div>
+                    <div className="text-xs text-gray-500 mt-1">{t.desc}</div>
                   </div>
-                  <span className="text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md shrink-0 ml-4">Wkrótce</span>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 ml-4 text-gray-400 group-hover:text-indigo-600 transition-colors">
+                    <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -177,48 +291,34 @@ export function FormWizard() {
       {/* Krok 1 — Co się stało */}
       {step === 1 && (
         <div>
+          <div className="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 border border-indigo-100">
+            {type.label}
+          </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Co się stało?</h1>
           <p className="text-gray-600 text-sm mb-8">Im więcej szczegółów, tym mocniejsze pismo</p>
           <div className="space-y-5">
-            <Field label="Nazwa produktu" required error={errors.produkt}>
-              <input className={inputCls} placeholder="np. Słuchawki Sony WH-1000XM5" value={data.produkt} onChange={set("produkt")} />
+            <Field label={type.subjectLabel} required error={errors.produkt}>
+              <input className={inputCls} placeholder={type.subjectPlaceholder} value={data.produkt} onChange={set("produkt")} />
             </Field>
             <div className="grid grid-cols-2 gap-4">
-              <Field label="Cena (zł)" required error={errors.cena}>
-                <input className={inputCls} placeholder="1299" type="number" min="0" value={data.cena} onChange={set("cena")} />
+              <Field label={type.kwotaLabel} required={docType !== "zus"} error={errors.cena}>
+                <input className={inputCls} placeholder={type.kwotaPlaceholder} type={docType !== "zus" ? "number" : "text"} min="0" value={data.cena} onChange={set("cena")} />
               </Field>
-              <Field label="Data zakupu" required>
-                <input className={inputCls} type="date" value={data.data_zakupu} onChange={set("data_zakupu")} />
+              <Field label={type.dataLabel} required error={errors.data_zakupu}>
+                <input className={`${inputCls} ${errors.data_zakupu ? "border-red-400 ring-1 ring-red-300" : ""}`} type="date" value={data.data_zakupu} onChange={set("data_zakupu")} />
               </Field>
             </div>
-            <Field label="Numer zamówienia" hint="Opcjonalnie — jeśli masz potwierdzenie">
-              <input className={inputCls} placeholder="np. TS/2026/05/44821" value={data.numer_zamowienia} onChange={set("numer_zamowienia")} />
+            <Field label={type.refLabel} hint="Opcjonalnie">
+              <input className={inputCls} placeholder={type.refPlaceholder} value={data.numer_zamowienia} onChange={set("numer_zamowienia")} />
             </Field>
             <Field label="Co się stało?" required error={errors.opis}>
-              <textarea
-                className={textareaCls}
-                rows={4}
-                placeholder="Opisz dokładnie co się wydarzyło — kiedy zamówiłeś, co poszło nie tak, jak zareagował sklep..."
-                value={data.opis}
-                onChange={set("opis")}
-              />
+              <textarea className={textareaCls} rows={4} placeholder={type.opisPlaceholder} value={data.opis} onChange={set("opis")} />
             </Field>
-            <Field label="Co już próbowałeś?" hint="Opcjonalnie">
-              <textarea
-                className={textareaCls}
-                rows={2}
-                placeholder="np. Kontaktowałem się przez czat 3 razy, sklep nie odpowiada..."
-                value={data.podjete_kroki}
-                onChange={set("podjete_kroki")}
-              />
+            <Field label={type.podjeteLabel} hint="Opcjonalnie">
+              <textarea className={textareaCls} rows={2} placeholder={type.podjetePlaceholder} value={data.podjete_kroki} onChange={set("podjete_kroki")} />
             </Field>
             <Field label="Czego żądasz?" required error={errors.zadanie}>
-              <input
-                className={inputCls}
-                placeholder="np. Zwrotu 1299 zł / Wymiany na nowy produkt"
-                value={data.zadanie}
-                onChange={set("zadanie")}
-              />
+              <input className={inputCls} placeholder={type.zadaniePlaceholder} value={data.zadanie} onChange={set("zadanie")} />
             </Field>
           </div>
           <div className="flex gap-3 mt-8">
@@ -238,7 +338,10 @@ export function FormWizard() {
       {/* Krok 2 — Dane */}
       {step === 2 && (
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Twoje dane i dane sklepu</h1>
+          <div className="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 border border-indigo-100">
+            {type.label}
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Twoje dane i dane adresata</h1>
           <p className="text-gray-600 text-sm mb-8">Potrzebujemy ich żeby wygenerować pismo</p>
           <div className="space-y-5">
             <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-5">
@@ -256,13 +359,13 @@ export function FormWizard() {
               </div>
             </div>
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-5">
-              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-4">Dane sklepu</h3>
+              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-4">Dane adresata</h3>
               <div className="space-y-4">
-                <Field label="Nazwa sklepu" required error={errors.nazwa_sklepu}>
-                  <input className={inputCls} placeholder="np. TechShop Sp. z o.o. / Allegro.pl" value={data.nazwa_sklepu} onChange={set("nazwa_sklepu")} />
+                <Field label={type.orgLabel} required error={errors.nazwa_sklepu}>
+                  <input className={inputCls} placeholder={type.orgPlaceholder} value={data.nazwa_sklepu} onChange={set("nazwa_sklepu")} />
                 </Field>
-                <Field label="Adres sklepu" hint="Opcjonalnie — znajdziesz w regulaminie lub stopce strony">
-                  <input className={inputCls} placeholder="ul. Handlowa 10, 02-001 Warszawa" value={data.adres_sklepu} onChange={set("adres_sklepu")} />
+                <Field label={type.orgAdresLabel} hint={type.orgAdresHint}>
+                  <input className={inputCls} placeholder="ul. Przykładowa 1, 00-001 Warszawa" value={data.adres_sklepu} onChange={set("adres_sklepu")} />
                 </Field>
               </div>
             </div>
@@ -290,12 +393,12 @@ export function FormWizard() {
           <div className="bg-white border border-gray-200 rounded-xl overflow-hidden mb-6 divide-y divide-gray-100">
             <div className="px-5 py-4">
               <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Typ pisma</div>
-              <div className="text-sm font-semibold text-gray-900">Reklamacja do sklepu internetowego</div>
+              <div className="text-sm font-semibold text-gray-900">{type.label}</div>
             </div>
             <div className="px-5 py-4">
-              <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Produkt i sklep</div>
+              <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{type.summarySubject} · {type.summaryOrg}</div>
               <div className="text-sm text-gray-900">{data.produkt}</div>
-              <div className="text-xs text-gray-500 mt-0.5">{data.nazwa_sklepu} · {data.cena} zł</div>
+              <div className="text-xs text-gray-500 mt-0.5">{data.nazwa_sklepu}{data.cena ? ` · ${data.cena} zł` : ""}</div>
             </div>
             <div className="px-5 py-4">
               <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Żądanie</div>
@@ -338,10 +441,7 @@ export function FormWizard() {
           <p className="text-xs text-gray-500 text-center mt-3">
             Bezpieczna płatność przez Stripe · BLIK · Karta · Przelewy24
           </p>
-          <button
-            onClick={() => setStep(2)}
-            className="w-full text-center text-sm text-gray-500 hover:text-gray-900 transition-colors mt-4"
-          >
+          <button onClick={() => setStep(2)} className="w-full text-center text-sm text-gray-500 hover:text-gray-900 transition-colors mt-4">
             ← Popraw dane
           </button>
         </div>

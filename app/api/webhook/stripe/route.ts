@@ -28,38 +28,96 @@ export async function POST(req: NextRequest) {
 
   const session = event.data.object as Stripe.Checkout.Session;
   const m = session.metadata!;
+  const docType = m.doc_type || "sklep";
 
   const today = new Date().toLocaleDateString("pl-PL", { day: "numeric", month: "long", year: "numeric" });
 
-  // Generuj pismo przez Claude
-  const msg = await anthropic.messages.create({
-    model: "claude-sonnet-4-6",
-    max_tokens: 2000,
-    system: `Jesteś ekspertem prawa konsumenckiego w Polsce. Piszesz profesjonalne pisma reklamacyjne w imieniu konsumentów.
+  const SYSTEMS: Record<string, string> = {
+    sklep: `Jesteś ekspertem prawa konsumenckiego w Polsce. Piszesz profesjonalne pisma reklamacyjne w imieniu konsumentów.
+Twoje pisma są formalne, asertywne, powołują się na właściwe przepisy prawa z numerami artykułów.
+Używaj przepisów: Ustawa z dnia 30 maja 2014 r. o prawach konsumenta (Dz.U. 2014 poz. 827), art. 43a-43g (niezgodność towaru z umową), art. 556-576 KC (rękojmia), art. 548 KC.
+Termin odpowiedzi: 14 dni kalendarzowych (art. 7a UPK). Brak odpowiedzi = uznanie reklamacji za zasadną.`,
 
-Twoje pisma są formalne, asertywne, powołują się na właściwe przepisy prawa z numerami artykułów, zawierają precyzyjne żądania z terminem odpowiedzi.
+    bank: `Jesteś ekspertem prawa bankowego i ubezpieczeniowego w Polsce. Piszesz profesjonalne pisma reklamacyjne do banków i ubezpieczycieli.
+Twoje pisma są formalne, asertywne, powołują się na właściwe przepisy.
+Używaj przepisów: Ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamacji przez podmioty rynku finansowego (Dz.U. 2015 poz. 1348), Ustawa Prawo bankowe (Dz.U. 1997 poz. 939), Ustawa o usługach płatniczych z dnia 19 sierpnia 2011 r.
+Podmiot rynku finansowego ma 30 dni na odpowiedź (15 dni w sprawach szczególnie skomplikowanych do 60 dni). Brak odpowiedzi = uznanie reklamacji za zasadną.`,
 
-Używaj przepisów:
-- Ustawa z dnia 30 maja 2014 r. o prawach konsumenta (Dz.U. 2014 poz. 827)
-- Art. 43a-43g Ustawy o prawach konsumenta (niezgodność towaru z umową — zakupy po 1.01.2023)
-- Art. 556-576 Kodeksu cywilnego (rękojmia za wady)
-- Art. 548 KC (ryzyko utraty przy dostawie)
+    zus: `Jesteś ekspertem prawa ubezpieczeń społecznych i administracyjnego w Polsce. Piszesz profesjonalne odwołania od decyzji ZUS i Urzędu Skarbowego.
+Twoje pisma są formalne, precyzyjne, powołują się na właściwe przepisy.
+Używaj przepisów: Ustawa z dnia 13 października 1998 r. o systemie ubezpieczeń społecznych, Kodeks postępowania administracyjnego (KPA) — art. 127-140 (odwołanie), art. 156 (nieważność decyzji), Ustawa z dnia 17 grudnia 1998 r. o emeryturach i rentach z FUS.
+Odwołanie składa się w terminie 30 dni od doręczenia decyzji (art. 129 KPA) za pośrednictwem organu który wydał decyzję.`,
 
-Termin odpowiedzi: 14 dni kalendarzowych (art. 7a Ustawy o prawach konsumenta). Brak odpowiedzi = uznanie reklamacji za zasadną.`,
-    messages: [{
-      role: "user",
-      content: `Napisz pismo reklamacyjne:
+    umowa: `Jesteś ekspertem prawa cywilnego i konsumenckiego w Polsce. Piszesz profesjonalne pisma wypowiadające umowy w imieniu konsumentów.
+Twoje pisma są formalne, precyzyjne, powołują się na właściwe przepisy.
+Używaj przepisów: Kodeks cywilny art. 746-750 (wypowiedzenie umów zlecenia/o świadczenie usług), art. 365(1) KC (wypowiedzenie umów na czas nieokreślony), Ustawa o prawach konsumenta art. 27-38 (prawo odstąpienia), Ustawa o świadczeniu usług drogą elektroniczną.
+Wskazuj konkretną datę skuteczności wypowiedzenia z uwzględnieniem okresu wypowiedzenia.`,
 
+    uokik: `Jesteś ekspertem prawa ochrony konsumentów w Polsce. Piszesz profesjonalne skargi do UOKiK i Rzecznika Praw Konsumentów.
+Twoje pisma są formalne, precyzyjne, zawierają kompletny opis naruszeń.
+Używaj przepisów: Ustawa z dnia 16 lutego 2007 r. o ochronie konkurencji i konsumentów (Dz.U. 2007 nr 50 poz. 331), Ustawa o prawach konsumenta art. 7a (14-dniowy termin odpowiedzi), Dyrektywa Omnibus 2019/2161.
+Skarga powinna zawierać opis naruszenia, dowody, żądanie interwencji i pouczenie o możliwości mediacji.`,
+  };
+
+  const PROMPTS: Record<string, string> = {
+    sklep: `Napisz pismo reklamacyjne:
 KUPUJĄCY: ${m.imie_nazwisko}, ${m.adres}, ${m.email}
-SKLEP: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
-PRODUKT: ${m.produkt}, ${m.cena} zł, zakup: ${m.data_zakupu}${m.numer_zamowienia ? ", nr zamówienia: " + m.numer_zamowienia : ""}
+ADRESAT: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
+PRODUKT: ${m.produkt}${m.cena ? ", " + m.cena + " zł" : ""}, zakup: ${m.data_zakupu}${m.numer_zamowienia ? ", nr zamówienia: " + m.numer_zamowienia : ""}
 SYTUACJA: ${m.opis}
 ${m.podjete_kroki ? "PODJĘTE KROKI: " + m.podjete_kroki : ""}
 ŻĄDANIE: ${m.zadanie}
-DATA DZISIEJSZA: ${today}
+DATA: ${today}`,
 
-Tylko gotowe pismo, bez komentarzy. Nie używaj markdownu — zwykły tekst.`,
-    }],
+    bank: `Napisz reklamację do banku / ubezpieczyciela:
+SKŁADAJĄCY: ${m.imie_nazwisko}, ${m.adres}, ${m.email}
+ADRESAT: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
+PRODUKT/USŁUGA: ${m.produkt}${m.cena ? ", kwota: " + m.cena + " zł" : ""}
+DATA ZDARZENIA: ${m.data_zakupu}${m.numer_zamowienia ? ", nr umowy/rachunku: " + m.numer_zamowienia : ""}
+SYTUACJA: ${m.opis}
+${m.podjete_kroki ? "KONTAKT Z BANKIEM: " + m.podjete_kroki : ""}
+ŻĄDANIE: ${m.zadanie}
+DATA: ${today}`,
+
+    zus: `Napisz odwołanie od decyzji ZUS/US:
+ODWOŁUJĄCY: ${m.imie_nazwisko}, ${m.adres}, ${m.email}
+ORGAN: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
+PRZEDMIOT: ${m.produkt}
+DATA DECYZJI: ${m.data_zakupu}${m.numer_zamowienia ? ", nr decyzji: " + m.numer_zamowienia : ""}
+UZASADNIENIE: ${m.opis}
+${m.podjete_kroki ? "DOTYCHCZASOWE KROKI: " + m.podjete_kroki : ""}
+ŻĄDANIE: ${m.zadanie}
+DATA: ${today}`,
+
+    umowa: `Napisz wypowiedzenie umowy:
+WYPOWIADAJĄCY: ${m.imie_nazwisko}, ${m.adres}, ${m.email}
+FIRMA: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
+TYP UMOWY: ${m.produkt}${m.cena ? ", opłata: " + m.cena + " zł/mies." : ""}
+DATA ZAWARCIA: ${m.data_zakupu}${m.numer_zamowienia ? ", nr umowy: " + m.numer_zamowienia : ""}
+OKOLICZNOŚCI: ${m.opis}
+${m.podjete_kroki ? "KONTAKT Z FIRMĄ: " + m.podjete_kroki : ""}
+ŻĄDANIE: ${m.zadanie}
+DATA: ${today}`,
+
+    uokik: `Napisz skargę do UOKiK / Rzecznika Praw Konsumentów:
+SKŁADAJĄCY: ${m.imie_nazwisko}, ${m.adres}, ${m.email}
+FIRMA KTÓREJ DOTYCZY: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
+PRZEDMIOT: ${m.produkt}${m.cena ? ", wartość sporu: " + m.cena + " zł" : ""}
+DATA REKLAMACJI DO FIRMY: ${m.data_zakupu}${m.numer_zamowienia ? ", nr reklamacji: " + m.numer_zamowienia : ""}
+OPIS NARUSZENIA: ${m.opis}
+HISTORIA KONTAKTU: ${m.podjete_kroki || "Brak odpowiedzi na reklamację"}
+ŻĄDANIE: ${m.zadanie}
+DATA: ${today}`,
+  };
+
+  const systemPrompt = SYSTEMS[docType] ?? SYSTEMS.sklep;
+  const userPrompt = (PROMPTS[docType] ?? PROMPTS.sklep) + "\n\nTylko gotowe pismo, bez komentarzy. Nie używaj markdownu — zwykły tekst.";
+
+  const msg = await anthropic.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 2000,
+    system: systemPrompt,
+    messages: [{ role: "user", content: userPrompt }],
   });
 
   const pismoText = (msg.content[0] as { type: string; text: string }).text;
