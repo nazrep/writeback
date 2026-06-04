@@ -36,10 +36,9 @@ const STEPS = [
 const CASES = [
   {
     category: "Sprzęt elektroniczny",
-    situation: "Smartfon kupiony na Allegro przestał ładować się po 6 tygodniach. Sprzedawca odpisał: „produkt był sprawny przy wysyłce, uszkodzenie po Twojej stronie."",
+    situation: `Smartfon kupiony na Allegro przestał ładować się po 6 tygodniach. Sprzedawca odpisał: „produkt był sprawny przy wysyłce, uszkodzenie po Twojej stronie".`,
     law: "art. 43b ustawy o prawach konsumenta",
     result: "Pełny zwrot 1 240 zł w 8 dni",
-    resultColor: "emerald",
     initial: "M",
     name: "Marcin K.",
     city: "Wrocław",
@@ -47,10 +46,9 @@ const CASES = [
   },
   {
     category: "Odzież i obuwie",
-    situation: "Kurtka zamówiona online — szwy rozeszły się po 2 praniach. Sklep odmówił reklamacji twierdząc, że to „naturalne zużycie" i minęły 30 dni.",
+    situation: `Kurtka zamówiona online — szwy rozeszły się po 2 praniach. Sklep odmówił reklamacji twierdząc, że to „naturalne zużycie" i że minęły 30 dni.`,
     law: "art. 43c ustawy o prawach konsumenta",
     result: "Wymiana na nową kurtkę w 11 dni",
-    resultColor: "emerald",
     initial: "A",
     name: "Anna W.",
     city: "Kraków",
@@ -58,10 +56,9 @@ const CASES = [
   },
   {
     category: "AGD",
-    situation: "Ekspres do kawy przestał działać po 4 miesiącach. Sklep odesłał do serwisu producenta z informacją „gwarancja wygasła" — bez żadnej podstawy prawnej.",
+    situation: `Ekspres do kawy przestał działać po 4 miesiącach. Sklep odesłał do serwisu producenta z informacją „gwarancja wygasła" — bez żadnej podstawy prawnej.`,
     law: "art. 43d ustawy o prawach konsumenta",
     result: "Bezpłatna naprawa + zwrot kosztów wysyłki",
-    resultColor: "emerald",
     initial: "P",
     name: "Paweł S.",
     city: "Gdańsk",
@@ -71,7 +68,7 @@ const CASES = [
 
 const PROBLEMS = [
   {
-    before: 'Piszesz „proszę o zwrot" — sklep ignoruje lub odmawia po 3 tygodniach',
+    before: `Piszesz „proszę o zwrot" — sklep ignoruje lub odmawia po 3 tygodniach`,
     after: "Piszesz z art. 43b ustawy — sklep wie, że brak odpowiedzi w 14 dni = przegrana",
   },
   {
@@ -83,13 +80,13 @@ const PROBLEMS = [
     after: "Podpowiadamy co Ci się należy zanim napiszesz pierwsze słowo",
   },
   {
-    before: 'Sklep twierdzi „towar był używany" lub „termin minął" bez podstawy',
+    before: `Sklep twierdzi „towar był używany" lub „termin minął" bez podstawy`,
     after: "Twoje pismo kontruje te argumenty z odwołaniem do przepisów",
   },
 ];
 
 const TYPES = [
-  { label: "Reklamacja do sklepu / Allegro", desc: "Produkt nie dotarł, uszkodzony, niezgodny z opisem, odmowa zwrotu", active: true },
+  { label: "Reklamacja do sklepu / Allegro", desc: "Produkt nie dotarł, uszkodzony, niezgodny z opisem, odmowa zwrotu" },
   { label: "Reklamacja do banku / ubezpieczyciela", desc: "Nieautoryzowana transakcja, odmowa wypłaty, błędna opłata" },
   { label: "Odwołanie od decyzji ZUS / US", desc: "Odmowa świadczenia, zawyżona składka, decyzja podatkowa" },
   { label: "Wypowiedzenie umowy", desc: "Internet, gym, prąd, telefon — bez kar umownych" },
@@ -133,7 +130,7 @@ export default function HomePage() {
           <span className="font-bold text-lg tracking-tight text-white">writeback</span>
           <Link
             href="/zamow"
-            className="bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-colors"
+            className="bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95"
           >
             Napisz pismo
           </Link>
@@ -142,7 +139,6 @@ export default function HomePage() {
 
       {/* Hero */}
       <section className="relative bg-slate-950 overflow-hidden">
-        {/* subtle grid bg */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -150,58 +146,51 @@ export default function HomePage() {
             backgroundSize: "48px 48px",
           }}
         />
-        {/* glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-indigo-600/20 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="relative max-w-3xl mx-auto px-6 pt-20 pb-16 text-center">
-          <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full mb-8 border border-emerald-500/20">
+          <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full mb-8 border border-emerald-500/20 animate-fade-in">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 animate-pulse" />
             Prawo jest po Twojej stronie
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.08] text-white mb-6">
+          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.08] text-white mb-6 animate-fade-up">
             Sklep Cię zignorował?<br />
             <span className="text-indigo-400">Napisz pismo które<br className="hidden sm:block" /> muszą przeczytać.</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed animate-fade-up delay-100">
             Pismo reklamacyjne z art. 43b ustawy o prawach konsumenta.
             Gotowe w 5 minut. Sklep ma <strong className="text-white font-semibold">14 dni</strong> na odpowiedź —
             brak odpowiedzi = reklamacja uznana z mocy prawa.
           </p>
 
-          <Link
-            href="/zamow"
-            className="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 text-white font-bold px-10 py-4 rounded-xl transition-colors text-base shadow-2xl shadow-indigo-500/25"
-          >
-            Napisz pismo — 29 zł
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </Link>
-          <p className="text-sm text-slate-500 mt-3">
-            Jednorazowa opłata · PDF na maila od razu · Odwołanie gratis jeśli nie pomoże
-          </p>
+          <div className="animate-fade-up delay-200">
+            <Link
+              href="/zamow"
+              className="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-2xl shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5 active:scale-95"
+            >
+              Napisz pismo — 29 zł
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </Link>
+            <p className="text-sm text-slate-500 mt-3">
+              Jednorazowa opłata · PDF na maila od razu · Odwołanie gratis jeśli nie pomoże
+            </p>
+          </div>
 
           {/* Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-8 mt-14 pt-10 border-t border-white/5">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">29 zł</div>
-              <div className="text-xs text-slate-500 mt-0.5">jednorazowo</div>
-            </div>
-            <div className="w-px h-8 bg-white/10 hidden sm:block" />
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">5 min</div>
-              <div className="text-xs text-slate-500 mt-0.5">gotowe pismo</div>
-            </div>
-            <div className="w-px h-8 bg-white/10 hidden sm:block" />
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">14 dni</div>
-              <div className="text-xs text-slate-500 mt-0.5">sklep musi odpowiedzieć</div>
-            </div>
-            <div className="w-px h-8 bg-white/10 hidden sm:block" />
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">100%</div>
-              <div className="text-xs text-slate-500 mt-0.5">polskie przepisy prawa</div>
-            </div>
+          <div className="flex flex-wrap items-center justify-center gap-8 mt-14 pt-10 border-t border-white/5 animate-fade-up delay-300">
+            {[
+              { val: "29 zł", sub: "jednorazowo" },
+              { val: "5 min", sub: "gotowe pismo" },
+              { val: "14 dni", sub: "sklep musi odpowiedzieć" },
+              { val: "100%", sub: "polskie przepisy prawa" },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <div className="text-2xl font-bold text-white">{s.val}</div>
+                <div className="text-xs text-slate-500 mt-0.5">{s.sub}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -209,26 +198,20 @@ export default function HomePage() {
       {/* Trust strip */}
       <div className="bg-slate-900 border-b border-white/5">
         <div className="max-w-5xl mx-auto px-6 py-3 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400">
-          <span className="flex items-center gap-1.5">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L2 4v3.5c0 2.8 2.1 5.1 5 5.5 2.9-.4 5-2.7 5-5.5V4L7 1.5z" stroke="#6b7280" strokeWidth="1.2" fill="none"/></svg>
-            Płatność przez Stripe
-          </span>
-          <span className="flex items-center gap-1.5">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="2" y="6" width="10" height="7" rx="1.5" stroke="#6b7280" strokeWidth="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#6b7280" strokeWidth="1.2" strokeLinecap="round"/></svg>
-            Szyfrowane HTTPS
-          </span>
-          <span className="flex items-center gap-1.5">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="#6b7280" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            Zgodne z RODO
-          </span>
-          <span className="flex items-center gap-1.5">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="#6b7280" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            Przepisy prawa polskiego
-          </span>
-          <span className="flex items-center gap-1.5">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="#6b7280" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            BLIK · karta · Przelewy24
-          </span>
+          {[
+            { icon: "shield", label: "Płatność przez Stripe" },
+            { icon: "lock", label: "Szyfrowane HTTPS" },
+            { icon: "check", label: "Zgodne z RODO" },
+            { icon: "check", label: "Przepisy prawa polskiego" },
+            { icon: "check", label: "BLIK · karta · Przelewy24" },
+          ].map((t) => (
+            <span key={t.label} className="flex items-center gap-1.5 transition-colors duration-200 hover:text-slate-200">
+              {t.icon === "shield" && <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L2 4v3.5c0 2.8 2.1 5.1 5 5.5 2.9-.4 5-2.7 5-5.5V4L7 1.5z" stroke="currentColor" strokeWidth="1.2" fill="none"/></svg>}
+              {t.icon === "lock" && <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="2" y="6" width="10" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>}
+              {t.icon === "check" && <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+              {t.label}
+            </span>
+          ))}
         </div>
       </div>
 
@@ -242,12 +225,12 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {STEPS.map((s, i) => (
-              <div key={s.n} className="relative">
+              <div key={s.n} className={`relative animate-fade-up delay-${(i + 1) * 100}`}>
                 {i < STEPS.length - 1 && (
-                  <div className="hidden sm:block absolute top-6 left-[calc(50%+40px)] right-[-50%] h-px bg-gray-100" />
+                  <div className="hidden sm:block absolute top-7 left-[calc(50%+44px)] right-[-50%] h-px bg-gradient-to-r from-indigo-100 to-transparent" />
                 )}
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-5 ring-4 ring-white shadow-sm">
+                <div className="flex flex-col items-center text-center group">
+                  <div className="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-5 ring-4 ring-white shadow-sm transition-all duration-300 group-hover:bg-indigo-100 group-hover:shadow-md group-hover:shadow-indigo-100 group-hover:-translate-y-1">
                     {s.icon}
                   </div>
                   <div className="text-xs font-bold text-indigo-400 tracking-widest mb-1">{s.n}</div>
@@ -260,7 +243,7 @@ export default function HomePage() {
           <div className="text-center mt-12">
             <Link
               href="/zamow"
-              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl transition-colors text-sm shadow-lg shadow-indigo-200"
+              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 text-sm shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-0.5 active:scale-95"
             >
               Zacznij teraz
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -277,10 +260,12 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Prawdziwe przypadki,<br className="hidden sm:block" /> prawdziwe wyniki</h2>
             <p className="text-gray-500 text-sm">Typowe sytuacje konsumentów — co się dzieje po wysłaniu pisma z Writeback</p>
           </div>
-
-          <div className="grid grid-cols-1 gap-5">
+          <div className="grid grid-cols-1 gap-4">
             {CASES.map((c, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+              <div
+                key={i}
+                className={`bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md hover:border-gray-300 hover:-translate-y-0.5 animate-scale-in delay-${(i + 1) * 100}`}
+              >
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <span className="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full border border-indigo-100">
@@ -293,17 +278,17 @@ export default function HomePage() {
                   </div>
                   <p className="text-sm text-gray-600 leading-relaxed mb-4">{c.situation}</p>
                   <div className="flex items-center gap-2 text-xs text-gray-400">
-                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L2 4v3.5c0 2.8 2.1 5.1 5 5.5 2.9-.4 5-2.7 5-5.5V4L7 1.5z" stroke="#9ca3af" strokeWidth="1.2" fill="none"/></svg>
-                    Podstawa prawna: <span className="font-medium text-gray-500">{c.law}</span>
+                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L2 4v3.5c0 2.8 2.1 5.1 5 5.5 2.9-.4 5-2.7 5-5.5V4L7 1.5z" stroke="currentColor" strokeWidth="1.2" fill="none"/></svg>
+                    Podstawa: <span className="font-medium text-gray-500 ml-1">{c.law}</span>
                   </div>
                 </div>
-                <div className="border-t border-gray-100 bg-gray-50 px-6 py-4">
+                <div className="border-t border-gray-100 bg-gray-50/70 px-6 py-4">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center shrink-0">
                       {c.initial}
                     </div>
                     <div>
-                      <p className="text-sm text-gray-700 italic leading-relaxed">„{c.quote}"</p>
+                      <p className="text-sm text-gray-700 italic leading-relaxed">&bdquo;{c.quote}&rdquo;</p>
                       <p className="text-xs text-gray-400 mt-1.5">{c.name}, {c.city}</p>
                     </div>
                   </div>
@@ -311,11 +296,10 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-
           <div className="mt-10 text-center">
             <Link
               href="/zamow"
-              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl transition-colors text-sm shadow-lg shadow-indigo-200"
+              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 text-sm shadow-lg shadow-indigo-200 hover:-translate-y-0.5 active:scale-95"
             >
               Napisz swoje pismo — 29 zł
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -336,7 +320,10 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {PROBLEMS.map((item, i) => (
-              <div key={i} className="bg-slate-900 rounded-2xl border border-white/5 p-5 space-y-4">
+              <div
+                key={i}
+                className="bg-slate-900 rounded-2xl border border-white/5 p-5 space-y-4 transition-all duration-300 hover:border-white/10 hover:bg-slate-800/50"
+              >
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0 mt-0.5">
                     <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
@@ -369,7 +356,7 @@ export default function HomePage() {
             <p className="text-gray-500 text-sm">Porównaj zanim zdecydujesz</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="border border-gray-200 rounded-2xl p-7 text-center bg-gray-50">
+            <div className="border border-gray-200 rounded-2xl p-7 text-center bg-gray-50 transition-all duration-300 hover:border-gray-300">
               <div className="text-3xl font-bold text-gray-300 mb-1">0 zł</div>
               <div className="font-semibold text-gray-600 mb-4 text-sm">Sam napiszesz</div>
               <ul className="text-sm text-gray-500 text-left space-y-2.5">
@@ -378,7 +365,7 @@ export default function HomePage() {
                 <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0 font-bold">✗</span>Sklep to wyczuje i zlekceważy</li>
               </ul>
             </div>
-            <div className="border-2 border-indigo-500 rounded-2xl p-7 text-center bg-indigo-50 relative shadow-xl shadow-indigo-100">
+            <div className="border-2 border-indigo-500 rounded-2xl p-7 text-center bg-indigo-50 relative shadow-xl shadow-indigo-100 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-200 hover:-translate-y-1">
               <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs font-bold px-4 py-1 rounded-full">Najlepszy wybór</div>
               <div className="text-3xl font-bold text-indigo-600 mb-1">29 zł</div>
               <div className="font-semibold text-gray-900 mb-4 text-sm">Writeback</div>
@@ -388,7 +375,7 @@ export default function HomePage() {
                 <li className="flex gap-2.5 items-start"><span className="text-indigo-500 shrink-0 font-bold">✓</span>Odwołanie gratis jeśli nie pomoże</li>
               </ul>
             </div>
-            <div className="border border-gray-200 rounded-2xl p-7 text-center bg-gray-50">
+            <div className="border border-gray-200 rounded-2xl p-7 text-center bg-gray-50 transition-all duration-300 hover:border-gray-300">
               <div className="text-3xl font-bold text-gray-300 mb-1">300+ zł</div>
               <div className="font-semibold text-gray-600 mb-4 text-sm">Prawnik</div>
               <ul className="text-sm text-gray-500 text-left space-y-2.5">
@@ -401,7 +388,7 @@ export default function HomePage() {
           <div className="text-center mt-10">
             <Link
               href="/zamow"
-              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-colors text-base shadow-lg shadow-indigo-200"
+              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-0.5 active:scale-95"
             >
               Napisz pismo — 29 zł
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -416,38 +403,26 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Zakres</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Jakie pisma piszemy</h2>
-            <p className="text-gray-500 text-sm">Reklamacja do sklepu już dostępna — reszta wkrótce</p>
+            <p className="text-gray-500 text-sm">Wszystkie typy pism dostępne od ręki</p>
           </div>
           <div className="space-y-2">
             {TYPES.map((t) => (
-              <div
+              <Link
                 key={t.label}
-                className={`flex items-center justify-between rounded-xl px-5 py-4 border transition-all ${
-                  t.active
-                    ? "border-indigo-200 bg-white shadow-sm shadow-indigo-100"
-                    : "border-gray-100 bg-white/50"
-                }`}
+                href="/zamow"
+                className="flex items-center justify-between rounded-xl px-5 py-4 border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-indigo-200 hover:shadow-md hover:shadow-indigo-50 hover:-translate-y-0.5 group"
               >
                 <div className="flex items-center gap-3">
-                  <div className={`w-2 h-2 rounded-full shrink-0 ${t.active ? "bg-emerald-500" : "bg-gray-200"}`} />
+                  <div className="w-2 h-2 rounded-full shrink-0 bg-emerald-500 transition-transform duration-200 group-hover:scale-125" />
                   <div>
-                    <div className={`font-semibold text-sm ${t.active ? "text-gray-900" : "text-gray-400"}`}>
-                      {t.label}
-                    </div>
-                    <div className={`text-xs mt-0.5 ${t.active ? "text-gray-500" : "text-gray-300"}`}>{t.desc}</div>
+                    <div className="font-semibold text-sm text-gray-900 group-hover:text-indigo-700 transition-colors duration-200">{t.label}</div>
+                    <div className="text-xs mt-0.5 text-gray-500">{t.desc}</div>
                   </div>
                 </div>
-                {t.active ? (
-                  <Link
-                    href="/zamow"
-                    className="ml-6 shrink-0 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors"
-                  >
-                    Napisz →
-                  </Link>
-                ) : (
-                  <span className="ml-6 shrink-0 text-xs text-gray-300 bg-gray-100 px-3 py-1.5 rounded-lg">Wkrótce</span>
-                )}
-              </div>
+                <div className="ml-6 shrink-0 bg-indigo-600 group-hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-all duration-200 group-hover:shadow-md group-hover:shadow-indigo-200">
+                  Napisz →
+                </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -463,10 +438,10 @@ export default function HomePage() {
           </div>
           <div className="space-y-2">
             {FAQS.map((faq, i) => (
-              <details key={i} className="border border-gray-100 rounded-xl overflow-hidden group bg-white hover:border-gray-200 transition-colors">
-                <summary className="px-5 py-4 text-sm font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between hover:bg-gray-50 transition-colors">
+              <details key={i} className="border border-gray-100 rounded-xl overflow-hidden group bg-white hover:border-indigo-100 transition-all duration-200">
+                <summary className="px-5 py-4 text-sm font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between hover:bg-indigo-50/50 transition-colors duration-200">
                   {faq.q}
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 ml-4 text-gray-400 transition-transform duration-200 group-open:rotate-180">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 ml-4 text-gray-400 transition-transform duration-300 group-open:rotate-180">
                     <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </summary>
@@ -479,7 +454,8 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="bg-slate-950 py-24 px-6 text-center relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-indigo-600/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-[300px] h-[200px] bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
         <div className="relative max-w-xl mx-auto">
           <p className="text-indigo-400 text-xs font-bold uppercase tracking-widest mb-4">Zrób to teraz</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -493,7 +469,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/zamow"
-            className="inline-flex items-center gap-2 bg-white text-slate-900 hover:bg-slate-100 font-bold px-10 py-4 rounded-xl transition-colors shadow-2xl text-base"
+            className="inline-flex items-center gap-2 bg-white text-slate-900 hover:bg-slate-100 font-bold px-10 py-4 rounded-xl transition-all duration-200 shadow-2xl text-base hover:-translate-y-0.5 active:scale-95"
           >
             Napisz pismo — 29 zł
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -508,15 +484,15 @@ export default function HomePage() {
           © 2026 writeback.pl · Narzędzie do tworzenia pism, nie porada prawna
         </p>
         <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-          <a href="mailto:hello@writeback.pl" className="hover:text-slate-300 transition-colors">
+          <a href="mailto:hello@writeback.pl" className="hover:text-slate-300 transition-colors duration-200">
             hello@writeback.pl
           </a>
           <span>·</span>
-          <Link href="/regulamin" className="hover:text-slate-300 transition-colors">
+          <Link href="/regulamin" className="hover:text-slate-300 transition-colors duration-200">
             Regulamin
           </Link>
           <span>·</span>
-          <Link href="/polityka" className="hover:text-slate-300 transition-colors">
+          <Link href="/polityka" className="hover:text-slate-300 transition-colors duration-200">
             Polityka prywatności
           </Link>
           <span>·</span>
