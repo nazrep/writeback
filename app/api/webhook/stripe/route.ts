@@ -111,10 +111,11 @@ DATA: ${today}`,
   };
 
   const systemPrompt = SYSTEMS[docType] ?? SYSTEMS.sklep;
-  const userPrompt = (PROMPTS[docType] ?? PROMPTS.sklep) + "\n\nTylko gotowe pismo, bez komentarzy. Nie używaj markdownu — zwykły tekst.";
+  const imageCtx = m.image_context ? `\nDODATKOWY KONTEKST ZE ZDJĘCIA DOKUMENTU: ${m.image_context}` : "";
+  const userPrompt = (PROMPTS[docType] ?? PROMPTS.sklep) + imageCtx + "\n\nTylko gotowe pismo, bez komentarzy. Nie używaj markdownu — zwykły tekst.";
 
   const msg = await anthropic.messages.create({
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-7",
     max_tokens: 2000,
     system: systemPrompt,
     messages: [{ role: "user", content: userPrompt }],

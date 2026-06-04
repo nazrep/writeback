@@ -1,6 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+
+async function compressImage(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const MAX = 1200;
+      let w = img.width, h = img.height;
+      if (w > MAX || h > MAX) {
+        if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+        else { w = Math.round(w * MAX / h); h = MAX; }
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      canvas.getContext("2d")!.drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(url);
+      resolve(canvas.toDataURL("image/jpeg", 0.75).split(",")[1]);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("load")); };
+    img.src = url;
+  });
+}
 
 const DOC_TYPES = [
   {
@@ -199,6 +221,11 @@ export function FormWizard() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [consent, setConsent] = useState(false);
   const [consentError, setConsentError] = useState(false);
+  const [imageBase64, setImageBase64] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageExtracted, setImageExtracted] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const type = DOC_TYPES.find(t => t.id === docType) ?? DOC_TYPES[0];
 
@@ -237,7 +264,7 @@ export function FormWizard() {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, doc_type: docType }),
+        body: JSON.stringify({ ...data, doc_type: docType, image_base64: imageBase64 }),
       });
       if (!res.ok) throw new Error();
       const json = await res.json();
@@ -250,10 +277,49 @@ export function FormWizard() {
     }
   }
 
+  async function onImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (fileInputRef.current) fileInputRef.current.value = "";
+    setImageLoading(true);
+    setImageExtracted(false);
+    try {
+      const b64 = await compressImage(file);
+      setImageBase64(b64);
+      setImagePreview("data:image/jpeg;base64," + b64);
+      const res = await fetch("/api/extract-image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image_base64: b64, doc_type: docType }),
+      });
+      if (res.ok) {
+        const ex = await res.json();
+        setData(prev => ({
+          ...prev,
+          ...(ex.produkt && !prev.produkt ? { produkt: String(ex.produkt).slice(0, 100) } : {}),
+          ...(ex.cena && !prev.cena ? { cena: String(ex.cena) } : {}),
+          ...(ex.data_zakupu && !prev.data_zakupu ? { data_zakupu: ex.data_zakupu } : {}),
+          ...(ex.numer_zamowienia && !prev.numer_zamowienia ? { numer_zamowienia: String(ex.numer_zamowienia) } : {}),
+          ...(ex.nazwa_sklepu && !prev.nazwa_sklepu ? { nazwa_sklepu: String(ex.nazwa_sklepu) } : {}),
+          ...(ex.adres_sklepu && !prev.adres_sklepu ? { adres_sklepu: String(ex.adres_sklepu) } : {}),
+          ...(ex.opis_extra && !prev.opis ? { opis: String(ex.opis_extra) } : {}),
+        }));
+        setImageExtracted(true);
+      }
+    } catch {
+      // obraz zapisany, bez auto-uzupełnienia
+    } finally {
+      setImageLoading(false);
+    }
+  }
+
   function selectType(id: DocTypeId) {
     setDocType(id);
     setData(EMPTY);
     setErrors({});
+    setImageBase64(null);
+    setImagePreview(null);
+    setImageExtracted(false);
     setStep(1);
   }
 
@@ -297,6 +363,58 @@ export function FormWizard() {
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Co się stało?</h1>
           <p className="text-gray-600 text-sm mb-8">Im więcej szczegółów, tym mocniejsze pismo</p>
           <div className="space-y-5">
+            {/* Upload zdjęcia */}
+            <div>
+              <div className="flex items-baseline gap-2 mb-1.5">
+                <span className="text-sm font-semibold text-gray-800">Dołącz zdjęcie dokumentu</span>
+                <span className="text-xs text-gray-400">opcjonalnie · uzupełnimy dane automatycznie</span>
+              </div>
+              {!imagePreview ? (
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={imageLoading}
+                  className="w-full border-2 border-dashed border-gray-200 hover:border-indigo-400 hover:bg-indigo-50 rounded-xl py-5 text-center transition-colors disabled:opacity-60 group"
+                >
+                  <svg className="w-6 h-6 mx-auto mb-1.5 text-gray-400 group-hover:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <div className="text-sm text-gray-500 font-medium group-hover:text-indigo-700 transition-colors">Paragon, faktura, email z zamówieniem</div>
+                  <div className="text-xs text-gray-400 mt-0.5">JPG, PNG, PDF — max 10 MB</div>
+                </button>
+              ) : (
+                <div className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                  <img src={imagePreview} alt="Podgląd" className="w-14 h-14 object-cover rounded-lg shrink-0 border border-gray-200" />
+                  <div className="flex-1 min-w-0">
+                    {imageLoading ? (
+                      <div className="flex items-center gap-2 text-sm text-indigo-700 font-medium">
+                        <svg className="animate-spin w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                        </svg>
+                        Analizuję dokument...
+                      </div>
+                    ) : imageExtracted ? (
+                      <div className="flex items-center gap-1.5 text-sm text-green-700 font-semibold">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        Dane uzupełnione ze zdjęcia
+                      </div>
+                    ) : (
+                      <div className="text-sm text-gray-700 font-medium">Zdjęcie dodane</div>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => { setImageBase64(null); setImagePreview(null); setImageExtracted(false); }}
+                      className="text-xs text-gray-400 hover:text-red-500 mt-1 transition-colors"
+                    >
+                      Usuń zdjęcie
+                    </button>
+                  </div>
+                </div>
+              )}
+              <input ref={fileInputRef} type="file" accept="image/*,.pdf" className="hidden" onChange={onImageChange} />
+            </div>
+
             <Field label={type.subjectLabel} required error={errors.produkt}>
               <input className={inputCls} placeholder={type.subjectPlaceholder} value={data.produkt} onChange={set("produkt")} />
             </Field>

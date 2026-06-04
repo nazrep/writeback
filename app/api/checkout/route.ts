@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import Anthropic from "@anthropic-ai/sdk";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
 
 const DOC_TYPE_NAMES: Record<string, string> = {
   sklep: "Reklamacja do sklepu internetowego",
@@ -15,6 +17,26 @@ function trunc(s: string | undefined, n: number) {
   return (s ?? "").slice(0, n);
 }
 
+async function extractImageContext(image_base64: string): Promise<string> {
+  try {
+    const msg = await anthropic.messages.create({
+      model: "claude-haiku-4-5-20251001",
+      max_tokens: 120,
+      messages: [{
+        role: "user",
+        content: [
+          { type: "image", source: { type: "base64", media_type: "image/jpeg", data: image_base64 } },
+          { type: "text", text: "Opisz zwięźle (max 150 znaków) co widać na tym dokumencie w kontekście reklamacji. Tylko opis, bez wstępu:" },
+        ],
+      }],
+    });
+    const text = msg.content[0].type === "text" ? msg.content[0].text.trim() : "";
+    return text.slice(0, 200);
+  } catch {
+    return "";
+  }
+}
+
 export async function POST(req: NextRequest) {
   let data: Record<string, string>;
   try {
@@ -25,6 +47,8 @@ export async function POST(req: NextRequest) {
 
   const docType = data.doc_type || "sklep";
   const docTypeName = DOC_TYPE_NAMES[docType] ?? DOC_TYPE_NAMES.sklep;
+
+  const imageContext = data.image_base64 ? await extractImageContext(data.image_base64) : "";
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -58,6 +82,7 @@ export async function POST(req: NextRequest) {
         zadanie: trunc(data.zadanie, 200),
         nazwa_sklepu: trunc(data.nazwa_sklepu, 200),
         adres_sklepu: trunc(data.adres_sklepu, 200),
+        image_context: imageContext,
       },
     });
 
