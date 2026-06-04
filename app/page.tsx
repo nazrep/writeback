@@ -8,8 +8,8 @@ const STEPS = [
   },
   {
     n: "2",
-    title: "AI pisze pismo",
-    desc: "Generujemy pismo powołując się na konkretne artykuły ustaw — w 30 sekund.",
+    title: "Generujemy pismo",
+    desc: "Tworzymy pismo powołując się na konkretne artykuły ustaw — w 30 sekund.",
   },
   {
     n: "3",

@@ -63,17 +63,16 @@ export default function PolitykaPrywatnosci() {
           </section>
 
           <section>
-            <h2 className="text-lg font-bold text-gray-900 mb-3">3. Przetwarzanie przez AI (Anthropic)</h2>
-            <p>Dane podane w formularzu (imię i nazwisko, adres, opis sytuacji, dane sklepu) są przekazywane do API firmy <strong>Anthropic, PBC</strong> (USA) wyłącznie w celu wygenerowania treści pisma reklamacyjnego.</p>
-            <p className="mt-2">Anthropic przetwarza dane jako podmiot przetwarzający na podstawie umowy DPA (Data Processing Agreement). Dane nie są wykorzystywane przez Anthropic do trenowania modeli bez odrębnej zgody. Transfer danych do USA odbywa się na podstawie standardowych klauzul umownych (SCC) zgodnie z art. 46 RODO.</p>
-            <p className="mt-2">Polityka prywatności Anthropic: <a href="https://www.anthropic.com/privacy" className="text-indigo-600 underline">anthropic.com/privacy</a></p>
+            <h2 className="text-lg font-bold text-gray-900 mb-3">3. Przekazywanie danych do podmiotów trzecich</h2>
+            <p>Dane podane w formularzu (imię i nazwisko, adres, opis sytuacji, dane adresata pisma) są przekazywane do zewnętrznych dostawców technologicznych wyłącznie w zakresie niezbędnym do realizacji zamówienia — tj. wygenerowania treści pisma oraz dostarczenia go w formacie PDF na wskazany adres e-mail.</p>
+            <p className="mt-2">Transfer danych poza EOG odbywa się na podstawie standardowych klauzul umownych (SCC) zgodnie z art. 46 RODO.</p>
           </section>
 
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-3">4. Podmioty przetwarzające dane (procesorzy)</h2>
             <ul className="list-disc pl-5 space-y-2">
               <li><strong>Stripe Payments Europe, Ltd.</strong> — obsługa płatności. Polityka prywatności: stripe.com/privacy</li>
-              <li><strong>Anthropic, PBC</strong> — generowanie treści pisma przez AI. Dane: imię, nazwisko, adres, opis sytuacji.</li>
+              <li><strong>Anthropic, PBC</strong> (USA) — system generowania treści pisma. Dane: imię, nazwisko, adres, opis sytuacji. Podstawa transferu: SCC (art. 46 RODO). Dane nie są przechowywane po realizacji usługi.</li>
               <li><strong>Resend, Inc.</strong> — wysyłka wiadomości e-mail z pismem PDF. Dane: adres e-mail, imię, treść wiadomości.</li>
               <li><strong>Vercel, Inc.</strong> — hosting aplikacji. Dane: logi serwera (adres IP, żądania HTTP).</li>
             </ul>
@@ -84,7 +83,7 @@ export default function PolitykaPrywatnosci() {
             <ul className="list-disc pl-5 space-y-2">
               <li>Dane zamówienia przechowywane są przez okres wymagany przepisami podatkowymi (5 lat od końca roku podatkowego, w którym dokonano transakcji).</li>
               <li>Dane niezbędne do realizacji zamówienia usuwane są niezwłocznie po jego realizacji, o ile nie istnieje obowiązek ich dłuższego przechowywania.</li>
-              <li>Dane przesyłane do Anthropic nie są przez nas przechowywane — przetwarzane są wyłącznie w czasie rzeczywistym dla potrzeb generowania pisma.</li>
+              <li>Dane przekazane do systemu generowania treści pisma nie są przez nas przechowywane — przetwarzane są wyłącznie w czasie rzeczywistym dla potrzeb realizacji usługi.</li>
             </ul>
           </section>
 

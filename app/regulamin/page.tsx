@@ -23,7 +23,7 @@ export default function RegulaminPage() {
             <h2 className="text-lg font-bold text-gray-900 mb-3">§1. Postanowienia ogólne</h2>
             <ol className="list-decimal pl-5 space-y-2">
               <li>Niniejszy Regulamin określa zasady świadczenia usług drogą elektroniczną przez Macieja Perzankowskiego, prowadzącego działalność gospodarczą pod nazwą <strong>Maciej Perzankowski Software Solutions</strong>, ul. 19-go Lutego 8/14, 96-100 Skierniewice, NIP: 8361881457, REGON: 52381424900000 (dalej: „Usługodawca").</li>
-              <li>Serwis internetowy dostępny pod adresem <strong>writeback.pl</strong> (dalej: „Serwis") umożliwia generowanie pism konsumenckich z wykorzystaniem technologii sztucznej inteligencji.</li>
+              <li>Serwis internetowy dostępny pod adresem <strong>writeback.pl</strong> (dalej: „Serwis") umożliwia generowanie profesjonalnych pism konsumenckich z powołaniem na właściwe przepisy prawa polskiego.</li>
               <li>Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu.</li>
               <li>W sprawach nieuregulowanych niniejszym Regulaminem zastosowanie mają przepisy prawa polskiego, w szczególności Kodeksu cywilnego, ustawy o świadczeniu usług drogą elektroniczną oraz ustawy o prawach konsumenta.</li>
             </ol>
