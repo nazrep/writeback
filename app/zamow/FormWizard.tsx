@@ -196,7 +196,11 @@ function ProgressBar({ step }: { step: number }) {
 }
 
 const inputCls = "w-full border border-gray-300 rounded-lg px-3.5 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-white";
+const inputErrCls = "w-full border border-red-400 rounded-lg px-3.5 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all bg-white";
 const textareaCls = inputCls + " resize-none";
+const textareaErrCls = inputErrCls + " resize-none";
+const ic = (err?: string) => err ? inputErrCls : inputCls;
+const tc = (err?: string) => err ? textareaErrCls : textareaCls;
 
 function Field({ label, required, hint, error, children }: {
   label: string; required?: boolean; hint?: string; error?: string; children: React.ReactNode;
@@ -330,26 +334,38 @@ export function FormWizard() {
       {/* Krok 0 — Typ pisma */}
       {step === 0 && (
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Jaki masz problem?</h1>
-          <p className="text-gray-600 text-sm mb-8">Wybierz typ pisma które chcesz napisać</p>
-          <div className="space-y-3">
-            {DOC_TYPES.map((t) => (
-              <button
-                key={t.id}
-                onClick={() => selectType(t.id)}
-                className="w-full text-left border-2 border-transparent bg-gray-50 hover:border-indigo-600 hover:bg-indigo-50 rounded-xl px-5 py-4 transition-colors group"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-sm text-gray-900">{t.label}</div>
-                    <div className="text-xs text-gray-500 mt-1">{t.desc}</div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-1">Jaki masz problem?</h1>
+          <p className="text-gray-500 text-sm mb-8">Wybierz typ pisma — dopasujemy przepisy do Twojej sytuacji</p>
+          <div className="space-y-2.5">
+            {DOC_TYPES.map((t) => {
+              const ICONS: Record<string, React.ReactNode> = {
+                sklep: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>,
+                bank: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>,
+                zus: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M3 7l9-4 9 4M4 7v14M20 7v14M9 11h2v4H9zM13 11h2v4h-2z"/></svg>,
+                umowa: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>,
+                uokik: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+              };
+              return (
+                <button
+                  key={t.id}
+                  onClick={() => selectType(t.id)}
+                  className="w-full text-left border border-gray-200 bg-white hover:border-indigo-400 hover:bg-indigo-50/50 hover:shadow-md hover:shadow-indigo-100 hover:-translate-y-0.5 rounded-2xl px-5 py-4 transition-all duration-200 group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 transition-colors duration-200 group-hover:bg-indigo-100">
+                      {ICONS[t.id]}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm text-gray-900 group-hover:text-indigo-700 transition-colors duration-200">{t.label}</div>
+                      <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">{t.desc}</div>
+                    </div>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 text-gray-300 group-hover:text-indigo-500 transition-all duration-200 group-hover:translate-x-0.5">
+                      <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 ml-4 text-gray-400 group-hover:text-indigo-600 transition-colors">
-                    <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-              </button>
-            ))}
+                </button>
+              );
+            })}
           </div>
         </div>
       )}
@@ -416,27 +432,27 @@ export function FormWizard() {
             </div>
 
             <Field label={type.subjectLabel} required error={errors.produkt}>
-              <input className={inputCls} placeholder={type.subjectPlaceholder} value={data.produkt} onChange={set("produkt")} />
+              <input className={ic(errors.produkt)} placeholder={type.subjectPlaceholder} value={data.produkt} onChange={set("produkt")} />
             </Field>
             <div className="grid grid-cols-2 gap-4">
               <Field label={type.kwotaLabel} required={docType !== "zus"} error={errors.cena}>
-                <input className={inputCls} placeholder={type.kwotaPlaceholder} type={docType !== "zus" ? "number" : "text"} min="0" value={data.cena} onChange={set("cena")} />
+                <input className={ic(errors.cena)} placeholder={type.kwotaPlaceholder} type={docType !== "zus" ? "number" : "text"} min="0" value={data.cena} onChange={set("cena")} />
               </Field>
               <Field label={type.dataLabel} required error={errors.data_zakupu}>
-                <input className={`${inputCls} ${errors.data_zakupu ? "border-red-400 ring-1 ring-red-300" : ""}`} type="date" value={data.data_zakupu} onChange={set("data_zakupu")} />
+                <input className={ic(errors.data_zakupu)} type="date" value={data.data_zakupu} onChange={set("data_zakupu")} />
               </Field>
             </div>
             <Field label={type.refLabel} hint="Opcjonalnie">
               <input className={inputCls} placeholder={type.refPlaceholder} value={data.numer_zamowienia} onChange={set("numer_zamowienia")} />
             </Field>
             <Field label="Co się stało?" required error={errors.opis}>
-              <textarea className={textareaCls} rows={4} placeholder={type.opisPlaceholder} value={data.opis} onChange={set("opis")} />
+              <textarea className={tc(errors.opis)} rows={4} placeholder={type.opisPlaceholder} value={data.opis} onChange={set("opis")} />
             </Field>
             <Field label={type.podjeteLabel} hint="Opcjonalnie">
               <textarea className={textareaCls} rows={2} placeholder={type.podjetePlaceholder} value={data.podjete_kroki} onChange={set("podjete_kroki")} />
             </Field>
             <Field label="Czego żądasz?" required error={errors.zadanie}>
-              <input className={inputCls} placeholder={type.zadaniePlaceholder} value={data.zadanie} onChange={set("zadanie")} />
+              <input className={ic(errors.zadanie)} placeholder={type.zadaniePlaceholder} value={data.zadanie} onChange={set("zadanie")} />
             </Field>
           </div>
           <div className="flex gap-3 mt-8">
@@ -466,13 +482,13 @@ export function FormWizard() {
               <h3 className="text-xs font-bold text-indigo-700 uppercase tracking-wider mb-4">Twoje dane</h3>
               <div className="space-y-4">
                 <Field label="Imię i nazwisko" required error={errors.imie_nazwisko}>
-                  <input className={inputCls} placeholder="Anna Kowalska" value={data.imie_nazwisko} onChange={set("imie_nazwisko")} />
+                  <input className={ic(errors.imie_nazwisko)} placeholder="Anna Kowalska" value={data.imie_nazwisko} onChange={set("imie_nazwisko")} />
                 </Field>
                 <Field label="Adres zamieszkania" required error={errors.adres} hint="Ulica i numer, kod pocztowy, miasto">
-                  <input className={inputCls} placeholder="ul. Kwiatowa 5/12, 00-001 Warszawa" value={data.adres} onChange={set("adres")} />
+                  <input className={ic(errors.adres)} placeholder="ul. Kwiatowa 5/12, 00-001 Warszawa" value={data.adres} onChange={set("adres")} />
                 </Field>
                 <Field label="Adres email" required error={errors.email} hint="Na ten adres wyślemy PDF z pismem">
-                  <input className={inputCls} type="email" placeholder="anna@example.com" value={data.email} onChange={set("email")} />
+                  <input className={ic(errors.email)} type="email" placeholder="anna@example.com" value={data.email} onChange={set("email")} />
                 </Field>
               </div>
             </div>
@@ -480,7 +496,7 @@ export function FormWizard() {
               <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-4">Dane adresata</h3>
               <div className="space-y-4">
                 <Field label={type.orgLabel} required error={errors.nazwa_sklepu}>
-                  <input className={inputCls} placeholder={type.orgPlaceholder} value={data.nazwa_sklepu} onChange={set("nazwa_sklepu")} />
+                  <input className={ic(errors.nazwa_sklepu)} placeholder={type.orgPlaceholder} value={data.nazwa_sklepu} onChange={set("nazwa_sklepu")} />
                 </Field>
                 <Field label={type.orgAdresLabel} hint={type.orgAdresHint}>
                   <input className={inputCls} placeholder="ul. Przykładowa 1, 00-001 Warszawa" value={data.adres_sklepu} onChange={set("adres_sklepu")} />
