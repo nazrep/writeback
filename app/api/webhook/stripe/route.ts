@@ -123,7 +123,9 @@ DATA: ${today}`,
 
   const pismoText = (msg.content[0] as { type: string; text: string }).text;
 
-  // Generuj PDF
+  // ─────────────────────────────────────────────────────────────────
+  // PDF GENERATION
+  // ─────────────────────────────────────────────────────────────────
   const pdfDoc = await PDFDocument.create();
   pdfDoc.registerFontkit(fontkit);
 
@@ -134,16 +136,20 @@ DATA: ${today}`,
   const boldFont = await pdfDoc.embedFont(boldBytes);
 
   const W = 595, H = 842;
-  const marginX = 64, marginY = 56;
+  const marginX = 60, marginTop = 50, marginBottom = 52;
   const contentW = W - marginX * 2;
   let page = pdfDoc.addPage([W, H]);
-  let y = H - marginY;
+  let y = H - marginTop;
 
-  const INDIGO: [number, number, number] = [0.31, 0.27, 0.9];
-  const GRAY: [number, number, number] = [0.45, 0.45, 0.45];
-  const BLACK: [number, number, number] = [0.1, 0.1, 0.1];
+  const C_INDIGO: [number, number, number] = [0.31, 0.27, 0.9];
+  const C_INDIGO_DARK: [number, number, number] = [0.18, 0.16, 0.55];
+  const C_INDIGO_LIGHT: [number, number, number] = [0.93, 0.92, 1.0];
+  const C_GRAY: [number, number, number] = [0.5, 0.5, 0.5];
+  const C_GRAY_LIGHT: [number, number, number] = [0.96, 0.96, 0.97];
+  const C_BLACK: [number, number, number] = [0.1, 0.1, 0.12];
+  const C_TEXT_MUTED: [number, number, number] = [0.4, 0.4, 0.45];
 
-  function wrap(text: string, maxW: number, size: number, f: typeof font) {
+  function wrap(text: string, maxW: number, size: number, f: typeof font): string[] {
     const words = text.split(" ");
     const lines: string[] = [];
     let cur = "";
@@ -156,189 +162,264 @@ DATA: ${today}`,
     return lines;
   }
 
-  function newPageIfNeeded(needed: number) {
-    if (y - needed < marginY) {
+  function ensureSpace(needed: number) {
+    if (y - needed < marginBottom + 10) {
+      // Draw footer on current page before adding new one
+      drawPageFooter(page);
       page = pdfDoc.addPage([W, H]);
-      y = H - marginY;
+      y = H - marginTop;
     }
   }
 
-  function drawLine(text: string, opts: { size?: number; bold?: boolean; color?: [number, number, number]; x?: number; maxW?: number } = {}) {
+  function drawText(text: string, opts: {
+    size?: number; bold?: boolean;
+    color?: [number, number, number];
+    x?: number; maxW?: number;
+    lineHeight?: number; indent?: number;
+  } = {}) {
     const size = opts.size ?? 10;
     const f = opts.bold ? boldFont : font;
-    const [r, g, b] = opts.color ?? BLACK;
-    const x = opts.x ?? marginX;
-    const maxW = opts.maxW ?? contentW;
-    if (!text) { y -= size * 0.8; return; }
+    const [r, g, b] = opts.color ?? C_BLACK;
+    const x = (opts.x ?? marginX) + (opts.indent ?? 0);
+    const maxW = (opts.maxW ?? contentW) - (opts.indent ?? 0);
+    const lh = opts.lineHeight ?? (size + 4.5);
+    if (!text.trim()) { y -= size * 0.6; return; }
     const lines = wrap(text, maxW, size, f);
     for (const line of lines) {
-      newPageIfNeeded(size + 4);
+      ensureSpace(size + 4);
       page.drawText(line, { x, y, size, font: f, color: rgb(r, g, b) });
-      y -= size + 4;
+      y -= lh;
     }
   }
 
-  // ── Header bar ──
-  page.drawRectangle({ x: 0, y: H - 36, width: W, height: 36, color: rgb(...INDIGO) });
-  page.drawText("writeback.pl", { x: marginX, y: H - 24, size: 11, font: boldFont, color: rgb(1, 1, 1) });
-  const dateStr = `Wygenerowano: ${today}`;
-  const dateW = font.widthOfTextAtSize(dateStr, 8);
-  page.drawText(dateStr, { x: W - marginX - dateW, y: H - 23, size: 8, font, color: rgb(0.85, 0.85, 1) });
+  function drawPageFooter(p: ReturnType<typeof pdfDoc.getPage>) {
+    p.drawLine({
+      start: { x: marginX, y: marginBottom - 4 },
+      end: { x: W - marginX, y: marginBottom - 4 },
+      thickness: 0.4,
+      color: rgb(0.88, 0.88, 0.9),
+    });
+    p.drawText("Dokument wygenerowany przez writeback.pl · Narzędzie do tworzenia pism konsumenckich, nie porada prawna", {
+      x: marginX, y: marginBottom - 16, size: 6.5, font, color: rgb(...C_GRAY),
+    });
+  }
 
-  y = H - 36 - 32;
+  // ── TOP HEADER BAR ──
+  const headerH = 40;
+  page.drawRectangle({ x: 0, y: H - headerH, width: W, height: headerH, color: rgb(...C_INDIGO_DARK) });
+  // Logo square
+  page.drawRectangle({ x: marginX, y: H - headerH + 8, width: 24, height: 24, color: rgb(...C_INDIGO) });
+  page.drawText("W", { x: marginX + 7, y: H - headerH + 15, size: 12, font: boldFont, color: rgb(1, 1, 1) });
+  page.drawText("writeback.pl", { x: marginX + 32, y: H - headerH + 15, size: 11, font: boldFont, color: rgb(1, 1, 1) });
+  const dateLabel = `Wygenerowano: ${today}`;
+  const dateLabelW = font.widthOfTextAtSize(dateLabel, 8);
+  page.drawText(dateLabel, { x: W - marginX - dateLabelW, y: H - headerH + 16, size: 8, font, color: rgb(0.7, 0.68, 1) });
 
-  // ── Tytuł ──
-  drawLine("PISMO REKLAMACYJNE", { size: 15, bold: true, color: [0.1, 0.1, 0.15] });
-  y -= 4;
-  page.drawRectangle({ x: marginX, y, width: 48, height: 2, color: rgb(...INDIGO) });
-  y -= 18;
+  y = H - headerH - 28;
 
-  // ── Treść pisma ──
+  // ── DOCUMENT TYPE BADGE ──
+  const LABELS: Record<string, string> = {
+    sklep: "PISMO REKLAMACYJNE",
+    bank: "REKLAMACJA DO BANKU / UBEZPIECZYCIELA",
+    zus: "ODWOŁANIE OD DECYZJI",
+    umowa: "WYPOWIEDZENIE UMOWY",
+    uokik: "SKARGA DO UOKiK / RZECZNIKA",
+  };
+  const docLabel = LABELS[docType] ?? "PISMO REKLAMACYJNE";
+  const badgeW = boldFont.widthOfTextAtSize(docLabel, 9) + 24;
+  page.drawRectangle({ x: marginX, y: y - 3, width: badgeW, height: 20, color: rgb(...C_INDIGO_LIGHT) });
+  page.drawText(docLabel, { x: marginX + 12, y: y + 4, size: 9, font: boldFont, color: rgb(...C_INDIGO) });
+  y -= 28;
+
+  // ── THIN ACCENT LINE ──
+  page.drawRectangle({ x: marginX, y: y, width: 36, height: 2.5, color: rgb(...C_INDIGO) });
+  y -= 20;
+
+  // ── MAIN LETTER CONTENT ──
   const paragraphs = pismoText.split("\n");
+  let firstPara = true;
+
   for (const para of paragraphs) {
     const trimmed = para.trim();
-    if (!trimmed) { y -= 6; continue; }
-    const isHeading = trimmed === trimmed.toUpperCase() && trimmed.length > 3 && trimmed.length < 80;
+
+    if (!trimmed) {
+      y -= firstPara ? 0 : 7;
+      continue;
+    }
+    firstPara = false;
+
+    // Detect heading: all uppercase, short, no sentence-ending punctuation mid-line
+    const isHeading = trimmed === trimmed.toUpperCase() && trimmed.length > 2 && trimmed.length < 90 && !/[a-z]/.test(trimmed);
+    // Detect signature-area lines (short, right-side positioning)
+    const isSignatureLine = trimmed.length < 50 && (
+      trimmed.startsWith("Z poważaniem") || trimmed.startsWith("Z szacunkiem") ||
+      trimmed.startsWith("Podpis") || trimmed.startsWith("..........") ||
+      trimmed.startsWith("________________")
+    );
+
     if (isHeading) {
+      y -= 6;
+      ensureSpace(22);
+      page.drawRectangle({ x: marginX - 4, y: y - 3, width: contentW + 8, height: 18, color: rgb(...C_GRAY_LIGHT) });
+      drawText(trimmed, { size: 9.5, bold: true, color: C_INDIGO_DARK, lineHeight: 16 });
       y -= 4;
-      drawLine(trimmed, { size: 10, bold: true, color: [0.15, 0.15, 0.2] });
-      y -= 2;
+    } else if (isSignatureLine) {
+      drawText(trimmed, { size: 10, color: C_BLACK, x: W / 2, maxW: contentW / 2 });
     } else {
-      drawLine(trimmed, { size: 10, color: BLACK });
+      drawText(trimmed, { size: 10, color: C_BLACK, lineHeight: 15.5 });
     }
   }
 
-  // ── Footer na każdej stronie ──
+  // ── FOOTER ON ALL PAGES ──
   const pageCount = pdfDoc.getPageCount();
   for (let i = 0; i < pageCount; i++) {
     const p = pdfDoc.getPage(i);
-    p.drawLine({ start: { x: marginX, y: marginY - 8 }, end: { x: W - marginX, y: marginY - 8 }, thickness: 0.5, color: rgb(0.85, 0.85, 0.85) });
-    p.drawText("Dokument wygenerowany przez writeback.pl · Narzędzie do tworzenia pism, nie porada prawna", {
-      x: marginX, y: marginY - 20, size: 7, font, color: rgb(...GRAY),
-    });
+    drawPageFooter(p);
     const pageNum = `${i + 1} / ${pageCount}`;
     const pgW = font.widthOfTextAtSize(pageNum, 7);
-    p.drawText(pageNum, { x: W - marginX - pgW, y: marginY - 20, size: 7, font, color: rgb(...GRAY) });
+    p.drawText(pageNum, { x: W - marginX - pgW, y: marginBottom - 16, size: 7, font, color: rgb(...C_GRAY) });
   }
 
   const pdfBytes = await pdfDoc.save();
 
-  // Wyślij email
-  await resend.emails.send({
-    from: "Writeback <hello@writeback.pl>",
-    to: m.email,
-    subject: `Twoje pismo reklamacyjne — ${m.nazwa_sklepu}`,
-    html: `<!DOCTYPE html>
-<html lang="pl">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:40px 16px">
-    <tr><td align="center">
-      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px">
+  // ─────────────────────────────────────────────────────────────────
+  // EMAIL
+  // ─────────────────────────────────────────────────────────────────
+  const steps = [
+    { n: "1", title: "Otwórz załącznik PDF", desc: "To jest Twoje gotowe pismo reklamacyjne" },
+    { n: "2", title: "Wyślij do sklepu", desc: "Emailem na adres obsługi klienta lub listem poleconym" },
+    { n: "3", title: "Zachowaj potwierdzenie wysyłki", desc: "Data wysyłki jest kluczowa — od niej biegnie 14-dniowy termin" },
+    { n: "4", title: "Czekaj 14 dni", desc: "Brak odpowiedzi = reklamacja uznana za zasadną (art. 7a UPK)" },
+  ];
 
-        <!-- Logo -->
-        <tr><td style="padding-bottom:24px">
-          <span style="font-size:20px;font-weight:800;color:#1e1b4b;letter-spacing:-0.5px">writeback</span>
+  const stepsHtml = steps.map(s => `
+    <tr>
+      <td style="padding:0 0 14px 0">
+        <table cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <td width="36" valign="top" style="padding-top:2px">
+              <div style="width:26px;height:26px;background:#4f46e5;border-radius:50%;text-align:center;line-height:26px;font-size:12px;font-weight:700;color:#ffffff;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.n}</div>
+            </td>
+            <td style="padding-left:10px">
+              <div style="font-size:14px;font-weight:600;color:#111827;margin-bottom:2px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.title}</div>
+              <div style="font-size:13px;color:#6b7280;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.desc}</div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>`).join("");
+
+  const html = `<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Twoje pismo jest gotowe — Writeback</title>
+</head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f1f5f9;padding:40px 16px">
+    <tr><td align="center">
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:580px">
+
+        <!-- Header z logo -->
+        <tr><td style="padding-bottom:20px">
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="background:#4f46e5;width:32px;height:32px;border-radius:8px;text-align:center;vertical-align:middle">
+                <span style="font-size:16px;font-weight:800;color:#ffffff;line-height:32px;display:block">W</span>
+              </td>
+              <td style="padding-left:10px;font-size:18px;font-weight:800;color:#1e1b4b;letter-spacing:-0.5px;vertical-align:middle">writeback</td>
+            </tr>
+          </table>
         </td></tr>
 
-        <!-- Card główna -->
-        <tr><td style="background:#ffffff;border-radius:16px;padding:40px 36px;border:1px solid #e5e7eb">
+        <!-- Hero banner -->
+        <tr><td style="background:linear-gradient(135deg,#1e1b4b 0%,#312e81 100%);border-radius:16px 16px 0 0;padding:36px 36px 32px">
+          <div style="display:inline-block;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);border-radius:100px;padding:5px 14px;margin-bottom:16px">
+            <span style="font-size:12px;font-weight:600;color:#6ee7b7;font-family:-apple-system,BlinkMacSystemFont,sans-serif">✓ Pismo wygenerowane pomyślnie</span>
+          </div>
+          <h1 style="margin:0 0 10px;font-size:24px;font-weight:700;color:#ffffff;line-height:1.3;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
+            Twoje pismo jest gotowe
+          </h1>
+          <p style="margin:0;font-size:15px;color:#a5b4fc;line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
+            Reklamacja do <strong style="color:#e0e7ff">${m.nazwa_sklepu}</strong> czeka w załączniku PDF.<br>
+            Sklep ma <strong style="color:#ffffff">14 dni</strong> na odpowiedź — brak reakcji = reklamacja uznana.
+          </p>
+        </td></tr>
 
-          <!-- Status badge -->
-          <div style="display:inline-block;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:100px;padding:6px 14px;margin-bottom:24px">
-            <span style="font-size:12px;font-weight:600;color:#065f46">✓ Pismo wygenerowane</span>
+        <!-- Główna karta -->
+        <tr><td style="background:#ffffff;border-radius:0 0 16px 16px;padding:0 36px 36px;border:1px solid #e2e8f0;border-top:none">
+
+          <!-- Separator z ikonką -->
+          <div style="text-align:center;padding:20px 0 24px">
+            <div style="display:inline-block;width:40px;height:40px;background:#eef2ff;border-radius:10px;text-align:center;line-height:40px;font-size:18px">📎</div>
           </div>
 
-          <h1 style="margin:0 0 8px;font-size:22px;font-weight:700;color:#111827;line-height:1.3">
-            Twoje pismo jest gotowe do wysłania
-          </h1>
-          <p style="margin:0 0 28px;font-size:15px;color:#6b7280;line-height:1.6">
-            Reklamacja do <strong style="color:#111827">${m.nazwa_sklepu}</strong> czeka w załączniku.<br>
-            Sklep ma <strong style="color:#111827">14 dni</strong> na odpowiedź — brak odpowiedzi = reklamacja uznana.
-          </p>
-
-          <!-- Separator -->
-          <div style="border-top:1px solid #f3f4f6;margin-bottom:28px"></div>
-
-          <!-- Szczegóły zamówienia -->
-          <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px">
-            <tr>
-              <td style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:0.5px;padding-bottom:12px">Szczegóły zamówienia</td>
-            </tr>
-            <tr>
-              <td style="background:#f9fafb;border-radius:10px;padding:16px 20px">
-                <table width="100%" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td style="font-size:13px;color:#6b7280;padding-bottom:8px">Produkt</td>
-                    <td style="font-size:13px;color:#111827;font-weight:500;text-align:right;padding-bottom:8px">${m.produkt}</td>
-                  </tr>
-                  <tr>
-                    <td style="font-size:13px;color:#6b7280;padding-bottom:8px">Sklep</td>
-                    <td style="font-size:13px;color:#111827;font-weight:500;text-align:right;padding-bottom:8px">${m.nazwa_sklepu}</td>
-                  </tr>
-                  <tr>
-                    <td style="font-size:13px;color:#6b7280">Żądanie</td>
-                    <td style="font-size:13px;color:#111827;font-weight:500;text-align:right">${m.zadanie}</td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
+          <!-- Szczegóły -->
+          <div style="background:#f8fafc;border-radius:12px;padding:20px 22px;margin-bottom:28px;border:1px solid #e2e8f0">
+            <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">Szczegóły zamówienia</div>
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="font-size:13px;color:#64748b;padding-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">Produkt</td>
+                <td style="font-size:13px;color:#1e293b;font-weight:600;text-align:right;padding-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${m.produkt}</td>
+              </tr>
+              <tr>
+                <td style="font-size:13px;color:#64748b;padding-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">Adresat pisma</td>
+                <td style="font-size:13px;color:#1e293b;font-weight:600;text-align:right;padding-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${m.nazwa_sklepu}</td>
+              </tr>
+              <tr>
+                <td style="font-size:13px;color:#64748b;font-family:-apple-system,BlinkMacSystemFont,sans-serif">Żądanie</td>
+                <td style="font-size:13px;color:#4f46e5;font-weight:600;text-align:right;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${m.zadanie}</td>
+              </tr>
+            </table>
+          </div>
 
           <!-- Co dalej -->
-          <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px">
-            <tr>
-              <td style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:0.5px;padding-bottom:12px">Co dalej?</td>
-            </tr>
-            ${[
-              ["1", "Otwórz załącznik PDF", "To jest Twoje pismo reklamacyjne"],
-              ["2", "Wyślij do sklepu", "Emailem na adres obsługi klienta lub listem poleconym"],
-              ["3", "Zachowaj potwierdzenie", "Data wysyłki jest ważna — liczy się 14-dniowy termin odpowiedzi"],
-              ["4", "Czekaj 14 dni", "Brak odpowiedzi w terminie = reklamacja uznana za zasadną (art. 7a)"],
-            ].map(([n, title, desc]) => `
-            <tr><td style="padding-bottom:12px">
-              <table cellpadding="0" cellspacing="0"><tr>
-                <td style="width:28px;vertical-align:top;padding-top:1px">
-                  <div style="width:22px;height:22px;background:#4f46e5;border-radius:50%;text-align:center;line-height:22px;font-size:11px;font-weight:700;color:#fff">${n}</div>
-                </td>
-                <td style="padding-left:12px">
-                  <div style="font-size:14px;font-weight:600;color:#111827;margin-bottom:2px">${title}</div>
-                  <div style="font-size:13px;color:#6b7280">${desc}</div>
-                </td>
-              </tr></table>
-            </td></tr>`).join("")}
-          </table>
-
-          <!-- Separator -->
-          <div style="border-top:1px solid #f3f4f6;margin-bottom:24px"></div>
+          <div style="margin-bottom:28px">
+            <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:16px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">Co dalej?</div>
+            <table width="100%" cellpadding="0" cellspacing="0">
+              ${stepsHtml}
+            </table>
+          </div>
 
           <!-- Odwołanie gratis -->
-          <table width="100%" cellpadding="0" cellspacing="0">
-            <tr><td style="background:#eff6ff;border-radius:10px;padding:16px 20px">
-              <p style="margin:0;font-size:13px;color:#1e40af;line-height:1.6">
-                <strong>Pismo nie pomogło?</strong><br>
-                Napisz do nas na <a href="mailto:hello@writeback.pl" style="color:#4f46e5;text-decoration:none;font-weight:600">hello@writeback.pl</a> — odwołanie napiszemy za darmo.
-              </p>
-            </td></tr>
-          </table>
+          <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:18px 20px">
+            <div style="font-size:13px;font-weight:700;color:#1d4ed8;margin-bottom:4px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
+              💡 Pismo nie pomogło?
+            </div>
+            <div style="font-size:13px;color:#1e40af;line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
+              Napisz do nas na <a href="mailto:hello@writeback.pl" style="color:#4f46e5;font-weight:600;text-decoration:none">hello@writeback.pl</a> — odwołanie przygotujemy za darmo.
+            </div>
+          </div>
 
         </td></tr>
 
         <!-- Footer -->
-        <tr><td style="padding:24px 0 0;text-align:center">
-          <p style="margin:0;font-size:12px;color:#9ca3af;line-height:1.8">
-            writeback.pl · Maciej Perzankowski Software Solutions<br>
-            ul. 19-go Lutego 8/14, 96-100 Skierniewice · NIP: 8361881457<br>
-            <a href="https://writeback.pl/regulamin" style="color:#9ca3af">Regulamin</a> ·
-            <a href="https://writeback.pl/polityka" style="color:#9ca3af">Polityka prywatności</a>
+        <tr><td style="padding:28px 0 8px;text-align:center">
+          <p style="margin:0 0 8px;font-size:12px;color:#94a3b8;line-height:1.8;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
+            <strong style="color:#64748b">writeback.pl</strong> · Maciej Perzankowski Software Solutions<br>
+            ul. 19-go Lutego 8/14, 96-100 Skierniewice · NIP: 8361881457
+          </p>
+          <p style="margin:0;font-size:12px;color:#94a3b8;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
+            <a href="https://writeback.pl/regulamin" style="color:#94a3b8;text-decoration:underline">Regulamin</a>
+            &nbsp;·&nbsp;
+            <a href="https://writeback.pl/polityka" style="color:#94a3b8;text-decoration:underline">Polityka prywatności</a>
           </p>
         </td></tr>
 
       </table>
     </td></tr>
   </table>
+
 </body>
-</html>`,
+</html>`;
+
+  await resend.emails.send({
+    from: "Writeback <hello@writeback.pl>",
+    to: m.email,
+    subject: `Twoje pismo reklamacyjne — ${m.nazwa_sklepu}`,
+    html,
     attachments: [{
       filename: `reklamacja-${m.nazwa_sklepu.replace(/[^a-z0-9]/gi, "-").toLowerCase()}.pdf`,
       content: Buffer.from(pdfBytes).toString("base64"),
