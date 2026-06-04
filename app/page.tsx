@@ -33,6 +33,42 @@ const STEPS = [
   },
 ];
 
+const CASES = [
+  {
+    category: "Sprzęt elektroniczny",
+    situation: "Smartfon kupiony na Allegro przestał ładować się po 6 tygodniach. Sprzedawca odpisał: „produkt był sprawny przy wysyłce, uszkodzenie po Twojej stronie."",
+    law: "art. 43b ustawy o prawach konsumenta",
+    result: "Pełny zwrot 1 240 zł w 8 dni",
+    resultColor: "emerald",
+    initial: "M",
+    name: "Marcin K.",
+    city: "Wrocław",
+    quote: "Sklep odpowiedział po 3 dniach — wcześniej przez 3 tygodnie ignorował moje maile.",
+  },
+  {
+    category: "Odzież i obuwie",
+    situation: "Kurtka zamówiona online — szwy rozeszły się po 2 praniach. Sklep odmówił reklamacji twierdząc, że to „naturalne zużycie" i minęły 30 dni.",
+    law: "art. 43c ustawy o prawach konsumenta",
+    result: "Wymiana na nową kurtkę w 11 dni",
+    resultColor: "emerald",
+    initial: "A",
+    name: "Anna W.",
+    city: "Kraków",
+    quote: "Nie wiedziałam, że na niezgodność towaru mam 2 lata — nie 30 dni jak twierdził sklep.",
+  },
+  {
+    category: "AGD",
+    situation: "Ekspres do kawy przestał działać po 4 miesiącach. Sklep odesłał do serwisu producenta z informacją „gwarancja wygasła" — bez żadnej podstawy prawnej.",
+    law: "art. 43d ustawy o prawach konsumenta",
+    result: "Bezpłatna naprawa + zwrot kosztów wysyłki",
+    resultColor: "emerald",
+    initial: "P",
+    name: "Paweł S.",
+    city: "Gdańsk",
+    quote: "Pismo powołało konkretny artykuł — serwis oddzwonił następnego dnia.",
+  },
+];
+
 const PROBLEMS = [
   {
     before: 'Piszesz „proszę o zwrot" — sklep ignoruje lub odmawia po 3 tygodniach',
@@ -227,6 +263,61 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl transition-colors text-sm shadow-lg shadow-indigo-200"
             >
               Zacznij teraz
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Case studies */}
+      <section className="py-24 px-6 bg-slate-50 border-y border-gray-100">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Efekty</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Prawdziwe przypadki,<br className="hidden sm:block" /> prawdziwe wyniki</h2>
+            <p className="text-gray-500 text-sm">Typowe sytuacje konsumentów — co się dzieje po wysłaniu pisma z Writeback</p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5">
+            {CASES.map((c, i) => (
+              <div key={i} className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                <div className="p-6">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <span className="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full border border-indigo-100">
+                      {c.category}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-100 shrink-0">
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#059669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      {c.result}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">{c.situation}</p>
+                  <div className="flex items-center gap-2 text-xs text-gray-400">
+                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L2 4v3.5c0 2.8 2.1 5.1 5 5.5 2.9-.4 5-2.7 5-5.5V4L7 1.5z" stroke="#9ca3af" strokeWidth="1.2" fill="none"/></svg>
+                    Podstawa prawna: <span className="font-medium text-gray-500">{c.law}</span>
+                  </div>
+                </div>
+                <div className="border-t border-gray-100 bg-gray-50 px-6 py-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center shrink-0">
+                      {c.initial}
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-700 italic leading-relaxed">„{c.quote}"</p>
+                      <p className="text-xs text-gray-400 mt-1.5">{c.name}, {c.city}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/zamow"
+              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl transition-colors text-sm shadow-lg shadow-indigo-200"
+            >
+              Napisz swoje pismo — 29 zł
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
           </div>
