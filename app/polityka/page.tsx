@@ -7,9 +7,12 @@ export const metadata = {
 export default function PolitykaPrywatnosci() {
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      <nav className="border-b border-gray-200 px-6 py-4">
-        <div className="max-w-3xl mx-auto">
-          <Link href="/" className="font-bold text-lg tracking-tight text-gray-900">writeback</Link>
+      <nav className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur border-b border-white/5 px-6 py-0">
+        <div className="max-w-3xl mx-auto h-14 flex items-center">
+          <Link href="/" className="flex items-center gap-2.5">
+            <span className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm shrink-0">W</span>
+            <span className="font-bold text-lg tracking-tight text-white">writeback</span>
+          </Link>
         </div>
       </nav>
 
@@ -120,10 +123,10 @@ export default function PolitykaPrywatnosci() {
         </div>
       </main>
 
-      <footer className="border-t border-gray-200 py-8 px-6 text-center text-xs text-gray-500">
+      <footer className="bg-slate-950 border-t border-white/5 py-8 px-6 text-center text-xs text-slate-500">
         © 2026 writeback.pl ·{" "}
-        <Link href="/regulamin" className="underline underline-offset-2 hover:text-gray-900">Regulamin</Link>{" · "}
-        <Link href="/polityka" className="underline underline-offset-2 hover:text-gray-900">Polityka prywatności</Link>
+        <Link href="/regulamin" className="hover:text-slate-300 transition-colors">Regulamin</Link>{" · "}
+        <Link href="/polityka" className="hover:text-slate-300 transition-colors">Polityka prywatności</Link>
       </footer>
     </div>
   );
