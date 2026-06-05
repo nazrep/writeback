@@ -75,7 +75,7 @@ export default function Image() {
           marginTop: 8,
           display: "flex",
         }}>
-          Sklep · Bank · ZUS · Operator — PDF gotowy w 5 minut · 29 zł
+          Sklep · Bank · ZUS · Operator · PDF w 5 minut · 29 zł
         </div>
       </div>
     ),
