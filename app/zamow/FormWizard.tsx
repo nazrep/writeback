@@ -225,6 +225,8 @@ export function FormWizard({ lang }: { lang?: string }) {
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [consent, setConsent] = useState(false);
   const [consentError, setConsentError] = useState(false);
+  const [consentDigital, setConsentDigital] = useState(false);
+  const [consentDigitalError, setConsentDigitalError] = useState(false);
   const [imageBase64, setImageBase64] = useState<string | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageLoading, setImageLoading] = useState(false);
@@ -293,6 +295,7 @@ export function FormWizard({ lang }: { lang?: string }) {
   async function handlePay() {
     if (!validateStep3()) return;
     if (!consent) { setConsentError(true); return; }
+    if (!consentDigital) { setConsentDigitalError(true); return; }
     setConsentError(false);
     setLoading(true);
     try {
@@ -721,7 +724,7 @@ export function FormWizard({ lang }: { lang?: string }) {
             </div>
           </div>
 
-          <label className={`flex items-start gap-3 mb-5 cursor-pointer p-3 rounded-xl border transition-colors ${consentError ? "border-red-300 bg-red-50" : "border-gray-200 hover:bg-gray-50"}`}>
+          <label className={`flex items-start gap-3 mb-2 cursor-pointer p-3 rounded-xl border transition-colors ${consentError ? "border-red-300 bg-red-50" : "border-gray-200 hover:bg-gray-50"}`}>
             <input
               type="checkbox"
               checked={consent}
@@ -733,10 +736,23 @@ export function FormWizard({ lang }: { lang?: string }) {
               <a href="/regulamin" target="_blank" className="text-indigo-600 underline underline-offset-2">Regulamin</a>
               {" "}i{" "}
               <a href="/polityka" target="_blank" className="text-indigo-600 underline underline-offset-2">Politykę prywatności</a>
-              . Wyrażam zgodę na natychmiastowe dostarczenie treści cyfrowej i jestem świadomy/a, że z chwilą dostarczenia pisma tracę prawo odstąpienia od umowy zgodnie z art. 38 pkt 13 ustawy o prawach konsumenta.
+              {" "}serwisu writeback.pl.
             </span>
           </label>
-          {consentError && <p className="text-xs text-red-500 font-medium -mt-3 mb-4">Musisz zaakceptować regulamin przed opłaceniem</p>}
+          {consentError && <p className="text-xs text-red-500 font-medium mb-2 ml-3">Musisz zaakceptować regulamin przed opłaceniem</p>}
+
+          <label className={`flex items-start gap-3 mb-5 cursor-pointer p-3 rounded-xl border transition-colors ${consentDigitalError ? "border-red-300 bg-red-50" : "border-gray-200 hover:bg-gray-50"}`}>
+            <input
+              type="checkbox"
+              checked={consentDigital}
+              onChange={e => { setConsentDigital(e.target.checked); setConsentDigitalError(false); }}
+              className="mt-0.5 shrink-0 w-4 h-4 accent-indigo-600"
+            />
+            <span className="text-xs text-gray-600 leading-relaxed">
+              Wyrażam zgodę na natychmiastowe dostarczenie treści cyfrowej (pisma PDF) i przyjmuję do wiadomości, że z chwilą dostarczenia tracę prawo odstąpienia od umowy zgodnie z art. 38 pkt 13 ustawy o prawach konsumenta.
+            </span>
+          </label>
+          {consentDigitalError && <p className="text-xs text-red-500 font-medium -mt-3 mb-4 ml-3">Musisz wyrazić zgodę na dostarczenie treści cyfrowej</p>}
 
           <button
             onClick={handlePay}

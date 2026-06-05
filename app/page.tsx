@@ -555,9 +555,14 @@ export default function HomePage() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p>© 2026 writeback.pl · Narzędzie do tworzenia pism, nie porada prawna</p>
-            <p>Maciej Perzankowski Software Solutions · NIP 8361881457</p>
+          <div className="border-t border-white/5 pt-6 space-y-3">
+            <p className="text-slate-600 text-[11px] leading-relaxed text-center max-w-2xl mx-auto">
+              Pisma generowane przez writeback.pl mają charakter informacyjny i pomocniczy. Nie stanowią porady prawnej ani zastępstwa adwokata lub radcy prawnego w rozumieniu ustawy Prawo o adwokaturze i ustawy o radcach prawnych. W sprawach złożonych lub o znacznej wartości zalecamy konsultację z prawnikiem.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
+              <p>© 2026 writeback.pl · Narzędzie do tworzenia pism, nie porada prawna</p>
+              <p>Maciej Perzankowski Software Solutions · NIP 8361881457</p>
+            </div>
           </div>
         </div>
       </footer>
