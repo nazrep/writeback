@@ -296,6 +296,16 @@ DATA PISMA: ${today}`,
     const isSig = trimmed.startsWith("Z poważaniem") || trimmed.startsWith("Z szacunkiem");
     if (isSig) inSignatureBlock = true;
 
+    // Strip DATA: prefix from date line
+    if (/^DATA:\s*/i.test(trimmed)) {
+      const dateText = trimmed.replace(/^DATA:\s*/i, "");
+      ensureSpace(16);
+      const dateW = font.widthOfTextAtSize(dateText, 9.5);
+      page.drawText(dateText, { x: W - marginX - dateW, y, size: 9.5, font, color: rgb(...C_TEXT_MUTED) });
+      y -= 14.5;
+      continue;
+    }
+
     // Detect address/date block (first ~8 lines before content)
     const isMetaLine = i < 10 && !isHeading && !isDotyczy;
 
