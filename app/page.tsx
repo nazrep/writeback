@@ -4,7 +4,7 @@ const STEPS = [
   {
     n: "01",
     title: "Opisz sytuację",
-    desc: "Wypełniasz formularz w 3 minuty — co kupiłeś, co poszło nie tak, czego żądasz.",
+    desc: "Wypełniasz formularz w 3 minuty: co kupiłeś, co poszło nie tak, czego żądasz.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
@@ -24,7 +24,7 @@ const STEPS = [
   {
     n: "03",
     title: "Wysyłasz i czekasz",
-    desc: "PDF na maila od razu. Sklep ma 14 dni na odpowiedź z mocy art. 7a.",
+    desc: "PDF na maila od razu. Adresat musi odpowiedzieć w ustawowym terminie.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
@@ -46,7 +46,7 @@ const CASES = [
   },
   {
     category: "Reklamacja do banku",
-    situation: `Z konta zniknęło 890 zł — transakcja której nie wykonałam. Bank odpisał, że logowanie było prawidłowe i nie zwróci środków. Sprawa zamknięta.`,
+    situation: `Z konta zniknęło 890 zł. Transakcja, której nie wykonałam. Bank odpisał, że logowanie było prawidłowe i nie zwróci środków. Sprawa zamknięta.`,
     law: "art. 45 ustawy o usługach płatniczych",
     result: "Zwrot 890 zł w 6 dni",
     initial: "K",
@@ -66,7 +66,7 @@ const CASES = [
   },
   {
     category: "Odzież i obuwie",
-    situation: `Kurtka zamówiona online — szwy rozeszły się po 2 praniach. Sklep odmówił reklamacji twierdząc, że to naturalne zużycie i że minęły 30 dni od zakupu.`,
+    situation: `Kurtka zamówiona online. Szwy rozeszły się po 2 praniach. Sklep odmówił reklamacji twierdząc, że to naturalne zużycie i że minęły 30 dni od zakupu.`,
     law: "art. 43c ustawy o prawach konsumenta",
     result: "Wymiana na nową kurtkę w 11 dni",
     initial: "A",
@@ -78,15 +78,15 @@ const CASES = [
 
 const PROBLEMS = [
   {
-    before: `Piszesz „proszę o zwrot" — sklep ignoruje lub odmawia po 3 tygodniach`,
-    after: "Piszesz z art. 43b ustawy — sklep wie, że brak odpowiedzi w 14 dni = przegrana",
+    before: `Piszesz „proszę o zwrot". Sklep ignoruje lub odmawia po 3 tygodniach.`,
+    after: "Piszesz z art. 43b ustawy. Adresat wie, że brak odpowiedzi w terminie = przegrana z mocy prawa.",
   },
   {
     before: "Wzory z Googla są ogólne, nie pasują do Twojej sytuacji",
     after: "Pismo dopasowane do Twojego przypadku z konkretnymi artykułami ustaw",
   },
   {
-    before: "Nie wiesz czego możesz żądać — zwrotu, wymiany, odszkodowania?",
+    before: "Nie wiesz czego możesz żądać: zwrotu, wymiany, odszkodowania?",
     after: "Podpowiadamy co Ci się należy zanim napiszesz pierwsze słowo",
   },
   {
@@ -99,18 +99,18 @@ const TYPES = [
   { label: "Reklamacja do sklepu / Allegro", desc: "Produkt nie dotarł, uszkodzony, niezgodny z opisem, odmowa zwrotu" },
   { label: "Reklamacja do banku / ubezpieczyciela", desc: "Nieautoryzowana transakcja, odmowa wypłaty, błędna opłata" },
   { label: "Odwołanie od decyzji ZUS / US", desc: "Odmowa świadczenia, zawyżona składka, decyzja podatkowa" },
-  { label: "Wypowiedzenie umowy", desc: "Internet, gym, prąd, telefon — bez kar umownych" },
+  { label: "Wypowiedzenie umowy", desc: "Internet, gym, prąd, telefon. Bez kar umownych." },
   { label: "Skarga do UOKiK / Rzecznika", desc: "Gdy sklep nie odpowiada na reklamację" },
 ];
 
 const FAQS = [
   {
     q: "Dlaczego pismo z Writeback jest skuteczniejsze niż wzór z Googla?",
-    a: "Wzory z internetu są szablonowe. Nasze pismo powołuje konkretne artykuły ustaw dopasowane do Twojej sytuacji — np. art. 43b ustawy o prawach konsumenta przy niezgodności towaru. Sklepy traktują takie pisma poważniej.",
+    a: "Wzory z internetu są szablonowe. Nasze pismo powołuje konkretne artykuły ustaw dopasowane do Twojej sytuacji, np. art. 43b ustawy o prawach konsumenta przy niezgodności towaru. Sklepy traktują takie pisma poważniej.",
   },
   {
     q: "Co jeśli sklep nie odpowie w 14 dniach?",
-    a: "Brak odpowiedzi w 14 dniach = uznanie reklamacji za zasadną (art. 7a ustawy o prawach konsumenta). Pismo które generujemy zawiera tę informację wprost — działa jak presja prawna.",
+    a: "Brak odpowiedzi w 14 dniach = uznanie reklamacji za zasadną (art. 7a ustawy o prawach konsumenta). Pismo które generujemy zawiera tę informację wprost. Działa jak presja prawna.",
   },
   {
     q: "Czy to jest porada prawna?",
@@ -118,7 +118,7 @@ const FAQS = [
   },
   {
     q: "Co jeśli pismo nie pomoże?",
-    a: "Piszemy odwołanie za darmo. Wystarczy napisać na hello@writeback.pl — przygotujemy kolejne pismo bez dodatkowych opłat.",
+    a: "Piszemy odwołanie za darmo. Wystarczy napisać na hello@writeback.pl. Przygotujemy kolejne pismo bez dodatkowych opłat.",
   },
   {
     q: "Ile kosztuje i co dokładnie dostaję?",
@@ -126,7 +126,7 @@ const FAQS = [
   },
   {
     q: "Czy moje dane są bezpieczne?",
-    a: "Tak. Dane przesyłane są szyfrowanym połączeniem (HTTPS). Płatność obsługuje Stripe — nie widzimy numeru karty. Dane przetwarzamy zgodnie z RODO. Szczegóły w Polityce prywatności.",
+    a: "Tak. Dane przesyłane są szyfrowanym połączeniem (HTTPS). Płatność obsługuje Stripe, nie widzimy numeru karty. Dane przetwarzamy zgodnie z RODO. Szczegóły w Polityce prywatności.",
   },
 ];
 
@@ -174,14 +174,13 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.08] text-white mb-6 animate-fade-up">
-            Sklep Cię zignorował?<br />
-            <span className="text-indigo-400">Napisz pismo reklamacyjne<br className="hidden sm:block" /> które muszą przeczytać.</span>
+            Zignorowali Cię?<br />
+            <span className="text-indigo-400">Napisz pismo z przepisami<br className="hidden sm:block" /> które muszą przeczytać.</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed animate-fade-up delay-100">
-            Pismo reklamacyjne z art. 43b ustawy o prawach konsumenta.
-            Gotowe w 5 minut. Sklep ma <strong className="text-white font-semibold">14 dni</strong> na odpowiedź —
-            brak odpowiedzi = reklamacja uznana z mocy prawa.
+            Formalne pismo z właściwą podstawą prawną do sklepu, banku, ZUS lub operatora.
+            Gotowe w <strong className="text-white font-semibold">5 minut</strong>, PDF na maila od razu.
           </p>
 
           <div className="animate-fade-up delay-200">
@@ -293,7 +292,7 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Efekty</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Prawdziwe przypadki,<br className="hidden sm:block" /> prawdziwe wyniki</h2>
-            <p className="text-gray-500 text-sm">Typowe sytuacje konsumentów — co się dzieje po wysłaniu pisma z Writeback</p>
+            <p className="text-gray-500 text-sm">Typowe sytuacje konsumentów. Co się dzieje po wysłaniu pisma z Writeback.</p>
           </div>
           <div className="grid grid-cols-1 gap-4">
             {CASES.map((c, i) => (
@@ -517,7 +516,7 @@ export default function HomePage() {
             Napisz pismo — 29 zł
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </Link>
-          <p className="text-slate-500 text-sm mt-4">Jeśli nie pomoże — odwołanie gratis</p>
+          <p className="text-slate-500 text-sm mt-4">Jeśli nie pomoże, odwołanie gratis.</p>
         </div>
       </section>
 
