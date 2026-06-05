@@ -559,7 +559,6 @@ DATA PISMA: ${today}`,
   await getResend().emails.send({
     from: "Writeback <hello@writeback.pl>",
     to: m.email,
-    bcc: "hello@writeback.pl",
     subject: `✓ Pismo do ${m.nazwa_sklepu} gotowe — Writeback`,
     html,
     attachments: [{
