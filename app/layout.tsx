@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     url: BASE,
     siteName: "Writeback",
-    title: "Sklep Cię zignorował? Napisz pismo które muszą przeczytać.",
-    description: "Reklamacja do sklepu z art. 43b ustawy o prawach konsumenta. PDF gotowy w 5 minut. 29 zł — brak odpowiedzi sklepu w 14 dniach = reklamacja uznana z mocy prawa.",
+    title: "Zignorowali Cię? Napisz pismo z przepisami które muszą przeczytać.",
+    description: "Formalne pismo z podstawą prawną do sklepu, banku, ZUS lub operatora. PDF gotowy w 5 minut, 29 zł. Brak odpowiedzi w terminie = sprawa uznana z mocy prawa.",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Writeback — pisma reklamacyjne z podstawami prawnymi" }],
   },
   twitter: {
@@ -137,6 +137,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pl" className={geist.variable}>
       <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-433MLRJZJJ" />
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-433MLRJZJJ');` }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

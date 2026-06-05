@@ -47,7 +47,7 @@ export default function Image() {
           letterSpacing: "-2px",
           maxWidth: 900,
         }}>
-          Sklep Cię zignorował?
+          Zignorowali Cię?
         </div>
         <div style={{
           color: "#c7d2fe",
@@ -56,7 +56,7 @@ export default function Image() {
           textAlign: "center",
           lineHeight: 1.3,
         }}>
-          Napisz pismo które muszą przeczytać.
+          Napisz pismo z przepisami które muszą przeczytać.
         </div>
         <div style={{
           display: "flex",
