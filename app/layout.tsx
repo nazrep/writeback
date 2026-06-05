@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sklep Cię zignorował? Napisz pismo które muszą przeczytać.",
-    description: "Reklamacja z art. 43b ustawy o prawach konsumenta. PDF w 5 minut. 29 zł.",
+    title: "Zignorowali Cię? Napisz pismo, które muszą przeczytać.",
+    description: "Formalne pismo z podstawą prawną do sklepu, banku, ZUS lub operatora. PDF w 5 minut. 29 zł.",
     images: ["/opengraph-image"],
   },
   robots: {
