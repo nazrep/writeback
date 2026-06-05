@@ -41,7 +41,7 @@ export default function WzorReklamacji() {
           </h1>
           <p className="text-slate-400 text-base leading-relaxed max-w-2xl">
             Pismo reklamacyjne bez powołania na konkretny przepis to prośba, nie roszczenie.
-            Poniżej struktura skutecznego pisma — i sposób na wygenerowanie go automatycznie w 5 minut.
+            Poniżej struktura skutecznego pisma i jak wygenerować je automatycznie w 5 minut.
           </p>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function WzorReklamacji() {
 
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Struktura wzorowego pisma reklamacyjnego</h2>
         <p className="text-gray-600 text-sm leading-relaxed mb-6">
-          Skuteczne pismo reklamacyjne musi zawierać wszystkie poniższe elementy. Brak któregokolwiek z nich może dać sklepowi pretekst do opóźnienia lub odmowy — lub nie wywoła presji prawnej, którą powinieneś wywrzeć.
+          Skuteczne pismo reklamacyjne musi zawierać wszystkie poniższe elementy. Brak choćby jednego może dać sklepowi pretekst do odmowy albo zwlekania.
         </p>
 
         {/* Mockup of letter structure */}
@@ -109,14 +109,14 @@ export default function WzorReklamacji() {
           Skuteczne pismo musi być dostosowane do Twojej konkretnej sytuacji: daty zakupu (przepisy różnią się dla zakupów przed i po 01.01.2023), rodzaju wady (istotna vs. nieistotna wpływa na dostępne żądania), historii kontaktu ze sklepem i wybranego żądania.
         </p>
         <p className="text-gray-600 text-sm leading-relaxed mb-10">
-          Pismo powinno też zawierać informację o art. 7a — 14-dniowym terminie na odpowiedź. Sklepy, które wiedzą, że Twoje pismo jest &bdquo;poważne&rdquo;, odpowiadają w terminie. Sklepy, które dostają ogólne maile, mogą czekać tygodniami.
+          Pismo powinno też zawierać informację o art. 7a i 14-dniowym terminie na odpowiedź. Sklep, który widzi konkretny przepis, reaguje inaczej niż na zwykłego maila. Sklepy, które dostają ogólne prośby, mogą czekać tygodniami.
         </p>
 
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Kiedy wzór NIE wystarczy</h2>
         <div className="space-y-3 mb-10">
           {[
-            "Spór dotyczy kwoty powyżej kilku tysięcy złotych — warto skonsultować z prawnikiem",
-            "Sklep odpowiedział odmownie powołując się na konkretny przepis — potrzebne jest kontrargumentowanie",
+            "Spór dotyczy kwoty powyżej kilku tysięcy złotych. Warto skonsultować z prawnikiem.",
+            "Sklep odpowiedział odmownie, powołując się na konkretny przepis. Potrzebna jest ocena prawna.",
             "Towar był używany lub kupiony od osoby prywatnej (nie od przedsiębiorcy) — inne przepisy",
             "Masz pismo z ZUS, US lub ubezpieczyciela — inne tryby odwoławcze",
           ].map((item, i) => (

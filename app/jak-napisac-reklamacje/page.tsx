@@ -56,7 +56,7 @@ export default function JakNapisacReklamacje() {
           </h1>
           <p className="text-slate-400 text-base leading-relaxed max-w-2xl">
             Większość reklamacji jest odrzucana, bo sklepy wiedzą, że zwykłe maile można zignorować.
-            Pismo z właściwą podstawą prawną działa inaczej — brak odpowiedzi w 14 dniach to automatyczne uznanie reklamacji.
+            Pismo z właściwą podstawą prawną działa inaczej. Brak odpowiedzi w 14 dniach to automatyczne uznanie reklamacji.
           </p>
         </div>
       </div>
@@ -75,17 +75,17 @@ export default function JakNapisacReklamacje() {
 
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Co musi zawierać skuteczna reklamacja</h2>
         <p className="text-gray-600 text-sm leading-relaxed mb-4">
-          Sklep nie może odrzucić reklamacji tylko dlatego, że jest napisana niedbale — ale pismo bez podstawy prawnej daje mu pole do zwlekania i wymówek. Profesjonalna reklamacja zawiera:
+          Sklep nie może odrzucić reklamacji tylko dlatego, że jest napisana niedbale. Ale pismo bez podstawy prawnej daje mu pole do zwlekania i wymówek. Profesjonalna reklamacja zawiera:
         </p>
         <div className="space-y-3 mb-10">
           {[
-            { n: "1", title: "Dane nadawcy", desc: "Imię, nazwisko, adres, email — sklep musi wiedzieć do kogo ma odpowiedzieć." },
-            { n: "2", title: "Data i miejsce", desc: "Data wystawienia pisma — od niej biegnie 14-dniowy termin na odpowiedź sklepu." },
-            { n: "3", title: "Dane adresata", desc: "Pełna nazwa firmy i adres — pismo musi trafić do właściwego podmiotu, nie tylko obsługi klienta." },
-            { n: "4", title: "DOTYCZY: opis sprawy", desc: "Krótkie streszczenie — sklep od razu wie o co chodzi, co skraca czas reakcji." },
-            { n: "5", title: "Opis niezgodności", desc: "Co kupiłeś, kiedy, jaka jest wada, kiedy ją odkryłeś — konkretnie i chronologicznie." },
-            { n: "6", title: "Żądanie z podstawą prawną", desc: "Naprawa, wymiana, obniżenie ceny lub odstąpienie — z powołaniem na art. 43b UPK." },
-            { n: "7", title: "Termin odpowiedzi", desc: "Wprost: sklep ma 14 dni z mocy art. 7a — brak odpowiedzi = reklamacja uznana." },
+            { n: "1", title: "Dane nadawcy", desc: "Imię, nazwisko, adres i email. Sklep musi wiedzieć, do kogo ma odpowiedzieć." },
+            { n: "2", title: "Data i miejsce", desc: "Data wystawienia pisma. Od niej biegnie 14-dniowy termin na odpowiedź sklepu." },
+            { n: "3", title: "Dane adresata", desc: "Pełna nazwa firmy i adres. Pismo musi trafić do właściwego podmiotu, nie tylko do obsługi klienta." },
+            { n: "4", title: "DOTYCZY: opis sprawy", desc: "Krótkie streszczenie. Sklep od razu wie, o co chodzi, i szybciej reaguje." },
+            { n: "5", title: "Opis niezgodności", desc: "Co kupiłeś, kiedy, jaka jest wada i kiedy ją odkryłeś. Opisz konkretnie i chronologicznie." },
+            { n: "6", title: "Żądanie z podstawą prawną", desc: "Naprawa, wymiana, obniżenie ceny lub odstąpienie od umowy. Koniecznie z powołaniem na art. 43b UPK." },
+            { n: "7", title: "Termin odpowiedzi", desc: "Napisz wprost: sklep ma 14 dni z mocy art. 7a. Brak odpowiedzi = reklamacja uznana." },
           ].map((item) => (
             <div key={item.n} className="flex gap-4 p-4 border border-gray-100 rounded-xl hover:border-indigo-100 transition-colors">
               <div className="w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-bold text-sm flex items-center justify-center shrink-0">{item.n}</div>
@@ -97,9 +97,9 @@ export default function JakNapisacReklamacje() {
           ))}
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Czego możesz żądać — hierarchia</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Czego możesz żądać</h2>
         <p className="text-gray-600 text-sm leading-relaxed mb-4">
-          Ustawa o prawach konsumenta przewiduje konkretną hierarchię żądań. Nie możesz od razu żądać zwrotu pieniędzy — musisz najpierw dać sklepowi szansę na naprawę lub wymianę, chyba że jest to niemożliwe lub sklep już raz nie dotrzymał terminu.
+          Ustawa o prawach konsumenta przewiduje konkretną kolejność żądań. Nie możesz od razu żądać zwrotu pieniędzy. Najpierw musisz dać sklepowi szansę na naprawę lub wymianę, chyba że jest to niemożliwe lub sklep już raz nie dotrzymał terminu.
         </p>
         <div className="grid sm:grid-cols-2 gap-3 mb-10">
           {[
@@ -120,7 +120,7 @@ export default function JakNapisacReklamacje() {
           {[
             { err: "Brak podstawy prawnej", fix: "Sklep może twierdzić, że nie musi odpowiedzieć. Przepis ustawy = obowiązek odpowiedzi w 14 dniach." },
             { err: "Pismo bez uzasadnienia prawnego", fix: "Sklep może odmówić powołując się na regulamin. Żądanie musi wynikać z konkretnego przepisu." },
-            { err: "Wysyłka przez formularz na stronie sklepu", fix: "Nie ma dowodu daty złożenia. Wyślij emailem z potwierdzeniem lub listem poleconym — zachowaj dowód." },
+            { err: "Wysyłka przez formularz na stronie sklepu", fix: "Nie ma dowodu daty złożenia. Wyślij emailem albo listem poleconym i zachowaj kopię." },
             { err: "Pominięcie daty ujawnienia wady", fix: "Sklep może kwestionować, czy wada istniała w chwili sprzedaży. Data ujawnienia i opis okoliczności są kluczowe." },
             { err: "Reklamacja po 2 latach", fix: "Termin odpowiedzialności sprzedawcy wynosi 2 lata od wydania towaru (art. 43a ust. 2 UPK)." },
           ].map((item, i) => (
@@ -138,7 +138,7 @@ export default function JakNapisacReklamacje() {
 
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Jak wysłać reklamację</h2>
         <p className="text-gray-600 text-sm leading-relaxed mb-4">
-          Forma złożenia reklamacji jest dowolna — ustawa nie wymaga pisemnej formy. W praktyce jednak ważne jest, żebyś mógł udowodnić datę złożenia i treść pisma.
+          Forma złożenia reklamacji jest dowolna, ustawa nie wymaga pisemnej formy. Ważne jest jednak, żebyś mógł udowodnić datę złożenia i treść pisma.
         </p>
         <div className="grid sm:grid-cols-3 gap-3 mb-10">
           {[
@@ -155,10 +155,10 @@ export default function JakNapisacReklamacje() {
 
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Co jeśli sklep nie odpowie w 14 dniach</h2>
         <p className="text-gray-600 text-sm leading-relaxed mb-6">
-          Art. 7a ust. 1 ustawy o prawach konsumenta stanowi wprost: jeżeli przedsiębiorca nie udzielił odpowiedzi na reklamację konsumenta w terminie 14 dni od jej otrzymania, uważa się, że uznał reklamację. Oznacza to, że możesz powołać się na milczące uznanie reklamacji i żądać spełnienia żądania.
+          Zgodnie z art. 7a ust. 1 ustawy o prawach konsumenta: jeżeli sklep nie odpowiedział w ciągu 14 dni od otrzymania reklamacji, uznaje się ją za zasadną. Możesz powołać się na to milczące uznanie i żądać spełnienia roszczenia.
         </p>
         <p className="text-gray-600 text-sm leading-relaxed mb-10">
-          W praktyce — wyślij kolejne pismo z powołaniem na art. 7a, wskazując datę pierwotnej reklamacji i brak odpowiedzi. Jeśli sklep nadal odmawia, kolejnym krokiem jest skarga do Rzecznika Praw Konsumentów lub UOKiK.
+          Wyślij kolejne pismo z powołaniem na art. 7a, wskazując datę pierwotnej reklamacji i brak odpowiedzi. Jeśli sklep nadal odmawia, złóż skargę do Rzecznika Praw Konsumentów lub UOKiK.
         </p>
 
         <div className="bg-slate-950 rounded-2xl p-8 text-center">

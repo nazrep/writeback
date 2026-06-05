@@ -73,7 +73,7 @@ export default function ReklamacjaAllegro() {
             Reklamacja na Allegro — co Ci przysługuje<br className="hidden sm:block" /> i jak to wyegzekwować
           </h1>
           <p className="text-slate-400 text-base leading-relaxed max-w-2xl">
-            Kupujesz na Allegro od sprzedawcy-przedsiębiorcy? Masz dokładnie takie same prawa jak w każdym innym sklepie internetowym — ustawa o prawach konsumenta nie robi wyjątków dla platform marketplace.
+            Kupujesz na Allegro od sprzedawcy-przedsiębiorcy? Masz takie same prawa jak w każdym innym sklepie. Ustawa o prawach konsumenta nie robi wyjątków dla platform marketplace.
           </p>
         </div>
       </div>
@@ -155,11 +155,11 @@ export default function ReklamacjaAllegro() {
           {[
             {
               claim: 'Towar był sprawny przy wysyłce',
-              response: "Art. 43a ust. 2 UPK: domniemywa się, że niezgodność istniała w chwili dostawy, jeśli ujawniono ją w ciągu roku (zakupy po 01.01.2023). Odwracasz ciężar dowodu — to sprzedawca musi udowodnić, że towar był sprawny.",
+              response: "Art. 43a ust. 2 UPK: domniemywa się, że niezgodność istniała w chwili dostawy, jeśli ujawniono ją w ciągu roku (zakupy po 01.01.2023). To sprzedawca musi udowodnić, że towar był sprawny.",
             },
             {
               claim: 'Minął termin 30 dni',
-              response: "Ustawa o prawach konsumenta nie zna terminu 30 dni dla reklamacji. Masz 2 lata od wydania towaru (art. 43a ust. 2). 30 dni to termin dla odstąpienia od umowy — zupełnie inna kwestia.",
+              response: "Ustawa o prawach konsumenta nie zna terminu 30 dni dla reklamacji. Masz 2 lata od wydania towaru (art. 43a ust. 2). Termin 30 dni dotyczy odstąpienia od umowy, to zupełnie inna sprawa.",
             },
             {
               claim: 'Uszkodzenia mechaniczne nie są objęte reklamacją',
@@ -167,7 +167,7 @@ export default function ReklamacjaAllegro() {
             },
             {
               claim: 'Proszę odesłać do producenta w ramach gwarancji',
-              response: "Gwarancja i reklamacja z tytułu niezgodności towaru z umową to dwa różne tryby. Masz prawo wybrać reklamację do sprzedawcy — on nie może Cię przekierować do producenta.",
+              response: "Gwarancja i reklamacja z tytułu niezgodności towaru z umową to dwa różne tryby. Masz prawo złożyć reklamację do sprzedawcy i nie może Cię kierować do producenta.",
             },
           ].map((item, i) => (
             <div key={i} className="border border-gray-200 rounded-xl overflow-hidden">
