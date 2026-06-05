@@ -227,23 +227,10 @@ DATA PISMA: ${today}`,
       thickness: 0.4,
       color: rgb(0.88, 0.88, 0.9),
     });
-    p.drawText("Dokument wygenerowany przez writeback.pl · Narzędzie do tworzenia pism konsumenckich, nie porada prawna", {
-      x: marginX, y: marginBottom - 16, size: 6.5, font, color: rgb(...C_GRAY),
+    p.drawText("Przygotowano z pomocą writeback.pl · Nie jest to porada prawna", {
+      x: marginX, y: marginBottom - 16, size: 7, font, color: rgb(...C_GRAY),
     });
   }
-
-  // ── TOP HEADER BAR ──
-  const headerH = 40;
-  page.drawRectangle({ x: 0, y: H - headerH, width: W, height: headerH, color: rgb(...C_INDIGO_DARK) });
-  // Logo square
-  page.drawRectangle({ x: marginX, y: H - headerH + 8, width: 24, height: 24, color: rgb(...C_INDIGO) });
-  page.drawText("W", { x: marginX + 7, y: H - headerH + 15, size: 12, font: boldFont, color: rgb(1, 1, 1) });
-  page.drawText("writeback.pl", { x: marginX + 32, y: H - headerH + 15, size: 11, font: boldFont, color: rgb(1, 1, 1) });
-  const dateLabel = `Wygenerowano: ${today}`;
-  const dateLabelW = font.widthOfTextAtSize(dateLabel, 8);
-  page.drawText(dateLabel, { x: W - marginX - dateLabelW, y: H - headerH + 16, size: 8, font, color: rgb(0.7, 0.68, 1) });
-
-  y = H - headerH - 28;
 
   // ── DOCUMENT TYPE BADGE ──
   const LABELS: Record<string, string> = {
