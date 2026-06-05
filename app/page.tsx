@@ -131,12 +131,15 @@ export default function HomePage() {
             <span className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm shrink-0">W</span>
             <span className="font-bold text-lg tracking-tight text-white">writeback</span>
           </span>
-          <Link
-            href="/zamow"
-            className="bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95"
-          >
-            Napisz pismo
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/en" className="text-xs text-slate-500 hover:text-slate-300 transition-colors border border-white/10 px-2 py-1 rounded-md">EN</Link>
+            <Link
+              href="/zamow"
+              className="bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95"
+            >
+              Napisz pismo
+            </Link>
+          </div>
         </div>
       </nav>
 
