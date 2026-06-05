@@ -76,51 +76,6 @@ const CASES = [
   },
 ];
 
-const REVIEWS = [
-  {
-    initial: "M",
-    name: "Marcin K.",
-    city: "Wrocław",
-    stars: 5,
-    text: "Sklep ignorował moje maile przez 3 tygodnie. Po piśmie z Writeback odpisali w 3 dni i zwrócili 1 240 zł. Polecam każdemu zanim zadzwoni na infolinię.",
-  },
-  {
-    initial: "K",
-    name: "Karolina M.",
-    city: "Warszawa",
-    stars: 5,
-    text: "Bank twierdził, że transakcji nie cofnie, bo logowanie było prawidłowe. Dostali pismo z właściwym przepisem i zwrócili 890 zł bez słowa. Niesamowite jak to działa.",
-  },
-  {
-    initial: "T",
-    name: "Tomasz B.",
-    city: "Poznań",
-    stars: 5,
-    text: "Siłownia chciała 400 zł kary za wypowiedzenie. Pismo przyszło na maila od razu, wysłałem skan i sprawa skończona w 4 dni. Zero opłat.",
-  },
-  {
-    initial: "A",
-    name: "Anna W.",
-    city: "Kraków",
-    stars: 5,
-    text: "Nie wiedziałam że na niezgodność towaru mam 2 lata. Sklep liczył na to, że tego nie sprawdzę. Po piśmie z przepisem dostałam nową kurtkę.",
-  },
-  {
-    initial: "P",
-    name: "Piotr S.",
-    city: "Gdańsk",
-    stars: 5,
-    text: "Formularz zajął mi może 4 minuty, PDF przyszedł od razu. Za 29 zł dostałem pismo które wyglądało jak z kancelarii. Operator zwrócił nadpłatę w 10 dni.",
-  },
-  {
-    initial: "E",
-    name: "Ewa R.",
-    city: "Łódź",
-    stars: 5,
-    text: "Próbowałam sama pisać reklamację, sklep odrzucał wszystko. To pismo miało konkretne artykuły i datę graniczną odpowiedzi. Sklep się nie odzywał, więc reklamacja jest uznana z mocy prawa.",
-  },
-];
-
 const PROBLEMS = [
   {
     before: `Piszesz „proszę o zwrot". Sklep ignoruje lub odmawia po 3 tygodniach.`,
@@ -391,46 +346,6 @@ export default function HomePage() {
               Napisz swoje pismo — 29 zł
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Reviews */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Opinie</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Co mówią użytkownicy</h2>
-            <div className="flex items-center justify-center gap-2 mt-4">
-              <div className="flex gap-0.5">
-                {[1,2,3,4,5].map(i => (
-                  <svg key={i} width="16" height="16" viewBox="0 0 12 12" fill="#fbbf24"><path d="M6 1l1.4 2.8 3.1.5-2.2 2.2.5 3.1L6 8.2l-2.8 1.4.5-3.1L1.5 4.3l3.1-.5z"/></svg>
-                ))}
-              </div>
-              <span className="text-sm font-bold text-gray-900">5.0</span>
-              <span className="text-sm text-gray-400">z 5 na podstawie opinii użytkowników</span>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {REVIEWS.map((r, i) => (
-              <div key={i} className="bg-gray-50 border border-gray-100 rounded-2xl p-5 flex flex-col gap-3">
-                <div className="flex gap-0.5">
-                  {[1,2,3,4,5].map(s => (
-                    <svg key={s} width="13" height="13" viewBox="0 0 12 12" fill={s <= r.stars ? "#fbbf24" : "#e5e7eb"}><path d="M6 1l1.4 2.8 3.1.5-2.2 2.2.5 3.1L6 8.2l-2.8 1.4.5-3.1L1.5 4.3l3.1-.5z"/></svg>
-                  ))}
-                </div>
-                <p className="text-sm text-gray-700 leading-relaxed">&bdquo;{r.text}&rdquo;</p>
-                <div className="flex items-center gap-2.5 mt-auto pt-1">
-                  <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center shrink-0">
-                    {r.initial}
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-gray-800">{r.name}</p>
-                    <p className="text-[11px] text-gray-400">{r.city}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
