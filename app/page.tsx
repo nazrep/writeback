@@ -132,10 +132,10 @@ export default function HomePage() {
             <span className="font-bold text-lg tracking-tight text-white">writeback</span>
           </span>
           <div className="flex items-center gap-3">
-            <Link href="/en" className="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 border border-white/10 hover:border-white/20 px-3 py-1.5 rounded-lg">
-              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2"/><path d="M7 1c0 0-3 2.5-3 6s3 6 3 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><path d="M7 1c0 0 3 2.5 3 6s-3 6-3 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><path d="M1.5 7h11" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>
-              EN
-            </Link>
+            <div className="flex items-center rounded-lg overflow-hidden border border-white/10 text-xs font-semibold">
+              <span className="px-3 py-1.5 bg-white/10 text-white">PL</span>
+              <Link href="/en" className="px-3 py-1.5 text-slate-400 hover:text-white hover:bg-white/5 transition-colors">EN</Link>
+            </div>
             <Link
               href="/zamow"
               className="bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95"

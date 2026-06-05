@@ -103,7 +103,10 @@ export default function EnPage() {
               <span className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm shrink-0">W</span>
               <span className="font-bold text-lg tracking-tight text-white">writeback</span>
             </Link>
-            <Link href="/" className="text-xs text-slate-500 hover:text-slate-300 transition-colors border border-white/10 px-2 py-1 rounded-md">PL</Link>
+            <div className="flex items-center rounded-lg overflow-hidden border border-white/10 text-xs font-semibold">
+              <Link href="/" className="px-3 py-1.5 text-slate-400 hover:text-white hover:bg-white/5 transition-colors">PL</Link>
+              <span className="px-3 py-1.5 bg-white/10 text-white">EN</span>
+            </div>
           </div>
           <Link
             href="/zamow"
