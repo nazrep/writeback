@@ -232,6 +232,7 @@ export function FormWizard() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewPoints, setPreviewPoints] = useState<string[]>([]);
   const [previewLoading, setPreviewLoading] = useState(false);
+  const [previewError, setPreviewError] = useState(false);
 
   const type = DOC_TYPES.find(t => t.id === docType) ?? DOC_TYPES[0];
 
@@ -259,6 +260,30 @@ export function FormWizard() {
     if (!data.nazwa_sklepu.trim()) e.nazwa_sklepu = "To pole jest wymagane";
     setErrors(e);
     return Object.keys(e).length === 0;
+  }
+
+  async function fetchPreview() {
+    setPreviewLoading(true);
+    setPreviewError(false);
+    try {
+      const res = await fetch("/api/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, doc_type: docType }),
+      });
+      if (res.ok) {
+        const json = await res.json();
+        const pts = json.points ?? [];
+        setPreviewPoints(pts);
+        if (pts.length === 0) setPreviewError(true);
+      } else {
+        setPreviewError(true);
+      }
+    } catch {
+      setPreviewError(true);
+    } finally {
+      setPreviewLoading(false);
+    }
   }
 
   async function handlePay() {
@@ -514,33 +539,14 @@ export function FormWizard() {
               disabled={previewLoading}
               onClick={async () => {
                 if (!validateStep3()) return;
-                setPreviewLoading(true);
-                try {
-                  const res = await fetch("/api/preview", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ ...data, doc_type: docType }),
-                  });
-                  if (res.ok) {
-                    const json = await res.json();
-                    setPreviewPoints(json.points ?? []);
-                  }
-                } catch { /* ignore */ } finally {
-                  setPreviewLoading(false);
-                }
+                setPreviewPoints([]);
+                setPreviewError(false);
                 setStep(3);
+                await fetchPreview();
               }}
               className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2"
             >
-              {previewLoading ? (
-                <>
-                  <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                  </svg>
-                  Analizuję sprawę...
-                </>
-              ) : "Sprawdź podgląd pisma →"}
+              Sprawdź podgląd pisma →
             </button>
           </div>
         </div>
@@ -555,7 +561,25 @@ export function FormWizard() {
           <h1 className="text-2xl font-bold text-gray-900 mb-1">Czy dobrze rozumiemy sprawę?</h1>
           <p className="text-gray-500 text-sm mb-8">Sprawdź co znajdzie się w Twoim piśmie — zatwierdź lub popraw dane</p>
 
-          {previewPoints.length > 0 ? (
+          {previewLoading ? (
+            <div className="bg-white border border-indigo-200 rounded-2xl overflow-hidden mb-6">
+              <div className="bg-indigo-50 px-5 py-3 border-b border-indigo-100 flex items-center gap-2">
+                <svg className="animate-spin w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                </svg>
+                <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider">Analizuję Twoją sprawę…</span>
+              </div>
+              <ul className="divide-y divide-gray-50">
+                {[1,2,3,4].map(i => (
+                  <li key={i} className="flex items-start gap-3 px-5 py-3.5">
+                    <div className="w-5 h-5 rounded-full bg-gray-100 shrink-0 mt-0.5 animate-pulse" />
+                    <div className="flex-1 h-4 bg-gray-100 rounded animate-pulse" style={{ width: `${65 + i * 7}%` }} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : previewPoints.length > 0 ? (
             <div className="bg-white border border-indigo-200 rounded-2xl overflow-hidden mb-6">
               <div className="bg-indigo-50 px-5 py-3 border-b border-indigo-100 flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -577,11 +601,17 @@ export function FormWizard() {
                 ))}
               </ul>
             </div>
-          ) : (
-            <div className="bg-indigo-50 border border-indigo-100 rounded-2xl px-5 py-6 mb-6 text-center">
-              <p className="text-sm text-indigo-700">Pismo zostanie wygenerowane na podstawie podanych danych z właściwymi przepisami prawnymi.</p>
+          ) : previewError ? (
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-6 mb-6 text-center">
+              <p className="text-sm text-amber-800 mb-3">Nie udało się wygenerować podglądu. Spróbuj ponownie.</p>
+              <button
+                onClick={fetchPreview}
+                className="text-sm font-semibold text-indigo-600 hover:text-indigo-800 underline underline-offset-2 transition-colors"
+              >
+                Spróbuj ponownie →
+              </button>
             </div>
-          )}
+          ) : null}
 
           <div className="bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 mb-6 text-sm text-gray-600 leading-relaxed">
             <strong className="text-gray-900">Dane wyglądają inaczej niż oczekiwałeś?</strong> Wróć i popraw — pismo generujemy dopiero po płatności.
