@@ -27,6 +27,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ received: true });
   }
 
+  // Ignore events older than 30 minutes — Stripe retries after restarts would otherwise re-send emails
+  const eventAgeMs = Date.now() - event.created * 1000;
+  if (eventAgeMs > 30 * 60 * 1000) {
+    return NextResponse.json({ received: true });
+  }
+
   const session = event.data.object as Stripe.Checkout.Session;
   if (processedSessions.has(session.id)) {
     return NextResponse.json({ received: true });
@@ -475,13 +481,8 @@ DATA PISMA: ${today}`,
           <table cellpadding="0" cellspacing="0" width="100%"><tr>
             <td width="44" valign="middle">
               <table cellpadding="0" cellspacing="0"><tr>
-                <td style="background:#eef2ff;width:44px;height:44px;border-radius:10px;text-align:center;vertical-align:middle">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:12px auto">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <polyline points="14 2 14 8 20 8" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <line x1="16" y1="13" x2="8" y2="13" stroke="#4f46e5" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="16" y1="17" x2="8" y2="17" stroke="#4f46e5" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
+                <td style="background:#eef2ff;width:44px;height:44px;border-radius:10px;text-align:center;vertical-align:middle;font-size:22px;line-height:44px">
+                  &#128196;
                 </td>
               </tr></table>
             </td>
