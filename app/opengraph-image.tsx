@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Writeback — Reklamacja z podstawami prawnymi";
+export const alt = "Writeback — pisma z podstawą prawną";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -10,80 +10,72 @@ export default function Image() {
     (
       <div
         style={{
-          background: "linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)",
+          background: "#0f172a",
           width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           justifyContent: "center",
-          fontFamily: "system-ui, sans-serif",
-          padding: "80px",
+          padding: "80px 100px",
+          position: "relative",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 40 }}>
+        {/* Glow */}
+        <div style={{
+          position: "absolute",
+          top: -100,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 800,
+          height: 600,
+          background: "radial-gradient(ellipse, rgba(99,102,241,0.35) 0%, transparent 70%)",
+          display: "flex",
+        }} />
+
+        {/* Logo */}
+        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 56 }}>
           <div style={{
             background: "#4f46e5",
-            borderRadius: 12,
-            width: 56,
-            height: 56,
+            borderRadius: 10,
+            width: 44,
+            height: 44,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: 32,
-            fontWeight: 700,
+            fontSize: 24,
+            fontWeight: 800,
             color: "white",
           }}>W</div>
-          <div style={{ color: "#a5b4fc", fontSize: 28, fontWeight: 600, letterSpacing: "-0.5px" }}>
+          <span style={{ color: "#94a3b8", fontSize: 22, fontWeight: 600, letterSpacing: "-0.3px" }}>
             writeback.pl
-          </div>
+          </span>
         </div>
+
+        {/* Headline */}
         <div style={{
           color: "white",
-          fontSize: 68,
-          fontWeight: 700,
-          textAlign: "center",
-          lineHeight: 1.1,
-          letterSpacing: "-2px",
-          maxWidth: 900,
-        }}>
-          Zignorowali Cię?
-        </div>
-        <div style={{
-          color: "#c7d2fe",
-          fontSize: 34,
-          marginTop: 20,
-          textAlign: "center",
-          lineHeight: 1.3,
-        }}>
-          Napisz pismo, które muszą przeczytać.
-        </div>
-        <div style={{
+          fontSize: 86,
+          fontWeight: 800,
+          lineHeight: 1.0,
+          letterSpacing: "-3px",
+          marginBottom: 24,
           display: "flex",
-          gap: 24,
-          marginTop: 56,
+          flexDirection: "column",
         }}>
-          <div style={{
-            background: "#4f46e5",
-            color: "white",
-            padding: "18px 48px",
-            borderRadius: 14,
-            fontSize: 24,
-            fontWeight: 600,
-          }}>
-            Gotowe pismo PDF · 29 zł
-          </div>
-          <div style={{
-            background: "rgba(255,255,255,0.1)",
-            color: "#c7d2fe",
-            padding: "18px 40px",
-            borderRadius: 14,
-            fontSize: 24,
-            fontWeight: 500,
-            border: "1px solid rgba(255,255,255,0.15)",
-          }}>
-            Przepisy prawa polskiego
-          </div>
+          <span>Zignorowali Cię?</span>
+          <span style={{ color: "#818cf8" }}>Napisz pismo,</span>
+          <span style={{ color: "#818cf8" }}>które muszą przeczytać.</span>
+        </div>
+
+        {/* Subline */}
+        <div style={{
+          color: "#64748b",
+          fontSize: 26,
+          fontWeight: 500,
+          marginTop: 8,
+          display: "flex",
+        }}>
+          Sklep · Bank · ZUS · Operator — PDF gotowy w 5 minut · 29 zł
         </div>
       </div>
     ),
