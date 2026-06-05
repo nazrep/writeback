@@ -363,48 +363,24 @@ DATA PISMA: ${today}`,
   const pdfFilename = `reklamacja-${m.nazwa_sklepu.replace(/[^a-z0-9]/gi, "-").toLowerCase()}.pdf`;
 
   const stepsData = [
-    {
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
-      title: "Otwórz załącznik PDF",
-      desc: "Twoje gotowe pismo reklamacyjne jest w załączniku do tego emaila.",
-    },
-    {
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`,
-      title: "Wyślij pismo do sklepu",
-      desc: "Emailem na adres obsługi klienta <em>lub</em> listem poleconym za potwierdzeniem odbioru.",
-    },
-    {
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
-      title: "Zachowaj potwierdzenie wysyłki",
-      desc: "Data wysyłki jest kluczowa — od niej biegnie ustawowy 14-dniowy termin odpowiedzi.",
-    },
-    {
-      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
-      title: `Termin mija: ${deadline}`,
-      desc: "Brak odpowiedzi w 14 dniach = reklamacja uznana za zasadną z mocy prawa (art. 7a UPK).",
-    },
+    { emoji: "📄", bg: "#eef2ff", color: "#111827", title: "Otwórz załącznik PDF",            desc: "Twoje gotowe pismo reklamacyjne jest w załączniku do tego emaila." },
+    { emoji: "📤", bg: "#eef2ff", color: "#111827", title: "Wyślij pismo do adresata",         desc: "Emailem na adres obsługi klienta lub listem poleconym za potwierdzeniem odbioru." },
+    { emoji: "🗓️", bg: "#eef2ff", color: "#111827", title: "Zachowaj potwierdzenie wysyłki",  desc: "Data wysyłki jest kluczowa — od niej biegnie ustawowy termin odpowiedzi." },
+    { emoji: "✅", bg: "#f0fdf4", color: "#065f46", title: `Termin mija: ${deadline}`,         desc: "Brak odpowiedzi w 14 dniach = reklamacja uznana za zasadną z mocy prawa (art. 7a UPK)." },
   ];
 
-  const stepsHtml = stepsData.map((s, i) => `
+  const stepsHtml = stepsData.map(s => `
     <tr>
       <td style="padding:0 0 16px 0">
-        <table cellpadding="0" cellspacing="0" width="100%">
-          <tr>
-            <td width="40" valign="top" style="padding-top:1px">
-              <table cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="width:32px;height:32px;background:${i === 3 ? "#f0fdf4" : "#eef2ff"};border-radius:8px;text-align:center;vertical-align:middle">
-                    ${s.icon}
-                  </td>
-                </tr>
-              </table>
-            </td>
-            <td style="padding-left:12px;vertical-align:top">
-              <div style="font-size:14px;font-weight:600;color:${i === 3 ? "#065f46" : "#111827"};margin-bottom:3px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.title}</div>
-              <div style="font-size:13px;color:#6b7280;line-height:1.5;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.desc}</div>
-            </td>
-          </tr>
-        </table>
+        <table cellpadding="0" cellspacing="0" width="100%"><tr>
+          <td width="44" valign="top">
+            <div style="width:36px;height:36px;background:${s.bg};border-radius:9px;text-align:center;line-height:36px;font-size:18px">${s.emoji}</div>
+          </td>
+          <td style="padding-left:12px;vertical-align:top">
+            <div style="font-size:14px;font-weight:600;color:${s.color};margin-bottom:3px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.title}</div>
+            <div style="font-size:13px;color:#6b7280;line-height:1.5;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.desc}</div>
+          </td>
+        </tr></table>
       </td>
     </tr>`).join("");
 
