@@ -202,6 +202,35 @@ const textareaErrCls = inputErrCls + " resize-none";
 const ic = (err?: string) => err ? inputErrCls : inputCls;
 const tc = (err?: string) => err ? textareaErrCls : textareaCls;
 
+const MONTHS = ["Styczeń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"];
+const currentYear = new Date().getFullYear();
+const YEARS = Array.from({ length: 8 }, (_, i) => currentYear - i);
+
+function DateSelect({ value, onChange, error }: { value: string; onChange: (v: string) => void; error?: string }) {
+  const [y, m, d] = value ? value.split("-") : ["", "", ""];
+  const sel = (err?: string) => `border ${err ? "border-red-400 focus:ring-red-400" : "border-gray-300 focus:ring-indigo-500"} rounded-lg px-3 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white w-full`;
+  function update(newY: string, newM: string, newD: string) {
+    if (newY && newM && newD) onChange(`${newY}-${newM.padStart(2,"0")}-${newD.padStart(2,"0")}`);
+    else onChange("");
+  }
+  return (
+    <div className="grid grid-cols-3 gap-2">
+      <select className={sel(error)} value={d || ""} onChange={e => update(y, m, e.target.value)}>
+        <option value="">Dzień</option>
+        {Array.from({ length: 31 }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}
+      </select>
+      <select className={sel(error)} value={m || ""} onChange={e => update(y, e.target.value, d)}>
+        <option value="">Miesiąc</option>
+        {MONTHS.map((name, i) => <option key={i} value={i + 1}>{name}</option>)}
+      </select>
+      <select className={sel(error)} value={y || ""} onChange={e => update(e.target.value, m, d)}>
+        <option value="">Rok</option>
+        {YEARS.map(yr => <option key={yr} value={yr}>{yr}</option>)}
+      </select>
+    </div>
+  );
+}
+
 function Field({ label, required, hint, error, children }: {
   label: string; required?: boolean; hint?: string; error?: string; children: React.ReactNode;
 }) {
@@ -479,7 +508,7 @@ export function FormWizard({ lang }: { lang?: string }) {
                 <input className={ic(errors.cena)} placeholder={type.kwotaPlaceholder} type={docType !== "zus" ? "number" : "text"} min="0" value={data.cena} onChange={set("cena")} />
               </Field>
               <Field label={type.dataLabel} required error={errors.data_zakupu}>
-                <input className={ic(errors.data_zakupu)} type="date" value={data.data_zakupu} onChange={set("data_zakupu")} />
+                <DateSelect value={data.data_zakupu} onChange={v => setData(p => ({ ...p, data_zakupu: v }))} error={errors.data_zakupu} />
               </Field>
             </div>
             <Field label={type.refLabel} hint="Opcjonalnie">

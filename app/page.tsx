@@ -194,22 +194,6 @@ export default function HomePage() {
             <p className="text-sm text-slate-500 mt-3">
               Jednorazowa opłata · PDF na maila od razu · Odwołanie gratis jeśli nie pomoże
             </p>
-            {/* Social proof pod CTA */}
-            <div className="flex items-center justify-center gap-3 mt-5">
-              <div className="flex -space-x-1.5">
-                {["M","A","P"].map((l) => (
-                  <div key={l} className="w-7 h-7 rounded-full bg-indigo-700 border-2 border-slate-950 flex items-center justify-center text-white text-[10px] font-bold">{l}</div>
-                ))}
-              </div>
-              <div className="text-left">
-                <div className="flex gap-0.5">
-                  {[1,2,3,4,5].map(i => (
-                    <svg key={i} width="12" height="12" viewBox="0 0 12 12" fill="#fbbf24"><path d="M6 1l1.4 2.8 3.1.5-2.2 2.2.5 3.1L6 8.2l-2.8 1.4.5-3.1L1.5 4.3l3.1-.5z"/></svg>
-                  ))}
-                </div>
-                <p className="text-xs text-slate-400 mt-0.5">&bdquo;Dostałam zwrot 1 240 zł w 8 dni&rdquo; — Marcin K.</p>
-              </div>
-            </div>
           </div>
 
           {/* Stats */}
