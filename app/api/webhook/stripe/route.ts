@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
 
   const STRUCTURE_RULES = `
 OBOWIĄZKOWA STRUKTURA PISMA (zachowaj dokładnie tę kolejność i formatowanie):
+UWAGA o adresie nadawcy: jeśli adres zawiera przecinek, rozdziel go na dwie osobne linie — ulica/numer w jednej linii, kod pocztowy i miasto w drugiej.
 
 1. Pierwsza linia: imię i nazwisko nadawcy
 2. Druga linia: ulica i numer
@@ -87,7 +88,8 @@ Brak odpowiedzi w 14 dniach = reklamacja uznana za zasadną (art. 7a ust. 1 UPK)
 
     bank: `Jesteś ekspertem prawa bankowego i ubezpieczeniowego w Polsce. Piszesz profesjonalne reklamacje do podmiotów rynku finansowego.
 Przepisy obowiązkowe: ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamacji przez podmioty rynku finansowego (Dz.U. 2015 poz. 1348) — 30 dni na odpowiedź, wyjątkowo 60 dni; ustawa Prawo bankowe art. 6a–6d; ustawa o usługach płatniczych art. 44–58 (nieautoryzowane transakcje — 15 miesięcy na zgłoszenie, zwrot D+1).
-Brak odpowiedzi = uznanie reklamacji za zasadną.`,
+Brak odpowiedzi = uznanie reklamacji za zasadną.
+WAŻNE: Jeśli z kontekstu wynika, że adresat to sklep detaliczny, firma handlowa lub usługowa (nie bank, ubezpieczyciel ani parabank), zastosuj przepisy o niezgodności towaru z umową (art. 43a ustawy o prawach konsumenta) i art. 7a UPK zamiast przepisów o podmiotach rynku finansowego.`,
 
     zus: `Jesteś ekspertem prawa ubezpieczeń społecznych i administracyjnego w Polsce. Piszesz odwołania od decyzji ZUS/US do właściwego sądu za pośrednictwem organu.
 Przepisy obowiązkowe: art. 83 ust. 2 ustawy z dnia 13.10.1998 r. o systemie ubezpieczeń społecznych; art. 127–140 KPA (odwołanie — 30 dni od doręczenia); art. 156 KPA (nieważność decyzji); art. 477(9) KPC (odwołanie do sądu pracy i ubezpieczeń).
@@ -247,7 +249,10 @@ DATA PISMA: ${today}`,
     umowa: "WYPOWIEDZENIE UMOWY",
     uokik: "SKARGA DO UOKiK / RZECZNIKA",
   };
-  const docLabel = LABELS[docType] ?? "PISMO REKLAMACYJNE";
+  let docLabel = LABELS[docType] ?? "PISMO REKLAMACYJNE";
+  if (docType === "bank" && !/(bank|ubezpiecz|pkobp|mbank|alior|ing\b|bnp|pzu|aviva|warta|axa|generali|ergo|hestia|skandia|prudential|aegon|metlife|credit\s*agricole|santander|millennium|getin|nest\s*bank|toyota\s*bank|eurobank|plus\s*bank|pocztowy|bph|raiffeisen)/i.test(m.nazwa_sklepu)) {
+    docLabel = "PISMO REKLAMACYJNE";
+  }
   const badgeW = boldFont.widthOfTextAtSize(docLabel, 9) + 24;
   page.drawRectangle({ x: marginX, y: y - 3, width: badgeW, height: 20, color: rgb(...C_INDIGO_LIGHT) });
   page.drawText(docLabel, { x: marginX + 12, y: y + 4, size: 9, font: boldFont, color: rgb(...C_INDIGO) });
@@ -311,7 +316,9 @@ DATA PISMA: ${today}`,
       y -= 4;
     } else if (isHeading) {
       y -= 8;
-      ensureSpace(26);
+      // TERMIN ODPOWIEDZI is the last section — keep it together with signature block below
+      const headingSpace = trimmed.includes("TERMIN") ? 220 : 26;
+      ensureSpace(headingSpace);
       page.drawRectangle({ x: marginX, y: y - 4, width: contentW, height: 22, color: rgb(...C_INDIGO_LIGHT) });
       page.drawRectangle({ x: marginX, y: y - 4, width: 3, height: 22, color: rgb(...C_INDIGO) });
       drawText(trimmed, { size: 9.5, bold: true, color: C_INDIGO_DARK, x: marginX + 10, maxW: contentW - 10, lineHeight: 18 });

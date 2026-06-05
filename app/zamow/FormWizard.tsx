@@ -255,6 +255,7 @@ export function FormWizard({ lang }: { lang?: string }) {
     const e: Partial<Record<keyof FormData, string>> = {};
     if (!data.imie_nazwisko.trim()) e.imie_nazwisko = "Wpisz imię i nazwisko";
     if (!data.adres.trim()) e.adres = "Wpisz adres zamieszkania";
+    else if (!/\d{2}-\d{3}/.test(data.adres)) e.adres = "Wpisz pełny adres z kodem pocztowym (np. ul. Kwiatowa 5/12, 00-001 Warszawa)";
     if (!data.email.trim()) e.email = "Wpisz adres email";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) e.email = "Nieprawidłowy adres email";
     if (!data.nazwa_sklepu.trim()) e.nazwa_sklepu = "To pole jest wymagane";
@@ -520,7 +521,7 @@ export function FormWizard({ lang }: { lang?: string }) {
                 <Field label="Imię i nazwisko" required error={errors.imie_nazwisko}>
                   <input className={ic(errors.imie_nazwisko)} placeholder="Anna Kowalska" value={data.imie_nazwisko} onChange={set("imie_nazwisko")} />
                 </Field>
-                <Field label="Adres zamieszkania" required error={errors.adres} hint="Ulica i numer, kod pocztowy, miasto">
+                <Field label="Adres zamieszkania" required error={errors.adres} hint="Format: ul. Nazwa XX/YY, XX-XXX Miasto — wymagany kod pocztowy">
                   <input className={ic(errors.adres)} placeholder="ul. Kwiatowa 5/12, 00-001 Warszawa" value={data.adres} onChange={set("adres")} />
                 </Field>
                 <Field label="Adres email" required error={errors.email} hint="Na ten adres wyślemy PDF z pismem">
