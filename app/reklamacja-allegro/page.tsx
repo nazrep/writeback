@@ -152,19 +152,19 @@ export default function ReklamacjaAllegro() {
         <div className="space-y-3 mb-10">
           {[
             {
-              claim: "„Towar był sprawny przy wysyłce"",
+              claim: 'Towar był sprawny przy wysyłce',
               response: "Art. 43a ust. 2 UPK: domniemywa się, że niezgodność istniała w chwili dostawy, jeśli ujawniono ją w ciągu roku (zakupy po 01.01.2023). Odwracasz ciężar dowodu — to sprzedawca musi udowodnić, że towar był sprawny.",
             },
             {
-              claim: "„Minął termin 30 dni"",
+              claim: 'Minął termin 30 dni',
               response: "Ustawa o prawach konsumenta nie zna terminu 30 dni dla reklamacji. Masz 2 lata od wydania towaru (art. 43a ust. 2). 30 dni to termin dla odstąpienia od umowy — zupełnie inna kwestia.",
             },
             {
-              claim: "„Uszkodzenia mechaniczne nie są objęte reklamacją"",
+              claim: 'Uszkodzenia mechaniczne nie są objęte reklamacją',
               response: "Tak — ale sprzedawca musi udowodnić, że uszkodzenie nie wynikło z niezgodności fabrycznej. Jeśli wada ujawniła się bez żadnego uderzenia czy upadku, to jego problem, nie Twój.",
             },
             {
-              claim: "„Proszę odesłać do producenta w ramach gwarancji"",
+              claim: 'Proszę odesłać do producenta w ramach gwarancji',
               response: "Gwarancja i reklamacja z tytułu niezgodności towaru z umową to dwa różne tryby. Masz prawo wybrać reklamację do sprzedawcy — on nie może Cię przekierować do producenta.",
             },
           ].map((item, i) => (
