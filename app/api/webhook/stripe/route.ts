@@ -32,87 +32,115 @@ export async function POST(req: NextRequest) {
 
   const today = new Date().toLocaleDateString("pl-PL", { day: "numeric", month: "long", year: "numeric" });
 
+  const STRUCTURE_RULES = `
+OBOWIĄZKOWA STRUKTURA PISMA (zachowaj dokładnie tę kolejność i formatowanie):
+
+1. Pierwsza linia: imię i nazwisko nadawcy
+2. Druga linia: ulica i numer
+3. Trzecia linia: kod pocztowy i miasto
+4. Czwarta linia: adres email
+5. Pusta linia
+6. DATA: [miejscowość], [data w formacie DD MIESIĄC RRRR r.]
+7. Pusta linia
+8. Nazwa adresata (firmy)
+9. Adres adresata (jeśli podano)
+10. Pusta linia
+11. DOTYCZY: [krótki opis — max 1 zdanie]
+12. Pusta linia
+13. Szanowni Państwo,
+14. Pusta linia
+15. Akapity treści pisma (każdy akapit oddzielony pustą linią)
+16. Pusta linia
+17. ŻĄDANIE
+18. Konkretne żądanie z podstawą prawną
+19. Pusta linia
+20. PODSTAWA PRAWNA
+21. Lista przepisów (każdy w osobnej linii, zaczynający się od "- ")
+22. Pusta linia
+23. TERMIN ODPOWIEDZI
+24. Treść o terminie
+25. Pusta linia
+26. Z poważaniem,
+27. Pusta linia
+28. [imię i nazwisko]
+
+ZASADY TREŚCI:
+- Każde żądanie musi być poparte konkretnym artykułem ustawy z numerem
+- Używaj pierwszej osoby liczby pojedynczej (ja, mój, moją)
+- Ton: stanowczy, formalny, bez emocji
+- Akapity zwykłego tekstu: 3–5 zdań każdy
+- Nie stosuj list punktowanych w treści — tylko w sekcji PODSTAWA PRAWNA
+- Tylko gotowe pismo. Bez komentarzy. Bez markdown.`;
+
   const SYSTEMS: Record<string, string> = {
-    sklep: `Jesteś ekspertem prawa konsumenckiego w Polsce. Piszesz profesjonalne pisma reklamacyjne w imieniu konsumentów.
-Twoje pisma są formalne, asertywne, powołują się na właściwe przepisy prawa z numerami artykułów.
-Używaj przepisów: Ustawa z dnia 30 maja 2014 r. o prawach konsumenta (Dz.U. 2014 poz. 827), art. 43a-43g (niezgodność towaru z umową), art. 556-576 KC (rękojmia), art. 548 KC.
-Termin odpowiedzi: 14 dni kalendarzowych (art. 7a UPK). Brak odpowiedzi = uznanie reklamacji za zasadną.`,
+    sklep: `Jesteś ekspertem prawa konsumenckiego w Polsce. Piszesz profesjonalne pisma reklamacyjne oparte na rękojmi i niezgodności towaru z umową.
+Przepisy obowiązkowe: art. 43a–43g ustawy z dnia 30 maja 2014 r. o prawach konsumenta (niezgodność towaru z umową — dla zakupów po 01.01.2023); art. 556–576 KC (rękojmia); art. 7a UPK (14-dniowy termin odpowiedzi).
+Żądanie hierarchiczne: najpierw naprawa lub wymiana, potem obniżenie ceny lub odstąpienie.
+Brak odpowiedzi w 14 dniach = reklamacja uznana za zasadną (art. 7a ust. 1 UPK).`,
 
-    bank: `Jesteś ekspertem prawa bankowego i ubezpieczeniowego w Polsce. Piszesz profesjonalne pisma reklamacyjne do banków i ubezpieczycieli.
-Twoje pisma są formalne, asertywne, powołują się na właściwe przepisy.
-Używaj przepisów: Ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamacji przez podmioty rynku finansowego (Dz.U. 2015 poz. 1348), Ustawa Prawo bankowe (Dz.U. 1997 poz. 939), Ustawa o usługach płatniczych z dnia 19 sierpnia 2011 r.
-Podmiot rynku finansowego ma 30 dni na odpowiedź (15 dni w sprawach szczególnie skomplikowanych do 60 dni). Brak odpowiedzi = uznanie reklamacji za zasadną.`,
+    bank: `Jesteś ekspertem prawa bankowego i ubezpieczeniowego w Polsce. Piszesz profesjonalne reklamacje do podmiotów rynku finansowego.
+Przepisy obowiązkowe: ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamacji przez podmioty rynku finansowego (Dz.U. 2015 poz. 1348) — 30 dni na odpowiedź, wyjątkowo 60 dni; ustawa Prawo bankowe art. 6a–6d; ustawa o usługach płatniczych art. 44–58 (nieautoryzowane transakcje — 15 miesięcy na zgłoszenie, zwrot D+1).
+Brak odpowiedzi = uznanie reklamacji za zasadną.`,
 
-    zus: `Jesteś ekspertem prawa ubezpieczeń społecznych i administracyjnego w Polsce. Piszesz profesjonalne odwołania od decyzji ZUS i Urzędu Skarbowego.
-Twoje pisma są formalne, precyzyjne, powołują się na właściwe przepisy.
-Używaj przepisów: Ustawa z dnia 13 października 1998 r. o systemie ubezpieczeń społecznych, Kodeks postępowania administracyjnego (KPA) — art. 127-140 (odwołanie), art. 156 (nieważność decyzji), Ustawa z dnia 17 grudnia 1998 r. o emeryturach i rentach z FUS.
-Odwołanie składa się w terminie 30 dni od doręczenia decyzji (art. 129 KPA) za pośrednictwem organu który wydał decyzję.`,
+    zus: `Jesteś ekspertem prawa ubezpieczeń społecznych i administracyjnego w Polsce. Piszesz odwołania od decyzji ZUS/US do właściwego sądu za pośrednictwem organu.
+Przepisy obowiązkowe: art. 83 ust. 2 ustawy z dnia 13.10.1998 r. o systemie ubezpieczeń społecznych; art. 127–140 KPA (odwołanie — 30 dni od doręczenia); art. 156 KPA (nieważność decyzji); art. 477(9) KPC (odwołanie do sądu pracy i ubezpieczeń).
+Wskaż konkretny sąd i podstawę zaskarżenia.`,
 
-    umowa: `Jesteś ekspertem prawa cywilnego i konsumenckiego w Polsce. Piszesz profesjonalne pisma wypowiadające umowy w imieniu konsumentów.
-Twoje pisma są formalne, precyzyjne, powołują się na właściwe przepisy.
-Używaj przepisów: Kodeks cywilny art. 746-750 (wypowiedzenie umów zlecenia/o świadczenie usług), art. 365(1) KC (wypowiedzenie umów na czas nieokreślony), Ustawa o prawach konsumenta art. 27-38 (prawo odstąpienia), Ustawa o świadczeniu usług drogą elektroniczną.
-Wskazuj konkretną datę skuteczności wypowiedzenia z uwzględnieniem okresu wypowiedzenia.`,
+    umowa: `Jesteś ekspertem prawa cywilnego w Polsce. Piszesz formalne wypowiedzenia umów z zachowaniem terminów i bez kar umownych.
+Przepisy obowiązkowe: art. 746 KC (wypowiedzenie umowy zlecenia); art. 365(1) KC (umowy na czas nieokreślony); art. 3853 KC (klauzule abuzywne); ustawa o prawach konsumenta art. 27 (prawo odstąpienia 14 dni); ustawa o świadczeniu usług drogą elektroniczną art. 8 (wypowiedzenie umowy o świadczenie usług).
+Wskazuj konkretną datę skuteczności wypowiedzenia.`,
 
-    uokik: `Jesteś ekspertem prawa ochrony konsumentów w Polsce. Piszesz profesjonalne skargi do UOKiK i Rzecznika Praw Konsumentów.
-Twoje pisma są formalne, precyzyjne, zawierają kompletny opis naruszeń.
-Używaj przepisów: Ustawa z dnia 16 lutego 2007 r. o ochronie konkurencji i konsumentów (Dz.U. 2007 nr 50 poz. 331), Ustawa o prawach konsumenta art. 7a (14-dniowy termin odpowiedzi), Dyrektywa Omnibus 2019/2161.
-Skarga powinna zawierać opis naruszenia, dowody, żądanie interwencji i pouczenie o możliwości mediacji.`,
+    uokik: `Jesteś ekspertem prawa ochrony konsumentów w Polsce. Piszesz skargi do UOKiK i Rzecznika Praw Konsumentów.
+Przepisy obowiązkowe: ustawa z dnia 16.02.2007 r. o ochronie konkurencji i konsumentów art. 23a–23d (praktyki naruszające zbiorowe interesy konsumentów); art. 7a UPK (obowiązek odpowiedzi w 14 dniach); Dyrektywa Omnibus 2019/2161; art. 3853 KC (klauzule abuzywne).
+Skarga powinna żądać: wszczęcia postępowania, nałożenia kary, nakazania zaniechania praktyki.`,
   };
 
   const PROMPTS: Record<string, string> = {
-    sklep: `Napisz pismo reklamacyjne:
-KUPUJĄCY: ${m.imie_nazwisko}, ${m.adres}, ${m.email}
-ADRESAT: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
-PRODUKT: ${m.produkt}${m.cena ? ", " + m.cena + " zł" : ""}, zakup: ${m.data_zakupu}${m.numer_zamowienia ? ", nr zamówienia: " + m.numer_zamowienia : ""}
-SYTUACJA: ${m.opis}
-${m.podjete_kroki ? "PODJĘTE KROKI: " + m.podjete_kroki : ""}
+    sklep: `Napisz reklamację konsumencką.
+NADAWCA: ${m.imie_nazwisko} | ${m.adres} | ${m.email}
+ADRESAT: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
+PRODUKT: ${m.produkt}${m.cena ? " | cena: " + m.cena + " zł" : ""}${m.data_zakupu ? " | zakup: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr zam.: " + m.numer_zamowienia : ""}
+OPIS WADY: ${m.opis}${m.podjete_kroki ? "\nPODJĘTE KROKI: " + m.podjete_kroki : ""}
 ŻĄDANIE: ${m.zadanie}
-DATA: ${today}`,
+DATA PISMA: ${today}`,
 
-    bank: `Napisz reklamację do banku / ubezpieczyciela:
-SKŁADAJĄCY: ${m.imie_nazwisko}, ${m.adres}, ${m.email}
-ADRESAT: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
-PRODUKT/USŁUGA: ${m.produkt}${m.cena ? ", kwota: " + m.cena + " zł" : ""}
-DATA ZDARZENIA: ${m.data_zakupu}${m.numer_zamowienia ? ", nr umowy/rachunku: " + m.numer_zamowienia : ""}
-SYTUACJA: ${m.opis}
-${m.podjete_kroki ? "KONTAKT Z BANKIEM: " + m.podjete_kroki : ""}
+    bank: `Napisz reklamację do banku / ubezpieczyciela.
+NADAWCA: ${m.imie_nazwisko} | ${m.adres} | ${m.email}
+ADRESAT: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
+PRODUKT/USŁUGA: ${m.produkt}${m.cena ? " | kwota: " + m.cena + " zł" : ""}${m.data_zakupu ? " | data zdarzenia: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr umowy: " + m.numer_zamowienia : ""}
+OPIS: ${m.opis}${m.podjete_kroki ? "\nKONTAKT Z BANKIEM: " + m.podjete_kroki : ""}
 ŻĄDANIE: ${m.zadanie}
-DATA: ${today}`,
+DATA PISMA: ${today}`,
 
-    zus: `Napisz odwołanie od decyzji ZUS/US:
-ODWOŁUJĄCY: ${m.imie_nazwisko}, ${m.adres}, ${m.email}
-ORGAN: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
-PRZEDMIOT: ${m.produkt}
-DATA DECYZJI: ${m.data_zakupu}${m.numer_zamowienia ? ", nr decyzji: " + m.numer_zamowienia : ""}
-UZASADNIENIE: ${m.opis}
-${m.podjete_kroki ? "DOTYCHCZASOWE KROKI: " + m.podjete_kroki : ""}
+    zus: `Napisz odwołanie od decyzji ZUS/US.
+NADAWCA: ${m.imie_nazwisko} | ${m.adres} | ${m.email}
+ORGAN: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
+PRZEDMIOT: ${m.produkt}${m.data_zakupu ? " | data decyzji: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr decyzji: " + m.numer_zamowienia : ""}
+UZASADNIENIE: ${m.opis}${m.podjete_kroki ? "\nDOTYCHCZASOWE KROKI: " + m.podjete_kroki : ""}
 ŻĄDANIE: ${m.zadanie}
-DATA: ${today}`,
+DATA PISMA: ${today}`,
 
-    umowa: `Napisz wypowiedzenie umowy:
-WYPOWIADAJĄCY: ${m.imie_nazwisko}, ${m.adres}, ${m.email}
-FIRMA: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
-TYP UMOWY: ${m.produkt}${m.cena ? ", opłata: " + m.cena + " zł/mies." : ""}
-DATA ZAWARCIA: ${m.data_zakupu}${m.numer_zamowienia ? ", nr umowy: " + m.numer_zamowienia : ""}
-OKOLICZNOŚCI: ${m.opis}
-${m.podjete_kroki ? "KONTAKT Z FIRMĄ: " + m.podjete_kroki : ""}
+    umowa: `Napisz wypowiedzenie umowy.
+NADAWCA: ${m.imie_nazwisko} | ${m.adres} | ${m.email}
+FIRMA: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
+UMOWA: ${m.produkt}${m.cena ? " | opłata: " + m.cena + " zł/mies." : ""}${m.data_zakupu ? " | data zawarcia: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr umowy: " + m.numer_zamowienia : ""}
+OKOLICZNOŚCI: ${m.opis}${m.podjete_kroki ? "\nKONTAKT Z FIRMĄ: " + m.podjete_kroki : ""}
 ŻĄDANIE: ${m.zadanie}
-DATA: ${today}`,
+DATA PISMA: ${today}`,
 
-    uokik: `Napisz skargę do UOKiK / Rzecznika Praw Konsumentów:
-SKŁADAJĄCY: ${m.imie_nazwisko}, ${m.adres}, ${m.email}
-FIRMA KTÓREJ DOTYCZY: ${m.nazwa_sklepu}${m.adres_sklepu ? ", " + m.adres_sklepu : ""}
-PRZEDMIOT: ${m.produkt}${m.cena ? ", wartość sporu: " + m.cena + " zł" : ""}
-DATA REKLAMACJI DO FIRMY: ${m.data_zakupu}${m.numer_zamowienia ? ", nr reklamacji: " + m.numer_zamowienia : ""}
+    uokik: `Napisz skargę do UOKiK / Rzecznika Praw Konsumentów.
+NADAWCA: ${m.imie_nazwisko} | ${m.adres} | ${m.email}
+FIRMA SKARŻONA: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
+PRZEDMIOT: ${m.produkt}${m.cena ? " | wartość sporu: " + m.cena + " zł" : ""}${m.data_zakupu ? " | data reklamacji: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr reklamacji: " + m.numer_zamowienia : ""}
 OPIS NARUSZENIA: ${m.opis}
-HISTORIA KONTAKTU: ${m.podjete_kroki || "Brak odpowiedzi na reklamację"}
+HISTORIA: ${m.podjete_kroki || "Brak odpowiedzi na reklamację"}
 ŻĄDANIE: ${m.zadanie}
-DATA: ${today}`,
+DATA PISMA: ${today}`,
   };
 
-  const systemPrompt = SYSTEMS[docType] ?? SYSTEMS.sklep;
+  const systemPrompt = (SYSTEMS[docType] ?? SYSTEMS.sklep) + "\n\n" + STRUCTURE_RULES;
   const imageCtx = m.image_context ? `\nDODATKOWY KONTEKST ZE ZDJĘCIA DOKUMENTU: ${m.image_context}` : "";
-  const userPrompt = (PROMPTS[docType] ?? PROMPTS.sklep) + imageCtx + "\n\nTylko gotowe pismo, bez komentarzy. Nie używaj markdownu — zwykły tekst.";
+  const userPrompt = (PROMPTS[docType] ?? PROMPTS.sklep) + imageCtx;
 
   const msg = await getAnthropic().messages.create({
     model: "claude-opus-4-7",
@@ -237,36 +265,79 @@ DATA: ${today}`,
 
   // ── MAIN LETTER CONTENT ──
   const paragraphs = pismoText.split("\n");
-  let firstPara = true;
+  let inSignatureBlock = false;
+  let blankCount = 0;
 
-  for (const para of paragraphs) {
-    const trimmed = para.trim();
+  for (let i = 0; i < paragraphs.length; i++) {
+    const trimmed = paragraphs[i].trim();
 
     if (!trimmed) {
-      y -= firstPara ? 0 : 7;
+      blankCount++;
+      y -= blankCount === 1 ? 9 : 0;
       continue;
     }
-    firstPara = false;
+    blankCount = 0;
 
-    // Detect heading: all uppercase, short, no sentence-ending punctuation mid-line
-    const isHeading = trimmed === trimmed.toUpperCase() && trimmed.length > 2 && trimmed.length < 90 && !/[a-z]/.test(trimmed);
-    // Detect signature-area lines (short, right-side positioning)
-    const isSignatureLine = trimmed.length < 50 && (
-      trimmed.startsWith("Z poważaniem") || trimmed.startsWith("Z szacunkiem") ||
-      trimmed.startsWith("Podpis") || trimmed.startsWith("..........") ||
-      trimmed.startsWith("________________")
+    // Detect section heading: ALL CAPS, 2–80 chars, no lowercase
+    const isHeading = (
+      trimmed === trimmed.toUpperCase() &&
+      trimmed.length > 2 && trimmed.length < 80 &&
+      !/[a-z]/.test(trimmed) &&
+      !trimmed.startsWith("- ")
     );
 
-    if (isHeading) {
-      y -= 6;
-      ensureSpace(22);
-      page.drawRectangle({ x: marginX - 4, y: y - 3, width: contentW + 8, height: 18, color: rgb(...C_GRAY_LIGHT) });
-      drawText(trimmed, { size: 9.5, bold: true, color: C_INDIGO_DARK, lineHeight: 16 });
+    // Detect DOTYCZY: line
+    const isDotyczy = /^DOTYCZY:/i.test(trimmed);
+
+    // Detect bullet points in PODSTAWA PRAWNA
+    const isBullet = trimmed.startsWith("- ");
+
+    // Detect signature zone
+    const isSig = trimmed.startsWith("Z poważaniem") || trimmed.startsWith("Z szacunkiem");
+    if (isSig) inSignatureBlock = true;
+
+    // Detect address/date block (first ~8 lines before content)
+    const isMetaLine = i < 10 && !isHeading && !isDotyczy;
+
+    if (isDotyczy) {
+      y -= 2;
+      ensureSpace(24);
+      page.drawRectangle({ x: marginX, y: y - 2, width: 3, height: 20, color: rgb(...C_INDIGO) });
+      drawText(trimmed, { size: 10, bold: true, color: C_INDIGO_DARK, x: marginX + 10, maxW: contentW - 10, lineHeight: 16 });
       y -= 4;
-    } else if (isSignatureLine) {
-      drawText(trimmed, { size: 10, color: C_BLACK, x: W / 2, maxW: contentW / 2 });
+    } else if (isHeading) {
+      y -= 8;
+      ensureSpace(26);
+      page.drawRectangle({ x: marginX, y: y - 4, width: contentW, height: 22, color: rgb(...C_INDIGO_LIGHT) });
+      page.drawRectangle({ x: marginX, y: y - 4, width: 3, height: 22, color: rgb(...C_INDIGO) });
+      drawText(trimmed, { size: 9.5, bold: true, color: C_INDIGO_DARK, x: marginX + 10, maxW: contentW - 10, lineHeight: 18 });
+      y -= 6;
+    } else if (isBullet) {
+      ensureSpace(18);
+      page.drawText("•", { x: marginX + 4, y, size: 10, font, color: rgb(...C_INDIGO) });
+      drawText(trimmed.slice(2), { size: 9.5, color: C_BLACK, x: marginX + 16, maxW: contentW - 16, lineHeight: 15 });
+    } else if (inSignatureBlock) {
+      if (isSig) {
+        y -= 4;
+        ensureSpace(60);
+        drawText(trimmed, { size: 10, color: C_BLACK });
+        y -= 24;
+        // Signature line
+        page.drawLine({
+          start: { x: marginX, y },
+          end: { x: marginX + 180, y },
+          thickness: 0.7,
+          color: rgb(...C_GRAY),
+        });
+        y -= 12;
+      } else {
+        drawText(trimmed, { size: 10, bold: true, color: C_BLACK });
+      }
+    } else if (isMetaLine) {
+      // Address/date block: slightly muted, smaller
+      drawText(trimmed, { size: 9.5, color: C_TEXT_MUTED, lineHeight: 14.5 });
     } else {
-      drawText(trimmed, { size: 10, color: C_BLACK, lineHeight: 15.5 });
+      drawText(trimmed, { size: 10, color: C_BLACK, lineHeight: 16 });
     }
   }
 
