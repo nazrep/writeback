@@ -555,45 +555,72 @@ export function FormWizard() {
       {/* Krok 3 — Podgląd pisma */}
       {step === 3 && (
         <div>
-          <div className="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 border border-indigo-100">
-            {type.label}
-          </div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-1">Czy dobrze rozumiemy sprawę?</h1>
-          <p className="text-gray-500 text-sm mb-8">Sprawdź co znajdzie się w Twoim piśmie — zatwierdź lub popraw dane</p>
-
-          {previewLoading ? (
-            <div className="bg-white border border-indigo-200 rounded-2xl overflow-hidden mb-6">
-              <div className="bg-indigo-50 px-5 py-3 border-b border-indigo-100 flex items-center gap-2">
-                <svg className="animate-spin w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none">
+          <div className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full mb-4 border transition-all ${
+            previewLoading
+              ? "bg-indigo-50 text-indigo-600 border-indigo-100"
+              : previewPoints.length > 0
+                ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                : "bg-indigo-50 text-indigo-700 border-indigo-100"
+          }`}>
+            {previewLoading ? (
+              <>
+                <svg className="animate-spin w-3 h-3" viewBox="0 0 24 24" fill="none">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
                 </svg>
-                <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider">Analizuję Twoją sprawę…</span>
+                Analizuję sprawę…
+              </>
+            ) : previewPoints.length > 0 ? (
+              <>
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 5l2 2 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Analiza gotowa
+              </>
+            ) : type.label}
+          </div>
+
+          <h1 className="text-2xl font-bold text-gray-900 mb-1">
+            {previewLoading ? "Analizuję Twoją sprawę…" : "Czy dobrze rozumiemy sprawę?"}
+          </h1>
+          <p className="text-gray-500 text-sm mb-6">Sprawdź co znajdzie się w Twoim piśmie — zatwierdź lub popraw dane</p>
+
+          {previewLoading ? (
+            <div className="bg-white border border-indigo-200 rounded-2xl overflow-hidden mb-5 shadow-sm">
+              <div className="bg-gradient-to-r from-indigo-600 to-indigo-500 px-5 py-3.5 flex items-center gap-2">
+                <svg className="animate-spin w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                </svg>
+                <span className="text-xs font-bold text-white uppercase tracking-wider">Generuję podgląd pisma…</span>
               </div>
               <ul className="divide-y divide-gray-50">
-                {[1,2,3,4].map(i => (
-                  <li key={i} className="flex items-start gap-3 px-5 py-3.5">
-                    <div className="w-5 h-5 rounded-full bg-gray-100 shrink-0 mt-0.5 animate-pulse" />
-                    <div className="flex-1 h-4 bg-gray-100 rounded animate-pulse" style={{ width: `${65 + i * 7}%` }} />
+                {[72, 55, 80, 63].map((w, i) => (
+                  <li key={i} className="flex items-start gap-3 px-5 py-4">
+                    <div className="w-6 h-6 rounded-full bg-gray-100 shrink-0 mt-0.5 animate-pulse" />
+                    <div className="flex-1 space-y-1.5">
+                      <div className="h-3.5 bg-gray-100 rounded animate-pulse" style={{ width: `${w}%` }} />
+                      {i % 2 === 0 && <div className="h-3.5 bg-gray-100 rounded animate-pulse" style={{ width: `${w - 20}%` }} />}
+                    </div>
                   </li>
                 ))}
               </ul>
             </div>
           ) : previewPoints.length > 0 ? (
-            <div className="bg-white border border-indigo-200 rounded-2xl overflow-hidden mb-6">
-              <div className="bg-indigo-50 px-5 py-3 border-b border-indigo-100 flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <div className="bg-white border border-indigo-200 rounded-2xl overflow-hidden mb-5 shadow-sm">
+              <div className="bg-gradient-to-r from-indigo-600 to-indigo-500 px-5 py-3.5 flex items-center gap-2">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
                   <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
                 </svg>
-                <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider">Twoje pismo będzie zawierać</span>
+                <span className="text-xs font-bold text-white uppercase tracking-wider">Twoje pismo będzie zawierać</span>
               </div>
               <ul className="divide-y divide-gray-50">
                 {previewPoints.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 px-5 py-3.5 animate-fade-up" style={{ animationDelay: `${i * 60}ms` }}>
-                    <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M2 5l2 2 4-4" stroke="#059669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <li key={i} className="flex items-start gap-3 px-5 py-4 animate-fade-up" style={{ animationDelay: `${i * 80}ms` }}>
+                    <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                        <path d="M2 5.5l2.5 2.5L9 3" stroke="#059669" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
                     <span className="text-sm text-gray-700 leading-relaxed">{point}</span>
@@ -602,19 +629,40 @@ export function FormWizard() {
               </ul>
             </div>
           ) : previewError ? (
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-6 mb-6 text-center">
-              <p className="text-sm text-amber-800 mb-3">Nie udało się wygenerować podglądu. Spróbuj ponownie.</p>
-              <button
-                onClick={fetchPreview}
-                className="text-sm font-semibold text-indigo-600 hover:text-indigo-800 underline underline-offset-2 transition-colors"
-              >
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-6 mb-5 text-center">
+              <p className="text-sm text-amber-800 mb-3">Nie udało się wygenerować podglądu.</p>
+              <button onClick={fetchPreview} className="text-sm font-semibold text-indigo-600 hover:text-indigo-800 underline underline-offset-2 transition-colors">
                 Spróbuj ponownie →
               </button>
             </div>
           ) : null}
 
-          <div className="bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 mb-6 text-sm text-gray-600 leading-relaxed">
-            <strong className="text-gray-900">Dane wyglądają inaczej niż oczekiwałeś?</strong> Wróć i popraw — pismo generujemy dopiero po płatności.
+          {/* Podsumowanie danych */}
+          <div className="bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Twoje dane</span>
+              <button onClick={() => setStep(1)} className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">
+                Popraw →
+              </button>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-start gap-2">
+                <span className="text-xs text-gray-400 w-16 shrink-0 pt-0.5">{type.summarySubject}</span>
+                <span className="text-xs font-medium text-gray-800 leading-relaxed">{data.produkt}{data.cena ? <span className="text-gray-500"> · {data.cena} zł</span> : ""}</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-xs text-gray-400 w-16 shrink-0 pt-0.5">{type.summaryOrg}</span>
+                <span className="text-xs font-medium text-gray-800">{data.nazwa_sklepu}</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-xs text-gray-400 w-16 shrink-0 pt-0.5">Żądanie</span>
+                <span className="text-xs font-medium text-gray-800 leading-relaxed">{data.zadanie}</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-xs text-gray-400 w-16 shrink-0 pt-0.5">PDF na</span>
+                <span className="text-xs font-medium text-gray-800">{data.email}</span>
+              </div>
+            </div>
           </div>
 
           <div className="flex gap-3">
@@ -623,11 +671,13 @@ export function FormWizard() {
             </button>
             <button
               onClick={() => setStep(4)}
-              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-indigo-200 active:scale-95"
+              disabled={previewLoading}
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white py-3 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-indigo-200 active:scale-95"
             >
               Wygląda dobrze — przejdź do płatności →
             </button>
           </div>
+          <p className="text-xs text-gray-400 text-center mt-3">29 zł · BLIK · Karta · Przelewy24</p>
         </div>
       )}
 
