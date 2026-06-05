@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import { CookieBanner } from "../components/CookieBanner";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 
@@ -141,7 +142,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-white text-gray-900 antialiased">{children}</body>
+      <body className="min-h-screen bg-white text-gray-900 antialiased">
+        {children}
+        <CookieBanner />
+      </body>
     </html>
   );
 }

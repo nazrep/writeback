@@ -105,9 +105,11 @@ export default function PolitykaPrywatnosci() {
             <p className="mt-2">Masz prawo wnieść skargę do <strong>Prezesa Urzędu Ochrony Danych Osobowych</strong> (ul. Stawki 2, 00-193 Warszawa, uodo.gov.pl), jeśli uważasz, że przetwarzanie Twoich danych narusza przepisy RODO.</p>
           </section>
 
-          <section>
+          <section id="cookies">
             <h2 className="text-lg font-bold text-gray-900 mb-3">7. Pliki cookies</h2>
-            <p>Serwis wykorzystuje wyłącznie techniczne pliki cookies niezbędne do prawidłowego działania (np. przechowywanie stanu sesji płatności Stripe). Nie używamy plików cookies marketingowych ani śledzących. Nie korzystamy z Google Analytics ani podobnych narzędzi analitycznych.</p>
+            <p>Serwis wykorzystuje wyłącznie techniczne pliki cookies niezbędne do prawidłowego działania. Nie używamy plików cookies marketingowych ani śledzących własnych. Nie korzystamy z Google Analytics ani podobnych narzędzi analitycznych.</p>
+            <p className="mt-2">W ramach obsługi płatności Stripe może ustawiać własne pliki cookies techniczne (<code>__stripe_mid</code>, <code>__stripe_sid</code>) służące do wykrywania oszustw i zapewnienia bezpieczeństwa transakcji. Cookies te są niezbędne do realizacji usługi płatniczej. Szczegóły: <a href="https://stripe.com/cookies-policy/legal" className="text-indigo-600 underline">stripe.com/cookies-policy</a>.</p>
+            <p className="mt-2">Cookies techniczne nie wymagają Twojej zgody na podstawie art. 173 ust. 3 Prawa telekomunikacyjnego. Możesz zablokować cookies w ustawieniach przeglądarki, jednak może to uniemożliwić realizację płatności.</p>
           </section>
 
           <section>

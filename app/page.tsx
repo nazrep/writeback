@@ -132,7 +132,10 @@ export default function HomePage() {
             <span className="font-bold text-lg tracking-tight text-white">writeback</span>
           </span>
           <div className="flex items-center gap-3">
-            <Link href="/en" className="text-xs text-slate-500 hover:text-slate-300 transition-colors border border-white/10 px-2 py-1 rounded-md">EN</Link>
+            <Link href="/en" className="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 border border-white/10 hover:border-white/20 px-3 py-1.5 rounded-lg">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2"/><path d="M7 1c0 0-3 2.5-3 6s3 6 3 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><path d="M7 1c0 0 3 2.5 3 6s-3 6-3 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/><path d="M1.5 7h11" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>
+              EN
+            </Link>
             <Link
               href="/zamow"
               className="bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95"
@@ -316,7 +319,7 @@ export default function HomePage() {
                             <svg key={i} width="11" height="11" viewBox="0 0 12 12" fill="#fbbf24"><path d="M6 1l1.4 2.8 3.1.5-2.2 2.2.5 3.1L6 8.2l-2.8 1.4.5-3.1L1.5 4.3l3.1-.5z"/></svg>
                           ))}
                         </div>
-                        <span className="text-[10px] text-emerald-600 font-semibold bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">Zweryfikowany</span>
+                        <span className="text-[10px] text-gray-500 font-semibold bg-gray-50 border border-gray-200 px-2 py-0.5 rounded-full">Przykładowy przypadek</span>
                       </div>
                       <p className="text-sm text-gray-700 italic leading-relaxed">&bdquo;{c.quote}&rdquo;</p>
                       <p className="text-xs text-gray-400 mt-1.5">{c.name}, {c.city}</p>
@@ -509,25 +512,45 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-950 border-t border-white/5 py-8 px-6 text-center text-xs text-slate-500">
-        <p className="mb-2">
-          © 2026 writeback.pl · Narzędzie do tworzenia pism, nie porada prawna
-        </p>
-        <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-          <a href="mailto:hello@writeback.pl" className="hover:text-slate-300 transition-colors duration-200">
-            hello@writeback.pl
-          </a>
-          <span>·</span>
-          <Link href="/regulamin" className="hover:text-slate-300 transition-colors duration-200">
-            Regulamin
-          </Link>
-          <span>·</span>
-          <Link href="/polityka" className="hover:text-slate-300 transition-colors duration-200">
-            Polityka prywatności
-          </Link>
-          <span>·</span>
-          <span>Maciej Perzankowski Software Solutions · NIP 8361881457</span>
-        </p>
+      <footer className="bg-slate-950 border-t border-white/5 py-10 px-6 text-xs text-slate-500">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
+            <div>
+              <div className="text-slate-300 font-semibold text-xs uppercase tracking-widest mb-3">Pisma</div>
+              <ul className="space-y-2">
+                <li><Link href="/zamow" className="hover:text-slate-300 transition-colors">Napisz pismo</Link></li>
+                <li><Link href="/wzor-reklamacji" className="hover:text-slate-300 transition-colors">Wzór reklamacji</Link></li>
+                <li><Link href="/reklamacja-allegro" className="hover:text-slate-300 transition-colors">Reklamacja Allegro</Link></li>
+              </ul>
+            </div>
+            <div>
+              <div className="text-slate-300 font-semibold text-xs uppercase tracking-widest mb-3">Poradniki</div>
+              <ul className="space-y-2">
+                <li><Link href="/jak-napisac-reklamacje" className="hover:text-slate-300 transition-colors">Jak napisać reklamację</Link></li>
+                <li><Link href="/wzor-reklamacji" className="hover:text-slate-300 transition-colors">Wzór pisma z przepisami</Link></li>
+              </ul>
+            </div>
+            <div>
+              <div className="text-slate-300 font-semibold text-xs uppercase tracking-widest mb-3">Serwis</div>
+              <ul className="space-y-2">
+                <li><Link href="/regulamin" className="hover:text-slate-300 transition-colors">Regulamin</Link></li>
+                <li><Link href="/polityka" className="hover:text-slate-300 transition-colors">Polityka prywatności</Link></li>
+                <li><a href="mailto:hello@writeback.pl" className="hover:text-slate-300 transition-colors">hello@writeback.pl</a></li>
+              </ul>
+            </div>
+            <div>
+              <div className="text-slate-300 font-semibold text-xs uppercase tracking-widest mb-3">Język</div>
+              <ul className="space-y-2">
+                <li><Link href="/" className="text-slate-300 font-semibold">🇵🇱 Polski</Link></li>
+                <li><Link href="/en" className="hover:text-slate-300 transition-colors">🇬🇧 English</Link></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p>© 2026 writeback.pl · Narzędzie do tworzenia pism, nie porada prawna</p>
+            <p>Maciej Perzankowski Software Solutions · NIP 8361881457</p>
+          </div>
+        </div>
       </footer>
 
     </div>

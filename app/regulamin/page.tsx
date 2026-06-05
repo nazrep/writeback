@@ -78,6 +78,7 @@ export default function RegulaminPage() {
               <li>Reklamacja powinna zawierać: imię i nazwisko, adres e-mail podany przy zamówieniu, datę zamówienia oraz opis nieprawidłowości.</li>
               <li>Usługodawca rozpatruje reklamacje w terminie 14 dni roboczych od jej otrzymania.</li>
               <li>W przypadku niemożności wygenerowania pisma z przyczyn technicznych leżących po stronie Usługodawcy, Użytkownik otrzyma zwrot pełnej kwoty zamówienia.</li>
+              <li><strong>Bezpłatne odwołanie:</strong> Jeżeli wygenerowane pismo nie przyniosło oczekiwanego rezultatu (sklep lub inny adresat odmówił lub nie odpowiedział na ponowną korespondencję), Usługodawca na wniosek Użytkownika przygotuje jedno pismo odwoławcze lub skargę do odpowiedniego organu (np. Rzecznika Praw Konsumentów, UOKiK) bezpłatnie. Wniosek należy złożyć na adres hello@writeback.pl w terminie 60 dni od dostarczenia pierwotnego pisma.</li>
             </ol>
           </section>
 

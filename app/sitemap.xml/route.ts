@@ -5,6 +5,7 @@ export function GET() {
     { loc: "https://writeback.pl/jak-napisac-reklamacje", priority: "0.8", changefreq: "monthly" },
     { loc: "https://writeback.pl/wzor-reklamacji", priority: "0.8", changefreq: "monthly" },
     { loc: "https://writeback.pl/reklamacja-allegro", priority: "0.8", changefreq: "monthly" },
+    { loc: "https://writeback.pl/en", priority: "0.5", changefreq: "monthly" },
     { loc: "https://writeback.pl/regulamin", priority: "0.3", changefreq: "yearly" },
     { loc: "https://writeback.pl/polityka", priority: "0.3", changefreq: "yearly" },
   ];
