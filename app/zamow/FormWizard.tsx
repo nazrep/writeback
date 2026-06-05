@@ -161,7 +161,7 @@ const EMPTY: FormData = {
   nazwa_sklepu: "", adres_sklepu: "",
 };
 
-const STEPS = ["Typ pisma", "Co się stało", "Twoje dane", "Płatność"];
+const STEPS = ["Typ pisma", "Co się stało", "Twoje dane", "Podgląd", "Płatność"];
 
 function ProgressBar({ step }: { step: number }) {
   return (
@@ -230,6 +230,8 @@ export function FormWizard() {
   const [imageLoading, setImageLoading] = useState(false);
   const [imageExtracted, setImageExtracted] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [previewPoints, setPreviewPoints] = useState<string[]>([]);
+  const [previewLoading, setPreviewLoading] = useState(false);
 
   const type = DOC_TYPES.find(t => t.id === docType) ?? DOC_TYPES[0];
 
@@ -509,17 +511,98 @@ export function FormWizard() {
               ← Wróć
             </button>
             <button
-              onClick={() => { if (validateStep3()) setStep(3); }}
-              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl text-sm font-semibold transition-colors"
+              disabled={previewLoading}
+              onClick={async () => {
+                if (!validateStep3()) return;
+                setPreviewLoading(true);
+                try {
+                  const res = await fetch("/api/preview", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ ...data, doc_type: docType }),
+                  });
+                  if (res.ok) {
+                    const json = await res.json();
+                    setPreviewPoints(json.points ?? []);
+                  }
+                } catch { /* ignore */ } finally {
+                  setPreviewLoading(false);
+                }
+                setStep(3);
+              }}
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2"
             >
-              Sprawdź zamówienie →
+              {previewLoading ? (
+                <>
+                  <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                  </svg>
+                  Analizuję sprawę...
+                </>
+              ) : "Sprawdź podgląd pisma →"}
             </button>
           </div>
         </div>
       )}
 
-      {/* Krok 3 — Podsumowanie */}
+      {/* Krok 3 — Podgląd pisma */}
       {step === 3 && (
+        <div>
+          <div className="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 border border-indigo-100">
+            {type.label}
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-1">Czy dobrze rozumiemy sprawę?</h1>
+          <p className="text-gray-500 text-sm mb-8">Sprawdź co znajdzie się w Twoim piśmie — zatwierdź lub popraw dane</p>
+
+          {previewPoints.length > 0 ? (
+            <div className="bg-white border border-indigo-200 rounded-2xl overflow-hidden mb-6">
+              <div className="bg-indigo-50 px-5 py-3 border-b border-indigo-100 flex items-center gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider">Twoje pismo będzie zawierać</span>
+              </div>
+              <ul className="divide-y divide-gray-50">
+                {previewPoints.map((point, i) => (
+                  <li key={i} className="flex items-start gap-3 px-5 py-3.5 animate-fade-up" style={{ animationDelay: `${i * 60}ms` }}>
+                    <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M2 5l2 2 4-4" stroke="#059669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <span className="text-sm text-gray-700 leading-relaxed">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <div className="bg-indigo-50 border border-indigo-100 rounded-2xl px-5 py-6 mb-6 text-center">
+              <p className="text-sm text-indigo-700">Pismo zostanie wygenerowane na podstawie podanych danych z właściwymi przepisami prawnymi.</p>
+            </div>
+          )}
+
+          <div className="bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 mb-6 text-sm text-gray-600 leading-relaxed">
+            <strong className="text-gray-900">Dane wyglądają inaczej niż oczekiwałeś?</strong> Wróć i popraw — pismo generujemy dopiero po płatności.
+          </div>
+
+          <div className="flex gap-3">
+            <button onClick={() => setStep(2)} className="px-5 py-3 text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors">
+              ← Popraw dane
+            </button>
+            <button
+              onClick={() => setStep(4)}
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-indigo-200 active:scale-95"
+            >
+              Wygląda dobrze — przejdź do płatności →
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Krok 4 — Podsumowanie i płatność */}
+      {step === 4 && (
         <div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Podsumowanie zamówienia</h1>
           <p className="text-gray-600 text-sm mb-8">Sprawdź dane i opłać — PDF dostaniesz na maila od razu</p>
@@ -575,8 +658,8 @@ export function FormWizard() {
           <p className="text-xs text-gray-500 text-center mt-3">
             Bezpieczna płatność przez Stripe · BLIK · Karta · Przelewy24
           </p>
-          <button onClick={() => setStep(2)} className="w-full text-center text-sm text-gray-500 hover:text-gray-900 transition-colors mt-4">
-            ← Popraw dane
+          <button onClick={() => setStep(3)} className="w-full text-center text-sm text-gray-500 hover:text-gray-900 transition-colors mt-4">
+            ← Wróć do podglądu
           </button>
         </div>
       )}
