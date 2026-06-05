@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+const getAnthropic = () => new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
@@ -20,7 +20,7 @@ Odpowiedz TYLKO jako JSON: {"points": ["punkt 1", "punkt 2", "punkt 3", "punkt 4
 Nie używaj markdownu, nie dodawaj nic poza JSON.`;
 
   try {
-    const msg = await anthropic.messages.create({
+    const msg = await getAnthropic().messages.create({
       model: "claude-haiku-4-5-20251001",
       max_tokens: 400,
       messages: [{ role: "user", content: prompt }],

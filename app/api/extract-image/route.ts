@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+const getAnthropic = () => new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
 
 export async function POST(req: NextRequest) {
   let body: { image_base64: string; doc_type?: string };
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
   if (!image_base64) return NextResponse.json({ error: "No image" }, { status: 400 });
 
   try {
-    const response = await client.messages.create({
+    const response = await getAnthropic().messages.create({
       model: "claude-haiku-4-5-20251001",
       max_tokens: 600,
       messages: [{

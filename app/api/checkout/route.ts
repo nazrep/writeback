@@ -2,8 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import Anthropic from "@anthropic-ai/sdk";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+let _stripe: Stripe | null = null;
+function getStripe() {
+  if (!_stripe) _stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+  return _stripe;
+}
+
+const getAnthropic = () => new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
 
 const DOC_TYPE_NAMES: Record<string, string> = {
   sklep: "Reklamacja do sklepu internetowego",
@@ -19,7 +24,7 @@ function trunc(s: string | undefined, n: number) {
 
 async function extractImageContext(image_base64: string): Promise<string> {
   try {
-    const msg = await anthropic.messages.create({
+    const msg = await getAnthropic().messages.create({
       model: "claude-haiku-4-5-20251001",
       max_tokens: 120,
       messages: [{
@@ -51,8 +56,8 @@ export async function POST(req: NextRequest) {
   const imageContext = data.image_base64 ? await extractImageContext(data.image_base64) : "";
 
   try {
+    const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
-      automatic_payment_methods: { enabled: true },
       line_items: [{
         price_data: {
           currency: "pln",

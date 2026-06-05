@@ -7,9 +7,9 @@ import { Resend } from "resend";
 import fs from "fs";
 import path from "path";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
-const resend = new Resend(process.env.RESEND_API_KEY!);
+const getStripe = () => new Stripe(process.env.STRIPE_SECRET_KEY!);
+const getAnthropic = () => new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+const getResend = () => new Resend(process.env.RESEND_API_KEY!);
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!);
+    event = getStripe().webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!);
   } catch {
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
@@ -114,7 +114,7 @@ DATA: ${today}`,
   const imageCtx = m.image_context ? `\nDODATKOWY KONTEKST ZE ZDJĘCIA DOKUMENTU: ${m.image_context}` : "";
   const userPrompt = (PROMPTS[docType] ?? PROMPTS.sklep) + imageCtx + "\n\nTylko gotowe pismo, bez komentarzy. Nie używaj markdownu — zwykły tekst.";
 
-  const msg = await anthropic.messages.create({
+  const msg = await getAnthropic().messages.create({
     model: "claude-opus-4-7",
     max_tokens: 2000,
     system: systemPrompt,
@@ -415,7 +415,7 @@ DATA: ${today}`,
 </body>
 </html>`;
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: "Writeback <hello@writeback.pl>",
     to: m.email,
     subject: `Twoje pismo reklamacyjne — ${m.nazwa_sklepu}`,
