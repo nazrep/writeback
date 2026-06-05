@@ -500,16 +500,16 @@ DATA PISMA: ${today}`,
       <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;font-family:${F}">Podsumowanie</div>
       <table width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #f1f5f9">
         <tr>
-          <td style="font-size:13px;color:#64748b;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F}">Produkt</td>
-          <td style="font-size:13px;color:#1e293b;font-weight:600;text-align:right;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F}">${m.produkt}${m.cena ? " · " + m.cena + " zł" : ""}</td>
+          <td style="font-size:13px;color:#64748b;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F};width:90px">Produkt</td>
+          <td style="font-size:13px;color:#1e293b;font-weight:600;text-align:right;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F};max-width:260px">${m.produkt}${m.cena ? " · " + m.cena + " zł" : ""}</td>
         </tr>
         <tr>
-          <td style="font-size:13px;color:#64748b;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F}">Adresat</td>
-          <td style="font-size:13px;color:#1e293b;font-weight:600;text-align:right;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F}">${m.nazwa_sklepu}</td>
+          <td style="font-size:13px;color:#64748b;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F};width:90px">Adresat</td>
+          <td style="font-size:13px;color:#1e293b;font-weight:600;text-align:right;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F};max-width:260px">${m.nazwa_sklepu}</td>
         </tr>
         <tr>
-          <td style="font-size:13px;color:#64748b;padding:10px 0;font-family:${F}">Żądanie</td>
-          <td style="font-size:13px;color:#4f46e5;font-weight:700;text-align:right;padding:10px 0;font-family:${F}">${m.zadanie}</td>
+          <td style="font-size:13px;color:#64748b;padding:10px 0;font-family:${F};width:90px">Żądanie</td>
+          <td style="font-size:13px;color:#4f46e5;font-weight:700;text-align:right;padding:10px 0;font-family:${F};max-width:260px">${m.zadanie}</td>
         </tr>
       </table>
     </div>

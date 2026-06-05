@@ -519,8 +519,10 @@ export default function HomePage() {
             <div>
               <div className="text-slate-300 font-semibold text-xs uppercase tracking-widest mb-3">Poradniki</div>
               <ul className="space-y-2">
-                <li><Link href="/jak-napisac-reklamacje" className="hover:text-slate-300 transition-colors">Jak napisać reklamację</Link></li>
-                <li><Link href="/wzor-reklamacji" className="hover:text-slate-300 transition-colors">Wzór pisma z przepisami</Link></li>
+                <li><Link href="/blog" className="hover:text-slate-300 transition-colors">Wszystkie poradniki</Link></li>
+                <li><Link href="/blog/reklamacja-sklep-internetowy" className="hover:text-slate-300 transition-colors">Reklamacja do sklepu</Link></li>
+                <li><Link href="/blog/reklamacja-allegro" className="hover:text-slate-300 transition-colors">Reklamacja na Allegro</Link></li>
+                <li><Link href="/blog/bank-odmawia-zwrotu" className="hover:text-slate-300 transition-colors">Bank odmawia zwrotu</Link></li>
               </ul>
             </div>
             <div>
