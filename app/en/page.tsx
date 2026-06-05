@@ -108,7 +108,7 @@ export default function EnPage() {
               <span className="w-9 text-center py-1.5 bg-white/10 text-white">EN</span>
             </div>
             <Link
-              href="/zamow"
+              href="/zamow?lang=en"
               className="bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95"
             >
               Write a letter
@@ -147,7 +147,7 @@ export default function EnPage() {
 
           <div className="animate-fade-up delay-200">
             <Link
-              href="/zamow"
+              href="/zamow?lang=en"
               className="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-2xl shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5 active:scale-95"
             >
               Write a letter — PLN 29
@@ -227,7 +227,7 @@ export default function EnPage() {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Link href="/zamow" className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all text-sm shadow-lg shadow-indigo-200 hover:-translate-y-0.5 active:scale-95">
+            <Link href="/zamow?lang=en" className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all text-sm shadow-lg shadow-indigo-200 hover:-translate-y-0.5 active:scale-95">
               Get started
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
@@ -306,7 +306,7 @@ export default function EnPage() {
             </div>
           </div>
           <div className="text-center mt-10">
-            <Link href="/zamow" className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all text-base shadow-lg shadow-indigo-200 hover:-translate-y-0.5 active:scale-95">
+            <Link href="/zamow?lang=en" className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all text-base shadow-lg shadow-indigo-200 hover:-translate-y-0.5 active:scale-95">
               Write a letter — PLN 29
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
@@ -347,7 +347,7 @@ export default function EnPage() {
           <p className="text-slate-400 mb-2 text-sm leading-relaxed">Letter ready in 5 minutes. Store must reply within 14 days by law.</p>
           <p className="text-slate-500 text-sm mb-10">One-time PLN 29 · No subscription</p>
           <Link
-            href="/zamow"
+            href="/zamow?lang=en"
             className="inline-flex items-center gap-2 bg-white text-slate-900 hover:bg-slate-100 font-bold px-10 py-4 rounded-xl transition-all shadow-2xl text-base hover:-translate-y-0.5 active:scale-95"
           >
             Write a letter — PLN 29

@@ -217,7 +217,7 @@ function Field({ label, required, hint, error, children }: {
   );
 }
 
-export function FormWizard() {
+export function FormWizard({ lang }: { lang?: string }) {
   const [step, setStep] = useState(0);
   const [docType, setDocType] = useState<DocTypeId | null>(null);
   const [data, setData] = useState<FormData>(EMPTY);
@@ -356,6 +356,12 @@ export function FormWizard() {
 
   return (
     <div>
+      {lang === "en" && (
+        <div className="mb-6 flex items-start gap-3 bg-indigo-50 border border-indigo-100 rounded-xl px-4 py-3 text-sm text-indigo-800">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5"><circle cx="8" cy="8" r="6.5" stroke="#4f46e5" strokeWidth="1.3"/><path d="M8 7v4" stroke="#4f46e5" strokeWidth="1.5" strokeLinecap="round"/><circle cx="8" cy="5.5" r="0.75" fill="#4f46e5"/></svg>
+          <span><strong>You can fill this form in English.</strong> Describe your situation in English — we'll generate the Polish letter for you.</span>
+        </div>
+      )}
       <ProgressBar step={step} />
 
       {/* Krok 0 — Typ pisma */}

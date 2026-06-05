@@ -5,7 +5,8 @@ export const metadata = {
   title: "Napisz pismo — Writeback",
 };
 
-export default function ZamowPage() {
+export default async function ZamowPage({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {
+  const { lang } = await searchParams;
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur border-b border-white/5 px-6">
@@ -21,7 +22,7 @@ export default function ZamowPage() {
         </div>
       </nav>
       <main className="max-w-2xl mx-auto px-6 py-12">
-        <FormWizard />
+        <FormWizard lang={lang} />
       </main>
     </div>
   );
