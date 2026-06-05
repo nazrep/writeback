@@ -80,6 +80,8 @@ export default function ReklamacjaAllegro() {
 
       <div className="max-w-3xl mx-auto px-6 py-14">
 
+        <p className="text-xs text-gray-400 mb-8 italic">Writeback nie jest powiązany z Allegro S.A. ani przez Allegro rekomendowany. Opisujemy prawa konsumentów przy zakupach na tej platformie.</p>
+
         <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mb-10">
           <p className="text-sm font-bold text-indigo-900 mb-2">Najważniejsza zasada</p>
           <p className="text-sm text-indigo-800 leading-relaxed">

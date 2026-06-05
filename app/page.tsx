@@ -132,9 +132,9 @@ export default function HomePage() {
             <span className="font-bold text-lg tracking-tight text-white">writeback</span>
           </span>
           <div className="flex items-center gap-3">
-            <div className="flex items-center rounded-lg overflow-hidden border border-white/10 text-xs font-semibold">
-              <span className="px-3 py-1.5 bg-white/10 text-white">PL</span>
-              <Link href="/en" className="px-3 py-1.5 text-slate-400 hover:text-white hover:bg-white/5 transition-colors">EN</Link>
+            <div className="flex items-center rounded-lg border border-white/10 text-xs font-semibold overflow-hidden">
+              <span className="w-9 text-center py-1.5 bg-white/10 text-white">PL</span>
+              <Link href="/en" className="w-9 text-center py-1.5 text-slate-400 hover:text-white transition-colors">EN</Link>
             </div>
             <Link
               href="/zamow"
