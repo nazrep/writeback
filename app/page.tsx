@@ -175,7 +175,7 @@ export default function HomePage() {
 
           <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.08] text-white mb-6 animate-fade-up">
             Zignorowali Cię?<br />
-            <span className="text-indigo-400">Napisz pismo z przepisami,<br className="hidden sm:block" /> które muszą przeczytać.</span>
+            <span className="text-indigo-400">Napisz pismo,<br className="hidden sm:block" /> które muszą przeczytać.</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed animate-fade-up delay-100">

@@ -56,7 +56,7 @@ export default function Image() {
           textAlign: "center",
           lineHeight: 1.3,
         }}>
-          Napisz pismo z przepisami które muszą przeczytać.
+          Napisz pismo, które muszą przeczytać.
         </div>
         <div style={{
           display: "flex",

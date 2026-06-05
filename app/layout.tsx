@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     url: BASE,
     siteName: "Writeback",
-    title: "Zignorowali Cię? Napisz pismo z przepisami które muszą przeczytać.",
+    title: "Zignorowali Cię? Napisz pismo, które muszą przeczytać.",
     description: "Formalne pismo z podstawą prawną do sklepu, banku, ZUS lub operatora. PDF gotowy w 5 minut, 29 zł. Brak odpowiedzi w terminie = sprawa uznana z mocy prawa.",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Writeback — pisma reklamacyjne z podstawami prawnymi" }],
   },
