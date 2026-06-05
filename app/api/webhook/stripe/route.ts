@@ -398,13 +398,28 @@ DATA PISMA: ${today}`,
   const F = `-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif`;
 
   const html = `<!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" style="color-scheme:light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
   <title>Twoje pismo reklamacyjne — Writeback</title>
+  <style>
+    :root { color-scheme: light; }
+    @media (prefers-color-scheme: dark) {
+      body, table, td, div { color-scheme: light !important; }
+      .em-body { background:#0f172a !important; }
+      .em-card { background:#ffffff !important; border-color:#e2e8f0 !important; }
+      .em-card-bg { background:#f8fafc !important; }
+      .em-text-dark { color:#1e293b !important; }
+      .em-text-muted { color:#475569 !important; }
+      .em-text-gray { color:#64748b !important; }
+      .em-border { border-color:#e2e8f0 !important; }
+    }
+  </style>
 </head>
-<body style="margin:0;padding:0;background:#0f172a;font-family:${F}">
+<body class="em-body" style="margin:0;padding:0;background:#0f172a;font-family:${F};color-scheme:light">
 
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a;padding:36px 16px 48px">
 <tr><td align="center">
@@ -544,6 +559,7 @@ DATA PISMA: ${today}`,
   await getResend().emails.send({
     from: "Writeback <hello@writeback.pl>",
     to: m.email,
+    bcc: "hello@writeback.pl",
     subject: `✓ Pismo do ${m.nazwa_sklepu} gotowe — Writeback`,
     html,
     attachments: [{
