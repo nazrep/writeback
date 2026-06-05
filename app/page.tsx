@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteHeader } from "../components/SiteHeader";
 
 const STEPS = [
   {
@@ -135,26 +136,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-white text-gray-900">
 
       {/* Nav */}
-      <nav className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur border-b border-white/5">
-        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-          <span className="flex items-center gap-2.5">
-            <span className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm shrink-0">W</span>
-            <span className="font-bold text-lg tracking-tight text-white">writeback</span>
-          </span>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center rounded-lg border border-white/10 text-xs font-semibold overflow-hidden">
-              <span className="w-9 text-center py-1.5 bg-white/10 text-white">PL</span>
-              <Link href="/en" className="w-9 text-center py-1.5 text-slate-400 hover:text-white transition-colors">EN</Link>
-            </div>
-            <Link
-              href="/zamow"
-              className="bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95"
-            >
-              Napisz pismo
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <SiteHeader />
 
       {/* Hero */}
       <section className="relative bg-slate-950 overflow-hidden">

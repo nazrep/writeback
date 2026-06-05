@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 async function compressImage(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -202,31 +202,83 @@ const textareaErrCls = inputErrCls + " resize-none";
 const ic = (err?: string) => err ? inputErrCls : inputCls;
 const tc = (err?: string) => err ? textareaErrCls : textareaCls;
 
-const MONTHS = ["Styczeń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"];
-const currentYear = new Date().getFullYear();
-const YEARS = Array.from({ length: 8 }, (_, i) => currentYear - i);
+const MONTHS_SHORT = ["Sty","Lut","Mar","Kwi","Maj","Cze","Lip","Sie","Wrz","Paź","Lis","Gru"];
+const MONTHS_FULL = ["Styczeń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"];
+const CUR_YEAR = new Date().getFullYear();
+const YEARS = Array.from({ length: 8 }, (_, i) => CUR_YEAR - i);
+const DAYS = Array.from({ length: 31 }, (_, i) => i + 1);
 
 function DateSelect({ value, onChange, error }: { value: string; onChange: (v: string) => void; error?: string }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   const [y, m, d] = value ? value.split("-") : ["", "", ""];
-  const sel = (err?: string) => `border ${err ? "border-red-400 focus:ring-red-400" : "border-gray-300 focus:ring-indigo-500"} rounded-lg px-3 py-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:border-transparent transition-all bg-white w-full`;
-  function update(newY: string, newM: string, newD: string) {
-    if (newY && newM && newD) onChange(`${newY}-${newM.padStart(2,"0")}-${newD.padStart(2,"0")}`);
+
+  useEffect(() => {
+    function handler(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  function set(newY: string, newM: string, newD: string) {
+    if (newY && newM && newD) onChange(`${newY}-${String(newM).padStart(2,"0")}-${String(newD).padStart(2,"0")}`);
     else onChange("");
   }
+
+  const display = d && m && y
+    ? `${d} ${MONTHS_SHORT[parseInt(m)-1]} ${y}`
+    : "Wybierz datę";
+
+  const btnCls = `w-full flex items-center justify-between px-3.5 py-3 text-sm rounded-lg border transition-all bg-white ${
+    error ? "border-red-400 focus:ring-red-400" : "border-gray-300 hover:border-gray-400"
+  } ${!d || !m || !y ? "text-gray-400" : "text-gray-900"}`;
+
   return (
-    <div className="grid grid-cols-3 gap-2">
-      <select className={sel(error)} value={d || ""} onChange={e => update(y, m, e.target.value)}>
-        <option value="">Dzień</option>
-        {Array.from({ length: 31 }, (_, i) => i + 1).map(n => <option key={n} value={n}>{n}</option>)}
-      </select>
-      <select className={sel(error)} value={m || ""} onChange={e => update(y, e.target.value, d)}>
-        <option value="">Miesiąc</option>
-        {MONTHS.map((name, i) => <option key={i} value={i + 1}>{name}</option>)}
-      </select>
-      <select className={sel(error)} value={y || ""} onChange={e => update(e.target.value, m, d)}>
-        <option value="">Rok</option>
-        {YEARS.map(yr => <option key={yr} value={yr}>{yr}</option>)}
-      </select>
+    <div ref={ref} className="relative">
+      <button type="button" onClick={() => setOpen(o => !o)} className={btnCls}>
+        <span>{display}</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className={`transition-transform ${open ? "rotate-180" : ""} text-gray-400`}>
+          <path d="M2 5l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+
+      {open && (
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden">
+          <div className="grid grid-cols-3 divide-x divide-gray-100">
+            {/* Day */}
+            <div className="max-h-48 overflow-y-auto py-1">
+              <div className="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider sticky top-0 bg-white">Dzień</div>
+              {DAYS.map(n => (
+                <button key={n} type="button"
+                  onClick={() => { set(y, m, String(n)); }}
+                  className={`w-full text-left px-3 py-1.5 text-sm transition-colors ${parseInt(d) === n ? "bg-indigo-50 text-indigo-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                >{n}</button>
+              ))}
+            </div>
+            {/* Month */}
+            <div className="max-h-48 overflow-y-auto py-1">
+              <div className="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider sticky top-0 bg-white">Miesiąc</div>
+              {MONTHS_FULL.map((name, i) => (
+                <button key={i} type="button"
+                  onClick={() => { set(y, String(i+1), d); }}
+                  className={`w-full text-left px-3 py-1.5 text-sm transition-colors ${parseInt(m) === i+1 ? "bg-indigo-50 text-indigo-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                >{name}</button>
+              ))}
+            </div>
+            {/* Year */}
+            <div className="max-h-48 overflow-y-auto py-1">
+              <div className="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider sticky top-0 bg-white">Rok</div>
+              {YEARS.map(yr => (
+                <button key={yr} type="button"
+                  onClick={() => { set(String(yr), m, d); if (d && m) setOpen(false); }}
+                  className={`w-full text-left px-3 py-1.5 text-sm transition-colors ${parseInt(y) === yr ? "bg-indigo-50 text-indigo-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                >{yr}</button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
