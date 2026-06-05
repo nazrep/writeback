@@ -162,7 +162,7 @@ export default function HomePage() {
 
           <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.08] text-white mb-6 animate-fade-up">
             Sklep Cię zignorował?<br />
-            <span className="text-indigo-400">Napisz pismo które<br className="hidden sm:block" /> muszą przeczytać.</span>
+            <span className="text-indigo-400">Napisz pismo reklamacyjne<br className="hidden sm:block" /> które muszą przeczytać.</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed animate-fade-up delay-100">

@@ -1,0 +1,197 @@
+import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Jak napisać reklamację do sklepu internetowego? Wzór z przepisami | Writeback",
+  description: "Jak napisać skuteczną reklamację do sklepu internetowego krok po kroku. Art. 43b ustawy o prawach konsumenta, 14-dniowy termin odpowiedzi, brak odpowiedzi = reklamacja uznana. Wzór pisma PDF.",
+  alternates: { canonical: "https://writeback.pl/jak-napisac-reklamacje" },
+  openGraph: {
+    title: "Jak napisać reklamację do sklepu internetowego — poradnik z przepisami",
+    description: "Krok po kroku: skuteczna reklamacja z art. 43b ustawy o prawach konsumenta. Brak odpowiedzi sklepu w 14 dniach = reklamacja uznana z mocy prawa.",
+    url: "https://writeback.pl/jak-napisac-reklamacje",
+    locale: "pl_PL",
+    type: "article",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Jak napisać reklamację do sklepu internetowego",
+  description: "Krok po kroku: jak napisać skuteczną reklamację do sklepu z podstawą prawną",
+  step: [
+    { "@type": "HowToStep", name: "Zbierz dane", text: "Nota zakupu, numer zamówienia, opis wady, data ujawnienia problemu." },
+    { "@type": "HowToStep", name: "Wskaż podstawę prawną", text: "Art. 43b ustawy o prawach konsumenta — niezgodność towaru z umową (zakupy po 01.01.2023)." },
+    { "@type": "HowToStep", name: "Sformułuj żądanie", text: "Naprawa, wymiana, obniżenie ceny lub odstąpienie od umowy — hierarchicznie." },
+    { "@type": "HowToStep", name: "Wyślij i zachowaj potwierdzenie", text: "Email z potwierdzeniem odczytu lub list polecony — data wysyłki jest kluczowa." },
+  ],
+};
+
+export default function JakNapisacReklamacje() {
+  return (
+    <div className="min-h-screen bg-white text-gray-900">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <nav className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur border-b border-white/5">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2.5">
+            <span className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm shrink-0">W</span>
+            <span className="font-bold text-lg tracking-tight text-white">writeback</span>
+          </Link>
+          <Link href="/zamow" className="bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-colors">
+            Napisz pismo — 29 zł
+          </Link>
+        </div>
+      </nav>
+
+      <div className="bg-slate-950 py-14 px-6">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-xs text-slate-500 mb-4">
+            <Link href="/" className="hover:text-slate-300 transition-colors">writeback.pl</Link>
+            <span className="mx-2">›</span>
+            <span className="text-slate-400">Jak napisać reklamację</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
+            Jak napisać skuteczną reklamację<br className="hidden sm:block" /> do sklepu internetowego
+          </h1>
+          <p className="text-slate-400 text-base leading-relaxed max-w-2xl">
+            Większość reklamacji jest odrzucana, bo sklepy wiedzą, że zwykłe maile można zignorować.
+            Pismo z właściwą podstawą prawną działa inaczej — brak odpowiedzi w 14 dniach to automatyczne uznanie reklamacji.
+          </p>
+        </div>
+      </div>
+
+      <div className="max-w-3xl mx-auto px-6 py-14">
+
+        <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mb-10">
+          <p className="text-sm font-bold text-indigo-900 mb-1">Kluczowy przepis</p>
+          <p className="text-sm text-indigo-800 leading-relaxed">
+            <strong>Art. 43b ustawy z dnia 30 maja 2014 r. o prawach konsumenta</strong> — sprzedawca odpowiada za niezgodność towaru z umową istniejącą w chwili dostawy i ujawnioną w ciągu 2 lat od wydania towaru. Przepis dotyczy zakupów od 01.01.2023 r.
+          </p>
+          <p className="text-sm text-indigo-700 mt-2">
+            <strong>Art. 7a tej samej ustawy</strong> — brak odpowiedzi na reklamację w terminie 14 dni = uznanie reklamacji za zasadną z mocy prawa.
+          </p>
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Co musi zawierać skuteczna reklamacja</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          Sklep nie może odrzucić reklamacji tylko dlatego, że jest napisana niedbale — ale pismo bez podstawy prawnej daje mu pole do zwlekania i wymówek. Profesjonalna reklamacja zawiera:
+        </p>
+        <div className="space-y-3 mb-10">
+          {[
+            { n: "1", title: "Dane nadawcy", desc: "Imię, nazwisko, adres, email — sklep musi wiedzieć do kogo ma odpowiedzieć." },
+            { n: "2", title: "Data i miejsce", desc: "Data wystawienia pisma — od niej biegnie 14-dniowy termin na odpowiedź sklepu." },
+            { n: "3", title: "Dane adresata", desc: "Pełna nazwa firmy i adres — pismo musi trafić do właściwego podmiotu, nie tylko obsługi klienta." },
+            { n: "4", title: "DOTYCZY: opis sprawy", desc: "Krótkie streszczenie — sklep od razu wie o co chodzi, co skraca czas reakcji." },
+            { n: "5", title: "Opis niezgodności", desc: "Co kupiłeś, kiedy, jaka jest wada, kiedy ją odkryłeś — konkretnie i chronologicznie." },
+            { n: "6", title: "Żądanie z podstawą prawną", desc: "Naprawa, wymiana, obniżenie ceny lub odstąpienie — z powołaniem na art. 43b UPK." },
+            { n: "7", title: "Termin odpowiedzi", desc: "Wprost: sklep ma 14 dni z mocy art. 7a — brak odpowiedzi = reklamacja uznana." },
+          ].map((item) => (
+            <div key={item.n} className="flex gap-4 p-4 border border-gray-100 rounded-xl hover:border-indigo-100 transition-colors">
+              <div className="w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-bold text-sm flex items-center justify-center shrink-0">{item.n}</div>
+              <div>
+                <div className="font-semibold text-gray-900 text-sm">{item.title}</div>
+                <div className="text-gray-500 text-sm mt-0.5 leading-relaxed">{item.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Czego możesz żądać — hierarchia</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          Ustawa o prawach konsumenta przewiduje konkretną hierarchię żądań. Nie możesz od razu żądać zwrotu pieniędzy — musisz najpierw dać sklepowi szansę na naprawę lub wymianę, chyba że jest to niemożliwe lub sklep już raz nie dotrzymał terminu.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-3 mb-10">
+          {[
+            { label: "Naprawa (art. 43c ust. 1)", desc: "Pierwszeństwo przy drobnych wadach. Sklep ma rozsądny czas na naprawę." },
+            { label: "Wymiana (art. 43c ust. 1)", desc: "Gdy naprawa jest niemożliwa lub zbyt kosztowna — wymiana na nowy egzemplarz." },
+            { label: "Obniżenie ceny (art. 43c ust. 3)", desc: "Gdy sklep nie naprawił / nie wymienił w terminie, lub odmówił." },
+            { label: "Odstąpienie od umowy (art. 43e)", desc: "Zwrot pieniędzy — gdy niezgodność jest istotna i inne środki zawiodły." },
+          ].map((item) => (
+            <div key={item.label} className="p-4 border border-gray-100 rounded-xl bg-gray-50">
+              <div className="font-semibold text-gray-900 text-sm mb-1">{item.label}</div>
+              <div className="text-gray-500 text-xs leading-relaxed">{item.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Najczęstsze błędy w reklamacjach</h2>
+        <div className="space-y-2 mb-10">
+          {[
+            { err: "Brak podstawy prawnej", fix: "Sklep może twierdzić, że nie musi odpowiedzieć. Przepis ustawy = obowiązek odpowiedzi w 14 dniach." },
+            { err: "„Proszę o zwrot" bez uzasadnienia", fix: "Sklep może odmówić powołując się na regulamin. Żądanie musi wynikać z konkretnego przepisu." },
+            { err: "Wysyłka przez formularz na stronie sklepu", fix: "Nie ma dowodu daty złożenia. Wyślij emailem z potwierdzeniem lub listem poleconym — zachowaj dowód." },
+            { err: "Pominięcie daty ujawnienia wady", fix: "Sklep może kwestionować, czy wada istniała w chwili sprzedaży. Data ujawnienia i opis okoliczności są kluczowe." },
+            { err: "Reklamacja po 2 latach", fix: "Termin odpowiedzialności sprzedawcy wynosi 2 lata od wydania towaru (art. 43a ust. 2 UPK)." },
+          ].map((item, i) => (
+            <div key={i} className="flex gap-4 p-4 border border-red-50 bg-red-50/50 rounded-xl">
+              <div className="shrink-0 mt-0.5">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#ef4444" strokeWidth="1.5"/><path d="M8 5v3.5" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round"/><circle cx="8" cy="11" r="0.75" fill="#ef4444"/></svg>
+              </div>
+              <div>
+                <div className="font-semibold text-red-800 text-sm">{item.err}</div>
+                <div className="text-red-600 text-xs mt-0.5 leading-relaxed">{item.fix}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Jak wysłać reklamację</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          Forma złożenia reklamacji jest dowolna — ustawa nie wymaga pisemnej formy. W praktyce jednak ważne jest, żebyś mógł udowodnić datę złożenia i treść pisma.
+        </p>
+        <div className="grid sm:grid-cols-3 gap-3 mb-10">
+          {[
+            { title: "Email (rekomendowane)", desc: "Wyślij na adres obsługi klienta lub info@firma.pl. Zachowaj email w wysłanych — masz dowód daty i treści.", good: true },
+            { title: "List polecony", desc: "Za potwierdzeniem odbioru. Droższe, ale niepodważalne. Stosuj gdy sprawa dotyczy dużych kwot.", good: true },
+            { title: "Formularz na stronie", desc: "Nie zostawia śladu po Twojej stronie. Unikaj — nie masz dowodu ani daty złożenia.", good: false },
+          ].map((item) => (
+            <div key={item.title} className={`p-4 rounded-xl border ${item.good ? "border-emerald-100 bg-emerald-50/50" : "border-red-100 bg-red-50/50"}`}>
+              <div className={`font-semibold text-sm mb-1 ${item.good ? "text-emerald-900" : "text-red-800"}`}>{item.title}</div>
+              <div className={`text-xs leading-relaxed ${item.good ? "text-emerald-700" : "text-red-600"}`}>{item.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Co jeśli sklep nie odpowie w 14 dniach</h2>
+        <p className="text-gray-600 text-sm leading-relaxed mb-6">
+          Art. 7a ust. 1 ustawy o prawach konsumenta stanowi wprost: jeżeli przedsiębiorca nie udzielił odpowiedzi na reklamację konsumenta w terminie 14 dni od jej otrzymania, uważa się, że uznał reklamację. Oznacza to, że możesz powołać się na milczące uznanie reklamacji i żądać spełnienia żądania.
+        </p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-10">
+          W praktyce — wyślij kolejne pismo z powołaniem na art. 7a, wskazując datę pierwotnej reklamacji i brak odpowiedzi. Jeśli sklep nadal odmawia, kolejnym krokiem jest skarga do Rzecznika Praw Konsumentów lub UOKiK.
+        </p>
+
+        <div className="bg-slate-950 rounded-2xl p-8 text-center">
+          <h2 className="text-xl font-bold text-white mb-3">Nie chcesz pisać tego sam?</h2>
+          <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+            Wypełnij formularz w 3 minuty — wygenerujemy profesjonalne pismo reklamacyjne<br className="hidden sm:block" />
+            z właściwymi artykułami ustaw, gotowe do wysłania jako PDF.
+          </p>
+          <Link
+            href="/zamow"
+            className="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 text-white font-bold px-8 py-3.5 rounded-xl transition-colors text-sm"
+          >
+            Wygeneruj pismo — 29 zł
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </Link>
+          <p className="text-slate-500 text-xs mt-3">Jednorazowa opłata · PDF na maila w 5 minut · Odwołanie gratis jeśli nie pomoże</p>
+        </div>
+      </div>
+
+      <footer className="bg-slate-950 border-t border-white/5 py-8 px-6 text-center text-xs text-slate-500">
+        <p className="mb-2">© 2026 writeback.pl · Narzędzie do tworzenia pism, nie porada prawna</p>
+        <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+          <Link href="/" className="hover:text-slate-300 transition-colors">Strona główna</Link>
+          <span>·</span>
+          <Link href="/wzor-reklamacji" className="hover:text-slate-300 transition-colors">Wzór reklamacji</Link>
+          <span>·</span>
+          <Link href="/reklamacja-allegro" className="hover:text-slate-300 transition-colors">Reklamacja Allegro</Link>
+          <span>·</span>
+          <Link href="/regulamin" className="hover:text-slate-300 transition-colors">Regulamin</Link>
+          <span>·</span>
+          <Link href="/polityka" className="hover:text-slate-300 transition-colors">Polityka prywatności</Link>
+        </p>
+      </footer>
+    </div>
+  );
+}
