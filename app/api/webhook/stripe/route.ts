@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import Stripe from "stripe";
 import Anthropic from "@anthropic-ai/sdk";
 import { PDFDocument, rgb } from "pdf-lib";
@@ -8,6 +8,7 @@ import fs from "fs";
 import path from "path";
 
 const getStripe = () => new Stripe(process.env.STRIPE_SECRET_KEY!);
+const processedSessions = new Set<string>();
 const getAnthropic = () => new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
 const getResend = () => new Resend(process.env.RESEND_API_KEY!);
 
@@ -27,6 +28,12 @@ export async function POST(req: NextRequest) {
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
+  if (processedSessions.has(session.id)) {
+    return NextResponse.json({ received: true });
+  }
+  processedSessions.add(session.id);
+
+  after(async () => {
   const m = session.metadata!;
   const docType = m.doc_type || "sklep";
 
@@ -537,6 +544,7 @@ DATA PISMA: ${today}`,
       content: Buffer.from(pdfBytes).toString("base64"),
     }],
   });
+  }); // end after()
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ received: true });
 }
