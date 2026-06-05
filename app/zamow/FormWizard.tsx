@@ -265,25 +265,28 @@ export function FormWizard({ lang }: { lang?: string }) {
   async function fetchPreview() {
     setPreviewLoading(true);
     setPreviewError(false);
-    try {
-      const res = await fetch("/api/preview", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, doc_type: docType }),
-      });
-      if (res.ok) {
-        const json = await res.json();
-        const pts = json.points ?? [];
-        setPreviewPoints(pts);
-        if (pts.length === 0) setPreviewError(true);
-      } else {
-        setPreviewError(true);
-      }
-    } catch {
-      setPreviewError(true);
-    } finally {
-      setPreviewLoading(false);
+    const body = JSON.stringify({ ...data, doc_type: docType });
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const res = await fetch("/api/preview", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body,
+        });
+        if (res.ok) {
+          const json = await res.json();
+          const pts = json.points ?? [];
+          if (pts.length > 0) {
+            setPreviewPoints(pts);
+            setPreviewLoading(false);
+            return;
+          }
+        }
+      } catch {}
+      if (attempt === 0) await new Promise(r => setTimeout(r, 1200));
     }
+    setPreviewError(true);
+    setPreviewLoading(false);
   }
 
   async function handlePay() {
