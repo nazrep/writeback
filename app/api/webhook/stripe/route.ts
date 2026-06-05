@@ -356,132 +356,200 @@ DATA PISMA: ${today}`,
   // ─────────────────────────────────────────────────────────────────
   // EMAIL
   // ─────────────────────────────────────────────────────────────────
-  const steps = [
-    { n: "1", title: "Otwórz załącznik PDF", desc: "To jest Twoje gotowe pismo reklamacyjne" },
-    { n: "2", title: "Wyślij do sklepu", desc: "Emailem na adres obsługi klienta lub listem poleconym" },
-    { n: "3", title: "Zachowaj potwierdzenie wysyłki", desc: "Data wysyłki jest kluczowa — od niej biegnie 14-dniowy termin" },
-    { n: "4", title: "Czekaj 14 dni", desc: "Brak odpowiedzi = reklamacja uznana za zasadną (art. 7a UPK)" },
+  const deadlineDate = new Date();
+  deadlineDate.setDate(deadlineDate.getDate() + 14);
+  const deadline = deadlineDate.toLocaleDateString("pl-PL", { day: "numeric", month: "long", year: "numeric" });
+
+  const pdfFilename = `reklamacja-${m.nazwa_sklepu.replace(/[^a-z0-9]/gi, "-").toLowerCase()}.pdf`;
+
+  const stepsData = [
+    {
+      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+      title: "Otwórz załącznik PDF",
+      desc: "Twoje gotowe pismo reklamacyjne jest w załączniku do tego emaila.",
+    },
+    {
+      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`,
+      title: "Wyślij pismo do sklepu",
+      desc: "Emailem na adres obsługi klienta <em>lub</em> listem poleconym za potwierdzeniem odbioru.",
+    },
+    {
+      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+      title: "Zachowaj potwierdzenie wysyłki",
+      desc: "Data wysyłki jest kluczowa — od niej biegnie ustawowy 14-dniowy termin odpowiedzi.",
+    },
+    {
+      icon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+      title: `Termin mija: ${deadline}`,
+      desc: "Brak odpowiedzi w 14 dniach = reklamacja uznana za zasadną z mocy prawa (art. 7a UPK).",
+    },
   ];
 
-  const stepsHtml = steps.map(s => `
+  const stepsHtml = stepsData.map((s, i) => `
     <tr>
-      <td style="padding:0 0 14px 0">
+      <td style="padding:0 0 16px 0">
         <table cellpadding="0" cellspacing="0" width="100%">
           <tr>
-            <td width="36" valign="top" style="padding-top:2px">
-              <div style="width:26px;height:26px;background:#4f46e5;border-radius:50%;text-align:center;line-height:26px;font-size:12px;font-weight:700;color:#ffffff;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.n}</div>
+            <td width="40" valign="top" style="padding-top:1px">
+              <table cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="width:32px;height:32px;background:${i === 3 ? "#f0fdf4" : "#eef2ff"};border-radius:8px;text-align:center;vertical-align:middle">
+                    ${s.icon}
+                  </td>
+                </tr>
+              </table>
             </td>
-            <td style="padding-left:10px">
-              <div style="font-size:14px;font-weight:600;color:#111827;margin-bottom:2px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.title}</div>
-              <div style="font-size:13px;color:#6b7280;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.desc}</div>
+            <td style="padding-left:12px;vertical-align:top">
+              <div style="font-size:14px;font-weight:600;color:${i === 3 ? "#065f46" : "#111827"};margin-bottom:3px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.title}</div>
+              <div style="font-size:13px;color:#6b7280;line-height:1.5;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${s.desc}</div>
             </td>
           </tr>
         </table>
       </td>
     </tr>`).join("");
 
+  const F = `-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif`;
+
   const html = `<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Twoje pismo jest gotowe — Writeback</title>
+  <title>Twoje pismo reklamacyjne — Writeback</title>
 </head>
-<body style="margin:0;padding:0;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+<body style="margin:0;padding:0;background:#0f172a;font-family:${F}">
 
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f1f5f9;padding:40px 16px">
-    <tr><td align="center">
-      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:580px">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a;padding:36px 16px 48px">
+<tr><td align="center">
+<table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px">
 
-        <!-- Header z logo -->
-        <tr><td style="padding-bottom:20px">
-          <table cellpadding="0" cellspacing="0">
-            <tr>
-              <td style="background:#4f46e5;width:32px;height:32px;border-radius:8px;text-align:center;vertical-align:middle">
-                <span style="font-size:16px;font-weight:800;color:#ffffff;line-height:32px;display:block">W</span>
-              </td>
-              <td style="padding-left:10px;font-size:18px;font-weight:800;color:#1e1b4b;letter-spacing:-0.5px;vertical-align:middle">writeback</td>
-            </tr>
-          </table>
-        </td></tr>
+  <!-- Logo -->
+  <tr><td style="padding-bottom:24px">
+    <table cellpadding="0" cellspacing="0"><tr>
+      <td style="background:#4f46e5;width:34px;height:34px;border-radius:9px;text-align:center;vertical-align:middle">
+        <span style="font-size:17px;font-weight:800;color:#fff;line-height:34px;display:block;font-family:${F}">W</span>
+      </td>
+      <td style="padding-left:10px;font-size:18px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;vertical-align:middle;font-family:${F}">writeback</td>
+    </tr></table>
+  </td></tr>
 
-        <!-- Hero banner -->
-        <tr><td style="background:linear-gradient(135deg,#1e1b4b 0%,#312e81 100%);border-radius:16px 16px 0 0;padding:36px 36px 32px">
-          <div style="display:inline-block;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);border-radius:100px;padding:5px 14px;margin-bottom:16px">
-            <span style="font-size:12px;font-weight:600;color:#6ee7b7;font-family:-apple-system,BlinkMacSystemFont,sans-serif">✓ Pismo wygenerowane pomyślnie</span>
-          </div>
-          <h1 style="margin:0 0 10px;font-size:24px;font-weight:700;color:#ffffff;line-height:1.3;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
-            Twoje pismo jest gotowe
-          </h1>
-          <p style="margin:0;font-size:15px;color:#a5b4fc;line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
-            Reklamacja do <strong style="color:#e0e7ff">${m.nazwa_sklepu}</strong> czeka w załączniku PDF.<br>
-            Sklep ma <strong style="color:#ffffff">14 dni</strong> na odpowiedź — brak reakcji = reklamacja uznana.
-          </p>
-        </td></tr>
+  <!-- Hero -->
+  <tr><td style="background:linear-gradient(145deg,#1e1b4b 0%,#312e81 60%,#4338ca 100%);border-radius:20px 20px 0 0;padding:40px 40px 36px;position:relative">
+    <!-- Success badge -->
+    <table cellpadding="0" cellspacing="0" style="margin-bottom:20px"><tr>
+      <td style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);border-radius:100px;padding:5px 13px">
+        <span style="font-size:12px;font-weight:600;color:#6ee7b7;font-family:${F};letter-spacing:0.2px">&#10003;&nbsp; Wygenerowano pomyślnie</span>
+      </td>
+    </tr></table>
+    <!-- Heading -->
+    <div style="font-size:26px;font-weight:800;color:#ffffff;line-height:1.25;margin-bottom:12px;font-family:${F};letter-spacing:-0.5px">
+      Twoje pismo<br>reklamacyjne jest gotowe
+    </div>
+    <div style="font-size:15px;color:#a5b4fc;line-height:1.65;font-family:${F};margin-bottom:24px">
+      Reklamacja do <strong style="color:#e0e7ff;font-weight:700">${m.nazwa_sklepu}</strong> czeka w załączniku.<br>
+      Sklep ma <strong style="color:#ffffff;font-weight:700">14 dni</strong> na odpowiedź — brak reakcji = reklamacja uznana z mocy prawa.
+    </div>
+    <!-- Stats row -->
+    <table cellpadding="0" cellspacing="0" width="100%"><tr>
+      <td style="background:rgba(255,255,255,0.07);border-radius:12px;padding:14px 18px;width:48%">
+        <div style="font-size:11px;color:#818cf8;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;font-family:${F}">Termin odpowiedzi</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;font-family:${F}">${deadline}</div>
+      </td>
+      <td width="4%"></td>
+      <td style="background:rgba(255,255,255,0.07);border-radius:12px;padding:14px 18px;width:48%">
+        <div style="font-size:11px;color:#818cf8;font-weight:600;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px;font-family:${F}">Żądanie</div>
+        <div style="font-size:13px;font-weight:700;color:#c7d2fe;font-family:${F};line-height:1.3">${m.zadanie.length > 40 ? m.zadanie.slice(0, 40) + "…" : m.zadanie}</div>
+      </td>
+    </tr></table>
+  </td></tr>
 
-        <!-- Główna karta -->
-        <tr><td style="background:#ffffff;border-radius:0 0 16px 16px;padding:0 36px 36px;border:1px solid #e2e8f0;border-top:none">
+  <!-- White card -->
+  <tr><td style="background:#ffffff;border-radius:0 0 20px 20px;border:1px solid #e2e8f0;border-top:none;padding:0 40px 40px">
 
-          <!-- Separator z ikonką -->
-          <div style="text-align:center;padding:20px 0 24px">
-            <div style="display:inline-block;width:40px;height:40px;background:#eef2ff;border-radius:10px;text-align:center;line-height:40px;font-size:18px">📎</div>
-          </div>
+    <!-- PDF attachment card -->
+    <table cellpadding="0" cellspacing="0" width="100%" style="margin:28px 0">
+      <tr>
+        <td style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:14px;padding:16px 20px">
+          <table cellpadding="0" cellspacing="0" width="100%"><tr>
+            <td width="44" valign="middle">
+              <table cellpadding="0" cellspacing="0"><tr>
+                <td style="background:#eef2ff;width:44px;height:44px;border-radius:10px;text-align:center;vertical-align:middle">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:12px auto">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="14 2 14 8 20 8" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="16" y1="13" x2="8" y2="13" stroke="#4f46e5" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="16" y1="17" x2="8" y2="17" stroke="#4f46e5" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </td>
+              </tr></table>
+            </td>
+            <td style="padding-left:14px" valign="middle">
+              <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:2px;font-family:${F}">${pdfFilename}</div>
+              <div style="font-size:12px;color:#94a3b8;font-family:${F}">Pismo reklamacyjne PDF · Załącznik do tego emaila</div>
+            </td>
+          </tr></table>
+        </td>
+      </tr>
+    </table>
 
-          <!-- Szczegóły -->
-          <div style="background:#f8fafc;border-radius:12px;padding:20px 22px;margin-bottom:28px;border:1px solid #e2e8f0">
-            <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">Szczegóły zamówienia</div>
-            <table width="100%" cellpadding="0" cellspacing="0">
-              <tr>
-                <td style="font-size:13px;color:#64748b;padding-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">Produkt</td>
-                <td style="font-size:13px;color:#1e293b;font-weight:600;text-align:right;padding-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${m.produkt}</td>
-              </tr>
-              <tr>
-                <td style="font-size:13px;color:#64748b;padding-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">Adresat pisma</td>
-                <td style="font-size:13px;color:#1e293b;font-weight:600;text-align:right;padding-bottom:10px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${m.nazwa_sklepu}</td>
-              </tr>
-              <tr>
-                <td style="font-size:13px;color:#64748b;font-family:-apple-system,BlinkMacSystemFont,sans-serif">Żądanie</td>
-                <td style="font-size:13px;color:#4f46e5;font-weight:600;text-align:right;font-family:-apple-system,BlinkMacSystemFont,sans-serif">${m.zadanie}</td>
-              </tr>
-            </table>
-          </div>
-
-          <!-- Co dalej -->
-          <div style="margin-bottom:28px">
-            <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:16px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">Co dalej?</div>
-            <table width="100%" cellpadding="0" cellspacing="0">
-              ${stepsHtml}
-            </table>
-          </div>
-
-          <!-- Odwołanie gratis -->
-          <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:18px 20px">
-            <div style="font-size:13px;font-weight:700;color:#1d4ed8;margin-bottom:4px;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
-              💡 Pismo nie pomogło?
-            </div>
-            <div style="font-size:13px;color:#1e40af;line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
-              Napisz do nas na <a href="mailto:hello@writeback.pl" style="color:#4f46e5;font-weight:600;text-decoration:none">hello@writeback.pl</a> — odwołanie przygotujemy za darmo.
-            </div>
-          </div>
-
-        </td></tr>
-
-        <!-- Footer -->
-        <tr><td style="padding:28px 0 8px;text-align:center">
-          <p style="margin:0 0 8px;font-size:12px;color:#94a3b8;line-height:1.8;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
-            <strong style="color:#64748b">writeback.pl</strong> · Maciej Perzankowski Software Solutions<br>
-            ul. 19-go Lutego 8/14, 96-100 Skierniewice · NIP: 8361881457
-          </p>
-          <p style="margin:0;font-size:12px;color:#94a3b8;font-family:-apple-system,BlinkMacSystemFont,sans-serif">
-            <a href="https://writeback.pl/regulamin" style="color:#94a3b8;text-decoration:underline">Regulamin</a>
-            &nbsp;·&nbsp;
-            <a href="https://writeback.pl/polityka" style="color:#94a3b8;text-decoration:underline">Polityka prywatności</a>
-          </p>
-        </td></tr>
-
+    <!-- Order summary -->
+    <div style="margin-bottom:28px">
+      <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;font-family:${F}">Podsumowanie</div>
+      <table width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #f1f5f9">
+        <tr>
+          <td style="font-size:13px;color:#64748b;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F}">Produkt</td>
+          <td style="font-size:13px;color:#1e293b;font-weight:600;text-align:right;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F}">${m.produkt}${m.cena ? " · " + m.cena + " zł" : ""}</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px;color:#64748b;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F}">Adresat</td>
+          <td style="font-size:13px;color:#1e293b;font-weight:600;text-align:right;padding:10px 0;border-bottom:1px solid #f1f5f9;font-family:${F}">${m.nazwa_sklepu}</td>
+        </tr>
+        <tr>
+          <td style="font-size:13px;color:#64748b;padding:10px 0;font-family:${F}">Żądanie</td>
+          <td style="font-size:13px;color:#4f46e5;font-weight:700;text-align:right;padding:10px 0;font-family:${F}">${m.zadanie}</td>
+        </tr>
       </table>
-    </td></tr>
-  </table>
+    </div>
+
+    <!-- Divider -->
+    <div style="height:1px;background:#f1f5f9;margin-bottom:28px"></div>
+
+    <!-- Steps -->
+    <div style="margin-bottom:28px">
+      <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:18px;font-family:${F}">Co dalej?</div>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        ${stepsHtml}
+      </table>
+    </div>
+
+    <!-- Support box -->
+    <table cellpadding="0" cellspacing="0" width="100%"><tr>
+      <td style="background:#f8fafc;border:1px solid #e2e8f0;border-left:3px solid #4f46e5;border-radius:0 12px 12px 0;padding:16px 20px">
+        <div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:4px;font-family:${F}">Pismo nie pomogło?</div>
+        <div style="font-size:13px;color:#475569;line-height:1.6;font-family:${F}">
+          Napisz na <a href="mailto:hello@writeback.pl" style="color:#4f46e5;font-weight:600;text-decoration:none">hello@writeback.pl</a> — odwołanie do wyższej instancji przygotujemy za darmo.
+        </div>
+      </td>
+    </tr></table>
+
+  </td></tr>
+
+  <!-- Footer -->
+  <tr><td style="padding:28px 4px 0;text-align:center">
+    <p style="margin:0 0 6px;font-size:12px;color:#475569;line-height:1.8;font-family:${F}">
+      <strong style="color:#94a3b8">writeback.pl</strong> &nbsp;·&nbsp; Maciej Perzankowski Software Solutions<br>
+      ul. 19-go Lutego 8/14, 96-100 Skierniewice &nbsp;·&nbsp; NIP: 8361881457
+    </p>
+    <p style="margin:0;font-size:12px;color:#475569;font-family:${F}">
+      <a href="https://writeback.pl/regulamin" style="color:#64748b;text-decoration:underline">Regulamin</a>
+      &nbsp;&middot;&nbsp;
+      <a href="https://writeback.pl/polityka" style="color:#64748b;text-decoration:underline">Polityka prywatności</a>
+    </p>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
 
 </body>
 </html>`;
@@ -489,10 +557,10 @@ DATA PISMA: ${today}`,
   await getResend().emails.send({
     from: "Writeback <hello@writeback.pl>",
     to: m.email,
-    subject: `Twoje pismo reklamacyjne — ${m.nazwa_sklepu}`,
+    subject: `✓ Pismo do ${m.nazwa_sklepu} gotowe — Writeback`,
     html,
     attachments: [{
-      filename: `reklamacja-${m.nazwa_sklepu.replace(/[^a-z0-9]/gi, "-").toLowerCase()}.pdf`,
+      filename: pdfFilename,
       content: Buffer.from(pdfBytes).toString("base64"),
     }],
   });
