@@ -119,7 +119,7 @@ export default function JakNapisacReklamacje() {
         <div className="space-y-2 mb-10">
           {[
             { err: "Brak podstawy prawnej", fix: "Sklep może twierdzić, że nie musi odpowiedzieć. Przepis ustawy = obowiązek odpowiedzi w 14 dniach." },
-            { err: "„Proszę o zwrot" bez uzasadnienia", fix: "Sklep może odmówić powołując się na regulamin. Żądanie musi wynikać z konkretnego przepisu." },
+            { err: "Pismo bez uzasadnienia prawnego", fix: "Sklep może odmówić powołując się na regulamin. Żądanie musi wynikać z konkretnego przepisu." },
             { err: "Wysyłka przez formularz na stronie sklepu", fix: "Nie ma dowodu daty złożenia. Wyślij emailem z potwierdzeniem lub listem poleconym — zachowaj dowód." },
             { err: "Pominięcie daty ujawnienia wady", fix: "Sklep może kwestionować, czy wada istniała w chwili sprzedaży. Data ujawnienia i opis okoliczności są kluczowe." },
             { err: "Reklamacja po 2 latach", fix: "Termin odpowiedzialności sprzedawcy wynosi 2 lata od wydania towaru (art. 43a ust. 2 UPK)." },

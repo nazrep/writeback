@@ -120,7 +120,7 @@ export default function ReklamacjaAllegro() {
             {
               n: "1",
               title: "Zidentyfikuj sprzedawcę",
-              desc: "W potwierdzeniu zamówienia lub historii zakupów znajdziesz pełną nazwę firmy sprzedającego. To Twój adresat — nie „Allegro".",
+              desc: "W potwierdzeniu zamówienia lub historii zakupów znajdziesz pełną nazwę firmy sprzedającego. To Twój adresat — nie platforma Allegro.",
             },
             {
               n: "2",
