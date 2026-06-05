@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Content() {
   return (
     <>
@@ -40,6 +42,7 @@ export default function Content() {
         <li>Żądanie zwrotu w terminie wskazanym w ustawie</li>
         <li>Informację że w razie odmowy złożysz skargę do Rzecznika Finansowego</li>
       </ul>
+      <p>Możesz napisać pismo samodzielnie lub <Link href="/zamow" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">wygenerować je przez writeback.pl</Link> z właściwymi przepisami — wybierz opcję "Reklamacja do banku".</p>
 
       <h2>Co jeśli bank nadal odmawia?</h2>
       <ul>
@@ -48,6 +51,7 @@ export default function Content() {
         <li><strong>Sąd polubowny przy KNF</strong> — bezpłatne postępowanie, wymaga zgody banku</li>
         <li><strong>Sąd powszechny</strong> — przy kwotach powyżej kilku tysięcy złotych opłaca się rozważyć</li>
       </ul>
+      <p>Masz problem ze sklepem, nie z bankiem? Przeczytaj <Link href="/blog/reklamacja-sklep-internetowy" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">jak napisać skuteczną reklamację do sklepu internetowego</Link>.</p>
     </>
   );
 }

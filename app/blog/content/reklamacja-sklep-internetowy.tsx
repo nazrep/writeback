@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Content() {
   return (
     <>
@@ -35,10 +37,11 @@ export default function Content() {
         <li>Informacja że brak odpowiedzi w 14 dniach = uznanie reklamacji (art. 7a)</li>
         <li>Data i podpis</li>
       </ul>
+      <p>Kupujesz na Allegro? Zasady są takie same — więcej w artykule <Link href="/blog/reklamacja-allegro" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">Reklamacja na Allegro — co zrobić gdy sprzedawca odmawia</Link>.</p>
 
       <h2>Dlaczego powołanie na przepis ma znaczenie?</h2>
       <p>Sklep, który dostaje zwykłego maila "nie działa, chcę zwrot", wie że może odmówić i nic się nie stanie. Sklep który dostaje pismo z <em>art. 43b ustawy o prawach konsumenta</em> i informacją że brak odpowiedzi w 14 dniach jest równoznaczny z uznaniem reklamacji — wie, że musi zareagować.</p>
-      <p>To różnica między prośbą a żądaniem opartym na prawie.</p>
+      <p>To różnica między prośbą a żądaniem opartym na prawie. Jeśli nie chcesz pisać sam, <Link href="/zamow" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">writeback.pl generuje takie pismo automatycznie</Link> z właściwymi artykułami ustaw.</p>
 
       <h2>Jak wysłać reklamację?</h2>
       <p>Najlepiej <strong>pisemnie</strong> — emailem z potwierdzeniem odczytu albo listem poleconym. Email zostawia ślad daty wysłania. List polecony jest najlepszym dowodem w razie sporu.</p>
@@ -52,6 +55,7 @@ export default function Content() {
         <li><strong>UOKiK</strong> — w przypadku praktyk naruszających prawa wielu konsumentów</li>
         <li><strong>Sądu polubownego przy Inspekcji Handlowej</strong> — bezpłatne postępowanie</li>
       </ul>
+      <p>Masz problem z bankiem zamiast sklepem? Przeczytaj <Link href="/blog/bank-odmawia-zwrotu" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">jak egzekwować zwrot od banku</Link>.</p>
     </>
   );
 }
