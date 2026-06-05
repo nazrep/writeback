@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { POSTS } from "./posts";
+import { BlogHeader } from "./BlogHeader";
 
 export const metadata: Metadata = {
   title: "Poradniki — prawa konsumenta i reklamacje",
@@ -11,18 +12,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="border-b border-gray-100">
-        <div className="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">W</div>
-            <span className="text-sm font-semibold text-gray-700">writeback.pl</span>
-          </Link>
-          <Link href="/zamow" className="text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors">
-            Napisz pismo — 29 zł
-          </Link>
-        </div>
-      </div>
+      <BlogHeader />
 
       <div className="max-w-2xl mx-auto px-6 py-12">
         <div className="mb-10">
