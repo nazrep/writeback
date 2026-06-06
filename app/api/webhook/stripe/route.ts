@@ -120,7 +120,12 @@ Jeśli adresat to sklep: art. 43a–43d UPK + art. 7a UPK (sprzedawca odpowiada 
 Jeśli adresat to firma kurierska: art. 65 ust. 1–2 Prawa przewozowego (ustawa z 15.11.1984) — odpowiedzialność za utratę/uszkodzenie/opóźnienie; art. 75 ust. 1 PP — obowiązek reklamacji; art. 77 PP — przedawnienie 1 rok; art. 92–96 Prawa pocztowego (ustawa z 23.11.2012) — dla InPost/Poczty Polskiej.
 
 TELECOM (skarga_subtype=telecom):
-art. 106 ustawy z 16.07.2004 Prawo telekomunikacyjne — prawo do obniżenia opłaty za przerwy i pogorszenie jakości; art. 57 ust. 6 PT — zakaz jednostronnej zmiany warunków umowy na niekorzyść abonenta; art. 3853 pkt 10 KC — klauzule abuzywne; Rozporządzenie 2015/2120 (net neutrality) — przy ograniczaniu internetu. Regulatorem jest Prezes UKE.
+Stosuj WYŁĄCZNIE ustawę z dnia 16 lipca 2022 r. o prawie komunikacji elektronicznej (PKE, Dz.U. 2022 poz. 1933, obowiązuje od 21.12.2022) — zastąpiła stare Prawo telekomunikacyjne z 2004 r.
+- Art. 83 PKE: dostawca musi powiadomić abonenta o zmianie warunków umowy z 30-dniowym wyprzedzeniem
+- Art. 84 PKE: abonent ma prawo rozwiązać umowę bez kar, jeśli nie akceptuje zmiany warunków
+- Art. 88 PKE: prawo do odszkodowania za niedotrzymanie terminu dostarczenia usługi lub parametrów jakości
+- Art. 3853 pkt 10 KC: klauzule abuzywne przy zmianie cen
+Regulatorem jest Prezes UKE (Urząd Komunikacji Elektronicznej).
 
 ENERGIA (skarga_subtype=energia):
 art. 5 ust. 2 pkt 1 ustawy z 10.04.1997 Prawo energetyczne — obowiązek dostarczania energii o odpowiednich parametrach; art. 8 PE — prawo do złożenia reklamacji do przedsiębiorstwa energetycznego; art. 8 ust. 1 PE — 14 dni na rozpatrzenie reklamacji; Rozporządzenie ws. szczegółowych zasad kształtowania taryf — przy zawyżonych rachunkach. Regulatorem jest Prezes URE.

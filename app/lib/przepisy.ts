@@ -14,6 +14,9 @@ const ACT_DEFS = {
   uokik:     { q: "ochronie konkurencji i konsumentów",          name: "ustawa o ochronie konkurencji i konsumentów" },
   rekl_fin:  { q: "reklamacji przez podmioty rynku finansowego", name: "ustawa o rozpatrywaniu reklamacji przez podmioty rynku finansowego" },
   svde:      { q: "usług drogą elektroniczną",                   name: "ustawa o świadczeniu usług drogą elektroniczną" },
+  pke:       { q: "prawie komunikacji elektronicznej",           name: "ustawa o prawie komunikacji elektronicznej" },
+  pe:        { q: "prawo energetyczne",                          name: "ustawa Prawo energetyczne" },
+  pp:        { q: "prawo przewozowe",                            name: "ustawa Prawo przewozowe" },
 } as const;
 
 type ActKey = keyof typeof ACT_DEFS;
@@ -61,6 +64,17 @@ const DOC_ARTICLES: Record<string, Spec[]> = {
     ["uokik",     "arti_23c"],  // zakazy szczegółowe
     ["uokik",     "arti_23d"],  // działania i zaniechania przedsiębiorcy
     ["kc",        "arti_385_3"],// katalog niedozwolonych klauzul umownych
+  ],
+  // skarga — wspólne przepisy dla wszystkich subtypów; subtyp specyficzne dołączane dynamicznie
+  skarga: [
+    ["konsument", "arti_7a"],   // 14-dniowy termin odpowiedzi (sklep/usługodawca)
+    ["kc",        "arti_385_3"],// klauzule niedozwolone — wszystkie typy umów
+    ["pke",       "arti_83"],   // PKE: zmiana warunków umowy — telecom
+    ["pke",       "arti_84"],   // PKE: prawo rozwiązania umowy przy zmianie warunków
+    ["pke",       "arti_88"],   // PKE: odszkodowanie za niedotrzymanie parametrów usługi
+    ["pe",        "arti_8"],    // PE: reklamacja do przedsiębiorstwa energetycznego
+    ["pp",        "arti_65"],   // PP: odpowiedzialność przewoźnika za utratę/uszkodzenie
+    ["pp",        "arti_75"],   // PP: obowiązek reklamacji przed roszczeniem sądowym
   ],
 };
 
