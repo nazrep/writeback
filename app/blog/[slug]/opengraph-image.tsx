@@ -27,31 +27,20 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
           position: "relative",
         }}
       >
-        {/* Grid pattern */}
+        {/* Glow — centered via explicit left, no transform (unsupported in Satori) */}
         <div
           style={{
             position: "absolute",
-            inset: 0,
-            backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-
-        {/* Glow */}
-        <div
-          style={{
-            position: "absolute",
-            top: "-100px",
-            left: "50%",
-            transform: "translateX(-50%)",
+            top: -100,
+            left: 300,
             width: 600,
             height: 400,
             background: "radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)",
-            borderRadius: "50%",
+            display: "flex",
           }}
         />
 
-        <div style={{ position: "relative", display: "flex", flexDirection: "column", height: "100%" }}>
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", height: 630 }}>
 
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 48 }}>

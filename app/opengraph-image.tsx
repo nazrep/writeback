@@ -11,21 +11,21 @@ export default function Image() {
       <div
         style={{
           background: "#0f172a",
-          width: "100%",
-          height: "100%",
+          width: 1200,
+          height: 630,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px 100px",
           position: "relative",
+          overflow: "hidden",
         }}
       >
-        {/* Glow */}
+        {/* Glow — centered via left offset, no transform (unsupported in Satori) */}
         <div style={{
           position: "absolute",
           top: -100,
-          left: "50%",
-          transform: "translateX(-50%)",
+          left: 200,
           width: 800,
           height: 600,
           background: "radial-gradient(ellipse, rgba(99,102,241,0.35) 0%, transparent 70%)",
