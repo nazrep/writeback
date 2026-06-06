@@ -18,13 +18,14 @@ details[open] > div {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.audio-reading {
-  background-color: #eef2ff;
-  border-radius: 4px;
-  padding-left: 6px;
-  margin-left: -6px;
-  transition: background-color 0.4s ease;
-  outline: none;
+.audio-word {
+  border-radius: 2px;
+  padding: 0 1px;
+  transition: background-color 0.1s ease;
+}
+.audio-word.audio-word-current {
+  background-color: #c7d2fe;
+  color: #3730a3;
 }
 
 @keyframes fadeUp {

@@ -81,15 +81,45 @@ export function AudioPlayer({ slug }: { slug: string }) {
     audioRef.current.playbackRate = speed;
   }, [speed]);
 
-  function highlightParagraph(time: number, dur: number) {
+  const totalWordsRef = useRef(0);
+
+  function wrapWords() {
     const container = document.querySelector(".article-content");
-    if (!container || !dur) return;
-    const els = Array.from(container.querySelectorAll("p, h2, h3"));
-    if (!els.length) return;
-    els.forEach(el => el.classList.remove("audio-reading"));
-    const idx = Math.min(Math.floor((time / dur) * els.length), els.length - 1);
-    els[idx].classList.add("audio-reading");
-    els[idx].scrollIntoView({ behavior: "smooth", block: "center" });
+    if (!container || container.getAttribute("data-words-wrapped")) return;
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+    const nodes: Text[] = [];
+    let n: Node | null;
+    while ((n = walker.nextNode())) nodes.push(n as Text);
+    let idx = 0;
+    nodes.forEach(node => {
+      const parts = node.textContent?.split(/(\s+)/) ?? [];
+      if (parts.length <= 1) return;
+      const frag = document.createDocumentFragment();
+      parts.forEach(part => {
+        if (/^\s+$/.test(part) || !part) {
+          frag.appendChild(document.createTextNode(part));
+        } else {
+          const span = document.createElement("span");
+          span.className = "audio-word";
+          span.dataset.w = String(idx++);
+          span.textContent = part;
+          frag.appendChild(span);
+        }
+      });
+      node.parentNode?.replaceChild(frag, node);
+    });
+    totalWordsRef.current = idx;
+    container.setAttribute("data-words-wrapped", "1");
+  }
+
+  function highlightWord(time: number, dur: number) {
+    const container = document.querySelector(".article-content");
+    if (!container || !dur || !totalWordsRef.current) return;
+    const all = container.querySelectorAll<HTMLElement>(".audio-word");
+    const idx = Math.min(Math.floor((time / dur) * all.length), all.length - 1);
+    container.querySelector(".audio-word-current")?.classList.remove("audio-word-current");
+    all[idx]?.classList.add("audio-word-current");
+    all[idx]?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function tick() {
@@ -97,19 +127,20 @@ export function AudioPlayer({ slug }: { slug: string }) {
     const t = audioRef.current.currentTime;
     const d = audioRef.current.duration;
     setCurrentTime(t);
-    highlightParagraph(t, d);
+    highlightWord(t, d);
     rafRef.current = requestAnimationFrame(tick);
   }
 
   function handlePlay() {
     if (!audioRef.current) return;
+    wrapWords();
     audioRef.current.play();
     setPlaying(true);
     rafRef.current = requestAnimationFrame(tick);
   }
 
   function clearHighlight() {
-    document.querySelectorAll(".audio-reading").forEach(el => el.classList.remove("audio-reading"));
+    document.querySelectorAll(".audio-word-current").forEach(el => el.classList.remove("audio-word-current"));
   }
 
   function handlePause() {
