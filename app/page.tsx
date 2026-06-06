@@ -58,7 +58,7 @@ const CASES = [
   {
     category: "Wypowiedzenie umowy",
     situation: `Chciałem odejść z siłowni po przeprowadzce. Recepcja oznajmiła, że umowa jest na czas nieokreślony i należy się kara umowna 400 zł za wcześniejsze rozwiązanie.`,
-    law: "art. 3853 pkt 2 Kodeksu cywilnego",
+    law: "art. 385³ pkt 17 Kodeksu cywilnego",
     result: "Rozwiązanie umowy bez opłat w 4 dni",
     initial: "T",
     name: "Tomasz B.",

@@ -15,7 +15,7 @@ export default function Content() {
         <li>Kradzież karty i płatności bez Twojej wiedzy</li>
         <li>Phishing — ktoś wyłudził Twoje dane i dokonał transakcji</li>
         <li>Sklep pobił więcej niż zaakceptowałeś</li>
-        <li>Subskrypcja której nie zamawiałeś lub której nie anulowałeś świadomie</li>
+        <li>Subskrypcja której nigdy nie zamawiałeś (firma pobrała bez zgody)</li>
         <li>Duplikat transakcji (ta sama płatność pobrana dwa razy)</li>
       </ul>
 
