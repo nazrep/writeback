@@ -5,7 +5,6 @@ import { getPost, POSTS } from "../posts";
 import { getContent } from "../content";
 import { BlogHeader } from "../BlogHeader";
 import { CopyLinkButton } from "../CopyLinkButton";
-import { AudioPlayer } from "../AudioPlayer";
 
 export async function generateStaticParams() {
   return POSTS.map(p => ({ slug: p.slug }));
@@ -124,8 +123,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <CopyLinkButton url={postUrl} />
           </div>
         </header>
-
-        <AudioPlayer slug={slug} />
 
         {/* Article content */}
         <div className="article-content mt-8
