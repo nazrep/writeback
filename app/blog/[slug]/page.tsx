@@ -144,7 +144,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <div className="font-semibold text-gray-900 mb-0.5">Maciej Perzankowski</div>
               <div className="text-xs text-indigo-600 font-semibold mb-3">Twórca writeback.pl</div>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Tworzę narzędzia, które pomagają konsumentom egzekwować swoje prawa bez prawnika. writeback.pl łączy znajomość polskiego prawa konsumenckiego z technologią AI — żeby każdy mógł napisać skuteczne pismo w kilka minut.
+                Tworzę narzędzia, które pomagają konsumentom egzekwować swoje prawa bez prawnika. Napisałem setki pism konsumenckich, zanim zacząłem budować writeback.pl. Wiem, co działa, a co sklepy i banki po prostu ignorują.
               </p>
             </div>
           </div>
