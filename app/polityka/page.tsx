@@ -78,6 +78,7 @@ export default function PolitykaPrywatnosci() {
               <li><strong>Anthropic, PBC</strong> (USA) — system generowania treści pisma. Dane: imię, nazwisko, adres, opis sytuacji. Podstawa transferu: SCC (art. 46 RODO). Dane nie są przechowywane po realizacji usługi.</li>
               <li><strong>Resend, Inc.</strong> — wysyłka wiadomości e-mail z pismem PDF. Dane: adres e-mail, imię, treść wiadomości.</li>
               <li><strong>Vercel, Inc.</strong> — hosting aplikacji. Dane: logi serwera (adres IP, żądania HTTP).</li>
+              <li><strong>Google LLC</strong> (USA) — analityka (Google Analytics 4). Dane: anonimowy adres IP, strony odwiedzin, czas sesji, kraj. Podstawa transferu: SCC (art. 46 RODO). Przetwarzanie tylko za zgodą użytkownika.</li>
             </ul>
           </section>
 
@@ -106,10 +107,14 @@ export default function PolitykaPrywatnosci() {
           </section>
 
           <section id="cookies">
-            <h2 className="text-lg font-bold text-gray-900 mb-3">7. Pliki cookies</h2>
-            <p>Serwis wykorzystuje wyłącznie techniczne pliki cookies niezbędne do prawidłowego działania. Nie używamy plików cookies marketingowych ani śledzących własnych. Nie korzystamy z Google Analytics ani podobnych narzędzi analitycznych.</p>
-            <p className="mt-2">W ramach obsługi płatności Stripe może ustawiać własne pliki cookies techniczne (<code>__stripe_mid</code>, <code>__stripe_sid</code>) służące do wykrywania oszustw i zapewnienia bezpieczeństwa transakcji. Cookies te są niezbędne do realizacji usługi płatniczej. Szczegóły: <a href="https://stripe.com/cookies-policy/legal" className="text-indigo-600 underline">stripe.com/cookies-policy</a>.</p>
-            <p className="mt-2">Cookies techniczne nie wymagają Twojej zgody na podstawie art. 173 ust. 3 Prawa telekomunikacyjnego. Możesz zablokować cookies w ustawieniach przeglądarki, jednak może to uniemożliwić realizację płatności.</p>
+            <h2 className="text-lg font-bold text-gray-900 mb-3">7. Pliki cookies i analityka</h2>
+            <p>Serwis wykorzystuje następujące rodzaje plików cookies:</p>
+            <ul className="list-disc pl-5 space-y-2 mt-2">
+              <li><strong>Techniczne (niezbędne)</strong> — wymagane do prawidłowego działania serwisu i realizacji płatności. Nie wymagają zgody (art. 173 ust. 3 Prawa telekomunikacyjnego).</li>
+              <li><strong>Analityczne — Google Analytics 4</strong> — używamy usługi Google Analytics 4 (Google LLC, USA) do analizy ruchu na stronie. GA4 zbiera anonimowe dane o odwiedzinach (strony, czas, kraj). Adres IP jest anonimizowany przed przekazaniem do Google. Dane przetwarzane są na podstawie Twojej zgody. Możesz wyrazić lub cofnąć zgodę przez baner cookies. Polityka Google: <a href="https://policies.google.com/privacy" className="text-indigo-600 underline" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</li>
+              <li><strong>Płatnicze — Stripe</strong> — Stripe ustawia cookies techniczne (<code>__stripe_mid</code>, <code>__stripe_sid</code>) służące do wykrywania oszustw. Szczegóły: <a href="https://stripe.com/cookies-policy/legal" className="text-indigo-600 underline" target="_blank" rel="noopener noreferrer">stripe.com/cookies-policy</a>.</li>
+            </ul>
+            <p className="mt-2">Możesz zarządzać zgodami przez baner cookies widoczny przy pierwszej wizycie lub cofnąć zgodę w dowolnej chwili przez ustawienia przeglądarki.</p>
           </section>
 
           <section>
