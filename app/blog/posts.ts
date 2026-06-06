@@ -177,8 +177,6 @@ export const POSTS: Post[] = [
       },
     ],
   },
-];
-
   {
     slug: "reklamacja-media-expert",
     title: "Reklamacja w Media Expert: jak skutecznie dochodzić praw (2026)",
