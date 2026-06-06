@@ -231,7 +231,8 @@ export default function ReklamacjaAllegro() {
       </div>
 
       <footer className="bg-slate-950 border-t border-white/5 py-8 px-6 text-center text-xs text-slate-500">
-        <p className="mb-2">© 2026 writeback.pl · Narzędzie do tworzenia pism, nie porada prawna</p>
+        <p className="mb-2">© 2026 writeback.pl</p>
+        <p className="mb-3 text-slate-600 leading-relaxed max-w-xl mx-auto">Pisma generowane przez writeback.pl mają charakter informacyjny i pomocniczy. Nie stanowią porady prawnej ani zastępstwa adwokata lub radcy prawnego. W sprawach złożonych zalecamy konsultację z prawnikiem lub rzecznikiem praw konsumentów.</p>
         <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
           <Link href="/" className="hover:text-slate-300 transition-colors">Strona główna</Link>
           <span>·</span>

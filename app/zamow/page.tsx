@@ -38,6 +38,16 @@ export default async function ZamowPage({ searchParams }: { searchParams: Promis
       <main className="max-w-2xl mx-auto px-6 py-12">
         <FormWizard lang={lang} />
       </main>
+      <footer className="max-w-2xl mx-auto px-6 pb-10">
+        <p className="text-[11px] text-gray-400 leading-relaxed text-center">
+          Pisma generowane przez writeback.pl mają charakter informacyjny i pomocniczy. Nie stanowią porady prawnej ani zastępstwa adwokata lub radcy prawnego w rozumieniu ustawy Prawo o adwokaturze i ustawy o radcach prawnych. W sprawach złożonych lub o znacznej wartości zalecamy konsultację z prawnikiem lub{" "}
+          <a href="https://www.uokik.gov.pl/rzecznicy_konsumentow.php" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">rzecznikiem praw konsumentów</a>.
+          {" "}·{" "}
+          <Link href="/regulamin" className="underline hover:text-gray-600">Regulamin</Link>
+          {" "}·{" "}
+          <Link href="/polityka" className="underline hover:text-gray-600">Polityka prywatności</Link>
+        </p>
+      </footer>
     </div>
   );
 }
