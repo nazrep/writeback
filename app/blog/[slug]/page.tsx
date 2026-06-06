@@ -5,7 +5,7 @@ import { getPost, POSTS } from "../posts";
 import { getContent } from "../content";
 import { BlogHeader } from "../BlogHeader";
 import { CopyLinkButton } from "../CopyLinkButton";
-import { ListenButton } from "../ListenButton";
+import { AudioPlayer } from "../AudioPlayer";
 
 export async function generateStaticParams() {
   return POSTS.map(p => ({ slug: p.slug }));
@@ -121,12 +121,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <div className="text-xs text-gray-400">writeback.pl · prawa konsumenta</div>
               </div>
             </div>
-            <div className="flex items-center gap-1">
-              <ListenButton contentSelector=".article-content" />
-              <CopyLinkButton url={postUrl} />
-            </div>
+            <CopyLinkButton url={postUrl} />
           </div>
         </header>
+
+        <AudioPlayer slug={slug} />
 
         {/* Article content */}
         <div className="article-content mt-8
