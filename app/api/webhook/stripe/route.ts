@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse, after } from "next/server";
 import Stripe from "stripe";
 import Anthropic from "@anthropic-ai/sdk";
-import { PDFDocument, rgb } from "pdf-lib";
+import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import { Resend } from "resend";
 import fs from "fs";
@@ -428,10 +428,9 @@ DATA PISMA: ${today}`,
   const fmtPLN = (n: number) => n.toFixed(2).replace(".", ",") + " zł";
 
   const invDoc = await PDFDocument.create();
-  invDoc.registerFontkit(fontkit);
-  const iF = await invDoc.embedFont(regularBytes);
-  const iFB = await invDoc.embedFont(boldBytes);
-  const IP = invDoc.addPage([595, 842]);
+  const iF  = await invDoc.embedFont(StandardFonts.Helvetica);
+  const iFB = await invDoc.embedFont(StandardFonts.HelveticaBold);
+  const IP  = invDoc.addPage([595, 842]);
 
   // Helper: draw text at absolute (x,y), optional right-align within maxX
   function iT(text: string, x: number, y: number, size = 9, bold = false,
@@ -452,9 +451,9 @@ DATA PISMA: ${today}`,
 
   // Logo block
   IP.drawRectangle({ x: 50, y: 790, width: 30, height: 30, color: rgb(0.31, 0.27, 0.9) });
-  iT("W", 60, 799, 15, true, [1, 1, 1]);
-  iT("writeback.pl", 88, 802, 11, true, [0.12, 0.12, 0.18]);
-  iT("Maciej Perzankowski Software Solutions", 88, 788, 7.5, false, [0.5, 0.5, 0.56]);
+  iT("W", 62, 800, 14, true, [1, 1, 1]);
+  iT("writeback.pl", 88, 803, 12, true, [0.12, 0.12, 0.18]);
+  iT("Maciej Perzankowski", 88, 788, 7.5, false, [0.5, 0.5, 0.56]);
 
   // Document title (right-aligned)
   iT("FAKTURA VAT", 50, 800, 22, true, [0.1, 0.1, 0.12], true, 545);
@@ -472,10 +471,9 @@ DATA PISMA: ${today}`,
   iT("SPRZEDAWCA", 50, 710, 7, true, [0.31, 0.27, 0.9]);
   iT("NABYWCA", 300, 710, 7, true, [0.31, 0.27, 0.9]);
 
-  // Seller — explicit lines, no auto-wrap to avoid "Soft ware" artifacts
+  // Seller rows
   const selRows = [
     ["Maciej Perzankowski", true],
-    ["Software Solutions", true],
     ["ul. 19-go Lutego 8/14", false],
     ["96-100 Skierniewice", false],
     ["NIP: 8361881457", false],
@@ -550,7 +548,7 @@ DATA PISMA: ${today}`,
   // ── FOOTER ──
   iLine(40);
   iT("Faktura wystawiona elektronicznie — nie wymaga podpisu.", 50, 28, 7, false, [0.5, 0.5, 0.55]);
-  iT("Maciej Perzankowski Software Solutions · NIP: 8361881457 · REGON: 52381424900000 · hello@writeback.pl", 50, 16, 7, false, [0.5, 0.5, 0.55]);
+  iT("Maciej Perzankowski · NIP: 8361881457 · REGON: 52381424900000 · hello@writeback.pl · writeback.pl", 50, 16, 7, false, [0.5, 0.5, 0.55]);
 
   const invoicePdfBytes = await invDoc.save();
 
@@ -743,7 +741,7 @@ DATA PISMA: ${today}`,
   <!-- Footer -->
   <tr><td style="padding:28px 4px 0;text-align:center">
     <p style="margin:0 0 6px;font-size:12px;color:#475569;line-height:1.8;font-family:${F}">
-      <strong style="color:#94a3b8">writeback.pl</strong> &nbsp;·&nbsp; Maciej Perzankowski Software Solutions<br>
+      <strong style="color:#94a3b8">writeback.pl</strong> &nbsp;·&nbsp; Maciej Perzankowski<br>
       ul. 19-go Lutego 8/14, 96-100 Skierniewice &nbsp;·&nbsp; NIP: 8361881457
     </p>
     <p style="margin:0;font-size:12px;color:#475569;font-family:${F}">
