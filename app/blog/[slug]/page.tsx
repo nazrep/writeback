@@ -44,11 +44,46 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const related = POSTS.filter(p => p.slug !== slug).slice(0, 4);
   const postUrl = `https://writeback.pl/blog/${slug}`;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.description,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "url": postUrl,
+    "author": {
+      "@type": "Person",
+      "name": "Maciej Perzankowski",
+      "url": "https://writeback.pl",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "writeback.pl",
+      "url": "https://writeback.pl",
+      "logo": { "@type": "ImageObject", "url": "https://writeback.pl/icon.png" },
+    },
+    "inLanguage": "pl",
+  };
+
+  const faqSchema = post.faq && post.faq.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": post.faq.map(item => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": { "@type": "Answer", "text": item.a },
+    })),
+  } : null;
   const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(postUrl)}`;
 
   return (
     <div className="min-h-screen bg-white">
       <BlogHeader />
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
 
       <article className="max-w-2xl mx-auto px-6 py-10">
 
