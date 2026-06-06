@@ -24,7 +24,7 @@ export default function BlogPage() {
         <div className="mb-10">
           <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Poradniki</p>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Prawa konsumenta</h1>
-          <p className="text-gray-500 text-sm">Konkretne informacje o Twoich prawach — bez prawniczego żargonu.</p>
+          <p className="text-gray-500 text-sm">Konkretne informacje o Twoich prawach, bez prawniczego żargonu.</p>
         </div>
 
         <div className="space-y-3">
