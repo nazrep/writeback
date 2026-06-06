@@ -81,45 +81,31 @@ export function AudioPlayer({ slug }: { slug: string }) {
     audioRef.current.playbackRate = speed;
   }, [speed]);
 
-  const totalWordsRef = useRef(0);
+  const sentencesRef = useRef<HTMLElement[]>([]);
 
-  function wrapWords() {
+  function wrapSentences() {
     const container = document.querySelector(".article-content");
-    if (!container || container.getAttribute("data-words-wrapped")) return;
-    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
-    const nodes: Text[] = [];
-    let n: Node | null;
-    while ((n = walker.nextNode())) nodes.push(n as Text);
-    let idx = 0;
-    nodes.forEach(node => {
-      const parts = node.textContent?.split(/(\s+)/) ?? [];
+    if (!container || container.getAttribute("data-sentences-wrapped")) return;
+    const paragraphs = Array.from(container.querySelectorAll("p, li"));
+    paragraphs.forEach(p => {
+      const text = p.innerHTML;
+      const parts = text.split(/(?<=[.!?])\s+/);
       if (parts.length <= 1) return;
-      const frag = document.createDocumentFragment();
-      parts.forEach(part => {
-        if (/^\s+$/.test(part) || !part) {
-          frag.appendChild(document.createTextNode(part));
-        } else {
-          const span = document.createElement("span");
-          span.className = "audio-word";
-          span.dataset.w = String(idx++);
-          span.textContent = part;
-          frag.appendChild(span);
-        }
-      });
-      node.parentNode?.replaceChild(frag, node);
+      p.innerHTML = parts
+        .map(s => `<span class="audio-sentence">${s}</span>`)
+        .join(" ");
     });
-    totalWordsRef.current = idx;
-    container.setAttribute("data-words-wrapped", "1");
+    container.setAttribute("data-sentences-wrapped", "1");
+    sentencesRef.current = Array.from(container.querySelectorAll<HTMLElement>(".audio-sentence"));
   }
 
-  function highlightWord(time: number, dur: number) {
-    const container = document.querySelector(".article-content");
-    if (!container || !dur || !totalWordsRef.current) return;
-    const all = container.querySelectorAll<HTMLElement>(".audio-word");
-    const idx = Math.min(Math.floor((time / dur) * all.length), all.length - 1);
-    container.querySelector(".audio-word-current")?.classList.remove("audio-word-current");
-    all[idx]?.classList.add("audio-word-current");
-    all[idx]?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  function highlightSentence(time: number, dur: number) {
+    const sentences = sentencesRef.current;
+    if (!sentences.length || !dur) return;
+    const idx = Math.min(Math.floor((time / dur) * sentences.length), sentences.length - 1);
+    sentences.forEach(s => s.classList.remove("audio-sentence-current"));
+    sentences[idx]?.classList.add("audio-sentence-current");
+    sentences[idx]?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function tick() {
@@ -127,20 +113,20 @@ export function AudioPlayer({ slug }: { slug: string }) {
     const t = audioRef.current.currentTime;
     const d = audioRef.current.duration;
     setCurrentTime(t);
-    highlightWord(t, d);
+    highlightSentence(t, d);
     rafRef.current = requestAnimationFrame(tick);
   }
 
   function handlePlay() {
     if (!audioRef.current) return;
-    wrapWords();
+    wrapSentences();
     audioRef.current.play();
     setPlaying(true);
     rafRef.current = requestAnimationFrame(tick);
   }
 
   function clearHighlight() {
-    document.querySelectorAll(".audio-word-current").forEach(el => el.classList.remove("audio-word-current"));
+    document.querySelectorAll(".audio-sentence-current").forEach(el => el.classList.remove("audio-sentence-current"));
   }
 
   function handlePause() {

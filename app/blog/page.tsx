@@ -28,7 +28,7 @@ export default function BlogPage() {
         </div>
 
         <div className="space-y-3">
-          {POSTS.map((post, i) => (
+          {[...POSTS].sort((a, b) => b.date.localeCompare(a.date)).map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
@@ -39,7 +39,7 @@ export default function BlogPage() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[11px] font-semibold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full">
+                  <span className="text-[11px] font-semibold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full whitespace-nowrap">
                     {post.category}
                   </span>
                   <span className="text-[11px] text-gray-400">{post.readTime} czytania</span>

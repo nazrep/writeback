@@ -141,7 +141,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative bg-slate-950 overflow-hidden">
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.04] hidden sm:block"
           style={{
             backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
             backgroundSize: "48px 48px",
