@@ -485,8 +485,8 @@ DATA PISMA: ${today}`,
           <table cellpadding="0" cellspacing="0" width="100%"><tr>
             <td width="44" valign="middle">
               <table cellpadding="0" cellspacing="0"><tr>
-                <td style="background:#eef2ff;width:44px;height:44px;border-radius:10px;text-align:center;vertical-align:middle;font-size:22px;line-height:44px">
-                  &#128196;
+                <td style="background:#eef2ff;width:44px;height:44px;border-radius:10px;text-align:center;vertical-align:middle">
+                  <span style="font-size:9px;font-weight:800;color:#4f46e5;font-family:Arial,sans-serif;letter-spacing:0.5px">PDF</span>
                 </td>
               </tr></table>
             </td>
@@ -513,7 +513,7 @@ DATA PISMA: ${today}`,
         </tr>
         <tr>
           <td style="font-size:13px;color:#64748b;padding:10px 0;font-family:${F};width:90px">Żądanie</td>
-          <td style="font-size:13px;color:#4f46e5;font-weight:700;text-align:right;padding:10px 0;font-family:${F};max-width:260px">${m.zadanie}</td>
+          <td style="font-size:13px;color:#4f46e5;font-weight:700;text-align:right;padding:10px 0;font-family:${F};word-wrap:break-word;word-break:break-word"><div style="max-width:260px;margin-left:auto">${m.zadanie}</div></td>
         </tr>
       </table>
     </div>
