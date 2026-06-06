@@ -142,8 +142,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-433MLRJZJJ" />
-        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-433MLRJZJJ',{anonymize_ip:true});` }} />
       </head>
       <body className="min-h-screen bg-white text-gray-900 antialiased">
         {children}
