@@ -1,6 +1,58 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 
+const SPEEDS = [0.75, 1, 1.25, 1.5];
+
+function SpeedPicker({ speed, onChange }: { speed: number; onChange: (s: number) => void }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function handler(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen(o => !o)}
+        className="h-7 px-2 rounded-lg hover:bg-indigo-100 text-[11px] font-bold text-indigo-600 transition-colors flex items-center gap-0.5"
+      >
+        {speed === 1 ? "1×" : `${speed}×`}
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor" className="opacity-60">
+          <path d="M1 2.5l3 3 3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+        </svg>
+      </button>
+      {open && (
+        <div className="absolute bottom-full right-0 mb-1.5 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden min-w-[64px] z-10">
+          {SPEEDS.map(s => (
+            <button
+              key={s}
+              onClick={() => { onChange(s); setOpen(false); }}
+              className={`w-full text-left px-3 py-1.5 text-[12px] font-semibold transition-colors flex items-center justify-between gap-2 ${
+                s === speed
+                  ? "bg-indigo-50 text-indigo-700"
+                  : "text-gray-600 hover:bg-gray-50"
+              }`}
+            >
+              {s === 1 ? "1×" : `${s}×`}
+              {s === speed && (
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="#4f46e5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function formatTime(s: number) {
   if (!isFinite(s)) return "0:00";
   const m = Math.floor(s / 60);
@@ -167,17 +219,7 @@ export function AudioPlayer({ slug }: { slug: string }) {
           </svg>
         </button>
 
-        {/* Speed */}
-        <select
-          value={speed}
-          onChange={e => setSpeed(Number(e.target.value))}
-          className="text-[11px] text-indigo-600 bg-transparent border-0 cursor-pointer font-semibold appearance-none w-10 text-center"
-        >
-          <option value={0.75}>0.75×</option>
-          <option value={1}>1×</option>
-          <option value={1.25}>1.25×</option>
-          <option value={1.5}>1.5×</option>
-        </select>
+        <SpeedPicker speed={speed} onChange={setSpeed} />
       </div>
     </div>
   );
