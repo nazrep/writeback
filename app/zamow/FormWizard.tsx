@@ -136,28 +136,107 @@ const DOC_TYPES = [
     summarySubject: "Przedmiot skargi",
   },
   {
-    id: "kurier",
-    label: "Skarga na kuriera / firmę kurierską",
-    desc: "Paczka nie dotarła, uszkodzona, zostawiona bez podpisu, kurier nie zadzwonił",
-    subjectLabel: "Opis przesyłki / zamówienia",
-    subjectPlaceholder: "np. Laptop Dell XPS 15, zamówiony w x-kom",
-    kwotaLabel: "Wartość przesyłki (zł)",
-    kwotaPlaceholder: "3500",
-    dataLabel: "Data przewidywanej dostawy",
-    refLabel: "Numer przesyłki / tracking",
-    refPlaceholder: "np. 1Z999AA10123456784 / 600123456789",
-    orgLabel: "Do kogo kierujesz skargę",
-    orgPlaceholder: "np. InPost Sp. z o.o. / x-kom Sp. z o.o. (sklep który wysłał)",
-    orgAdresLabel: "Adres adresata",
+    id: "skarga",
+    label: "Skarga konsumencka",
+    desc: "Kurier, internet, energia, telefon, inne — firma nie reaguje",
+    subjectLabel: "Czego dotyczy",
+    subjectPlaceholder: "np. Zagubiona paczka / awaria internetu / zawyżony rachunek",
+    kwotaLabel: "Wartość sporu (zł)",
+    kwotaPlaceholder: "500",
+    dataLabel: "Data zdarzenia",
+    refLabel: "Numer referencyjny / umowy / przesyłki",
+    refPlaceholder: "Opcjonalnie",
+    orgLabel: "Firma / instytucja",
+    orgPlaceholder: "np. InPost Sp. z o.o. / Orange Polska S.A.",
+    orgAdresLabel: "Adres firmy",
     orgAdresHint: "Opcjonalnie",
-    opisPlaceholder: "Opisz dokładnie co się stało — czy paczka zaginęła, dotarła uszkodzona, kurier zostawił bez podpisu, nie podjął próby doręczenia? Kiedy?",
-    podjeteLabel: "Kontakt z kurierem / sklepem",
-    podjetePlaceholder: "np. Dzwoniłem na infolinię InPost, powiedzieli że paczka w magazynie; sklep odpisał że nie ich wina...",
-    zadaniePlaceholder: "np. Dostarczenia przesyłki / zwrotu 3500 zł / odszkodowania za uszkodzony towar",
-    summaryOrg: "Adresat skargi",
-    summarySubject: "Przesyłka",
+    opisPlaceholder: "Opisz dokładnie co się stało...",
+    podjeteLabel: "Kontakt z firmą",
+    podjetePlaceholder: "np. Dzwoniłem na infolinię, odpisali że sprawa w trakcie...",
+    zadaniePlaceholder: "np. Odszkodowania / zwrotu pieniędzy / usunięcia awarii",
+    summaryOrg: "Firma",
+    summarySubject: "Przedmiot skargi",
   },
 ] as const;
+
+type SkargaSubtype = "kurier" | "telecom" | "energia" | "inne";
+
+const SKARGA_SUBTYPES: Record<SkargaSubtype, {
+  label: string;
+  icon: React.ReactNode;
+  fields: {
+    subjectLabel: string; subjectPlaceholder: string;
+    kwotaLabel: string; kwotaPlaceholder: string;
+    dataLabel: string; refLabel: string; refPlaceholder: string;
+    orgLabel: string; orgPlaceholder: string;
+    opisPlaceholder: string; podjetePlaceholder: string; zadaniePlaceholder: string;
+  };
+}> = {
+  kurier: {
+    label: "Kurier / dostawa",
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>,
+    fields: {
+      subjectLabel: "Opis przesyłki / zamówienia",
+      subjectPlaceholder: "np. Laptop Dell XPS 15, zamówiony w x-kom",
+      kwotaLabel: "Wartość przesyłki (zł)", kwotaPlaceholder: "1500",
+      dataLabel: "Data przewidywanej dostawy",
+      refLabel: "Numer przesyłki / tracking", refPlaceholder: "np. 600123456789 / 1Z999AA1...",
+      orgLabel: "Do kogo piszesz (kurier lub sklep)",
+      orgPlaceholder: "np. InPost Sp. z o.o. / x-kom Sp. z o.o.",
+      opisPlaceholder: "Opisz co się stało — paczka zaginęła, dotarła uszkodzona, kurier zostawił bez podpisu, nie próbował doręczyć...",
+      podjetePlaceholder: "np. Dzwoniłem na infolinię InPost — powiedzieli że paczka w magazynie; sklep odpisał że nie ich wina...",
+      zadaniePlaceholder: "np. Dostarczenia przesyłki / zwrotu 1500 zł / odszkodowania za uszkodzony towar",
+    },
+  },
+  telecom: {
+    label: "Internet / telefon",
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg>,
+    fields: {
+      subjectLabel: "Usługa / umowa",
+      subjectPlaceholder: "np. Internet światłowodowy 600 Mb/s, abonament telefoniczny",
+      kwotaLabel: "Miesięczna opłata (zł)", kwotaPlaceholder: "89",
+      dataLabel: "Data zdarzenia / zawarcia umowy",
+      refLabel: "Numer umowy / zgłoszenia serwisowego", refPlaceholder: "Opcjonalnie",
+      orgLabel: "Operator",
+      orgPlaceholder: "np. Orange Polska S.A., Play, T-Mobile, Polsat Box",
+      opisPlaceholder: "Opisz problem — prędkość poniżej umowy, awaria nieusuwana tygodniami, bezprawna podwyżka cen, utrudnianie wypowiedzenia...",
+      podjetePlaceholder: "np. Zgłaszałem awarię 3 razy — każdorazowo obiecywali poprawę; infolinia odsyła do BOK...",
+      zadaniePlaceholder: "np. Usunięcia awarii / obniżenia opłaty / rozwiązania umowy bez kar",
+    },
+  },
+  energia: {
+    label: "Energia / gaz",
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
+    fields: {
+      subjectLabel: "Rodzaj usługi",
+      subjectPlaceholder: "np. Energia elektryczna, gaz ziemny",
+      kwotaLabel: "Zawyżona kwota / spór (zł)", kwotaPlaceholder: "350",
+      dataLabel: "Data faktury / zdarzenia",
+      refLabel: "Numer faktury / umowy / PPE", refPlaceholder: "Opcjonalnie",
+      orgLabel: "Dostawca energii / gazu",
+      orgPlaceholder: "np. Enea S.A., PGNiG, Tauron, Energa",
+      opisPlaceholder: "Opisz problem — zawyżony rachunek, błędny odczyt licznika, bezprawne opłaty, odcięcie bez podstawy, zmiana taryfy bez zgody...",
+      podjetePlaceholder: "np. Wysłałem pismo do BOK — odpowiedzieli że odczyt prawidłowy, ale nie wyjaśnili rozbieżności...",
+      zadaniePlaceholder: "np. Korekty faktury i zwrotu 350 zł / wyjaśnienia podstawy naliczeń",
+    },
+  },
+  inne: {
+    label: "Inne",
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
+    fields: {
+      subjectLabel: "Czego dotyczy skarga",
+      subjectPlaceholder: "np. Serwis nie wykonał naprawy, siłownia nie honoruje karnetu",
+      kwotaLabel: "Wartość sporu (zł)", kwotaPlaceholder: "200",
+      dataLabel: "Data zdarzenia",
+      refLabel: "Numer umowy / referencyjny", refPlaceholder: "Opcjonalnie",
+      orgLabel: "Firma / instytucja",
+      orgPlaceholder: "np. Nazwa firmy Sp. z o.o.",
+      opisPlaceholder: "Opisz dokładnie co się stało, kiedy i jakie były konsekwencje...",
+      podjetePlaceholder: "np. Kontaktowałem się mailowo i telefonicznie — brak reakcji...",
+      zadaniePlaceholder: "np. Wykonania usługi / zwrotu zapłaconej kwoty / odszkodowania",
+    },
+  },
+};
 
 type DocTypeId = typeof DOC_TYPES[number]["id"];
 
@@ -174,6 +253,7 @@ type FormData = {
   email: string;
   nazwa_sklepu: string;
   adres_sklepu: string;
+  skarga_subtype: string;
 };
 
 const EMPTY: FormData = {
@@ -181,6 +261,7 @@ const EMPTY: FormData = {
   opis: "", podjete_kroki: "", zadanie: "",
   imie_nazwisko: "", adres: "", email: "",
   nazwa_sklepu: "", adres_sklepu: "",
+  skarga_subtype: "",
 };
 
 const STEPS = ["Typ pisma", "Co się stało", "Twoje dane", "Podgląd", "Płatność"];
@@ -352,7 +433,11 @@ export function FormWizard({ lang }: { lang?: string }) {
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState(false);
 
-  const type = DOC_TYPES.find(t => t.id === docType) ?? DOC_TYPES[0];
+  const baseType = DOC_TYPES.find(t => t.id === docType) ?? DOC_TYPES[0];
+  const skargaSub = data.skarga_subtype as SkargaSubtype | "";
+  const type = docType === "skarga" && skargaSub
+    ? { ...baseType, ...SKARGA_SUBTYPES[skargaSub].fields }
+    : baseType;
 
   const set = (field: keyof FormData) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -360,6 +445,7 @@ export function FormWizard({ lang }: { lang?: string }) {
 
   function validateStep2() {
     const e: Partial<Record<keyof FormData, string>> = {};
+    if (docType === "skarga" && !data.skarga_subtype) e.skarga_subtype = "Wybierz typ skargi";
     if (!data.produkt.trim()) e.produkt = "To pole jest wymagane";
     if (!data.cena.trim() && docType !== "zus") e.cena = "Wpisz kwotę";
     if (!data.data_zakupu) e.data_zakupu = "Wybierz datę";
@@ -500,7 +586,7 @@ export function FormWizard({ lang }: { lang?: string }) {
                 zus: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M3 7l9-4 9 4M4 7v14M20 7v14M9 11h2v4H9zM13 11h2v4h-2z"/></svg>,
                 umowa: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>,
                 uokik: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
-                kurier: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>,
+                skarga: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg>,
               };
               return (
                 <button
@@ -537,6 +623,34 @@ export function FormWizard({ lang }: { lang?: string }) {
           <p className="text-gray-600 text-sm mb-8">Im więcej szczegółów, tym mocniejsze pismo</p>
           <div className="space-y-5">
             {/* Upload zdjęcia */}
+            {docType === "skarga" && (
+              <div>
+                <p className="text-sm font-semibold text-gray-800 mb-2">
+                  Typ skargi<span className="text-red-500 ml-0.5">*</span>
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {(Object.entries(SKARGA_SUBTYPES) as [SkargaSubtype, typeof SKARGA_SUBTYPES[SkargaSubtype]][]).map(([id, sub]) => (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => setData(p => ({ ...p, skarga_subtype: id }))}
+                      className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border text-sm font-medium transition-all text-left ${
+                        data.skarga_subtype === id
+                          ? "border-indigo-500 bg-indigo-50 text-indigo-700"
+                          : "border-gray-200 bg-white text-gray-700 hover:border-indigo-300 hover:bg-indigo-50/40"
+                      }`}
+                    >
+                      <span className={data.skarga_subtype === id ? "text-indigo-600" : "text-gray-400"}>{sub.icon}</span>
+                      {sub.label}
+                    </button>
+                  ))}
+                </div>
+                {errors.skarga_subtype && (
+                  <p className="text-xs text-red-500 mt-1.5 font-medium">{errors.skarga_subtype}</p>
+                )}
+              </div>
+            )}
+
             <div>
               <div className="flex items-baseline gap-2 mb-1.5">
                 <span className="text-sm font-semibold text-gray-800">Dołącz zdjęcie dokumentu</span>

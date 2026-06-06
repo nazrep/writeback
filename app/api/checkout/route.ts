@@ -88,6 +88,7 @@ export async function POST(req: NextRequest) {
         zadanie: trunc(data.zadanie, 200),
         nazwa_sklepu: trunc(data.nazwa_sklepu, 200),
         adres_sklepu: trunc(data.adres_sklepu, 200),
+        skarga_subtype: trunc(data.skarga_subtype ?? "", 50),
         image_context: imageContext,
       },
     });

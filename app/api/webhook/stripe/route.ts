@@ -112,16 +112,21 @@ Wskaż konkretny sąd i podstawę zaskarżenia.`,
 Przepisy obowiązkowe: art. 746 KC (wypowiedzenie umowy zlecenia); art. 365(1) KC (umowy na czas nieokreślony); art. 3853 KC (klauzule abuzywne); ustawa o prawach konsumenta art. 27 (prawo odstąpienia 14 dni); ustawa o świadczeniu usług drogą elektroniczną art. 8 (wypowiedzenie umowy o świadczenie usług).
 Wskazuj konkretną datę skuteczności wypowiedzenia.`,
 
-    kurier: `Jesteś ekspertem prawa przewozowego, pocztowego i konsumenckiego w Polsce. Piszesz profesjonalne skargi i reklamacje dotyczące problemów z dostawą przesyłek.
-Rozróżnij dwa scenariusze i zastosuj właściwy:
-SCENARIUSZ A — skarga do sklepu (sprzedawcy): jeśli adresat to sklep e-commerce, który wysłał zamówienie, zastosuj art. 43a–43d UPK (sprzedawca odpowiada za dostarczenie towaru w stanie zgodnym z umową) + art. 7a UPK (14 dni na odpowiedź). Kurier działa w imieniu sprzedawcy — to sprzedawca odpowiada za jego działania.
-SCENARIUSZ B — skarga bezpośrednio do firmy kurierskiej: zastosuj:
-- Art. 65 ust. 1 Prawa przewozowego (ustawa z 15.11.1984, Dz.U. 1984 nr 53 poz. 272): odpowiedzialność za utratę/uszkodzenie przesyłki
-- Art. 65 ust. 2 Prawa przewozowego: odpowiedzialność za opóźnienie
-- Art. 75 ust. 1 Prawa przewozowego: wymóg wniesienia reklamacji przed sądem
-- Art. 77 Prawa przewozowego: terminy przedawnienia (1 rok)
-- Art. 92–96 Prawa pocztowego (ustawa z 23.11.2012): dla InPost, Poczty Polskiej — 30 dni na odpowiedź
-Oceń na podstawie opisu który scenariusz dotyczy użytkownika i zastosuj właściwe przepisy.`,
+    skarga: `Jesteś ekspertem prawa konsumenckiego i administracyjnego w Polsce. Piszesz skargi konsumenckie dopasowane do typu adresata.
+Typ skargi określa pole skarga_subtype — zastosuj właściwe przepisy:
+
+KURIER (skarga_subtype=kurier):
+Jeśli adresat to sklep: art. 43a–43d UPK + art. 7a UPK (sprzedawca odpowiada za dostawę).
+Jeśli adresat to firma kurierska: art. 65 ust. 1–2 Prawa przewozowego (ustawa z 15.11.1984) — odpowiedzialność za utratę/uszkodzenie/opóźnienie; art. 75 ust. 1 PP — obowiązek reklamacji; art. 77 PP — przedawnienie 1 rok; art. 92–96 Prawa pocztowego (ustawa z 23.11.2012) — dla InPost/Poczty Polskiej.
+
+TELECOM (skarga_subtype=telecom):
+art. 106 ustawy z 16.07.2004 Prawo telekomunikacyjne — prawo do obniżenia opłaty za przerwy i pogorszenie jakości; art. 57 ust. 6 PT — zakaz jednostronnej zmiany warunków umowy na niekorzyść abonenta; art. 3853 pkt 10 KC — klauzule abuzywne; Rozporządzenie 2015/2120 (net neutrality) — przy ograniczaniu internetu. Regulatorem jest Prezes UKE.
+
+ENERGIA (skarga_subtype=energia):
+art. 5 ust. 2 pkt 1 ustawy z 10.04.1997 Prawo energetyczne — obowiązek dostarczania energii o odpowiednich parametrach; art. 8 PE — prawo do złożenia reklamacji do przedsiębiorstwa energetycznego; art. 8 ust. 1 PE — 14 dni na rozpatrzenie reklamacji; Rozporządzenie ws. szczegółowych zasad kształtowania taryf — przy zawyżonych rachunkach. Regulatorem jest Prezes URE.
+
+INNE (skarga_subtype=inne):
+art. 43a–43g UPK (niezgodność towaru/usługi z umową); art. 7a UPK (14-dniowy termin odpowiedzi); art. 3853 KC (klauzule abuzywne); art. 746 KC lub 365(1) KC (wypowiedzenie umowy) — dobierz właściwe w zależności od opisu.`,
 
     uokik: `Jesteś ekspertem prawa ochrony konsumentów w Polsce. Piszesz skargi do UOKiK i Rzecznika Praw Konsumentów.
 Przepisy obowiązkowe: ustawa z dnia 16.02.2007 r. o ochronie konkurencji i konsumentów art. 23a–23d (praktyki naruszające zbiorowe interesy konsumentów); art. 7a UPK (obowiązek odpowiedzi w 14 dniach); Dyrektywa Omnibus 2019/2161; art. 3853 KC (klauzule abuzywne).
@@ -161,11 +166,12 @@ OKOLICZNOŚCI: ${m.opis}${m.podjete_kroki ? "\nKONTAKT Z FIRMĄ: " + m.podjete_k
 ŻĄDANIE: ${m.zadanie}
 DATA PISMA: ${today}`,
 
-    kurier: `Napisz reklamację do firmy kurierskiej / operatora pocztowego.
+    skarga: `Napisz skargę konsumencką.
 NADAWCA: ${m.imie_nazwisko} | ${m.adres} | ${m.email}
-FIRMA KURIERSKA: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
-PRZESYŁKA: ${m.produkt}${m.cena ? " | wartość: " + m.cena + " zł" : ""}${m.data_zakupu ? " | data nadania: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr listu przewozowego: " + m.numer_zamowienia : ""}
-OPIS ZDARZENIA: ${m.opis}${m.podjete_kroki ? "\nKONTAKT Z KURIEREM: " + m.podjete_kroki : ""}
+ADRESAT: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
+TYP SKARGI: ${m.skarga_subtype || "inne"}
+PRZEDMIOT: ${m.produkt}${m.cena ? " | wartość sporu: " + m.cena + " zł" : ""}${m.data_zakupu ? " | data zdarzenia: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr ref: " + m.numer_zamowienia : ""}
+OPIS: ${m.opis}${m.podjete_kroki ? "\nKONTAKT Z FIRMĄ: " + m.podjete_kroki : ""}
 ŻĄDANIE: ${m.zadanie}
 DATA PISMA: ${today}`,
 
@@ -283,7 +289,7 @@ DATA PISMA: ${today}`,
     zus: "ODWOŁANIE OD DECYZJI",
     umowa: "WYPOWIEDZENIE UMOWY",
     uokik: "SKARGA DO UOKiK / RZECZNIKA",
-    kurier: "REKLAMACJA DO FIRMY KURIERSKIEJ",
+    skarga: "SKARGA KONSUMENCKA",
   };
   let docLabel = LABELS[docType] ?? "PISMO REKLAMACYJNE";
   if (docType === "bank" && !/(bank|ubezpiecz|pkobp|mbank|alior|ing\b|bnp|pzu|aviva|warta|axa|generali|ergo|hestia|skandia|prudential|aegon|metlife|credit\s*agricole|santander|millennium|getin|nest\s*bank|toyota\s*bank|eurobank|plus\s*bank|pocztowy|bph|raiffeisen)/i.test(m.nazwa_sklepu)) {
