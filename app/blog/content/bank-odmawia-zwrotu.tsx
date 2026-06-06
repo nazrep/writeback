@@ -68,6 +68,16 @@ export default function Content() {
       </ul>
       <p>Masz problem z reklamacją do sklepu, nie do banku? Przeczytaj <Link href="/blog/reklamacja-sklep-internetowy" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">jak napisać skuteczną reklamację do sklepu internetowego</Link>.</p>
 
+      <h2>Podsumowanie: jak odzyskać pieniądze od banku</h2>
+      <ul>
+        <li><strong>Art. 46 ustawy o usługach płatniczych</strong>: bank musi zwrócić pieniądze do końca następnego dnia roboczego po zgłoszeniu</li>
+        <li>Ciężar dowodu leży po stronie banku (art. 45 ust. 1). To bank musi udowodnić, że transakcja była autoryzowana</li>
+        <li>"Prawidłowe logowanie" ani "kod SMS dotarł" nie zwalniają banku z obowiązku zwrotu</li>
+        <li>Za transakcje dokonane przed zgłoszeniem kradzieży karty odpowiadasz maksymalnie do równowartości 50 euro</li>
+        <li>Oszustwo na BLIK: trudniejsze, ale nie beznadziejne. Zgłoś na policję i wyraźnie zaznacz to w reklamacji</li>
+        <li>Najskuteczniejsza droga odwoławcza: <strong>Rzecznik Finansowy</strong> (rf.gov.pl). Banki poważnie traktują jego interwencje</li>
+      </ul>
+
       <h2>Najczęstsze pytania o zwrot pieniędzy od banku</h2>
 
       <h3>Bank mówi, że musi przeprowadzić dochodzenie i to zajmie 30-60 dni. Czy może tak zrobić?</h3>

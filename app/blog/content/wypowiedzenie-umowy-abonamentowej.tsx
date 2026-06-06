@@ -75,6 +75,16 @@ export default function Content() {
         <li><strong>Sąd polubowny przy Inspekcji Handlowej</strong>: bezpłatne postępowanie, wymaga zgody firmy</li>
       </ul>
 
+      <h2>Podsumowanie: jak skutecznie wypowiedzieć umowę abonamentową</h2>
+      <ul>
+        <li>Każdą umowę na czas nieokreślony można wypowiedzieć. <strong>Art. 365¹ KC</strong> nie pozostawia tu wątpliwości</li>
+        <li>Kara za "przedterminowe" wypowiedzenie umowy bezterminowej to najczęściej klauzula abuzywna z art. 385³ pkt 17 KC</li>
+        <li>Firma zmieniła cennik lub regulamin? Masz prawo do natychmiastowego wypowiedzenia bez konsekwencji (art. 384¹ KC)</li>
+        <li>Umowa zawarta przez internet lub telefon: 14 dni na odstąpienie bez podawania przyczyny (art. 27 UPK)</li>
+        <li>Operatorzy telekomunikacyjni nie mogą wymagać okresu wypowiedzenia dłuższego niż 30 dni</li>
+        <li>Zawsze wysyłaj wypowiedzenie z potwierdzeniem dostarczenia. Email na oficjalny adres firmy lub list polecony</li>
+      </ul>
+
       <h2>Najczęstsze pytania o wypowiedzenie umów abonamentowych</h2>
 
       <h3>Minimalny okres umowy się skończył, ale nikt mnie nie poinformował o automatycznym przedłużeniu. Czy mogę wypowiedzieć bez kary?</h3>

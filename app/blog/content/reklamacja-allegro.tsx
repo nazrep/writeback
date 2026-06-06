@@ -65,6 +65,16 @@ export default function Content() {
       <p>Przy zakupie od osoby prywatnej ustawa o prawach konsumenta nie obowiązuje. Masz jednak prawa z Kodeksu cywilnego: art. 556 i następne regulują rękojmię przy sprzedaży między osobami fizycznymi. Termin to rok od wydania rzeczy, a sprzedawca odpowiada za wady, które ukrył lub o których wiedział.</p>
       <p>Praktycznie jest to trudniejsze do wyegzekwowania niż w przypadku przedsiębiorcy. Jeśli sprzedawca zapewniał o stanie towaru w ogłoszeniu i rzecz okazała się wadliwa, masz podstawy do roszczeń, ale sprawa może wymagać postępowania sądowego.</p>
 
+      <h2>Podsumowanie: reklamacja na Allegro krok po kroku</h2>
+      <ul>
+        <li>Sprawdź profil sprzedawcy: NIP lub nazwa firmy = prawa konsumenta działają. Osoba prywatna = słabsza ochrona z KC</li>
+        <li><strong>Art. 43b ustawy o prawach konsumenta</strong> działa tak samo jak przy zakupie w każdym innym sklepie internetowym</li>
+        <li>Sprzedawca ma <strong>14 dni</strong> na odpowiedź. Brak odpowiedzi = reklamacja uznana z mocy prawa</li>
+        <li>Allegro Protect to wsparcie platformy, nie zastępnik Twoich praw. Formalne pismo jest mocniejszą podstawą</li>
+        <li>Przy karcie możesz spróbować chargebacku, jeśli sprzedawca nie wywiązał się z umowy i nie reaguje</li>
+        <li>Przy zakupie od osoby prywatnej masz rok na reklamację i trudniej ją wyegzekwować bez sądu</li>
+      </ul>
+
       <h2>Najczęstsze pytania o reklamacje na Allegro</h2>
 
       <h3>Allegro Protect: czy to wystarczy do reklamacji</h3>

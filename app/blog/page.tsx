@@ -3,6 +3,12 @@ import Link from "next/link";
 import { POSTS } from "./posts";
 import { BlogHeader } from "./BlogHeader";
 
+const MONTHS_SHORT = ["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru"];
+function formatShortDate(iso: string) {
+  const [, m, d] = iso.split("-");
+  return `${parseInt(d)} ${MONTHS_SHORT[parseInt(m) - 1]}`;
+}
+
 export const metadata: Metadata = {
   title: "Poradniki — prawa konsumenta i reklamacje",
   description: "Poradniki o prawach konsumenta, reklamacjach i pismach urzędowych. Dowiedz się jak skutecznie reklamować towary i usługi w Polsce.",
@@ -28,8 +34,8 @@ export default function BlogPage() {
               href={`/blog/${post.slug}`}
               className="flex items-start gap-5 p-5 rounded-2xl border border-gray-200 hover:border-indigo-200 hover:shadow-sm transition-all duration-200 group bg-white"
             >
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0 text-indigo-600 font-bold text-sm">
-                {String(i + 1).padStart(2, "0")}
+              <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0 text-indigo-600 font-bold text-[11px] text-center leading-tight">
+                {formatShortDate(post.date)}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1.5">

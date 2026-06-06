@@ -5,6 +5,7 @@ import { getPost, POSTS } from "../posts";
 import { getContent } from "../content";
 import { BlogHeader } from "../BlogHeader";
 import { CopyLinkButton } from "../CopyLinkButton";
+import { ListenButton } from "../ListenButton";
 
 export async function generateStaticParams() {
   return POSTS.map(p => ({ slug: p.slug }));
@@ -76,8 +77,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       "acceptedAnswer": { "@type": "Answer", "text": item.a },
     })),
   } : null;
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(postUrl)}`;
-
   return (
     <div className="min-h-screen bg-white">
       <BlogHeader />
@@ -123,25 +122,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </div>
             </div>
             <div className="flex items-center gap-1">
-              <a
-                href={tweetUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-colors text-xs font-medium"
-                title="Udostępnij na X"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-                <span className="hidden sm:inline">Udostępnij</span>
-              </a>
+              <ListenButton contentSelector=".article-content" />
               <CopyLinkButton url={postUrl} />
             </div>
           </div>
         </header>
 
         {/* Article content */}
-        <div className="mt-8
+        <div className="article-content mt-8
           [&_p]:text-gray-700 [&_p]:text-[15px] [&_p]:leading-relaxed [&_p]:mb-4
           [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:leading-snug [&_h2]:pt-2 [&_h2]:border-t [&_h2]:border-gray-100
           [&_h3]:text-base [&_h3]:font-bold [&_h3]:text-gray-900 [&_h3]:mt-6 [&_h3]:mb-2

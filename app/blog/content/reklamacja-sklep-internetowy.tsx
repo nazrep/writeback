@@ -82,6 +82,16 @@ export default function Content() {
       </ul>
       <p>Masz problem z transakcją bankową zamiast reklamacją do sklepu? Przeczytaj <Link href="/blog/bank-odmawia-zwrotu" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">jak egzekwować zwrot od banku</Link>.</p>
 
+      <h2>Podsumowanie: co musisz wiedzieć o reklamacji do sklepu</h2>
+      <ul>
+        <li>Masz <strong>2 lata</strong> na reklamację liczone od daty odbioru towaru, nie od daty zakupu</li>
+        <li><strong>Art. 43b ustawy o prawach konsumenta</strong> to Twoja główna podstawa: sklep odpowiada, nie producent</li>
+        <li>Przez pierwsze 2 lata domniemywa się, że wada istniała od początku. Sklep musi to obalić, nie Ty</li>
+        <li>Możesz żądać naprawy, wymiany, obniżenia ceny lub zwrotu. Sklep nie może odmówić wszystkich opcji naraz</li>
+        <li>Brak odpowiedzi w ciągu <strong>14 dni</strong> = reklamacja uznana z mocy prawa (art. 7a). Dokumentuj datę wysłania</li>
+        <li>Sklep nie może wyłączyć ani ograniczyć tych praw swoim regulaminem. Takie zapisy są nieważne</li>
+      </ul>
+
       <h2>Najczęstsze pytania o reklamacje do sklepów internetowych</h2>
 
       <h3>Czy mogę reklamować towar po roku od zakupu?</h3>
