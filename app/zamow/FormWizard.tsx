@@ -211,7 +211,10 @@ const DAYS = Array.from({ length: 31 }, (_, i) => i + 1);
 function DateSelect({ value, onChange, error }: { value: string; onChange: (v: string) => void; error?: string }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const [y, m, d] = value ? value.split("-") : ["", "", ""];
+
+  const [selDay, setSelDay] = useState(() => value ? value.split("-")[2] : "");
+  const [selMonth, setSelMonth] = useState(() => value ? value.split("-")[1] : "");
+  const [selYear, setSelYear] = useState(() => value ? value.split("-")[0] : "");
 
   useEffect(() => {
     function handler(e: MouseEvent) {
@@ -221,18 +224,23 @@ function DateSelect({ value, onChange, error }: { value: string; onChange: (v: s
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  function set(newY: string, newM: string, newD: string) {
-    if (newY && newM && newD) onChange(`${newY}-${String(newM).padStart(2,"0")}-${String(newD).padStart(2,"0")}`);
-    else onChange("");
+  function pick(newDay: string, newMonth: string, newYear: string) {
+    setSelDay(newDay);
+    setSelMonth(newMonth);
+    setSelYear(newYear);
+    if (newDay && newMonth && newYear) {
+      onChange(`${newYear}-${newMonth.padStart(2,"0")}-${newDay.padStart(2,"0")}`);
+      setOpen(false);
+    }
   }
 
-  const display = d && m && y
-    ? `${d} ${MONTHS_SHORT[parseInt(m)-1]} ${y}`
+  const display = selDay && selMonth && selYear
+    ? `${parseInt(selDay)} ${MONTHS_SHORT[parseInt(selMonth)-1]} ${selYear}`
     : "Wybierz datę";
 
   const btnCls = `w-full flex items-center justify-between px-3.5 py-3 text-sm rounded-lg border transition-all bg-white ${
-    error ? "border-red-400 focus:ring-red-400" : "border-gray-300 hover:border-gray-400"
-  } ${!d || !m || !y ? "text-gray-400" : "text-gray-900"}`;
+    error ? "border-red-400" : "border-gray-300 hover:border-gray-400"
+  } ${!(selDay && selMonth && selYear) ? "text-gray-400" : "text-gray-900"}`;
 
   return (
     <div ref={ref} className="relative">
@@ -251,8 +259,8 @@ function DateSelect({ value, onChange, error }: { value: string; onChange: (v: s
               <div className="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider sticky top-0 bg-white">Dzień</div>
               {DAYS.map(n => (
                 <button key={n} type="button"
-                  onClick={() => { set(y, m, String(n)); }}
-                  className={`w-full text-left px-3 py-1.5 text-sm transition-colors ${parseInt(d) === n ? "bg-indigo-50 text-indigo-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                  onClick={() => pick(String(n), selMonth, selYear)}
+                  className={`w-full text-left px-3 py-1.5 text-sm transition-colors ${parseInt(selDay) === n ? "bg-indigo-50 text-indigo-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
                 >{n}</button>
               ))}
             </div>
@@ -261,8 +269,8 @@ function DateSelect({ value, onChange, error }: { value: string; onChange: (v: s
               <div className="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider sticky top-0 bg-white">Miesiąc</div>
               {MONTHS_FULL.map((name, i) => (
                 <button key={i} type="button"
-                  onClick={() => { set(y, String(i+1), d); }}
-                  className={`w-full text-left px-3 py-1.5 text-sm transition-colors ${parseInt(m) === i+1 ? "bg-indigo-50 text-indigo-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                  onClick={() => pick(selDay, String(i+1), selYear)}
+                  className={`w-full text-left px-3 py-1.5 text-sm transition-colors ${parseInt(selMonth) === i+1 ? "bg-indigo-50 text-indigo-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
                 >{name}</button>
               ))}
             </div>
@@ -271,12 +279,17 @@ function DateSelect({ value, onChange, error }: { value: string; onChange: (v: s
               <div className="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-wider sticky top-0 bg-white">Rok</div>
               {YEARS.map(yr => (
                 <button key={yr} type="button"
-                  onClick={() => { set(String(yr), m, d); if (d && m) setOpen(false); }}
-                  className={`w-full text-left px-3 py-1.5 text-sm transition-colors ${parseInt(y) === yr ? "bg-indigo-50 text-indigo-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                  onClick={() => pick(selDay, selMonth, String(yr))}
+                  className={`w-full text-left px-3 py-1.5 text-sm transition-colors ${parseInt(selYear) === yr ? "bg-indigo-50 text-indigo-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
                 >{yr}</button>
               ))}
             </div>
           </div>
+          {!(selDay && selMonth && selYear) && (
+            <div className="px-4 py-2.5 bg-gray-50 border-t border-gray-100 text-xs text-gray-400 text-center">
+              Wybierz dzień, miesiąc i rok
+            </div>
+          )}
         </div>
       )}
     </div>
