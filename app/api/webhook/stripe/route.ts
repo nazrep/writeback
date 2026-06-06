@@ -88,10 +88,16 @@ ZASADY TREŚCI:
 - Tylko gotowe pismo. Bez komentarzy. Bez markdown.`;
 
   const SYSTEMS: Record<string, string> = {
-    sklep: `Jesteś ekspertem prawa konsumenckiego w Polsce. Piszesz profesjonalne pisma reklamacyjne oparte na rękojmi i niezgodności towaru z umową.
-Przepisy obowiązkowe: art. 43a–43g ustawy z dnia 30 maja 2014 r. o prawach konsumenta (niezgodność towaru z umową — dla zakupów po 01.01.2023); art. 556–576 KC (rękojmia); art. 7a UPK (14-dniowy termin odpowiedzi).
-Żądanie hierarchiczne: najpierw naprawa lub wymiana, potem obniżenie ceny lub odstąpienie.
-Brak odpowiedzi w 14 dniach = reklamacja uznana za zasadną (art. 7a ust. 1 UPK).`,
+    sklep: `Jesteś ekspertem prawa konsumenckiego w Polsce. Piszesz profesjonalne pisma reklamacyjne oparte na niezgodności towaru z umową.
+Przepisy obowiązkowe (dla zakupów B2C po 01.01.2023 — stosuj WYŁĄCZNIE ten reżim, nie art. 556 KC):
+- art. 43a: definicja niezgodności towaru z umową
+- art. 43b: przesłanki niezgodności (towar nie nadaje się do celu, nie posiada oczekiwanych cech)
+- art. 43c ust. 1: PODSTAWA ŻĄDANIA naprawy lub wymiany — używaj tego artykułu jako podstawy żądania
+- art. 43d ust. 1–5: obowiązki przedsiębiorcy przy naprawie/wymianie, koszty po stronie sprzedawcy
+- art. 43d ust. 2: domniemanie, że niezgodność istniejąca w ciągu 2 lat od dostarczenia istniała w chwili dostarczenia
+- art. 7a ust. 1 UPK: 14-dniowy termin odpowiedzi; brak odpowiedzi = reklamacja uznana za zasadną
+NIE cytuj art. 556 KC (rękojmia KC) — nie stosuje się do zakupów B2C po 01.01.2023.
+Żądanie hierarchiczne: najpierw naprawa lub wymiana (art. 43c ust. 1), potem obniżenie ceny lub odstąpienie od umowy.`,
 
     bank: `Jesteś ekspertem prawa bankowego i ubezpieczeniowego w Polsce. Piszesz profesjonalne reklamacje do podmiotów rynku finansowego.
 Przepisy obowiązkowe: ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamacji przez podmioty rynku finansowego (Dz.U. 2015 poz. 1348) — 30 dni na odpowiedź, wyjątkowo 60 dni; ustawa Prawo bankowe art. 6a–6d; ustawa o usługach płatniczych art. 44–58 (nieautoryzowane transakcje — 15 miesięcy na zgłoszenie, zwrot D+1).
@@ -375,11 +381,11 @@ DATA PISMA: ${today}`,
   const pdfBytes = await pdfDoc.save();
 
   // ─────────────────────────────────────────────────────────────────
-  // FAKTURA VAT
+  // FAKTURA VAT — clean professional layout
   // ─────────────────────────────────────────────────────────────────
-  const grossAmount = (session.amount_total ?? 2900) / 100;
-  const vatRate = 0.23;
-  const netAmount = Math.round((grossAmount / (1 + vatRate)) * 100) / 100;
+  // || instead of ?? so that amount_total=0 also triggers the fallback
+  const grossAmount = (session.amount_total || 2900) / 100;
+  const netAmount = Math.round((grossAmount / 1.23) * 100) / 100;
   const vatAmount = Math.round((grossAmount - netAmount) * 100) / 100;
 
   const invoiceDate = new Date();
@@ -387,189 +393,133 @@ DATA PISMA: ${today}`,
   const invoiceMonth = String(invoiceDate.getMonth() + 1).padStart(2, "0");
   const invoiceSeq = String(session.created).slice(-6);
   const invoiceNumber = `FV/${invoiceYear}/${invoiceMonth}/${invoiceSeq}`;
-  const invoiceDateStr = invoiceDate.toLocaleDateString("pl-PL", { day: "2-digit", month: "2-digit", year: "numeric" });
+  const invDateStr = invoiceDate.toLocaleDateString("pl-PL", { day: "2-digit", month: "2-digit", year: "numeric" });
+  const fmtPLN = (n: number) => n.toFixed(2).replace(".", ",") + " zł";
 
   const invDoc = await PDFDocument.create();
   invDoc.registerFontkit(fontkit);
-  const invFont = await invDoc.embedFont(regularBytes);
-  const invBoldFont = await invDoc.embedFont(boldBytes);
+  const iF = await invDoc.embedFont(regularBytes);
+  const iFB = await invDoc.embedFont(boldBytes);
+  const IP = invDoc.addPage([595, 842]);
 
-  const IW = 595, IH = 842;
-  const iMX = 50, iMTop = 50;
-  const invPage = invDoc.addPage([IW, IH]);
-  let iy = IH - iMTop;
-
-  const iC_INDIGO: [number, number, number] = [0.31, 0.27, 0.9];
-  const iC_INDIGO_LIGHT: [number, number, number] = [0.93, 0.92, 1.0];
-  const iC_BLACK: [number, number, number] = [0.1, 0.1, 0.12];
-  const iC_GRAY: [number, number, number] = [0.5, 0.5, 0.5];
-  const iC_GRAY_LIGHT: [number, number, number] = [0.95, 0.95, 0.96];
-
-  function iDrawText(text: string, opts: { x?: number; y?: number; size?: number; bold?: boolean; color?: [number, number, number] } = {}) {
-    const size = opts.size ?? 9;
-    const f = opts.bold ? invBoldFont : invFont;
-    const [r, g, b] = opts.color ?? iC_BLACK;
-    invPage.drawText(text, { x: opts.x ?? iMX, y: opts.y ?? iy, size, font: f, color: rgb(r, g, b) });
+  // Helper: draw text at absolute (x,y), optional right-align within maxX
+  function iT(text: string, x: number, y: number, size = 9, bold = false,
+               color: [number,number,number] = [0.1,0.1,0.12], rightAlign = false, maxX = 0) {
+    const f = bold ? iFB : iF;
+    const dx = rightAlign ? maxX - f.widthOfTextAtSize(text, size) : x;
+    IP.drawText(text, { x: dx, y, size, font: f, color: rgb(...color) });
+  }
+  function iLine(y: number, x1 = 50, x2 = 545) {
+    IP.drawLine({ start: { x: x1, y }, end: { x: x2, y }, thickness: 0.4, color: rgb(0.86, 0.86, 0.89) });
   }
 
-  function iWrap(text: string, maxW: number, size: number, f: typeof invFont): string[] {
-    const words = text.split(" ");
-    const lines: string[] = [];
-    let cur = "";
-    for (const w of words) {
-      const test = cur ? cur + " " + w : w;
-      if (f.widthOfTextAtSize(test, size) > maxW) { if (cur) lines.push(cur); cur = w; }
-      else cur = test;
-    }
-    if (cur) lines.push(cur);
-    return lines;
-  }
+  // ── TOP STRIPE ──
+  IP.drawRectangle({ x: 0, y: 836, width: 595, height: 6, color: rgb(0.31, 0.27, 0.9) });
 
-  // Header bar
-  invPage.drawRectangle({ x: 0, y: IH - 68, width: IW, height: 68, color: rgb(0.18, 0.16, 0.55) });
-  invPage.drawText("FAKTURA VAT", { x: iMX, y: IH - 38, size: 18, font: invBoldFont, color: rgb(1, 1, 1) });
-  const invNumW = invBoldFont.widthOfTextAtSize(invoiceNumber, 10);
-  invPage.drawText(invoiceNumber, { x: IW - iMX - invNumW, y: IH - 38, size: 10, font: invBoldFont, color: rgb(0.76, 0.74, 1.0) });
-  invPage.drawText("Numer:", { x: IW - iMX - invNumW - 50, y: IH - 38, size: 8, font: invFont, color: rgb(0.6, 0.58, 0.85) });
+  // ── HEADER BAND ──
+  IP.drawRectangle({ x: 0, y: 756, width: 595, height: 80, color: rgb(0.97, 0.97, 0.98) });
 
-  iy = IH - 68 - 22;
+  // Logo block
+  IP.drawRectangle({ x: 50, y: 790, width: 30, height: 30, color: rgb(0.31, 0.27, 0.9) });
+  iT("W", 60, 799, 15, true, [1, 1, 1]);
+  iT("writeback.pl", 88, 802, 11, true, [0.12, 0.12, 0.18]);
+  iT("Maciej Perzankowski Software Solutions", 88, 788, 7.5, false, [0.5, 0.5, 0.56]);
 
-  // Dates row
-  iDrawText(`Data wystawienia: ${invoiceDateStr}`, { size: 8.5, color: iC_GRAY });
-  const svcDateW = invFont.widthOfTextAtSize(`Data sprzedaży: ${invoiceDateStr}`, 8.5);
-  iDrawText(`Data sprzedaży: ${invoiceDateStr}`, { x: IW - iMX - svcDateW, size: 8.5, color: iC_GRAY });
-  iy -= 22;
+  // Document title (right-aligned)
+  iT("FAKTURA VAT", 50, 800, 22, true, [0.1, 0.1, 0.12], true, 545);
+  iT(invoiceNumber, 50, 782, 9.5, true, [0.31, 0.27, 0.9], true, 545);
 
-  // Divider
-  invPage.drawLine({ start: { x: iMX, y: iy }, end: { x: IW - iMX, y: iy }, thickness: 0.5, color: rgb(0.85, 0.85, 0.88) });
-  iy -= 18;
+  // ── DATES ──
+  iT("Data wystawienia:", 50, 742, 8, false, [0.5, 0.5, 0.55]);
+  iT(invDateStr, 148, 742, 8, true, [0.15, 0.15, 0.2]);
+  iT("Data sprzedaży:", 280, 742, 8, false, [0.5, 0.5, 0.55]);
+  iT(invDateStr, 373, 742, 8, true, [0.15, 0.15, 0.2]);
 
-  // Seller / Buyer columns
-  const colW = (IW - iMX * 2 - 20) / 2;
-  const col2X = iMX + colW + 20;
+  iLine(726);
 
-  iDrawText("SPRZEDAWCA", { size: 7.5, bold: true, color: iC_INDIGO });
-  iDrawText("NABYWCA", { x: col2X, size: 7.5, bold: true, color: iC_INDIGO });
-  iy -= 14;
+  // ── PARTIES ──
+  iT("SPRZEDAWCA", 50, 710, 7, true, [0.31, 0.27, 0.9]);
+  iT("NABYWCA", 300, 710, 7, true, [0.31, 0.27, 0.9]);
 
-  const sellerLines = [
-    "Maciej Perzankowski Software Solutions",
-    "ul. 19-go Lutego 8/14",
-    "96-100 Skierniewice",
-    "NIP: 8361881457",
-    "REGON: 52381424900000",
-    "hello@writeback.pl",
-  ];
+  // Seller — explicit lines, no auto-wrap to avoid "Soft ware" artifacts
+  const selRows = [
+    ["Maciej Perzankowski", true],
+    ["Software Solutions", true],
+    ["ul. 19-go Lutego 8/14", false],
+    ["96-100 Skierniewice", false],
+    ["NIP: 8361881457", false],
+    ["REGON: 52381424900000", false],
+    ["hello@writeback.pl", false],
+  ] as [string, boolean][];
+  selRows.forEach(([text, bold], i) => iT(text, 50, 696 - i * 14, 8.5, bold, [0.1, 0.1, 0.14]));
 
-  // Parse buyer address: split on comma if present
-  const buyerAddrRaw = m.adres ?? "";
-  const buyerAddrParts = buyerAddrRaw.includes(",")
-    ? buyerAddrRaw.split(",").map((s: string) => s.trim())
-    : [buyerAddrRaw];
-  const buyerLines = [m.imie_nazwisko, ...buyerAddrParts];
+  // Buyer — split address on commas
+  const buyerName = m.imie_nazwisko ?? "";
+  const buyerAddr = (m.adres ?? "").split(",").map((s: string) => s.trim()).filter(Boolean);
+  const buyerRows: [string, boolean][] = [[buyerName, true], ...buyerAddr.map(s => [s, false] as [string, boolean])];
+  buyerRows.forEach(([text, bold], i) => iT(text, 300, 696 - i * 14, 8.5, bold, [0.1, 0.1, 0.14]));
 
-  const colFontSize = 9;
-  const sellerMaxLines = Math.max(sellerLines.length, buyerLines.length);
-  const startY = iy;
+  const partyEndY = 696 - Math.max(selRows.length, buyerRows.length) * 14 - 14;
+  iLine(partyEndY);
 
-  for (const line of sellerLines) {
-    const wrapped = iWrap(line, colW, colFontSize, invFont);
-    for (const wl of wrapped) {
-      iDrawText(wl, { y: iy, size: colFontSize, color: iC_BLACK });
-      iy -= 13;
-    }
-  }
+  // ── ITEMS TABLE ──
+  const TY = partyEndY - 16;
 
-  iy = startY;
-  for (const line of buyerLines) {
-    const wrapped = iWrap(line, colW, colFontSize, invFont);
-    for (const wl of wrapped) {
-      iDrawText(wl, { x: col2X, y: iy, size: colFontSize, color: iC_BLACK });
-      iy -= 13;
-    }
-  }
+  // Column x positions (right edge for numeric cols)
+  const TC = { name: 50, jm: 300, qty: 340, netto: 400, vpct: 440, vamt: 490, brutto: 545 };
 
-  iy = startY - sellerMaxLines * 13 - 10;
-  iy = Math.min(iy, IH - 68 - 22 - 22 - 18 - 14 - sellerMaxLines * 13 - 10);
+  // Header row
+  IP.drawRectangle({ x: 46, y: TY - 3, width: 503, height: 18, color: rgb(0.93, 0.92, 1.0) });
+  iT("Nazwa usługi / opis", TC.name + 4, TY + 2, 7.5, true, [0.31, 0.27, 0.9]);
+  iT("J.m.", TC.jm, TY + 2, 7.5, true, [0.31, 0.27, 0.9]);
+  iT("Ilość", TC.jm, TY + 2, 7.5, true, [0.31, 0.27, 0.9], true, TC.qty);
+  iT("Cena netto", TC.qty, TY + 2, 7.5, true, [0.31, 0.27, 0.9], true, TC.netto);
+  iT("VAT", TC.netto, TY + 2, 7.5, true, [0.31, 0.27, 0.9], true, TC.vpct);
+  iT("Kwota VAT", TC.vpct, TY + 2, 7.5, true, [0.31, 0.27, 0.9], true, TC.vamt);
+  iT("Do zapłaty", TC.vamt, TY + 2, 7.5, true, [0.31, 0.27, 0.9], true, TC.brutto);
 
-  // Recalculate iy based on actual rendering
-  iy = IH - 68 - 22 - 22 - 18 - 14;
-  const maxPartyLines = Math.max(
-    sellerLines.reduce((acc, l) => acc + iWrap(l, colW, colFontSize, invFont).length, 0),
-    buyerLines.reduce((acc, l) => acc + iWrap(l, colW, colFontSize, invFont).length, 0)
-  );
-  iy -= maxPartyLines * 13 + 20;
+  // Item row — two explicit lines to avoid any auto-wrapping
+  const IY = TY - 22;
+  iT("Usługa generowania pisma formalnego", TC.name + 4, IY + 6, 8.5, false, [0.1, 0.1, 0.12]);
+  iT("z podstawami prawnymi — writeback.pl", TC.name + 4, IY - 6, 8, false, [0.45, 0.45, 0.5]);
+  iT("szt.", TC.jm, IY, 8.5);
+  iT("1", TC.jm, IY, 8.5, false, [0.1,0.1,0.12], true, TC.qty);
+  iT(fmtPLN(netAmount), TC.qty, IY, 8.5, false, [0.1,0.1,0.12], true, TC.netto);
+  iT("23%", TC.netto, IY, 8.5, false, [0.1,0.1,0.12], true, TC.vpct);
+  iT(fmtPLN(vatAmount), TC.vpct, IY, 8.5, false, [0.1,0.1,0.12], true, TC.vamt);
+  iT(fmtPLN(grossAmount), TC.vamt, IY, 8.5, true, [0.1,0.1,0.12], true, TC.brutto);
 
-  invPage.drawLine({ start: { x: iMX, y: iy }, end: { x: IW - iMX, y: iy }, thickness: 0.5, color: rgb(0.85, 0.85, 0.88) });
-  iy -= 18;
+  const tableBottomY = IY - 22;
+  iLine(tableBottomY);
 
-  // Items table header
-  const tCols = { name: iMX, qty: 310, unit: 345, netto: 380, vatPct: 430, vatAmt: 470, brutto: 520 };
-  invPage.drawRectangle({ x: iMX, y: iy - 3, width: IW - iMX * 2, height: 18, color: rgb(...iC_INDIGO_LIGHT) });
-  iDrawText("Nazwa usługi", { x: tCols.name + 4, y: iy + 2, size: 7.5, bold: true, color: iC_INDIGO });
-  iDrawText("Ilość", { x: tCols.qty, y: iy + 2, size: 7.5, bold: true, color: iC_INDIGO });
-  iDrawText("J.m.", { x: tCols.unit, y: iy + 2, size: 7.5, bold: true, color: iC_INDIGO });
-  iDrawText("Netto", { x: tCols.netto, y: iy + 2, size: 7.5, bold: true, color: iC_INDIGO });
-  iDrawText("VAT%", { x: tCols.vatPct, y: iy + 2, size: 7.5, bold: true, color: iC_INDIGO });
-  iDrawText("VAT", { x: tCols.vatAmt, y: iy + 2, size: 7.5, bold: true, color: iC_INDIGO });
-  iDrawText("Brutto", { x: tCols.brutto, y: iy + 2, size: 7.5, bold: true, color: iC_INDIGO });
-  iy -= 20;
+  // ── SUMMARY ──
+  const SX = 360, SY = tableBottomY - 18;
 
-  // Item row
-  const serviceDesc = "Usługa generowania pisma formalnego z podstawami prawnymi";
-  const descLines = iWrap(serviceDesc, tCols.qty - tCols.name - 8, 8.5, invFont);
-  const rowH = Math.max(descLines.length * 13 + 10, 22);
-  const rowY = iy - rowH / 2 + 5;
-  for (let di = 0; di < descLines.length; di++) {
-    iDrawText(descLines[di], { x: tCols.name + 4, y: iy - di * 13, size: 8.5, color: iC_BLACK });
-  }
-  iDrawText("1", { x: tCols.qty + 8, y: iy, size: 8.5, color: iC_BLACK });
-  iDrawText("szt.", { x: tCols.unit, y: iy, size: 8.5, color: iC_BLACK });
-  iDrawText(`${netAmount.toFixed(2)} zł`, { x: tCols.netto, y: iy, size: 8.5, color: iC_BLACK });
-  iDrawText("23%", { x: tCols.vatPct + 4, y: iy, size: 8.5, color: iC_BLACK });
-  iDrawText(`${vatAmount.toFixed(2)} zł`, { x: tCols.vatAmt, y: iy, size: 8.5, color: iC_BLACK });
-  iDrawText(`${grossAmount.toFixed(2)} zł`, { x: tCols.brutto, y: iy, size: 8.5, bold: true, color: iC_BLACK });
-  iy -= rowH + 4;
+  iT("Razem netto:", SX, SY, 8.5, false, [0.45, 0.45, 0.5]);
+  iT(fmtPLN(netAmount), SX, SY, 8.5, false, [0.1,0.1,0.12], true, 545);
 
-  invPage.drawLine({ start: { x: iMX, y: iy }, end: { x: IW - iMX, y: iy }, thickness: 0.5, color: rgb(0.85, 0.85, 0.88) });
-  iy -= 20;
+  iT("VAT (23%):", SX, SY - 16, 8.5, false, [0.45, 0.45, 0.5]);
+  iT(fmtPLN(vatAmount), SX, SY - 16, 8.5, false, [0.1,0.1,0.12], true, 545);
 
-  // Summary block (right-aligned)
-  const summaryX = 380;
-  const summaryW = IW - iMX - summaryX;
+  iLine(SY - 28, SX, 545);
 
-  function iSummaryRow(label: string, value: string, isTotal = false) {
-    if (isTotal) {
-      invPage.drawRectangle({ x: summaryX - 8, y: iy - 4, width: summaryW + 8, height: 18, color: rgb(0.18, 0.16, 0.55) });
-    }
-    const labelColor: [number, number, number] = isTotal ? [0.76, 0.74, 1.0] : iC_GRAY;
-    const valueColor: [number, number, number] = isTotal ? [1, 1, 1] : iC_BLACK;
-    iDrawText(label, { x: summaryX, y: iy + 1, size: isTotal ? 9 : 8.5, bold: isTotal, color: labelColor });
-    const vW = (isTotal ? invBoldFont : invFont).widthOfTextAtSize(value, isTotal ? 9 : 8.5);
-    iDrawText(value, { x: IW - iMX - vW, y: iy + 1, size: isTotal ? 9 : 8.5, bold: isTotal, color: valueColor });
-    iy -= 20;
-  }
+  IP.drawRectangle({ x: SX - 6, y: SY - 50, width: 551 - SX, height: 20, color: rgb(0.18, 0.16, 0.55) });
+  iT("DO ZAPŁATY:", SX, SY - 44, 9.5, true, [0.76, 0.74, 1.0]);
+  iT(fmtPLN(grossAmount), SX, SY - 44, 9.5, true, [1, 1, 1], true, 545);
 
-  iSummaryRow("Razem netto:", `${netAmount.toFixed(2)} zł`);
-  iSummaryRow("VAT (23%):", `${vatAmount.toFixed(2)} zł`);
-  iSummaryRow("DO ZAPŁATY:", `${grossAmount.toFixed(2)} zł`, true);
+  // ── PAYMENT BOX ──
+  const PY = SY - 82;
+  IP.drawRectangle({ x: 46, y: PY - 6, width: 300, height: 50, color: rgb(0.97, 0.97, 0.98) });
+  iT("Forma płatności:", 56, PY + 28, 8, true, [0.15, 0.15, 0.2]);
+  iT("Karta płatnicza / BLIK (Stripe)", 155, PY + 28, 8, false, [0.35, 0.35, 0.4]);
+  iT("Status:", 56, PY + 14, 8, true, [0.15, 0.15, 0.2]);
+  iT("OPŁACONO", 155, PY + 14, 8, true, [0.06, 0.52, 0.32]);
+  iT(`Nr ref: ${session.id.slice(0, 38)}`, 56, PY, 6.5, false, [0.55, 0.55, 0.6]);
 
-  iy -= 10;
-
-  // Payment info
-  invPage.drawRectangle({ x: iMX, y: iy - 4, width: IW - iMX * 2, height: 42, color: rgb(...iC_GRAY_LIGHT) });
-  iDrawText("Forma płatności:", { x: iMX + 10, y: iy + 8, size: 8, bold: true, color: iC_BLACK });
-  iDrawText("Płatność elektroniczna (Stripe)", { x: iMX + 110, y: iy + 8, size: 8, color: iC_GRAY });
-  iDrawText("Status:", { x: iMX + 10, y: iy - 6, size: 8, bold: true, color: iC_BLACK });
-  iDrawText("OPŁACONO", { x: iMX + 110, y: iy - 6, size: 8, bold: true, color: [0.06, 0.6, 0.35] });
-  iDrawText(`Ref: ${session.id}`, { x: iMX + 10, y: iy - 18, size: 7, color: iC_GRAY });
-  iy -= 60;
-
-  // Footer
-  invPage.drawLine({ start: { x: iMX, y: 42 }, end: { x: IW - iMX, y: 42 }, thickness: 0.4, color: rgb(0.85, 0.85, 0.88) });
-  invPage.drawText("Faktura wystawiona elektronicznie — nie wymaga podpisu. Writeback.pl · Maciej Perzankowski Software Solutions · NIP: 8361881457", {
-    x: iMX, y: 30, size: 6.5, font: invFont, color: rgb(...iC_GRAY),
-  });
+  // ── FOOTER ──
+  iLine(40);
+  iT("Faktura wystawiona elektronicznie — nie wymaga podpisu.", 50, 28, 7, false, [0.5, 0.5, 0.55]);
+  iT("Maciej Perzankowski Software Solutions · NIP: 8361881457 · REGON: 52381424900000 · hello@writeback.pl", 50, 16, 7, false, [0.5, 0.5, 0.55]);
 
   const invoicePdfBytes = await invDoc.save();
 
