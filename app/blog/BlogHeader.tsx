@@ -2,12 +2,24 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { POSTS } from "./posts";
 
 export function BlogHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const lang = searchParams.get("lang") ?? "pl";
+
+  function toggleLang() {
+    const next = lang === "pl" ? "en" : "pl";
+    const params = new URLSearchParams(searchParams.toString());
+    if (next === "pl") params.delete("lang");
+    else params.set("lang", next);
+    const qs = params.toString();
+    router.push(qs ? `${pathname}?${qs}` : pathname);
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
@@ -27,8 +39,18 @@ export function BlogHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {/* Lang switch */}
+          <button
+            onClick={toggleLang}
+            className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-gray-500 hover:text-gray-900 border border-gray-200 hover:border-gray-300 px-3 py-1.5 rounded-lg transition-colors"
+            aria-label={lang === "pl" ? "Switch to English" : "Przełącz na polski"}
+          >
+            <span className={lang === "pl" ? "text-indigo-600" : "text-gray-400"}>PL</span>
+            <span className="text-gray-300 mx-0.5">/</span>
+            <span className={lang === "en" ? "text-indigo-600" : "text-gray-400"}>EN</span>
+          </button>
           <Link href="/zamow" className="hidden sm:inline-flex text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors">
-            Napisz pismo — 29 zł
+            {lang === "en" ? "Write letter — 29 PLN" : "Napisz pismo — 29 zł"}
           </Link>
           {/* Hamburger */}
           <button

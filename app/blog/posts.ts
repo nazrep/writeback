@@ -11,6 +11,11 @@ export interface Post {
   readTime: string;
   category: string;
   faq?: FAQ[];
+  titleEn?: string;
+  descriptionEn?: string;
+  categoryEn?: string;
+  readTimeEn?: string;
+  faqEn?: FAQ[];
 }
 
 export const POSTS: Post[] = [
@@ -21,6 +26,10 @@ export const POSTS: Post[] = [
     date: "2026-06-01",
     readTime: "5 min",
     category: "Sklep internetowy",
+    titleEn: "How to File an Effective Complaint to an Online Store (Template 2026)",
+    descriptionEn: "Step-by-step: how to write a complaint to an online store citing Art. 43b of the Consumer Rights Act. The store has 14 days to respond; silence means the complaint is accepted.",
+    categoryEn: "Online Store",
+    readTimeEn: "5 min",
     faq: [
       {
         q: "Czy mogę reklamować towar po roku od zakupu?",
@@ -43,6 +52,28 @@ export const POSTS: Post[] = [
         a: "W pierwszej kolejności możesz wybrać między naprawą a wymianą. Jeśli naprawa lub wymiana okazała się nieskuteczna albo sklep odmówił obu, możesz żądać obniżenia ceny lub pełnego zwrotu pieniędzy (art. 43c i 43d ustawy o prawach konsumenta).",
       },
     ],
+    faqEn: [
+      {
+        q: "Can I complain about a product more than a year after purchase?",
+        a: "Yes. The complaint period is 2 years from the date you received the goods, not one year. Throughout this period it is presumed that the defect existed at the time of purchase (Art. 43c §1 of the Consumer Rights Act).",
+      },
+      {
+        q: "The store says it only accepts manufacturer warranty claims. Is that true?",
+        a: "No. The manufacturer's warranty and rights under the Consumer Rights Act are two separate mechanisms. The store as seller is liable for non-conformity for 2 years under Art. 43b, regardless of the manufacturer's warranty.",
+      },
+      {
+        q: "How many days does the store have to respond to a complaint?",
+        a: "14 calendar days. If the store does not respond within this period, the complaint is deemed accepted by force of law (Art. 7a of the Consumer Rights Act).",
+      },
+      {
+        q: "The store offered a voucher instead of a refund. Do I have to accept it?",
+        a: "No. A voucher is the store's proposal, not your obligation. If you demand a refund under Art. 43d, the store must transfer the funds to your account. You may accept the voucher if you wish, but you do not have to.",
+      },
+      {
+        q: "What can I demand in a complaint: repair, replacement or refund?",
+        a: "You may first choose between repair and replacement. If repair or replacement proved ineffective or the store refused both, you may demand a price reduction or full refund (Art. 43c and 43d of the Consumer Rights Act).",
+      },
+    ],
   },
   {
     slug: "reklamacja-allegro",
@@ -51,6 +82,10 @@ export const POSTS: Post[] = [
     date: "2026-06-02",
     readTime: "6 min",
     category: "Allegro",
+    titleEn: "Complaint on Allegro: What to Do When the Seller Refuses (2026)",
+    descriptionEn: "Did an Allegro seller reject your complaint? Find out your rights as a consumer and how to write a letter that forces a response within 14 days.",
+    categoryEn: "Allegro",
+    readTimeEn: "6 min",
     faq: [
       {
         q: "Czy mogę reklamować towar kupiony od osoby prywatnej na Allegro?",
@@ -81,6 +116,10 @@ export const POSTS: Post[] = [
     date: "2026-06-03",
     readTime: "5 min",
     category: "Bank",
+    titleEn: "Bank Refuses Refund: Your Rights and How to Enforce Them",
+    descriptionEn: "Unauthorised transaction, incorrect charge or refused refund? The bank must return the money by end of next business day (Art. 46 of the Payment Services Act). How to write an effective letter.",
+    categoryEn: "Bank",
+    readTimeEn: "5 min",
     faq: [
       {
         q: "Ile czasu ma bank na zwrot pieniędzy po zgłoszeniu nieautoryzowanej transakcji?",
@@ -111,6 +150,10 @@ export const POSTS: Post[] = [
     date: "2026-06-06",
     readTime: "6 min",
     category: "Wypowiedzenie umowy",
+    titleEn: "How to Cancel a Subscription Contract Without Penalty: Template 2026",
+    descriptionEn: "Operator, gym, streaming platform refusing to cancel or threatening a penalty? You have the right to terminate any open-ended contract. Art. 365(1) CC and Art. 385(3) CC on your side.",
+    categoryEn: "Contract Termination",
+    readTimeEn: "6 min",
     faq: [
       {
         q: "Czy można wypowiedzieć umowę abonamentową bez kary?",
