@@ -29,9 +29,23 @@ export function AudioPlayer({ slug }: { slug: string }) {
     audioRef.current.playbackRate = speed;
   }, [speed]);
 
+  function highlightParagraph(time: number, dur: number) {
+    const container = document.querySelector(".article-content");
+    if (!container || !dur) return;
+    const els = Array.from(container.querySelectorAll("p, h2, h3"));
+    if (!els.length) return;
+    els.forEach(el => el.classList.remove("audio-reading"));
+    const idx = Math.min(Math.floor((time / dur) * els.length), els.length - 1);
+    els[idx].classList.add("audio-reading");
+    els[idx].scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
   function tick() {
     if (!audioRef.current) return;
-    setCurrentTime(audioRef.current.currentTime);
+    const t = audioRef.current.currentTime;
+    const d = audioRef.current.duration;
+    setCurrentTime(t);
+    highlightParagraph(t, d);
     rafRef.current = requestAnimationFrame(tick);
   }
 
@@ -42,17 +56,23 @@ export function AudioPlayer({ slug }: { slug: string }) {
     rafRef.current = requestAnimationFrame(tick);
   }
 
+  function clearHighlight() {
+    document.querySelectorAll(".audio-reading").forEach(el => el.classList.remove("audio-reading"));
+  }
+
   function handlePause() {
     if (!audioRef.current) return;
     audioRef.current.pause();
     setPlaying(false);
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    clearHighlight();
   }
 
   function handleEnded() {
     setPlaying(false);
     setCurrentTime(0);
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    clearHighlight();
   }
 
   function handleSeek(e: React.MouseEvent<HTMLDivElement>) {

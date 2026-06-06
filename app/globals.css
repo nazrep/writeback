@@ -18,6 +18,15 @@ details[open] > div {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+.audio-reading {
+  background-color: #eef2ff;
+  border-radius: 4px;
+  padding-left: 6px;
+  margin-left: -6px;
+  transition: background-color 0.4s ease;
+  outline: none;
+}
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
