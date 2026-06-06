@@ -135,6 +135,28 @@ const DOC_TYPES = [
     summaryOrg: "Firma",
     summarySubject: "Przedmiot skargi",
   },
+  {
+    id: "kurier",
+    label: "Reklamacja do firmy kurierskiej",
+    desc: "Zagubiona paczka, uszkodzenie przesyłki, opóźnienie dostawy",
+    subjectLabel: "Opis przesyłki",
+    subjectPlaceholder: "np. Paczka z laptopem, wymiary 40x30x10 cm",
+    kwotaLabel: "Wartość przesyłki (zł)",
+    kwotaPlaceholder: "1500",
+    dataLabel: "Data nadania przesyłki",
+    refLabel: "Numer listu przewozowego / tracking",
+    refPlaceholder: "np. 1Z999AA10123456784",
+    orgLabel: "Nazwa firmy kurierskiej",
+    orgPlaceholder: "np. InPost Sp. z o.o., DPD Polska, DHL Express",
+    orgAdresLabel: "Adres firmy kurierskiej",
+    orgAdresHint: "Opcjonalnie — znajdziesz na stronie kuriera",
+    opisPlaceholder: "Opisz co się stało — czy paczka zaginęła, była uszkodzona, opóźniona? Jaki był stan przy odbiorze?",
+    podjeteLabel: "Kontakt z kurierem",
+    podjetePlaceholder: "np. Zgłosiłem telefonicznie, powiedzieli że sprawa w trakcie wyjaśniania...",
+    zadaniePlaceholder: "np. Odszkodowania za utratę przesyłki w wysokości 1500 zł",
+    summaryOrg: "Firma kurierska",
+    summarySubject: "Przesyłka",
+  },
 ] as const;
 
 type DocTypeId = typeof DOC_TYPES[number]["id"];
@@ -478,6 +500,7 @@ export function FormWizard({ lang }: { lang?: string }) {
                 zus: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M3 7l9-4 9 4M4 7v14M20 7v14M9 11h2v4H9zM13 11h2v4h-2z"/></svg>,
                 umowa: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>,
                 uokik: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+                kurier: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>,
               };
               return (
                 <button

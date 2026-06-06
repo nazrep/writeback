@@ -112,6 +112,17 @@ Wskaż konkretny sąd i podstawę zaskarżenia.`,
 Przepisy obowiązkowe: art. 746 KC (wypowiedzenie umowy zlecenia); art. 365(1) KC (umowy na czas nieokreślony); art. 3853 KC (klauzule abuzywne); ustawa o prawach konsumenta art. 27 (prawo odstąpienia 14 dni); ustawa o świadczeniu usług drogą elektroniczną art. 8 (wypowiedzenie umowy o świadczenie usług).
 Wskazuj konkretną datę skuteczności wypowiedzenia.`,
 
+    kurier: `Jesteś ekspertem prawa przewozowego i pocztowego w Polsce. Piszesz profesjonalne reklamacje do firm kurierskich i operatorów pocztowych.
+Przepisy obowiązkowe:
+- Art. 65 ust. 1 ustawy z dnia 15 listopada 1984 r. Prawo przewozowe (Dz.U. 1984 nr 53 poz. 272): przewoźnik odpowiada za utratę, ubytek lub uszkodzenie przesyłki od chwili przyjęcia do czasu wydania odbiorcy.
+- Art. 65 ust. 2 Prawa przewozowego: odpowiedzialność za opóźnienie w dostarczeniu.
+- Art. 75 ust. 1 Prawa przewozowego: obowiązek wniesienia reklamacji do przewoźnika przed dochodzeniem roszczeń na drodze sądowej.
+- Art. 77 ust. 1 Prawa przewozowego: 1-rok termin przedawnienia roszczeń z tytułu utraty/uszkodzenia; 2 miesiące przy opóźnieniu.
+- Art. 78 Prawa przewozowego: odszkodowanie do wartości rzeczywistej przesyłki przy utracie/uszkodzeniu.
+- Art. 92–96 ustawy z dnia 23 listopada 2012 r. Prawo pocztowe (dla operatorów pocztowych jak InPost, Poczta Polska): terminy rozpatrzenia reklamacji 30 dni.
+Żądanie odszkodowania powinno być równe wartości rzeczywistej utraconej lub uszkodzonej przesyłki.
+Przy uszkodzeniu: nadawca lub odbiorca powinien sporządzić protokół szkody przy przekazaniu paczki — uwzględnij to w piśmie.`,
+
     uokik: `Jesteś ekspertem prawa ochrony konsumentów w Polsce. Piszesz skargi do UOKiK i Rzecznika Praw Konsumentów.
 Przepisy obowiązkowe: ustawa z dnia 16.02.2007 r. o ochronie konkurencji i konsumentów art. 23a–23d (praktyki naruszające zbiorowe interesy konsumentów); art. 7a UPK (obowiązek odpowiedzi w 14 dniach); Dyrektywa Omnibus 2019/2161; art. 3853 KC (klauzule abuzywne).
 Skarga powinna żądać: wszczęcia postępowania, nałożenia kary, nakazania zaniechania praktyki.`,
@@ -147,6 +158,14 @@ NADAWCA: ${m.imie_nazwisko} | ${m.adres} | ${m.email}
 FIRMA: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
 UMOWA: ${m.produkt}${m.cena ? " | opłata: " + m.cena + " zł/mies." : ""}${m.data_zakupu ? " | data zawarcia: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr umowy: " + m.numer_zamowienia : ""}
 OKOLICZNOŚCI: ${m.opis}${m.podjete_kroki ? "\nKONTAKT Z FIRMĄ: " + m.podjete_kroki : ""}
+ŻĄDANIE: ${m.zadanie}
+DATA PISMA: ${today}`,
+
+    kurier: `Napisz reklamację do firmy kurierskiej / operatora pocztowego.
+NADAWCA: ${m.imie_nazwisko} | ${m.adres} | ${m.email}
+FIRMA KURIERSKA: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
+PRZESYŁKA: ${m.produkt}${m.cena ? " | wartość: " + m.cena + " zł" : ""}${m.data_zakupu ? " | data nadania: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr listu przewozowego: " + m.numer_zamowienia : ""}
+OPIS ZDARZENIA: ${m.opis}${m.podjete_kroki ? "\nKONTAKT Z KURIEREM: " + m.podjete_kroki : ""}
 ŻĄDANIE: ${m.zadanie}
 DATA PISMA: ${today}`,
 
@@ -264,6 +283,7 @@ DATA PISMA: ${today}`,
     zus: "ODWOŁANIE OD DECYZJI",
     umowa: "WYPOWIEDZENIE UMOWY",
     uokik: "SKARGA DO UOKiK / RZECZNIKA",
+    kurier: "REKLAMACJA DO FIRMY KURIERSKIEJ",
   };
   let docLabel = LABELS[docType] ?? "PISMO REKLAMACYJNE";
   if (docType === "bank" && !/(bank|ubezpiecz|pkobp|mbank|alior|ing\b|bnp|pzu|aviva|warta|axa|generali|ergo|hestia|skandia|prudential|aegon|metlife|credit\s*agricole|santander|millennium|getin|nest\s*bank|toyota\s*bank|eurobank|plus\s*bank|pocztowy|bph|raiffeisen)/i.test(m.nazwa_sklepu)) {
