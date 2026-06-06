@@ -27,10 +27,18 @@ export const POSTS: Post[] = [
   {
     slug: "bank-odmawia-zwrotu",
     title: "Bank odmawia zwrotu pieniędzy — Twoje prawa i jak je egzekwować",
-    description: "Nieautoryzowana transakcja, błędny przelew lub naliczona opłata? Bank ma obowiązek zwrotu z art. 45 ustawy o usługach płatniczych. Jak napisać skuteczne pismo do banku.",
+    description: "Nieautoryzowana transakcja, błędny przelew lub naliczona opłata? Bank ma obowiązek zwrotu do końca następnego dnia roboczego (art. 46 ustawy o usługach płatniczych). Jak napisać skuteczne pismo.",
     date: "2026-06-03",
     readTime: "5 min",
     category: "Bank",
+  },
+  {
+    slug: "wypowiedzenie-umowy-abonamentowej",
+    title: "Jak wypowiedzieć umowę abonamentową bez kary — wzór pisma 2026",
+    description: "Operator, siłownia, platforma streamingowa nie chce rozwiązać umowy lub żąda kary? Masz prawo wypowiedzieć każdą umowę na czas nieokreślony. Art. 365(1) KC i art. 3853 KC po Twojej stronie.",
+    date: "2026-06-06",
+    readTime: "6 min",
+    category: "Wypowiedzenie umowy",
   },
 ];
 

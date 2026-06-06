@@ -216,7 +216,7 @@ export default function HomePage() {
       </div>
 
       {/* Jak działa */}
-      <section className="py-24 px-6 bg-white">
+      <section id="jak-to-dziala" className="py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Jak to działa</p>
@@ -437,7 +437,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 px-6 bg-white">
+      <section id="faq" className="py-24 px-6 bg-white">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">FAQ</p>
