@@ -5,8 +5,8 @@ export default function Content() {
     <>
       <p>Bank twierdzi że transakcja była autoryzowana i nie może nic zrobić? Masz konkretne przepisy po swojej stronie. Ustawa o usługach płatniczych nakłada na bank obowiązek zwrotu — nie jako gest dobrej woli, ale jako wymóg prawny.</p>
 
-      <h2>Podstawa prawna — art. 45 ustawy o usługach płatniczych</h2>
-      <p><strong>Art. 45 ustawy z dnia 19 sierpnia 2011 r. o usługach płatniczych</strong> stanowi że w przypadku nieautoryzowanej transakcji bank jest zobowiązany niezwłocznie — nie później niż do końca następnego dnia roboczego — zwrócić kwotę nieautoryzowanej transakcji.</p>
+      <h2>Podstawa prawna — art. 46 ustawy o usługach płatniczych</h2>
+      <p><strong>Art. 46 ustawy z dnia 19 sierpnia 2011 r. o usługach płatniczych</strong> stanowi że w przypadku nieautoryzowanej transakcji bank jest zobowiązany niezwłocznie — nie później niż do końca następnego dnia roboczego po dniu zgłoszenia — zwrócić kwotę nieautoryzowanej transakcji.</p>
       <p>To nie jest prośba. To obowiązek ustawowy.</p>
 
       <h2>Kiedy transakcja jest "nieautoryzowana"?</h2>
@@ -20,7 +20,7 @@ export default function Content() {
       </ul>
 
       <h2>Co z argumentem "logowanie było prawidłowe"?</h2>
-      <p>Banki często odmawiają zwrotu twierdząc że "uwierzytelnienie przebiegło prawidłowo". To niewystarczające. Art. 45 ust. 2 stanowi że samo uwierzytelnienie nie jest dowodem na to że transakcja była autoryzowana przez użytkownika.</p>
+      <p>Banki często odmawiają zwrotu twierdząc że "uwierzytelnienie przebiegło prawidłowo". To niewystarczające. Art. 45 ust. 2 ustawy o usługach płatniczych stanowi wprost że samo wykazanie zarejestrowanego użycia instrumentu płatniczego nie jest wystarczające do udowodnienia że transakcja była autoryzowana przez użytkownika.</p>
       <p>Ciężar dowodu spoczywa na banku — to bank musi udowodnić że transakcja była autoryzowana lub że działałeś umyślnie albo przez rażące niedbalstwo. Sam fakt że ktoś znał Twój PIN lub hasło nie przesądza sprawy.</p>
 
       <h2>Kiedy bank może odmówić?</h2>
@@ -38,7 +38,7 @@ export default function Content() {
         <li>Dane rachunku i Twoje dane osobowe</li>
         <li>Opis transakcji: data, kwota, odbiorca</li>
         <li>Oświadczenie że transakcji nie autoryzowałeś</li>
-        <li><strong>Powołanie na art. 45 ustawy o usługach płatniczych</strong></li>
+        <li><strong>Powołanie na art. 46 ust. 1 (obowiązek zwrotu D+1) i art. 45 ust. 2 (ciężar dowodu) ustawy o usługach płatniczych</strong></li>
         <li>Żądanie zwrotu w terminie wskazanym w ustawie</li>
         <li>Informację że w razie odmowy złożysz skargę do Rzecznika Finansowego</li>
       </ul>

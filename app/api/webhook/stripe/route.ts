@@ -6,6 +6,7 @@ import fontkit from "@pdf-lib/fontkit";
 import { Resend } from "resend";
 import fs from "fs";
 import path from "path";
+import { fetchPrzepisy, formatPrzepisy } from "@/app/lib/przepisy";
 
 const getStripe = () => new Stripe(process.env.STRIPE_SECRET_KEY!);
 const processedSessions = new Set<string>();
@@ -153,7 +154,10 @@ HISTORIA: ${m.podjete_kroki || "Brak odpowiedzi na reklamację"}
 DATA PISMA: ${today}`,
   };
 
-  const systemPrompt = (SYSTEMS[docType] ?? SYSTEMS.sklep) + "\n\n" + STRUCTURE_RULES;
+  const przepisy = await fetchPrzepisy(docType);
+  const przepisyCtx = formatPrzepisy(przepisy);
+
+  const systemPrompt = (SYSTEMS[docType] ?? SYSTEMS.sklep) + przepisyCtx + "\n\n" + STRUCTURE_RULES;
   const imageCtx = m.image_context ? `\nDODATKOWY KONTEKST ZE ZDJĘCIA DOKUMENTU: ${m.image_context}` : "";
   const userPrompt = (PROMPTS[docType] ?? PROMPTS.sklep) + imageCtx;
 
