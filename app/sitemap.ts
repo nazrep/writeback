@@ -11,6 +11,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const landingPages = [
+    "/wzor-reklamacji",
+    "/reklamacja-allegro",
+    "/jak-napisac-reklamacje",
+  ].map(path => ({
+    url: `${BASE}${path}`,
+    lastModified: new Date("2026-06-01"),
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
+
   return [
     {
       url: BASE,
@@ -30,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    ...landingPages,
     ...blogPosts,
     {
       url: `${BASE}/regulamin`,

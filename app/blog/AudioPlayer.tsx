@@ -60,7 +60,7 @@ function formatTime(s: number) {
   return `${m}:${sec.toString().padStart(2, "0")}`;
 }
 
-export function AudioPlayer({ slug }: { slug: string }) {
+export function AudioPlayer({ slug, isEn }: { slug: string; isEn?: boolean }) {
   const [exists, setExists] = useState<boolean | null>(null);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -158,7 +158,7 @@ export function AudioPlayer({ slug }: { slug: string }) {
     audioRef.current.currentTime = Math.max(0, Math.min(duration, audioRef.current.currentTime + seconds));
   }
 
-  if (exists === false || exists === null) return null;
+  if (isEn || exists === false || exists === null) return null;
 
   const progress = duration ? (currentTime / duration) * 100 : 0;
 
@@ -205,10 +205,6 @@ export function AudioPlayer({ slug }: { slug: string }) {
           <div
             className="absolute left-0 top-0 h-full bg-indigo-500 rounded-full transition-none"
             style={{ width: `${progress}%` }}
-          />
-          <div
-            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-indigo-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-sm"
-            style={{ left: `calc(${progress}% - 6px)` }}
           />
         </div>
       </div>

@@ -140,7 +140,7 @@ export default async function BlogPostPage({
           </div>
         </header>
 
-        <AudioPlayer slug={slug} />
+        <AudioPlayer slug={slug} isEn={isEn} />
 
         {/* Article content */}
         <div className="article-content mt-8
