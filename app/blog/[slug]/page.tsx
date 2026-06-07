@@ -144,12 +144,12 @@ export default async function BlogPostPage({
 
         {/* Article content */}
         <div className="article-content mt-8
-          [&_p]:text-gray-700 [&_p]:text-[15px] [&_p]:leading-relaxed [&_p]:mb-4
-          [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:leading-snug [&_h2]:pt-2 [&_h2]:border-t [&_h2]:border-gray-100
-          [&_h3]:text-base [&_h3]:font-bold [&_h3]:text-gray-900 [&_h3]:mt-6 [&_h3]:mb-2
-          [&_ul]:mb-4 [&_ul]:space-y-2 [&_ul>li]:text-[15px] [&_ul>li]:text-gray-700 [&_ul>li]:leading-relaxed [&_ul>li]:pl-4 [&_ul>li]:relative [&_ul>li]:before:content-['–'] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:text-indigo-400
-          [&_ol]:mb-4 [&_ol]:space-y-2 [&_ol]:list-decimal [&_ol]:list-inside [&_ol>li]:text-[15px] [&_ol>li]:text-gray-700 [&_ol>li]:leading-relaxed
-          [&_strong]:font-semibold [&_strong]:text-gray-900
+          [&_p]:text-gray-700 [&_p]:text-[16px] [&_p]:leading-[1.8] [&_p]:mb-5
+          [&_h2]:text-[20px] [&_h2]:font-bold [&_h2]:text-gray-900 [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:leading-snug [&_h2]:pt-6 [&_h2]:border-t [&_h2]:border-gray-100
+          [&_h3]:text-[17px] [&_h3]:font-bold [&_h3]:text-gray-800 [&_h3]:mt-7 [&_h3]:mb-2.5
+          [&_ul]:mb-5 [&_ul]:space-y-2.5 [&_ul>li]:text-[16px] [&_ul>li]:text-gray-700 [&_ul>li]:leading-[1.7] [&_ul>li]:pl-5 [&_ul>li]:relative [&_ul>li]:before:content-['–'] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:text-indigo-500 [&_ul>li]:before:font-bold
+          [&_ol]:mb-5 [&_ol]:space-y-2.5 [&_ol]:list-decimal [&_ol]:list-inside [&_ol>li]:text-[16px] [&_ol>li]:text-gray-700 [&_ol>li]:leading-[1.7]
+          [&_strong]:font-bold [&_strong]:text-gray-950
           [&_em]:italic [&_em]:text-gray-600
         ">
           <Content />

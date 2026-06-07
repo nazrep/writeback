@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { POSTS } from "./posts";
 
 export function BlogHeader() {
   const [open, setOpen] = useState(false);
@@ -23,35 +22,43 @@ export function BlogHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-      <div className="max-w-2xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
+      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">W</div>
-          <span className="text-sm font-semibold text-gray-900">writeback.pl</span>
+        <Link href="/" className="flex items-center gap-2.5 shrink-0">
+          <span className="w-8 h-8 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-sm">W</span>
+          <span className="font-bold text-lg tracking-tight text-gray-900">writeback<span className="text-indigo-600">.pl</span></span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden sm:flex items-center gap-5 text-sm text-gray-500">
-          <Link href="/blog" className={`hover:text-gray-900 transition-colors font-medium ${pathname === "/blog" ? "text-indigo-600" : ""}`}>
+        <nav className="hidden sm:flex items-center gap-7 text-sm">
+          <Link
+            href="/blog"
+            className={`font-medium transition-colors ${pathname === "/blog" ? "text-indigo-600" : "text-gray-500 hover:text-gray-900"}`}
+          >
             Poradniki
           </Link>
-          <Link href="/#faq" className="hover:text-gray-900 transition-colors">FAQ</Link>
+          <Link href="/#faq" className="text-gray-500 hover:text-gray-900 transition-colors font-medium">FAQ</Link>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {/* Lang switch */}
           <button
             onClick={toggleLang}
-            className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-gray-500 hover:text-gray-900 border border-gray-200 hover:border-gray-300 px-3 py-1.5 rounded-lg transition-colors"
+            className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold border border-gray-200 hover:border-gray-300 px-3 py-1.5 rounded-lg transition-colors"
             aria-label={lang === "pl" ? "Switch to English" : "Przełącz na polski"}
           >
             <span className={lang === "pl" ? "text-indigo-600" : "text-gray-400"}>PL</span>
             <span className="text-gray-300 mx-0.5">/</span>
             <span className={lang === "en" ? "text-indigo-600" : "text-gray-400"}>EN</span>
           </button>
-          <Link href="/zamow" className="hidden sm:inline-flex text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors">
+
+          <Link
+            href="/zamow"
+            className="hidden sm:inline-flex bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md active:scale-95"
+          >
             {lang === "en" ? "Write letter — 29 PLN" : "Napisz pismo — 29 zł"}
           </Link>
+
           {/* Hamburger */}
           <button
             onClick={() => setOpen(o => !o)}
@@ -70,32 +77,30 @@ export function BlogHeader() {
       {/* Mobile menu */}
       {open && (
         <div className="sm:hidden border-t border-gray-100 bg-white px-6 pb-4 pt-2 space-y-1">
-          <Link
-            href="/blog"
-            onClick={() => setOpen(false)}
-            className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${pathname === "/blog" ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50"}`}
-          >
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-            Wszystkie poradniki
+          <Link href="/blog" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-gray-700 hover:bg-gray-50 transition-colors font-medium">
+            Poradniki
           </Link>
-          {POSTS.map(p => (
-            <Link
-              key={p.slug}
-              href={`/blog/${p.slug}`}
-              onClick={() => setOpen(false)}
-              className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm transition-colors ${pathname === `/blog/${p.slug}` ? "bg-indigo-50 text-indigo-700 font-medium" : "text-gray-600 hover:bg-gray-50"}`}
+          <Link href="/#faq" onClick={() => setOpen(false)} className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-gray-700 hover:bg-gray-50 transition-colors font-medium">
+            FAQ
+          </Link>
+          <div className="flex items-center justify-between px-3 py-3">
+            <span className="text-sm text-gray-500 font-medium">Język</span>
+            <button
+              onClick={() => { toggleLang(); setOpen(false); }}
+              className="flex items-center gap-1 text-xs font-semibold border border-gray-200 px-3 py-1.5 rounded-lg"
             >
-              <span className="text-[11px] text-gray-400 font-mono w-5 shrink-0">{p.category.slice(0, 2)}</span>
-              <span className="line-clamp-1">{p.title.split(" — ")[0]}</span>
-            </Link>
-          ))}
-          <div className="pt-2 border-t border-gray-100 mt-2">
+              <span className={lang === "pl" ? "text-indigo-600" : "text-gray-400"}>PL</span>
+              <span className="text-gray-300 mx-0.5">/</span>
+              <span className={lang === "en" ? "text-indigo-600" : "text-gray-400"}>EN</span>
+            </button>
+          </div>
+          <div className="pt-2 border-t border-gray-100">
             <Link
               href="/zamow"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center gap-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3 rounded-xl transition-colors text-sm"
+              className="flex items-center justify-center gap-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-3.5 rounded-xl transition-colors text-sm shadow-sm"
             >
-              Napisz pismo — 29 zł
+              {lang === "en" ? "Write letter — 29 PLN" : "Napisz pismo — 29 zł"}
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
           </div>
