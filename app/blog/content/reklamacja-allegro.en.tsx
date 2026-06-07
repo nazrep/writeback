@@ -62,7 +62,7 @@ export default function ContentEn() {
       <p>For more on bank complaints, read <Link href="/blog/bank-odmawia-zwrotu?lang=en" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">bank refuses refund: your rights</Link>.</p>
 
       <h2>Purchase from a private individual: what are your options</h2>
-      <p>When buying from a private individual, the Consumer Rights Act does not apply. You do however have rights under the Civil Code (Art. 556 et seq.) governing warranty between private persons. The period is one year from delivery, and the seller is liable for defects they concealed or knew about.</p>
+      <p>When buying from a private individual, the Consumer Rights Act does not apply. You do however have rights under the Civil Code (Art. 556 et seq.) governing warranty between private persons. The period is 2 years from delivery (Art. 568 §1 CC), and the seller is liable for defects they concealed or knew about.</p>
       <p>In practice this is harder to enforce than with a business. If the seller misrepresented the condition of the goods and the item turned out to be defective, you have grounds for a claim, but the matter may require court proceedings.</p>
 
       <h2>Summary: Allegro complaint step by step</h2>

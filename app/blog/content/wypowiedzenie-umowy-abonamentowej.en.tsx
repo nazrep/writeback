@@ -52,7 +52,7 @@ export default function ContentEn() {
         <li><strong>Netflix</strong>: cancel in account settings on the website. Access is retained until the end of the paid period. No penalties</li>
         <li><strong>Spotify</strong>: cancel via the website or app. A switch to the free plan takes effect after the current period ends</li>
         <li><strong>Allegro Smart</strong>: cancel in the "My Allegro" panel. For annual subscriptions, the cancellation takes effect at the end of the annual period</li>
-        <li><strong>Services that obstruct cancellation</strong>: if a platform hides the cancel option or requires phone contact only during narrow time windows, this is a practice violating Art. 7b of the Consumer Rights Act. Report it to UOKiK</li>
+        <li><strong>Services that obstruct cancellation</strong>: if a platform hides the cancel option or requires phone contact only during narrow time windows, this is a practice violating Art. 24 of the Act on Competition and Consumer Protection (collective consumer interests). Report it to UOKiK</li>
       </ul>
 
       <h2>What a termination letter must contain</h2>

@@ -14,13 +14,14 @@ export default function Content() {
       </p>
 
       <h2>What you can demand</h2>
-      <p>Under Art. 43c–43d of the Consumer Rights Act you may choose between:</p>
+      <p>Under Art. 43d §1 of the Consumer Rights Act you may demand:</p>
       <ul>
         <li><strong>Repair</strong> — free of charge, within a reasonable time, without undue inconvenience to you</li>
         <li><strong>Replacement</strong> with an identical or equivalent defect-free product</li>
-        <li><strong>Price reduction</strong> — if repair or replacement is impossible or the store refused</li>
-        <li><strong>Refund</strong> — if the defect is material or the store has already repaired it and the defect returned</li>
       </ul>
+      <p>
+        If repair or replacement is impossible, the store refuses, or the defect returned after repair — you have the right to a <strong>price reduction or refund</strong> (withdrawal from the contract) under Art. 43e §1 of the Consumer Rights Act.
+      </p>
 
       <h2>14-day response deadline</h2>
       <p>
@@ -32,7 +33,7 @@ export default function Content() {
         <li>Prepare proof of purchase: receipt, invoice, or order confirmation from your rtveuroagd.pl account</li>
         <li>Describe the defect: date of occurrence, symptoms, whether the appliance was used as instructed</li>
         <li>State your demand clearly: repair, replacement or refund</li>
-        <li>Cite Art. 43b and 43c of the Consumer Rights Act</li>
+        <li>Cite Art. 43b and Art. 43d §1 of the Consumer Rights Act</li>
         <li>Send by email or submit in person at the store, keeping a copy and proof of receipt</li>
       </ul>
       <p>

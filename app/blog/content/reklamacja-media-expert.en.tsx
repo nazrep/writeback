@@ -14,12 +14,14 @@ export default function Content() {
       </p>
 
       <h2>What you can demand</h2>
-      <p>Under Art. 43c of the Consumer Rights Act you may choose:</p>
+      <p>Under Art. 43d §1 of the Consumer Rights Act you may demand:</p>
       <ul>
         <li><strong>Repair</strong> — the equipment must be repaired free of charge and within a reasonable time</li>
         <li><strong>Replacement</strong> with a new, defect-free unit</li>
-        <li><strong>Price reduction</strong> or <strong>refund</strong> — if repair or replacement is impossible, disproportionate, or the store has already repaired it and the defect returned</li>
       </ul>
+      <p>
+        If repair or replacement is impossible, the store refuses, or the defect returned after repair — you have the right to a <strong>price reduction or refund</strong> under Art. 43e §1 of the Consumer Rights Act.
+      </p>
 
       <h2>14-day response deadline — the key time limit</h2>
       <p>
@@ -31,7 +33,7 @@ export default function Content() {
         <li>Gather proof of purchase: receipt, invoice, or order confirmation from your Media Expert account</li>
         <li>Describe the defect: when it appeared, how it manifests, whether the product was used as intended</li>
         <li>State your demand: repair, replacement, or refund</li>
-        <li>Cite Art. 43b and 43c of the Consumer Rights Act</li>
+        <li>Cite Art. 43b and Art. 43d §1 of the Consumer Rights Act</li>
         <li>Send by email or registered post to Media Expert S.A., keeping a copy</li>
       </ul>
 
