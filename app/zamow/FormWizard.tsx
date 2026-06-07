@@ -421,6 +421,12 @@ function Field({ label, required, hint, error, children }: {
 
 export function FormWizard({ lang }: { lang?: string }) {
   const [step, setStep] = useState(0);
+  const [direction, setDirection] = useState<"forward" | "back">("forward");
+
+  function navigate(newStep: number) {
+    setDirection(newStep > step ? "forward" : "back");
+    setStep(newStep);
+  }
   const [docType, setDocType] = useState<DocTypeId | null>(null);
   const [data, setData] = useState<FormData>(EMPTY);
   const [loading, setLoading] = useState(false);
@@ -565,7 +571,7 @@ export function FormWizard({ lang }: { lang?: string }) {
     setImageBase64(null);
     setImagePreview(null);
     setImageExtracted(false);
-    setStep(1);
+    navigate(1);
   }
 
   return (
@@ -621,7 +627,7 @@ export function FormWizard({ lang }: { lang?: string }) {
       {/* Krok 1 — Co się stało */}
       {step === 1 && (
         <div>
-          <button onClick={() => setStep(0)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
+          <button onClick={() => navigate(0)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             Zmień typ pisma
           </button>
@@ -739,11 +745,11 @@ export function FormWizard({ lang }: { lang?: string }) {
             </Field>
           </div>
           <div className="flex gap-3 mt-8">
-            <button onClick={() => setStep(0)} className="px-5 py-3 text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            <button onClick={() => navigate(0)} className="px-5 py-3 text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors">
               ← Wróć
             </button>
             <button
-              onClick={() => { if (validateStep2()) setStep(2); }}
+              onClick={() => { if (validateStep2()) navigate(2); }}
               className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl text-sm font-semibold transition-colors"
             >
               Dalej →
@@ -755,7 +761,7 @@ export function FormWizard({ lang }: { lang?: string }) {
       {/* Krok 2 — Dane */}
       {step === 2 && (
         <div>
-          <button onClick={() => setStep(1)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
+          <button onClick={() => navigate(1)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             Wróć
           </button>
@@ -792,7 +798,7 @@ export function FormWizard({ lang }: { lang?: string }) {
             </div>
           </div>
           <div className="flex gap-3 mt-8">
-            <button onClick={() => setStep(1)} className="px-5 py-3 text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            <button onClick={() => navigate(1)} className="px-5 py-3 text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors">
               ← Wróć
             </button>
             <button
@@ -801,7 +807,7 @@ export function FormWizard({ lang }: { lang?: string }) {
                 if (!validateStep3()) return;
                 setPreviewPoints([]);
                 setPreviewError(false);
-                setStep(3);
+                navigate(3);
                 await fetchPreview();
               }}
               className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white py-3 rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2"
@@ -815,7 +821,7 @@ export function FormWizard({ lang }: { lang?: string }) {
       {/* Krok 3 — Podgląd pisma */}
       {step === 3 && (
         <div>
-          <button onClick={() => setStep(2)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
+          <button onClick={() => navigate(2)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             Wróć
           </button>
@@ -905,7 +911,7 @@ export function FormWizard({ lang }: { lang?: string }) {
           <div className="bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 mb-6">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Twoje dane</span>
-              <button onClick={() => setStep(1)} className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">
+              <button onClick={() => navigate(2)} className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">
                 Popraw →
               </button>
             </div>
@@ -930,11 +936,11 @@ export function FormWizard({ lang }: { lang?: string }) {
           </div>
 
           <div className="flex gap-3">
-            <button onClick={() => setStep(2)} className="px-5 py-3 text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            <button onClick={() => navigate(2)} className="px-5 py-3 text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors">
               ← Popraw dane
             </button>
             <button
-              onClick={() => setStep(4)}
+              onClick={() => navigate(4)}
               disabled={previewLoading}
               className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white py-3 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-indigo-200 active:scale-95"
             >
@@ -948,7 +954,7 @@ export function FormWizard({ lang }: { lang?: string }) {
       {/* Krok 4 — Podsumowanie i płatność */}
       {step === 4 && (
         <div>
-          <button onClick={() => setStep(3)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
+          <button onClick={() => navigate(3)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             Wróć do podglądu
           </button>
@@ -1019,7 +1025,7 @@ export function FormWizard({ lang }: { lang?: string }) {
           <p className="text-xs text-gray-500 text-center mt-3">
             Bezpieczna płatność przez Stripe · BLIK · Karta · Przelewy24
           </p>
-          <button onClick={() => setStep(3)} className="w-full text-center text-sm text-gray-500 hover:text-gray-900 transition-colors mt-4">
+          <button onClick={() => navigate(3)} className="w-full text-center text-sm text-gray-500 hover:text-gray-900 transition-colors mt-4">
             ← Wróć do podglądu
           </button>
         </div>
