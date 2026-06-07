@@ -22,22 +22,22 @@ export const POSTS: Post[] = [
   {
     slug: "reklamacja-odrzucona",
     title: "Reklamacja odrzucona — co zrobić dalej? [Poradnik 2026]",
-    description: "Sklep nie uznał reklamacji? Masz prawo do odwołania. Dowiedz się jak obalić odmowę z powołaniem na art. 43d UPK — domniemanie wady, ekspertyza na koszt sklepu, zwrot po nieskutecznej wymianie.",
+    description: "Sklep nie uznał reklamacji? Masz prawo do odwołania. Dowiedz się jak obalić odmowę z powołaniem na art. 43c ust. 1 UPK — domniemanie wady, ekspertyza na koszt sklepu, zwrot po nieskutecznej wymianie.",
     date: "2026-06-07",
     readTime: "6 min",
     category: "Reklamacja",
     faq: [
       {
         q: "Ile mam czasu na odwołanie od odmowy reklamacji?",
-        a: "Przepisy nie przewidują osobnego terminu na odwołanie — liczy się 2-letni termin odpowiedzialności sprzedawcy od daty dostarczenia towaru (art. 43d UPK). Im szybciej wyślesz odwołanie, tym lepiej — dowody są świeższe i łatwiej udowodnić chronologię zdarzeń.",
+        a: "Przepisy nie przewidują osobnego terminu na odwołanie — liczy się 2-letni termin odpowiedzialności sprzedawcy od daty dostarczenia towaru (art. 43c ust. 1 UPK). Im szybciej wyślesz odwołanie, tym lepiej — dowody są świeższe i łatwiej udowodnić chronologię zdarzeń.",
       },
       {
         q: "Sklep twierdzi że wada wynika z mojego użytkowania. Co robić?",
-        a: "Sklep musi to udowodnić ekspertyzą techniczną na własny koszt — samo stwierdzenie w mailu nie wystarczy. Przez pierwsze 2 lata od dostarczenia towaru obowiązuje domniemanie (art. 43d ust. 2 UPK), że niezgodność istniała już w chwili dostarczenia. To sprzedawca musi obalić to domniemanie, nie Ty musisz dowodzić że towar był wadliwy.",
+        a: "Sklep musi to udowodnić ekspertyzą techniczną na własny koszt — samo stwierdzenie w mailu nie wystarczy. Przez pierwsze 2 lata od dostarczenia towaru obowiązuje domniemanie (art. 43c ust. 1 UPK), że niezgodność istniała już w chwili dostarczenia. To sprzedawca musi obalić to domniemanie, nie Ty musisz dowodzić że towar był wadliwy.",
       },
       {
         q: "Wymienili towar reklamacyjnie, ale po kilku miesiącach ta sama wada wróciła. Co mi przysługuje?",
-        a: "Zgodnie z art. 43d ust. 6 ustawy o prawach konsumenta, gdy naprawa lub wymiana okazała się nieskuteczna, masz prawo żądać obniżenia ceny lub odstąpienia od umowy (zwrotu pieniędzy). Nie musisz zgadzać się na kolejną wymianę.",
+        a: "Zgodnie z art. 43e ust. 1 ustawy o prawach konsumenta, gdy naprawa lub wymiana okazała się nieskuteczna, masz prawo żądać obniżenia ceny lub odstąpienia od umowy (zwrotu pieniędzy). Nie musisz zgadzać się na kolejną wymianę.",
       },
       {
         q: "Czy mogę złożyć skargę do UOKiK na sklep który odrzuca reklamacje?",
@@ -75,11 +75,11 @@ export const POSTS: Post[] = [
       },
       {
         q: "Sklep zaproponował bon zamiast zwrotu pieniędzy. Czy muszę go przyjąć?",
-        a: "Nie. Bon to propozycja sklepu, nie Twój obowiązek. Jeśli żądasz zwrotu pieniędzy na podstawie art. 43d, sklep musi przelać środki na konto. Bon możesz przyjąć, ale nie musisz.",
+        a: "Nie. Bon to propozycja sklepu, nie Twój obowiązek. Jeśli żądasz zwrotu pieniędzy na podstawie art. 43e ust. 1, sklep musi przelać środki na konto. Bon możesz przyjąć, ale nie musisz.",
       },
       {
         q: "Czego mogę żądać w reklamacji: naprawy, wymiany czy zwrotu?",
-        a: "W pierwszej kolejności możesz wybrać między naprawą a wymianą. Jeśli naprawa lub wymiana okazała się nieskuteczna albo sklep odmówił obu, możesz żądać obniżenia ceny lub pełnego zwrotu pieniędzy (art. 43c i 43d ustawy o prawach konsumenta).",
+        a: "W pierwszej kolejności możesz wybrać między naprawą a wymianą (art. 43d ust. 1). Jeśli naprawa lub wymiana okazała się nieskuteczna albo sklep odmówił obu, możesz żądać obniżenia ceny lub pełnego zwrotu pieniędzy (art. 43e ust. 1 ustawy o prawach konsumenta).",
       },
     ],
     faqEn: [
@@ -97,11 +97,11 @@ export const POSTS: Post[] = [
       },
       {
         q: "The store offered a voucher instead of a refund. Do I have to accept it?",
-        a: "No. A voucher is the store's proposal, not your obligation. If you demand a refund under Art. 43d, the store must transfer the funds to your account. You may accept the voucher if you wish, but you do not have to.",
+        a: "No. A voucher is the store's proposal, not your obligation. If you demand a refund under Art. 43e §1, the store must transfer the funds to your account. You may accept the voucher if you wish, but you do not have to.",
       },
       {
         q: "What can I demand in a complaint: repair, replacement or refund?",
-        a: "You may first choose between repair and replacement. If repair or replacement proved ineffective or the store refused both, you may demand a price reduction or full refund (Art. 43c and 43d of the Consumer Rights Act).",
+        a: "You may first choose between repair and replacement (Art. 43d §1). If repair or replacement proved ineffective or the store refused both, you may demand a price reduction or full refund (Art. 43e §1 of the Consumer Rights Act).",
       },
     ],
   },
@@ -246,13 +246,13 @@ export const POSTS: Post[] = [
       { q: "Kupiłem pralkę w RTV Euro AGD rok temu i się zepsuła. Czy mam jeszcze czas na reklamację?", a: "Tak. Masz 2 lata od daty otrzymania towaru. Rok od zakupu to nadal w granicach ustawowego terminu. Złóż reklamację do RTV Euro AGD powołując się na art. 43b ustawy o prawach konsumenta." },
       { q: "RTV Euro AGD żąda ekspertyzy na mój koszt przed przyjęciem reklamacji. Czy to legalne?", a: "Nie. Sklep nie może wymagać od Ciebie pokrycia kosztów ekspertyzy przed rozpatrzeniem reklamacji. Jeśli sklep chce przeprowadzić ekspertyzę, robi to na własny koszt. Ty nie musisz nic płacić z góry." },
       { q: "Czy muszę dostarczyć pralkę do sklepu podczas reklamacji?", a: "Nie. Dla dużego AGD sklep jest zobowiązany zorganizować odbiór wadliwego sprzętu na własny koszt i bez nadmiernych niedogodności dla Ciebie. Nie musisz dowozić pralki ani lodówki do sklepu." },
-      { q: "RTV Euro AGD zaproponowało bon na zakupy zamiast zwrotu. Czy muszę przyjąć?", a: "Nie. Jeśli żądasz zwrotu pieniędzy na podstawie art. 43d UPK, sklep musi przelać środki na konto. Bon to dobrowolna propozycja handlowa." },
+      { q: "RTV Euro AGD zaproponowało bon na zakupy zamiast zwrotu. Czy muszę przyjąć?", a: "Nie. Jeśli żądasz zwrotu pieniędzy na podstawie art. 43e ust. 1 UPK, sklep musi przelać środki na konto. Bon to dobrowolna propozycja handlowa." },
     ],
     faqEn: [
       { q: "I bought a washing machine at RTV Euro AGD a year ago and it broke. Do I still have time to complain?", a: "Yes. You have 2 years from the date you received the goods. One year from purchase is still within the statutory period. File a complaint with RTV Euro AGD citing Art. 43b of the Consumer Rights Act." },
       { q: "RTV Euro AGD demands an expert assessment at my cost before accepting the complaint. Is this legal?", a: "No. The store cannot require you to cover the cost of an assessment before processing a complaint. If the store wants an assessment, it commissions one at its own expense. You do not pay anything upfront." },
       { q: "Do I have to bring the washing machine to the store during the complaint?", a: "No. For large appliances the store must arrange collection of the faulty item at its own cost and without undue inconvenience to you. You do not have to deliver a washing machine or fridge to the store." },
-      { q: "RTV Euro AGD offered a shopping voucher instead of a refund. Do I have to accept it?", a: "No. If you demand a cash refund under Art. 43d CRA, the store must transfer the funds to your account. A voucher is a voluntary commercial offer." },
+      { q: "RTV Euro AGD offered a shopping voucher instead of a refund. Do I have to accept it?", a: "No. If you demand a cash refund under Art. 43e §1 CRA, the store must transfer the funds to your account. A voucher is a voluntary commercial offer." },
     ],
   },
   {
