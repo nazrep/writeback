@@ -26,7 +26,7 @@ export default function Content() {
         <li><strong>Zrób zdjęcia</strong> — opakowanie, taśmy, zawartość, widoczne uszkodzenia. Zdjęcia to podstawowy dowód.</li>
         <li><strong>Sporządź protokół szkody</strong> w obecności kuriera — masz prawo zażądać protokołu zgodnie z art. 74 Prawa przewozowego. Kurier jest zobowiązany go wystawić.</li>
         <li>Jeśli kurier nie chce wystawić protokołu — zaznacz zastrzeżenia własnoręcznie na liście przewozowym i sfotografuj.</li>
-        <li>Jeśli szkodę odkryłeś po odebraniu paczki — masz <strong>7 dni</strong> na zgłoszenie reklamacji (art. 76 ust. 1 Prawa przewozowego).</li>
+        <li>Jeśli szkodę odkryłeś po odebraniu paczki — masz <strong>7 dni</strong> na zgłoszenie reklamacji (art. 76 ust. 4 Prawa przewozowego). Po tym terminie roszczenie wygasa.</li>
       </ul>
 
       <h2>Ile wynosi odszkodowanie od kuriera</h2>

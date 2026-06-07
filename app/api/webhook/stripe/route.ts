@@ -117,7 +117,7 @@ Wskazuj konkretną datę skuteczności wypowiedzenia.`,
 Typ skargi określa pole skarga_subtype — zastosuj właściwe przepisy:
 
 KURIER (skarga_subtype=kurier):
-Jeśli adresat to sklep: art. 43a–43d UPK + art. 7a UPK (sprzedawca odpowiada za dostawę).
+Jeśli adresat to sklep: art. 43a–43e UPK + art. 7a UPK (sprzedawca odpowiada za dostawę; art. 43e ust. 1 = obniżenie ceny lub odstąpienie od umowy gdy naprawa/wymiana nieskuteczna).
 Jeśli adresat to firma kurierska: art. 65 ust. 1–2 Prawa przewozowego (ustawa z 15.11.1984) — odpowiedzialność za utratę/uszkodzenie/opóźnienie; art. 75 ust. 1 PP — obowiązek reklamacji; art. 77 PP — przedawnienie 1 rok; art. 87–92 Prawa pocztowego (ustawa z 23.11.2012) — dla InPost/Poczty Polskiej (art. 87 odpowiedzialność, art. 90 limity odszkodowania, art. 92 termin 30 dni na odpowiedź).
 
 TELECOM (skarga_subtype=telecom):

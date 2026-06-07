@@ -291,7 +291,7 @@ export const POSTS: Post[] = [
     categoryEn: "Courier",
     readTimeEn: "5 min",
     faq: [
-      { q: "Ile mam czasu na zgłoszenie szkody w paczce od kuriera?", a: "Jeśli szkodę stwierdzono przy odbiorze — sporządź protokół od razu z kurierem. Jeśli odkryłeś szkodę po odbiorze — masz 7 dni na zgłoszenie reklamacji (art. 76 ust. 1 Prawa przewozowego). Po tym terminie dochodzenie odszkodowania jest znacznie trudniejsze." },
+      { q: "Ile mam czasu na zgłoszenie szkody w paczce od kuriera?", a: "Jeśli szkodę stwierdzono przy odbiorze — sporządź protokół od razu z kurierem. Jeśli odkryłeś szkodę po odbiorze — masz 7 dni na zgłoszenie reklamacji (art. 76 ust. 4 Prawa przewozowego). Po tym terminie roszczenie wygasa." },
       { q: "Kurier odmówił sporządzenia protokołu szkody. Co zrobić?", a: "Zaznacz własnoręcznie zastrzeżenia na liście przewozowym i sfotografuj. Zrób zdjęcia opakowania i zawartości. Następnie złóż reklamację pisemnie — brak protokołu nie pozbawia Cię prawa do odszkodowania, ale utrudnia postępowanie." },
       { q: "Paczka zaginęła w InPost. Co mi przysługuje?", a: "Odszkodowanie do wysokości zadeklarowanej wartości przesyłki lub do limitu ustawowego. Dla paczek bez deklaracji wartości limit wynika z regulaminu i Prawa pocztowego. Złóż reklamację przez aplikację InPost lub formularz online w ciągu 12 miesięcy od nadania." },
       { q: "Sklep mówi że nie odpowiada za uszkodzenia w transporcie. Czy muszę walczyć z kurierem?", a: "Nie. Jeśli towar dotarł do Ciebie uszkodzony, możesz złożyć reklamację do sklepu (sprzedawca odpowiada za niezgodność towaru z umową) LUB do kuriera. Kwestia rozliczeń między sklepem a kurierem to ich sprawa — nie musisz w tym uczestniczyć." },

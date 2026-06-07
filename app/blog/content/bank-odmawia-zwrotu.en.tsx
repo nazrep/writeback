@@ -69,7 +69,7 @@ export default function ContentEn() {
         <li><strong>Art. 46 of the Payment Services Act</strong>: the bank must refund by end of next business day after the report</li>
         <li>The burden of proof is on the bank (Art. 45 §1). It must prove the transaction was authorised</li>
         <li>"Correct login" and "SMS code arrived" do not release the bank from its obligation to refund</li>
-        <li>For transactions made before reporting card loss, you are liable for up to the equivalent of €50</li>
+        <li>For transactions made before reporting card loss, you are liable for up to €50 (Art. 46 §2 of the Payment Services Act), unless you acted intentionally or with gross negligence</li>
         <li>BLIK fraud: harder, but not hopeless. Report to the police and clearly note this in the complaint</li>
         <li>Most effective appeal route: <strong>Financial Ombudsman</strong> (rf.gov.pl). Banks take its interventions very seriously</li>
       </ul>
