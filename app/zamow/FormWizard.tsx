@@ -451,8 +451,10 @@ export function FormWizard({ lang }: { lang?: string }) {
     : baseType;
 
   const set = (field: keyof FormData) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setData(prev => ({ ...prev, [field]: e.target.value }));
+      setErrors(prev => ({ ...prev, [field]: undefined }));
+    };
 
   function validateStep2() {
     const e: Partial<Record<keyof FormData, string>> = {};
@@ -648,7 +650,7 @@ export function FormWizard({ lang }: { lang?: string }) {
                     <button
                       key={id}
                       type="button"
-                      onClick={() => setData(p => ({ ...p, skarga_subtype: id }))}
+                      onClick={() => { setData(p => ({ ...p, skarga_subtype: id })); setErrors(p => ({ ...p, skarga_subtype: undefined })); }}}
                       className={`flex items-start gap-2.5 px-3.5 py-3 rounded-xl border text-sm font-medium transition-all text-left ${
                         data.skarga_subtype === id
                           ? "border-indigo-500 bg-indigo-50 text-indigo-700"
@@ -728,7 +730,7 @@ export function FormWizard({ lang }: { lang?: string }) {
                 <input className={ic(errors.cena)} placeholder={type.kwotaPlaceholder} type={docType !== "zus" ? "number" : "text"} min="0" value={data.cena} onChange={set("cena")} />
               </Field>
               <Field label={type.dataLabel} required error={errors.data_zakupu}>
-                <DateSelect value={data.data_zakupu} onChange={v => setData(p => ({ ...p, data_zakupu: v }))} error={errors.data_zakupu} />
+                <DateSelect value={data.data_zakupu} onChange={v => { setData(p => ({ ...p, data_zakupu: v })); setErrors(p => ({ ...p, data_zakupu: undefined })); }} error={errors.data_zakupu} />
               </Field>
             </div>
             <Field label={type.refLabel} hint="Opcjonalnie">
