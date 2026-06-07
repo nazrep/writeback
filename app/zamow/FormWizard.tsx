@@ -650,7 +650,7 @@ export function FormWizard({ lang }: { lang?: string }) {
                     <button
                       key={id}
                       type="button"
-                      onClick={() => { setData(p => ({ ...p, skarga_subtype: id })); setErrors(p => ({ ...p, skarga_subtype: undefined })); }}}
+                      onClick={() => { setData(p => ({ ...p, skarga_subtype: id })); setErrors(p => ({ ...p, skarga_subtype: undefined })); }}
                       className={`flex items-start gap-2.5 px-3.5 py-3 rounded-xl border text-sm font-medium transition-all text-left ${
                         data.skarga_subtype === id
                           ? "border-indigo-500 bg-indigo-50 text-indigo-700"
