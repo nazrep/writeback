@@ -104,7 +104,7 @@ export default function Content() {
       <p>Tak, pełne prawa reklamacyjne przysługują niezależnie od ceny. Obniżka ceny nie wyłącza odpowiedzialności sprzedawcy, chyba że niezgodność była wyraźnie wskazana przed zakupem (np. "produkt z wadą estetyczną, sprzedawany ze zniżką 30%").</p>
 
       <h3>Sklep zaproponował bon zamiast zwrotu pieniędzy. Czy muszę go przyjąć?</h3>
-      <p>Nie. Bon to propozycja ze strony sklepu, nie Twój obowiązek. Jeśli żądasz zwrotu pieniędzy na podstawie art. 43d, sklep musi przelać Ci środki. Możesz oczywiście przyjąć bon jeśli Ci to odpowiada, ale nie musisz.</p>
+      <p>Nie. Bon to propozycja ze strony sklepu, nie Twój obowiązek. Jeśli żądasz zwrotu pieniędzy na podstawie art. 43e ust. 1 (odstąpienie od umowy po nieskutecznej naprawie lub wymianie), sklep musi przelać Ci środki. Możesz oczywiście przyjąć bon jeśli Ci to odpowiada, ale nie musisz.</p>
 
       <h3>Co jeśli sklep twierdzi, że musi wysłać towar do producenta na ocenę?</h3>
       <p>Może tak procedować, ale na własny koszt i w rozsądnym terminie. Nie może to trwać nieokreślenie długo. Jeśli po upływie 14 dni od złożenia reklamacji sklep nie ma stanowiska, co do zasady reklamacja jest uznana za zasadną z mocy art. 7a.</p>

@@ -14,14 +14,14 @@ export default function Content() {
       </p>
 
       <h2>Co możesz żądać</h2>
-      <p>Zgodnie z art. 43c ustawy o prawach konsumenta możesz wybrać:</p>
+      <p>Zgodnie z art. 43d ust. 1 ustawy o prawach konsumenta możesz żądać:</p>
       <ul>
         <li><strong>Naprawę</strong> — sprzęt ma być naprawiony bezpłatnie i w rozsądnym czasie</li>
         <li><strong>Wymianę</strong> na nowy, wolny od wad egzemplarz</li>
         <li><strong>Obniżenie ceny</strong> lub <strong>zwrot pieniędzy</strong> — jeśli naprawa lub wymiana jest niemożliwa, nieopłacalna lub sklep już raz naprawiał i wada wróciła</li>
       </ul>
       <p>
-        Jeśli naprawa lub wymiana trwała długo, możesz od razu żądać zwrotu pieniędzy, powołując się na art. 43d ust. 2 ustawy.
+        Jeśli naprawa lub wymiana okazała się nieskuteczna albo sklep odmawia, możesz żądać obniżenia ceny lub zwrotu pieniędzy na podstawie art. 43e ust. 1 ustawy.
       </p>
 
       <h2>14 dni na odpowiedź — kluczowy termin</h2>
@@ -37,7 +37,7 @@ export default function Content() {
         <li>Zbierz dowód zakupu: paragon, fakturę lub potwierdzenie zamówienia z konta Media Expert</li>
         <li>Opisz wadę: kiedy się pojawiła, jak się objawia, czy produkt był użytkowany zgodnie z przeznaczeniem</li>
         <li>Wskaż żądanie: naprawa, wymiana lub zwrot pieniędzy</li>
-        <li>Powołaj się na art. 43b i 43c ustawy o prawach konsumenta</li>
+        <li>Powołaj się na art. 43b i art. 43d ust. 1 ustawy o prawach konsumenta</li>
         <li>Wyślij e-mailem na adres obsługi klienta lub listem poleconym do siedziby Media Expert S.A.</li>
       </ul>
 

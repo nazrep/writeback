@@ -52,7 +52,7 @@ export default function Content() {
         <li><strong>Netflix</strong>: anulowanie przez ustawienia konta na stronie. Dostęp zachowujesz do końca opłaconego okresu. Brak kar</li>
         <li><strong>Spotify</strong>: anulowanie przez stronę lub aplikację. Zmiana na plan darmowy nastąpi po końcu bieżącego okresu</li>
         <li><strong>Allegro Smart</strong>: anulowanie przez panel "Moje Allegro". Jeśli subskrypcja jest roczna, możesz złożyć wypowiedzenie i obowiązuje ono od daty zakończenia okresu rocznego</li>
-        <li><strong>Usługi, które utrudniają rezygnację</strong>: jeśli platforma chowa opcję anulowania lub wymaga kontaktu telefonicznego wyłącznie w okienkach czasowych, to praktyka naruszająca art. 7b ustawy o prawach konsumenta. Zgłoś to do UOKiK</li>
+        <li><strong>Usługi, które utrudniają rezygnację</strong>: jeśli platforma chowa opcję anulowania lub wymaga kontaktu telefonicznego wyłącznie w okienkach czasowych, to praktyka naruszająca zbiorowe interesy konsumentów (art. 24 ustawy o ochronie konkurencji i konsumentów). Zgłoś to do UOKiK</li>
       </ul>
 
       <h2>Co powinno zawierać pismo o wypowiedzenie</h2>

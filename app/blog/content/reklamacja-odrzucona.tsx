@@ -6,17 +6,17 @@ export default function Content() {
       <p>Złożyłeś reklamację, czekałeś 14 dni i dostałeś odpowiedź: „nie uznajemy reklamacji", „wada wynika z nieprawidłowego użytkowania" albo „towar był sprawny przy wysyłce". Co teraz? Masz pełne prawo się odwołać — a prawo stoi po Twojej stronie znacznie mocniej, niż sugeruje sklep.</p>
 
       <h2>Dlaczego sklepy odrzucają reklamacje — i dlaczego to często bezprawne</h2>
-      <p>Sklepy odrzucają reklamacje, bo część konsumentów odpuszcza po pierwszej odmowie. To strategia, nie prawo. Tymczasem <strong>art. 43d ust. 2 ustawy o prawach konsumenta</strong> jest jednoznaczny: przez pierwsze 2 lata od dostarczenia towaru obowiązuje <strong>domniemanie, że niezgodność istniała już w chwili dostarczenia</strong>. To sprzedawca musi udowodnić, że wada pochodzi z Twojego użytkowania — nie Ty musisz dowodzić że kupiony towar był wadliwy.</p>
+      <p>Sklepy odrzucają reklamacje, bo część konsumentów odpuszcza po pierwszej odmowie. To strategia, nie prawo. Tymczasem <strong>art. 43c ust. 1 ustawy o prawach konsumenta</strong> jest jednoznaczny: przez pierwsze 2 lata od dostarczenia towaru obowiązuje <strong>domniemanie, że niezgodność istniała już w chwili dostarczenia</strong>. To sprzedawca musi udowodnić, że wada pochodzi z Twojego użytkowania — nie Ty musisz dowodzić że kupiony towar był wadliwy.</p>
       <p>Innymi słowy: jeśli sklep twierdzi „wada z Twojej winy", musi przeprowadzić ekspertyzę techniczną i przedstawić jej wyniki. Samo stwierdzenie w mailu nie wystarczy.</p>
 
       <h2>Najczęstsze powody odmowy i jak je obalić</h2>
 
       <h3>„Wada wynika z nieprawidłowego użytkowania"</h3>
-      <p>Najczęstszy argument. Sklep musi go udowodnić — ekspertyzą, opinią techniczną, protokołem serwisowym. Jeśli tego nie zrobił, odmowa jest bezpodstawna. W odwołaniu zażądaj pisemnego uzasadnienia z powołaniem na art. 43d ust. 2 UPK i wezwij do ponownego rozpatrzenia reklamacji.</p>
+      <p>Najczęstszy argument. Sklep musi go udowodnić — ekspertyzą, opinią techniczną, protokołem serwisowym. Jeśli tego nie zrobił, odmowa jest bezpodstawna. W odwołaniu zażądaj pisemnego uzasadnienia z powołaniem na art. 43c ust. 1 UPK i wezwij do ponownego rozpatrzenia reklamacji.</p>
       <p>Wzmacniający argument: jeśli ta sama wada pojawiła się ponownie po naprawie lub wymianie — sklep praktycznie nie ma już możliwości obrony. <strong>Art. 43e ust. 1 ustawy o prawach konsumenta</strong> wprost przewiduje, że gdy naprawa lub wymiana okazała się nieskuteczna (lub sprzedawca odmówił), konsument ma prawo do <strong>obniżenia ceny lub pełnego zwrotu</strong> (odstąpienia od umowy).</p>
 
       <h3>„Towar był sprawny przy wysyłce / w chwili wydania"</h3>
-      <p>Sklep może tak twierdzić, ale bez ekspertyzy to tylko słowa. Domniemanie z art. 43d ust. 2 działa właśnie na wypadek takiej sytuacji: prawo zakłada, że skoro wada ujawniła się w ciągu 2 lat, to istniała już wcześniej. To sklep musi obalić to domniemanie.</p>
+      <p>Sklep może tak twierdzić, ale bez ekspertyzy to tylko słowa. Domniemanie z art. 43c ust. 1 działa właśnie na wypadek takiej sytuacji: prawo zakłada, że skoro wada ujawniła się w ciągu 2 lat, to istniała już wcześniej. To sklep musi obalić to domniemanie.</p>
 
       <h3>„Minął termin gwarancji"</h3>
       <p>Gwarancja to nie to samo co prawa z ustawy o prawach konsumenta. Gwarancja jest dobrowolna i może trwać rok albo wcale. Prawa z UPK (odpowiedzialność za niezgodność towaru z umową) trwają obowiązkowo 2 lata od dostarczenia towaru i <strong>nie można ich wyłączyć regulaminem sklepu</strong>. Powołanie na koniec gwarancji jako podstawa odmowy jest bezprawne.</p>
@@ -31,7 +31,7 @@ export default function Content() {
       <p>Odwołanie powinno być formalne — nie mail z prośbą, ale pismo z powołaniem na przepisy. Sklep, który otrzymuje formalne odwołanie z cytowanymi artykułami ustawy, wie że konsument zna swoje prawa i nie odpuści. To zmienia ton rozmowy.</p>
       <p>W odwołaniu od odmowy reklamacji powinny znaleźć się:</p>
       <ul>
-        <li>Powołanie na <strong>art. 43d ust. 2 UPK</strong> i domniemanie istnienia wady w chwili dostarczenia</li>
+        <li>Powołanie na <strong>art. 43c ust. 1 UPK</strong> i domniemanie istnienia wady w chwili dostarczenia</li>
         <li>Wskazanie, że odmowa była bezpodstawna, bo sklep nie przedstawił ekspertyzy technicznej</li>
         <li>Konkretne żądanie: wymiana, naprawa lub zwrot pieniędzy z terminem (14 dni)</li>
         <li>Informacja o planowanych dalszych krokach: UOKiK, Rzecznik Praw Konsumentów, sąd</li>
@@ -57,7 +57,7 @@ export default function Content() {
       <ul>
         <li>Wada powtórzyła się po wymianie → art. 43e ust. 1 UPK: masz prawo żądać zwrotu pieniędzy (odstąpienie od umowy)</li>
         <li>„Nadmierna wilgoć" to twierdzenie bez ekspertyzy → sklep musi ją przeprowadzić na własny koszt</li>
-        <li>Domniemanie z art. 43d ust. 2: jeśli wada ujawniła się w ciągu 2 lat, sklep musi udowodnić że to Twoja wina</li>
+        <li>Domniemanie z art. 43c ust. 1: jeśli wada ujawniła się w ciągu 2 lat, sklep musi udowodnić że to Twoja wina</li>
         <li>Wietrzenie pomieszczeń i brak innych oznak wilgoci to Twój argument w odwołaniu</li>
       </ul>
       <p>Formalne pismo odwołujące się od odmowy, z tymi trzema argumentami prawnymi, znacząco zwiększa szansę na uznanie reklamacji.</p>
