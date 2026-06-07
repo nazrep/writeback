@@ -72,7 +72,7 @@ export default function ContentEn() {
         <li>Seller has <strong>14 days</strong> to respond. No response = complaint accepted by law</li>
         <li>Allegro Protect is platform support, not a substitute for your legal rights. A formal letter is a stronger basis</li>
         <li>Paid by card? You can try a chargeback if the seller failed to fulfil the contract and is not responding</li>
-        <li>Bought from a private individual? You have one year to complain and it is harder to enforce without going to court</li>
+        <li>Bought from a private individual? You have 2 years under Civil Code warranty (Art. 568 §1 CC) — but harder to enforce since private sellers can limit liability</li>
       </ul>
     </>
   );

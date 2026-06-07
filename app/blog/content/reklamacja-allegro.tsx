@@ -72,7 +72,7 @@ export default function Content() {
         <li>Sprzedawca ma <strong>14 dni</strong> na odpowiedź. Brak odpowiedzi = reklamacja uznana z mocy prawa</li>
         <li>Allegro Protect to wsparcie platformy, nie zastępnik Twoich praw. Formalne pismo jest mocniejszą podstawą</li>
         <li>Przy karcie możesz spróbować chargebacku, jeśli sprzedawca nie wywiązał się z umowy i nie reaguje</li>
-        <li>Przy zakupie od osoby prywatnej masz rok na reklamację i trudniej ją wyegzekwować bez sądu</li>
+        <li>Przy zakupie od osoby prywatnej masz 2 lata na reklamację z KC (art. 568 §1) — ale trudniej ją wyegzekwować, bo prywatny sprzedawca może ograniczyć rękojmię</li>
       </ul>
 
       <h2>Najczęstsze pytania o reklamacje na Allegro</h2>

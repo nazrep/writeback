@@ -119,7 +119,7 @@ export const POSTS: Post[] = [
     faq: [
       {
         q: "Czy mogę reklamować towar kupiony od osoby prywatnej na Allegro?",
-        a: "Ustawa o prawach konsumenta dotyczy tylko zakupów od przedsiębiorców. Przy zakupie od osoby prywatnej (bez NIP na profilu) możesz powołać się na rękojmię z Kodeksu cywilnego, ale masz mniejszą ochronę: termin to rok, nie dwa lata.",
+        a: "Ustawa o prawach konsumenta dotyczy tylko zakupów od przedsiębiorców. Przy zakupie od osoby prywatnej (bez NIP na profilu) możesz powołać się na rękojmię z Kodeksu cywilnego — termin to 2 lata od wydania towaru (art. 568 §1 KC), ale egzekwowanie jest trudniejsze, bo sprzedawca prywatny może wyłączyć lub ograniczyć rękojmię.",
       },
       {
         q: "Ile czasu ma sprzedawca na Allegro na odpowiedź na reklamację?",
@@ -297,7 +297,7 @@ export const POSTS: Post[] = [
       { q: "Sklep mówi że nie odpowiada za uszkodzenia w transporcie. Czy muszę walczyć z kurierem?", a: "Nie. Jeśli towar dotarł do Ciebie uszkodzony, możesz złożyć reklamację do sklepu (sprzedawca odpowiada za niezgodność towaru z umową) LUB do kuriera. Kwestia rozliczeń między sklepem a kurierem to ich sprawa — nie musisz w tym uczestniczyć." },
     ],
     faqEn: [
-      { q: "How long do I have to report damage in a parcel from the courier?", a: "If the damage was found at the time of delivery — draw up a damage report immediately with the courier. If you discovered it after accepting the parcel — you have 7 days to file a complaint (Art. 76 §1 of the Transport Law). After this deadline, claiming compensation becomes significantly harder." },
+      { q: "How long do I have to report damage in a parcel from the courier?", a: "If the damage was found at the time of delivery — draw up a damage report immediately with the courier. If you discovered it after accepting the parcel — you have 7 days to file a complaint (Art. 76 §4 of the Transport Law). After this deadline the claim expires." },
       { q: "The courier refused to draw up a damage report. What should I do?", a: "Note your objections manually on the waybill and photograph it. Take photos of the packaging and contents. Then file a complaint in writing — the absence of a report does not remove your right to compensation, but it makes the process harder." },
       { q: "My parcel was lost by InPost. What am I entitled to?", a: "Compensation up to the declared value of the shipment or the statutory limit. For parcels without a declared value, the limit follows the terms of service and Postal Law. File a complaint via the InPost app or online form within 12 months of sending." },
       { q: "The store says it is not responsible for damage in transit. Do I have to fight the courier myself?", a: "No. If the goods arrived damaged, you can file a complaint with the store (the seller is liable for non-conformity) OR with the courier. The settlement between the store and the courier is their matter — you do not have to be involved." },
