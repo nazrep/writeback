@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteHeader } from "../components/SiteHeader";
+import { AnimateIn } from "../components/AnimateIn";
 
 const STEPS = [
   {
@@ -179,39 +180,40 @@ export default function HomePage() {
 
       {/* Hero */}
       <section className="relative bg-white overflow-hidden">
-        {/* Subtle background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/60 via-white to-white pointer-events-none" />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-100/30 rounded-full blur-[120px] pointer-events-none -translate-y-1/3 translate-x-1/3" />
 
         <div className="relative max-w-3xl mx-auto px-6 pt-20 pb-20 text-center">
-          <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-8 border border-indigo-100">
+          <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-8 border border-indigo-100 animate-fade-up">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
             Polskie prawo konsumenta po Twojej stronie
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.06] text-gray-900 mb-6">
+          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.06] text-gray-900 mb-6 animate-fade-up delay-100">
             Zignorowali Cię?<br />
             <span className="text-indigo-600">Napisz pismo,<br className="hidden sm:block" /> które muszą przeczytać.</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed animate-fade-up delay-200">
             Formalne pismo z właściwą podstawą prawną do sklepu, banku, ZUS lub operatora.
             Gotowe w <strong className="text-gray-800 font-semibold">5 minut</strong>, PDF na maila od razu.
           </p>
 
-          <Link
-            href="/zamow"
-            className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-200 hover:-translate-y-0.5 active:scale-95"
-          >
-            Napisz pismo — 29 zł
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </Link>
-          <p className="text-sm text-gray-400 mt-3">
-            Jednorazowa opłata · PDF na maila od razu · Odwołanie gratis jeśli nie pomoże
-          </p>
+          <div className="animate-fade-up delay-300">
+            <Link
+              href="/zamow"
+              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-200 hover:-translate-y-0.5 active:scale-95"
+            >
+              Napisz pismo — 29 zł
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </Link>
+            <p className="text-sm text-gray-400 mt-3">
+              Jednorazowa opłata · PDF na maila od razu · Odwołanie gratis jeśli nie pomoże
+            </p>
+          </div>
 
           {/* Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 mt-14 pt-10 border-t border-gray-100">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 mt-14 pt-10 border-t border-gray-100 animate-fade-in delay-400">
             {[
               { val: "29 zł", sub: "jednorazowo" },
               { val: "5 min", sub: "gotowe pismo" },
@@ -248,29 +250,31 @@ export default function HomePage() {
       {/* Jak działa */}
       <section id="jak-to-dziala" className="py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
+          <AnimateIn className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Jak to działa</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Od problemu do pisma<br className="hidden sm:block" /> w 5 minut</h2>
             <p className="text-gray-500 text-sm">Bez rejestracji, bez czekania</p>
-          </div>
+          </AnimateIn>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {STEPS.map((s, i) => (
-              <div key={s.n} className="relative flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 bg-white hover:border-indigo-100 hover:shadow-md hover:shadow-indigo-50 transition-all duration-200 group">
-                {i < STEPS.length - 1 && (
-                  <div className="hidden sm:block absolute top-10 left-[calc(100%_+_1px)] w-6 text-gray-200 z-10 pointer-events-none">
-                    <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><path d="M0 8h22M16 2l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <AnimateIn key={s.n} delay={i * 100}>
+                <div className="relative flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 bg-white hover:border-indigo-100 hover:shadow-md hover:shadow-indigo-50 transition-all duration-200 group h-full">
+                  {i < STEPS.length - 1 && (
+                    <div className="hidden sm:block absolute top-10 left-[calc(100%_+_1px)] w-6 text-gray-200 z-10 pointer-events-none">
+                      <svg width="24" height="16" viewBox="0 0 24 16" fill="none"><path d="M0 8h22M16 2l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </div>
+                  )}
+                  <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-indigo-100 transition-colors duration-200">
+                    {s.icon}
                   </div>
-                )}
-                <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-indigo-100 transition-colors duration-200">
-                  {s.icon}
+                  <div className="text-xs font-bold text-indigo-400 tracking-widest mb-1">{s.n}</div>
+                  <h3 className="font-bold text-gray-900 mb-2 text-sm">{s.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
                 </div>
-                <div className="text-xs font-bold text-indigo-400 tracking-widest mb-1">{s.n}</div>
-                <h3 className="font-bold text-gray-900 mb-2 text-sm">{s.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
-              </div>
+              </AnimateIn>
             ))}
           </div>
-          <div className="text-center mt-10">
+          <AnimateIn className="text-center mt-10" delay={350}>
             <Link
               href="/zamow"
               className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 text-sm shadow-sm hover:shadow-md active:scale-95"
@@ -278,60 +282,62 @@ export default function HomePage() {
               Zacznij teraz
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
-          </div>
+          </AnimateIn>
         </div>
       </section>
 
       {/* Case studies */}
       <section className="py-24 px-6 bg-gray-50 border-y border-gray-100">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
+          <AnimateIn className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Efekty</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Prawdziwe przypadki,<br className="hidden sm:block" /> prawdziwe wyniki</h2>
             <p className="text-gray-500 text-sm">Typowe sytuacje konsumentów. Co się dzieje po wysłaniu pisma z Writeback.</p>
-          </div>
+          </AnimateIn>
           <div className="grid grid-cols-1 gap-4">
             {CASES.map((c, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md hover:border-indigo-100 transition-all duration-200">
-                <div className="p-6">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-                    <span className="inline-block bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full self-start">
-                      {c.category}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-100 self-start">
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#059669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                      {c.result}
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-4">{c.situation}</p>
-                  <div className="flex items-center gap-2 text-xs text-gray-400">
-                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L2 4v3.5c0 2.8 2.1 5.1 5 5.5 2.9-.4 5-2.7 5-5.5V4L7 1.5z" stroke="currentColor" strokeWidth="1.2"/></svg>
-                    <span>Podstawa: <span className="font-medium text-gray-600">{c.law}</span></span>
-                  </div>
-                </div>
-                <div className="border-t border-gray-100 px-6 py-4 bg-gray-50/60">
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center shrink-0">
-                      {c.initial}
+              <AnimateIn key={i} delay={i * 80}>
+                <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md hover:border-indigo-100 transition-all duration-200">
+                  <div className="p-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                      <span className="inline-block bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full self-start">
+                        {c.category}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-100 self-start">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#059669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        {c.result}
+                      </span>
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <div className="flex gap-0.5">
-                          {[1,2,3,4,5].map(i => (
-                            <svg key={i} width="11" height="11" viewBox="0 0 12 12" fill="#fbbf24"><path d="M6 1l1.4 2.8 3.1.5-2.2 2.2.5 3.1L6 8.2l-2.8 1.4.5-3.1L1.5 4.3l3.1-.5z"/></svg>
-                          ))}
-                        </div>
-                        <span className="text-[10px] text-gray-400 font-medium">Przykładowy przypadek</span>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4">{c.situation}</p>
+                    <div className="flex items-center gap-2 text-xs text-gray-400">
+                      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L2 4v3.5c0 2.8 2.1 5.1 5 5.5 2.9-.4 5-2.7 5-5.5V4L7 1.5z" stroke="currentColor" strokeWidth="1.2"/></svg>
+                      <span>Podstawa: <span className="font-medium text-gray-600">{c.law}</span></span>
+                    </div>
+                  </div>
+                  <div className="border-t border-gray-100 px-6 py-4 bg-gray-50/60">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center shrink-0">
+                        {c.initial}
                       </div>
-                      <p className="text-sm text-gray-700 italic leading-relaxed">&bdquo;{c.quote}&rdquo;</p>
-                      <p className="text-xs text-gray-400 mt-1.5 font-medium">{c.name}, {c.city}</p>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <div className="flex gap-0.5">
+                            {[1,2,3,4,5].map(i => (
+                              <svg key={i} width="11" height="11" viewBox="0 0 12 12" fill="#fbbf24"><path d="M6 1l1.4 2.8 3.1.5-2.2 2.2.5 3.1L6 8.2l-2.8 1.4.5-3.1L1.5 4.3l3.1-.5z"/></svg>
+                            ))}
+                          </div>
+                          <span className="text-[10px] text-gray-400 font-medium">Przykładowy przypadek</span>
+                        </div>
+                        <p className="text-sm text-gray-700 italic leading-relaxed">&bdquo;{c.quote}&rdquo;</p>
+                        <p className="text-xs text-gray-400 mt-1.5 font-medium">{c.name}, {c.city}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </AnimateIn>
             ))}
           </div>
-          <div className="mt-10 text-center">
+          <AnimateIn className="mt-10 text-center" delay={CASES.length * 80}>
             <Link
               href="/zamow"
               className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 text-sm shadow-sm hover:shadow-md active:scale-95"
@@ -339,40 +345,42 @@ export default function HomePage() {
               Napisz swoje pismo — 29 zł
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
-          </div>
+          </AnimateIn>
         </div>
       </section>
 
       {/* Problem / Solution */}
       <section className="py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
+          <AnimateIn className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Dlaczego to działa</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
               Sklepy ignorują zwykłe pisma.<br className="hidden sm:block" /> Twoje ich nie zignoruje.
             </h2>
             <p className="text-gray-500 text-sm">Konkretne artykuły ustaw zmieniają wszystko</p>
-          </div>
+          </AnimateIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {PROBLEMS.map((item, i) => (
-              <div key={i} className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 hover:border-gray-200">
-                <div className="flex items-start gap-3 p-5 bg-red-50/50">
-                  <div className="w-6 h-6 rounded-lg bg-red-100 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                      <path d="M1.5 1.5l5 5M6.5 1.5l-5 5" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
+              <AnimateIn key={i} delay={i * 80}>
+                <div className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 hover:border-gray-200 h-full">
+                  <div className="flex items-start gap-3 p-5 bg-red-50/50">
+                    <div className="w-6 h-6 rounded-lg bg-red-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                        <path d="M1.5 1.5l5 5M6.5 1.5l-5 5" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <p className="text-sm text-gray-600 leading-relaxed">{item.before}</p>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.before}</p>
-                </div>
-                <div className="flex items-start gap-3 p-5 bg-white border-t border-gray-100">
-                  <div className="w-6 h-6 rounded-lg bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                      <path d="M1.5 4l2 2L6.5 2" stroke="#10b981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                  <div className="flex items-start gap-3 p-5 bg-white border-t border-gray-100">
+                    <div className="w-6 h-6 rounded-lg bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                        <path d="M1.5 4l2 2L6.5 2" stroke="#10b981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <p className="text-sm text-gray-900 font-medium leading-relaxed">{item.after}</p>
                   </div>
-                  <p className="text-sm text-gray-900 font-medium leading-relaxed">{item.after}</p>
                 </div>
-              </div>
+              </AnimateIn>
             ))}
           </div>
         </div>
@@ -381,42 +389,48 @@ export default function HomePage() {
       {/* Price anchor */}
       <section className="py-24 px-6 bg-gray-50 border-y border-gray-100">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
+          <AnimateIn className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Cena</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Ile kosztuje Twój czas?</h2>
             <p className="text-gray-500 text-sm">Porównaj zanim zdecydujesz</p>
-          </div>
+          </AnimateIn>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="border border-gray-200 rounded-2xl p-7 text-center bg-white shadow-sm">
-              <div className="text-3xl font-bold text-gray-300 mb-1">0 zł</div>
-              <div className="font-semibold text-gray-500 mb-5 text-sm">Sam napiszesz</div>
-              <ul className="text-sm text-gray-400 text-left space-y-3">
-                <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Kilka godzin na research</li>
-                <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Nie znasz odpowiednich artykułów</li>
-                <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Sklep to wyczuje i zlekceważy</li>
-              </ul>
-            </div>
-            <div className="border-2 border-indigo-500 rounded-2xl p-7 text-center bg-white relative shadow-xl shadow-indigo-100/60 -translate-y-1">
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow-sm">Najlepszy wybór</div>
-              <div className="text-3xl font-bold text-indigo-600 mb-1">29 zł</div>
-              <div className="font-semibold text-gray-900 mb-5 text-sm">Writeback</div>
-              <ul className="text-sm text-gray-700 text-left space-y-3">
-                <li className="flex gap-2.5 items-start"><span className="text-indigo-500 shrink-0 font-bold">✓</span>Gotowe w 5 minut</li>
-                <li className="flex gap-2.5 items-start"><span className="text-indigo-500 shrink-0 font-bold">✓</span>Właściwe artykuły ustaw</li>
-                <li className="flex gap-2.5 items-start"><span className="text-indigo-500 shrink-0 font-bold">✓</span>Odwołanie gratis jeśli nie pomoże</li>
-              </ul>
-            </div>
-            <div className="border border-gray-200 rounded-2xl p-7 text-center bg-white shadow-sm">
-              <div className="text-3xl font-bold text-gray-300 mb-1">300+ zł</div>
-              <div className="font-semibold text-gray-500 mb-5 text-sm">Prawnik</div>
-              <ul className="text-sm text-gray-400 text-left space-y-3">
-                <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Droga porada za reklamację</li>
-                <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Termin wizyty za kilka dni</li>
-                <li className="flex gap-2.5 items-start"><span className="text-emerald-500 shrink-0">✓</span>Potrzebne przy poważnych sporach</li>
-              </ul>
-            </div>
+            <AnimateIn delay={0}>
+              <div className="border border-gray-200 rounded-2xl p-7 text-center bg-white shadow-sm h-full">
+                <div className="text-3xl font-bold text-gray-300 mb-1">0 zł</div>
+                <div className="font-semibold text-gray-500 mb-5 text-sm">Sam napiszesz</div>
+                <ul className="text-sm text-gray-400 text-left space-y-3">
+                  <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Kilka godzin na research</li>
+                  <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Nie znasz odpowiednich artykułów</li>
+                  <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Sklep to wyczuje i zlekceważy</li>
+                </ul>
+              </div>
+            </AnimateIn>
+            <AnimateIn animation="scaleIn" delay={100}>
+              <div className="border-2 border-indigo-500 rounded-2xl p-7 text-center bg-white relative shadow-xl shadow-indigo-100/60 -translate-y-1 h-full">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow-sm">Najlepszy wybór</div>
+                <div className="text-3xl font-bold text-indigo-600 mb-1">29 zł</div>
+                <div className="font-semibold text-gray-900 mb-5 text-sm">Writeback</div>
+                <ul className="text-sm text-gray-700 text-left space-y-3">
+                  <li className="flex gap-2.5 items-start"><span className="text-indigo-500 shrink-0 font-bold">✓</span>Gotowe w 5 minut</li>
+                  <li className="flex gap-2.5 items-start"><span className="text-indigo-500 shrink-0 font-bold">✓</span>Właściwe artykuły ustaw</li>
+                  <li className="flex gap-2.5 items-start"><span className="text-indigo-500 shrink-0 font-bold">✓</span>Odwołanie gratis jeśli nie pomoże</li>
+                </ul>
+              </div>
+            </AnimateIn>
+            <AnimateIn delay={200}>
+              <div className="border border-gray-200 rounded-2xl p-7 text-center bg-white shadow-sm h-full">
+                <div className="text-3xl font-bold text-gray-300 mb-1">300+ zł</div>
+                <div className="font-semibold text-gray-500 mb-5 text-sm">Prawnik</div>
+                <ul className="text-sm text-gray-400 text-left space-y-3">
+                  <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Droga porada za reklamację</li>
+                  <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Termin wizyty za kilka dni</li>
+                  <li className="flex gap-2.5 items-start"><span className="text-emerald-500 shrink-0">✓</span>Potrzebne przy poważnych sporach</li>
+                </ul>
+              </div>
+            </AnimateIn>
           </div>
-          <div className="text-center mt-10">
+          <AnimateIn className="text-center mt-10" delay={300}>
             <Link
               href="/zamow"
               className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-sm hover:shadow-md active:scale-95"
@@ -424,38 +438,39 @@ export default function HomePage() {
               Napisz pismo — 29 zł
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
-          </div>
+          </AnimateIn>
         </div>
       </section>
 
       {/* Jakie pisma */}
       <section className="py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
+          <AnimateIn className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Zakres</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Jakie pisma piszemy</h2>
             <p className="text-gray-500 text-sm">Wszystkie typy pism dostępne od ręki</p>
-          </div>
+          </AnimateIn>
           <div className="space-y-2.5">
-            {TYPES.map((t) => (
-              <Link
-                key={t.label}
-                href="/zamow"
-                className="flex items-center justify-between rounded-2xl px-5 py-4 border border-gray-100 bg-white shadow-sm hover:border-indigo-200 hover:shadow-md hover:shadow-indigo-50 hover:-translate-y-0.5 transition-all duration-200 group"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 group-hover:bg-indigo-100 transition-colors">
-                    {t.icon}
+            {TYPES.map((t, i) => (
+              <AnimateIn key={t.label} delay={i * 60}>
+                <Link
+                  href="/zamow"
+                  className="flex items-center justify-between rounded-2xl px-5 py-4 border border-gray-100 bg-white shadow-sm hover:border-indigo-200 hover:shadow-md hover:shadow-indigo-50 hover:-translate-y-0.5 transition-all duration-200 group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 group-hover:bg-indigo-100 transition-colors">
+                      {t.icon}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm text-gray-900 group-hover:text-indigo-700 transition-colors">{t.label}</div>
+                      <div className="text-xs mt-0.5 text-gray-400">{t.desc}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="font-semibold text-sm text-gray-900 group-hover:text-indigo-700 transition-colors">{t.label}</div>
-                    <div className="text-xs mt-0.5 text-gray-400">{t.desc}</div>
-                  </div>
-                </div>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 ml-4 text-gray-300 group-hover:text-indigo-400 transition-colors">
-                  <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </Link>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 ml-4 text-gray-300 group-hover:text-indigo-400 transition-colors">
+                    <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </Link>
+              </AnimateIn>
             ))}
           </div>
         </div>
@@ -464,24 +479,26 @@ export default function HomePage() {
       {/* FAQ */}
       <section id="faq" className="py-24 px-6 bg-gray-50 border-y border-gray-100">
         <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-16">
+          <AnimateIn className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">FAQ</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Częste pytania</h2>
             <p className="text-gray-500 text-sm">Masz inne pytanie? Napisz na <a href="mailto:hello@writeback.pl" className="text-indigo-600 hover:underline">hello@writeback.pl</a></p>
-          </div>
-          <div className="space-y-2">
-            {FAQS.map((faq, i) => (
-              <details key={i} className="border border-gray-200 rounded-xl overflow-hidden group bg-white hover:border-indigo-200 transition-colors duration-200">
-                <summary className="px-5 py-4 text-sm font-semibold text-gray-800 cursor-pointer list-none flex items-center justify-between hover:bg-gray-50 transition-colors duration-200">
-                  {faq.q}
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 ml-4 text-gray-400 transition-transform duration-300 group-open:rotate-180">
-                    <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </summary>
-                <p className="px-5 pb-5 pt-2 text-sm text-gray-500 leading-relaxed border-t border-gray-100">{faq.a}</p>
-              </details>
-            ))}
-          </div>
+          </AnimateIn>
+          <AnimateIn animation="fadeIn">
+            <div className="space-y-2">
+              {FAQS.map((faq, i) => (
+                <details key={i} className="border border-gray-200 rounded-xl overflow-hidden group bg-white hover:border-indigo-200 transition-colors duration-200">
+                  <summary className="px-5 py-4 text-sm font-semibold text-gray-800 cursor-pointer list-none flex items-center justify-between hover:bg-gray-50 transition-colors duration-200">
+                    {faq.q}
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 ml-4 text-gray-400 transition-transform duration-300 group-open:rotate-180">
+                      <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </summary>
+                  <p className="px-5 pb-5 pt-2 text-sm text-gray-500 leading-relaxed border-t border-gray-100">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </AnimateIn>
         </div>
       </section>
 
@@ -489,7 +506,7 @@ export default function HomePage() {
       <section className="py-24 px-6 text-center bg-indigo-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-indigo-600 to-violet-700 pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-white/5 rounded-full blur-[100px] pointer-events-none" />
-        <div className="relative max-w-xl mx-auto">
+        <AnimateIn animation="scaleIn" className="relative max-w-xl mx-auto">
           <p className="text-indigo-200 text-xs font-bold uppercase tracking-widest mb-4">Zrób to teraz</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Odzyskaj swoje pieniądze
@@ -508,7 +525,7 @@ export default function HomePage() {
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </Link>
           <p className="text-indigo-300 text-sm mt-4">Jeśli nie pomoże, odwołanie gratis.</p>
-        </div>
+        </AnimateIn>
       </section>
 
       {/* Footer */}
