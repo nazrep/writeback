@@ -450,15 +450,17 @@ DATA PISMA: ${today}`,
   // ── HEADER BAND ──
   IP.drawRectangle({ x: 0, y: 756, width: 595, height: 80, color: rgb(0.97, 0.97, 0.98) });
 
-  // Logo block
-  IP.drawRectangle({ x: 50, y: 790, width: 30, height: 30, color: rgb(0.31, 0.27, 0.9) });
-  iT("W", 62, 800, 14, true, [1, 1, 1]);
-  iT("writeback.pl", 88, 803, 12, true, [0.12, 0.12, 0.18]);
-  iT("Maciej Perzankowski", 88, 788, 7.5, false, [0.5, 0.5, 0.56]);
+  // Logo block — center W precisely using font metrics
+  IP.drawRectangle({ x: 50, y: 790, width: 32, height: 32, color: rgb(0.31, 0.27, 0.9) });
+  const wSize = 15;
+  const wW = iFB.widthOfTextAtSize("W", wSize);
+  IP.drawText("W", { x: 50 + 16 - wW / 2, y: 797, size: wSize, font: iFB, color: rgb(1, 1, 1) });
+  iT("writeback.pl", 90, 809, 11, true, [0.12, 0.12, 0.18]);
+  iT("Maciej Perzankowski", 90, 795, 7.5, false, [0.5, 0.5, 0.56]);
 
   // Document title (right-aligned)
-  iT("FAKTURA VAT", 50, 800, 22, true, [0.1, 0.1, 0.12], true, 545);
-  iT(invoiceNumber, 50, 782, 9.5, true, [0.31, 0.27, 0.9], true, 545);
+  iT("FAKTURA VAT", 50, 802, 22, true, [0.1, 0.1, 0.12], true, 545);
+  iT(invoiceNumber, 50, 784, 9.5, true, [0.31, 0.27, 0.9], true, 545);
 
   // ── DATES ──
   iT("Data wystawienia:", 50, 742, 8, false, [0.5, 0.5, 0.55]);
@@ -495,8 +497,8 @@ DATA PISMA: ${today}`,
   // ── ITEMS TABLE ──
   const TY = partyEndY - 16;
 
-  // Column x positions (right edge for numeric cols)
-  const TC = { name: 50, jm: 300, qty: 340, netto: 400, vpct: 440, vamt: 490, brutto: 545 };
+  // Column x positions (right edge for numeric cols) — wider netto/brutto for Lato
+  const TC = { name: 50, jm: 288, qty: 325, netto: 412, vpct: 450, vamt: 498, brutto: 545 };
 
   // Header row
   IP.drawRectangle({ x: 46, y: TY - 3, width: 503, height: 18, color: rgb(0.93, 0.92, 1.0) });
