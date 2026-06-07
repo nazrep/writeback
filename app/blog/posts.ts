@@ -20,6 +20,36 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-odrzucona",
+    title: "Reklamacja odrzucona — co zrobić dalej? [Poradnik 2026]",
+    description: "Sklep nie uznał reklamacji? Masz prawo do odwołania. Dowiedz się jak obalić odmowę z powołaniem na art. 43d UPK — domniemanie wady, ekspertyza na koszt sklepu, zwrot po nieskutecznej wymianie.",
+    date: "2026-06-07",
+    readTime: "6 min",
+    category: "Reklamacja",
+    faq: [
+      {
+        q: "Ile mam czasu na odwołanie od odmowy reklamacji?",
+        a: "Przepisy nie przewidują osobnego terminu na odwołanie — liczy się 2-letni termin odpowiedzialności sprzedawcy od daty dostarczenia towaru (art. 43d UPK). Im szybciej wyślesz odwołanie, tym lepiej — dowody są świeższe i łatwiej udowodnić chronologię zdarzeń.",
+      },
+      {
+        q: "Sklep twierdzi że wada wynika z mojego użytkowania. Co robić?",
+        a: "Sklep musi to udowodnić ekspertyzą techniczną na własny koszt — samo stwierdzenie w mailu nie wystarczy. Przez pierwsze 2 lata od dostarczenia towaru obowiązuje domniemanie (art. 43d ust. 2 UPK), że niezgodność istniała już w chwili dostarczenia. To sprzedawca musi obalić to domniemanie, nie Ty musisz dowodzić że towar był wadliwy.",
+      },
+      {
+        q: "Wymienili towar reklamacyjnie, ale po kilku miesiącach ta sama wada wróciła. Co mi przysługuje?",
+        a: "Zgodnie z art. 43d ust. 6 ustawy o prawach konsumenta, gdy naprawa lub wymiana okazała się nieskuteczna, masz prawo żądać obniżenia ceny lub odstąpienia od umowy (zwrotu pieniędzy). Nie musisz zgadzać się na kolejną wymianę.",
+      },
+      {
+        q: "Czy mogę złożyć skargę do UOKiK na sklep który odrzuca reklamacje?",
+        a: "Tak. Jeśli sklep systematycznie odrzuca reklamacje bez podstawy prawnej, możesz złożyć zawiadomienie do UOKiK o podejrzeniu stosowania praktyk naruszających zbiorowe interesy konsumentów. UOKiK może wszcząć postępowanie i nałożyć karę finansową na przedsiębiorcę.",
+      },
+      {
+        q: "Czy odwołanie od odmowy reklamacji muszę wysłać listem poleconym?",
+        a: "Nie jest to wymagane przepisami, ale zalecane. List polecony za potwierdzeniem odbioru daje Ci dowód że pismo dotarło i kiedy — co jest ważne jeśli sprawa trafi do sądu. Email z potwierdzeniem odczytu to minimum, list polecony to większe bezpieczeństwo.",
+      },
+    ],
+  },
+  {
     slug: "reklamacja-sklep-internetowy",
     title: "Jak napisać skuteczną reklamację do sklepu internetowego (wzór 2026)",
     description: "Krok po kroku: jak napisać reklamację do sklepu internetowego z powołaniem na art. 43b ustawy o prawach konsumenta. Sklep ma 14 dni na odpowiedź, brak odpowiedzi to uznanie reklamacji.",
