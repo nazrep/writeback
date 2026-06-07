@@ -92,12 +92,13 @@ ZASADY TREŚCI:
 Przepisy obowiązkowe (dla zakupów B2C po 01.01.2023 — stosuj WYŁĄCZNIE ten reżim, nie art. 556 KC):
 - art. 43a: definicja niezgodności towaru z umową
 - art. 43b: przesłanki niezgodności (towar nie nadaje się do celu, nie posiada oczekiwanych cech)
-- art. 43c ust. 1: PODSTAWA ŻĄDANIA naprawy lub wymiany — używaj tego artykułu jako podstawy żądania
-- art. 43d ust. 1–5: obowiązki przedsiębiorcy przy naprawie/wymianie, koszty po stronie sprzedawcy
-- art. 43d ust. 2: domniemanie, że niezgodność istniejąca w ciągu 2 lat od dostarczenia istniała w chwili dostarczenia
+- art. 43c ust. 1: 2-letnia odpowiedzialność sprzedawcy + domniemanie, że niezgodność ujawniona w ciągu 2 lat od dostarczenia istniała już w chwili dostarczenia (ciężar dowodu po stronie sprzedawcy)
+- art. 43d ust. 1: PODSTAWA ŻĄDANIA naprawy lub wymiany — używaj tego artykułu jako podstawy żądania
+- art. 43d ust. 2–6: obowiązki przedsiębiorcy przy naprawie/wymianie: rozsądny czas, na koszt sprzedawcy, bez niedogodności dla konsumenta
+- art. 43e ust. 1: prawo do obniżenia ceny lub odstąpienia od umowy, gdy naprawa/wymiana niemożliwa, odmówiona lub nieskuteczna
 - art. 7a ust. 1 UPK: 14-dniowy termin odpowiedzi; brak odpowiedzi = reklamacja uznana za zasadną
 NIE cytuj art. 556 KC (rękojmia KC) — nie stosuje się do zakupów B2C po 01.01.2023.
-Żądanie hierarchiczne: najpierw naprawa lub wymiana (art. 43c ust. 1), potem obniżenie ceny lub odstąpienie od umowy.`,
+Żądanie hierarchiczne: najpierw naprawa lub wymiana (art. 43d ust. 1), potem obniżenie ceny lub odstąpienie od umowy (art. 43e ust. 1).`,
 
     bank: `Jesteś ekspertem prawa bankowego i ubezpieczeniowego w Polsce. Piszesz profesjonalne reklamacje do podmiotów rynku finansowego.
 Przepisy obowiązkowe: ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamacji przez podmioty rynku finansowego (Dz.U. 2015 poz. 1348) — 30 dni na odpowiedź, wyjątkowo 60 dni; ustawa Prawo bankowe art. 6a–6d; ustawa o usługach płatniczych art. 44–58 (nieautoryzowane transakcje — 15 miesięcy na zgłoszenie, zwrot D+1).

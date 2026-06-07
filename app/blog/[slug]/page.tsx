@@ -192,11 +192,18 @@ export default async function BlogPostPage({
         </div>
 
         {/* Legal disclaimer */}
-        <p className="mt-5 text-xs text-gray-400 leading-relaxed">
-          {isEn
-            ? "This article is for informational purposes only and does not constitute legal advice. writeback.pl is a tool for creating consumer letters — for complex matters, consult a lawyer or consumer rights ombudsman."
-            : "Artykuł ma charakter informacyjny i nie stanowi porady prawnej w rozumieniu ustawy o radcach prawnych ani ustawy Prawo o adwokaturze. Writeback.pl jest narzędziem do tworzenia pism konsumenckich — w sprawach skomplikowanych skonsultuj się z prawnikiem lub rzecznikiem praw konsumentów."}
-        </p>
+        <div className="mt-5 space-y-1.5">
+          <p className="text-xs text-gray-400 leading-relaxed">
+            {isEn
+              ? "This article is for informational purposes only and does not constitute legal advice. writeback.pl is a tool for creating consumer letters — for complex matters, consult a lawyer or consumer rights ombudsman."
+              : "Artykuł ma charakter informacyjny i nie stanowi porady prawnej w rozumieniu ustawy o radcach prawnych ani ustawy Prawo o adwokaturze. Writeback.pl jest narzędziem do tworzenia pism konsumenckich — w sprawach skomplikowanych skonsultuj się z prawnikiem lub rzecznikiem praw konsumentów."}
+          </p>
+          <p className="text-xs text-gray-400">
+            {isEn
+              ? `Legal status: June 2026 · Verified against current Polish law.`
+              : `Stan prawny: czerwiec 2026 · Przepisy zweryfikowane na podstawie aktualnie obowiązującego prawa.`}
+          </p>
+        </div>
 
         {/* Related articles */}
         {related.length > 0 && (

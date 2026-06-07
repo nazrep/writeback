@@ -13,7 +13,7 @@ export default function Content() {
 
       <h3>„Wada wynika z nieprawidłowego użytkowania"</h3>
       <p>Najczęstszy argument. Sklep musi go udowodnić — ekspertyzą, opinią techniczną, protokołem serwisowym. Jeśli tego nie zrobił, odmowa jest bezpodstawna. W odwołaniu zażądaj pisemnego uzasadnienia z powołaniem na art. 43d ust. 2 UPK i wezwij do ponownego rozpatrzenia reklamacji.</p>
-      <p>Wzmacniający argument: jeśli ta sama wada pojawiła się ponownie po naprawie lub wymianie — sklep praktycznie nie ma już możliwości obrony. Ustawa o prawach konsumenta wprost przewiduje, że gdy naprawa lub wymiana okazała się nieskuteczna, konsument ma prawo do <strong>obniżenia ceny lub pełnego zwrotu</strong> (odstąpienia od umowy).</p>
+      <p>Wzmacniający argument: jeśli ta sama wada pojawiła się ponownie po naprawie lub wymianie — sklep praktycznie nie ma już możliwości obrony. <strong>Art. 43e ust. 1 ustawy o prawach konsumenta</strong> wprost przewiduje, że gdy naprawa lub wymiana okazała się nieskuteczna (lub sprzedawca odmówił), konsument ma prawo do <strong>obniżenia ceny lub pełnego zwrotu</strong> (odstąpienia od umowy).</p>
 
       <h3>„Towar był sprawny przy wysyłce / w chwili wydania"</h3>
       <p>Sklep może tak twierdzić, ale bez ekspertyzy to tylko słowa. Domniemanie z art. 43d ust. 2 działa właśnie na wypadek takiej sytuacji: prawo zakłada, że skoro wada ujawniła się w ciągu 2 lat, to istniała już wcześniej. To sklep musi obalić to domniemanie.</p>
@@ -55,7 +55,7 @@ export default function Content() {
       <p>Wyobraź sobie: kupiłeś drzwi, po roku okleina zaczęła odchodzić przy szybach. Sklep wymienił je reklamacyjnie. Po kolejnych 6 miesiącach — ten sam problem. Sklep tym razem odmawia, twierdząc że to „nadmierna wilgoć w pomieszczeniach".</p>
       <p>Jak obalić taką odmowę:</p>
       <ul>
-        <li>Wada powtórzyła się po wymianie → art. 43d ust. 6: masz prawo żądać zwrotu pieniędzy</li>
+        <li>Wada powtórzyła się po wymianie → art. 43e ust. 1 UPK: masz prawo żądać zwrotu pieniędzy (odstąpienie od umowy)</li>
         <li>„Nadmierna wilgoć" to twierdzenie bez ekspertyzy → sklep musi ją przeprowadzić na własny koszt</li>
         <li>Domniemanie z art. 43d ust. 2: jeśli wada ujawniła się w ciągu 2 lat, sklep musi udowodnić że to Twoja wina</li>
         <li>Wietrzenie pomieszczeń i brak innych oznak wilgoci to Twój argument w odwołaniu</li>
