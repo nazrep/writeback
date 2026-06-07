@@ -163,6 +163,7 @@ type SkargaSubtype = "kurier" | "telecom" | "energia" | "inne";
 
 const SKARGA_SUBTYPES: Record<SkargaSubtype, {
   label: string;
+  desc: string;
   icon: React.ReactNode;
   fields: {
     subjectLabel: string; subjectPlaceholder: string;
@@ -174,6 +175,7 @@ const SKARGA_SUBTYPES: Record<SkargaSubtype, {
 }> = {
   kurier: {
     label: "Kurier / dostawa",
+    desc: "Zaginięcie, uszkodzenie paczki, niedostarczenie",
     icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>,
     fields: {
       subjectLabel: "Opis przesyłki / zamówienia",
@@ -190,6 +192,7 @@ const SKARGA_SUBTYPES: Record<SkargaSubtype, {
   },
   telecom: {
     label: "Internet / telefon",
+    desc: "Awaria, zawyżony rachunek, blokada wypowiedzenia",
     icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg>,
     fields: {
       subjectLabel: "Usługa / umowa",
@@ -206,6 +209,7 @@ const SKARGA_SUBTYPES: Record<SkargaSubtype, {
   },
   energia: {
     label: "Energia / gaz",
+    desc: "Zawyżony rachunek, błędny odczyt, bezprawne opłaty",
     icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
     fields: {
       subjectLabel: "Rodzaj usługi",
@@ -222,6 +226,7 @@ const SKARGA_SUBTYPES: Record<SkargaSubtype, {
   },
   inne: {
     label: "Inne",
+    desc: "Siłownia, serwis, hotel, biuro podróży, inne usługi",
     icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
     fields: {
       subjectLabel: "Czego dotyczy skarga",
@@ -638,14 +643,17 @@ export function FormWizard({ lang }: { lang?: string }) {
                       key={id}
                       type="button"
                       onClick={() => setData(p => ({ ...p, skarga_subtype: id }))}
-                      className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border text-sm font-medium transition-all text-left ${
+                      className={`flex items-start gap-2.5 px-3.5 py-3 rounded-xl border text-sm font-medium transition-all text-left ${
                         data.skarga_subtype === id
                           ? "border-indigo-500 bg-indigo-50 text-indigo-700"
                           : "border-gray-200 bg-white text-gray-700 hover:border-indigo-300 hover:bg-indigo-50/40"
                       }`}
                     >
-                      <span className={data.skarga_subtype === id ? "text-indigo-600" : "text-gray-400"}>{sub.icon}</span>
-                      {sub.label}
+                      <span className={`shrink-0 mt-0.5 ${data.skarga_subtype === id ? "text-indigo-600" : "text-gray-400"}`}>{sub.icon}</span>
+                      <div>
+                        <div>{sub.label}</div>
+                        <div className={`text-xs font-normal mt-0.5 ${data.skarga_subtype === id ? "text-indigo-500" : "text-gray-400"}`}>{sub.desc}</div>
+                      </div>
                     </button>
                   ))}
                 </div>
