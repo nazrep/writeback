@@ -66,7 +66,7 @@ export default function Content() {
         <li>Opisz datę zakupu i datę wystąpienia wady</li>
         <li>Opisz objawy dokładnie — co się dzieje, w jakich okolicznościach</li>
         <li>Wskaż żądanie: naprawa, wymiana lub zwrot pieniędzy</li>
-        <li>Powołaj się na art. 43b–43d ustawy o prawach konsumenta</li>
+        <li>Powołaj się na art. 43b i art. 43d ust. 1 ustawy o prawach konsumenta (naprawa lub wymiana); jeśli żądasz zwrotu pieniędzy — powołaj się na art. 43e ust. 1</li>
         <li>Wyślij e-mailem lub listem poleconym, zachowaj kopię</li>
       </ul>
 

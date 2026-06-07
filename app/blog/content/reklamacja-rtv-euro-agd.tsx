@@ -14,15 +14,13 @@ export default function Content() {
       </p>
 
       <h2>Czego możesz żądać</h2>
-      <p>Na podstawie art. 43c–43d ustawy o prawach konsumenta możesz wybrać między:</p>
+      <p>Na podstawie art. 43d ust. 1 ustawy o prawach konsumenta możesz żądać:</p>
       <ul>
-        <li><strong>Naprawą</strong> — bezpłatna, w rozsądnym czasie, bez nadmiernych niedogodności dla Ciebie</li>
-        <li><strong>Wymianą</strong> na identyczny lub równorzędny produkt wolny od wad</li>
-        <li><strong>Obniżeniem ceny</strong> — gdy naprawa lub wymiana jest niemożliwa lub sklep odmawiał</li>
-        <li><strong>Zwrotem pieniędzy</strong> — gdy wada jest istotna albo sklep już naprawiał i wada wróciła</li>
+        <li><strong>Naprawy</strong> — bezpłatna, w rozsądnym czasie, bez nadmiernych niedogodności dla Ciebie</li>
+        <li><strong>Wymiany</strong> na identyczny lub równorzędny produkt wolny od wad</li>
       </ul>
       <p>
-        Sklep sam decyduje o kolejności (naprawa lub wymiana), ale musi być to wykonane bezpłatnie i bez zbędnej zwłoki. Jeśli po naprawie wada wróci — możesz od razu żądać wymiany lub zwrotu pieniędzy.
+        Jeśli naprawa lub wymiana jest niemożliwa, sklep odmawia albo wada wróciła po naprawie — masz prawo żądać <strong>obniżenia ceny</strong> lub <strong>zwrotu pieniędzy</strong> (odstąpienie od umowy) na podstawie art. 43e ust. 1 ustawy. Sklep sam decyduje, czy naprawia czy wymienia, ale musi to wykonać bezpłatnie i bez zbędnej zwłoki.
       </p>
 
       <h2>14-dniowy termin na odpowiedź</h2>
@@ -35,7 +33,7 @@ export default function Content() {
         <li>Przygotuj dowód zakupu: paragon, fakturę, potwierdzenie zamówienia z konta rtveuроagd.pl</li>
         <li>Opisz wadę: datę wystąpienia, objawy, czy sprzęt był użytkowany zgodnie z instrukcją</li>
         <li>Jasno określ żądanie: naprawa, wymiana lub zwrot</li>
-        <li>Powołaj się na art. 43b i 43c ustawy o prawach konsumenta</li>
+        <li>Powołaj się na art. 43b i art. 43d ust. 1 ustawy o prawach konsumenta</li>
         <li>Wyślij e-mailem lub złóż osobiście w sklepie, zachowując kopię i potwierdzenie odbioru</li>
       </ul>
       <p>

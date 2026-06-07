@@ -62,7 +62,7 @@ export default function Content() {
       <p>Więcej o reklamacjach bankowych przeczytasz w artykule <Link href="/blog/bank-odmawia-zwrotu" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">bank odmawia zwrotu pieniędzy</Link>.</p>
 
       <h2>Zakup od osoby prywatnej: jakie masz opcje</h2>
-      <p>Przy zakupie od osoby prywatnej ustawa o prawach konsumenta nie obowiązuje. Masz jednak prawa z Kodeksu cywilnego: art. 556 i następne regulują rękojmię przy sprzedaży między osobami fizycznymi. Termin to rok od wydania rzeczy, a sprzedawca odpowiada za wady, które ukrył lub o których wiedział.</p>
+      <p>Przy zakupie od osoby prywatnej ustawa o prawach konsumenta nie obowiązuje. Masz jednak prawa z Kodeksu cywilnego: art. 556 i następne regulują rękojmię przy sprzedaży między osobami fizycznymi. Termin na stwierdzenie wady to 2 lata od wydania rzeczy (art. 568 § 1 KC), a sprzedawca odpowiada za wady, które ukrył lub o których wiedział.</p>
       <p>Praktycznie jest to trudniejsze do wyegzekwowania niż w przypadku przedsiębiorcy. Jeśli sprzedawca zapewniał o stanie towaru w ogłoszeniu i rzecz okazała się wadliwa, masz podstawy do roszczeń, ale sprawa może wymagać postępowania sądowego.</p>
 
       <h2>Podsumowanie: reklamacja na Allegro krok po kroku</h2>

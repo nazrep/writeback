@@ -18,7 +18,6 @@ export default function Content() {
       <ul>
         <li><strong>Naprawę</strong> — sprzęt ma być naprawiony bezpłatnie i w rozsądnym czasie</li>
         <li><strong>Wymianę</strong> na nowy, wolny od wad egzemplarz</li>
-        <li><strong>Obniżenie ceny</strong> lub <strong>zwrot pieniędzy</strong> — jeśli naprawa lub wymiana jest niemożliwa, nieopłacalna lub sklep już raz naprawiał i wada wróciła</li>
       </ul>
       <p>
         Jeśli naprawa lub wymiana okazała się nieskuteczna albo sklep odmawia, możesz żądać obniżenia ceny lub zwrotu pieniędzy na podstawie art. 43e ust. 1 ustawy.
