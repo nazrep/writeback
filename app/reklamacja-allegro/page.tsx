@@ -146,11 +146,11 @@ export default function ReklamacjaAllegro() {
           {[
             {
               claim: 'Towar był sprawny przy wysyłce',
-              response: "Art. 43a ust. 2 UPK: domniemywa się, że niezgodność istniała w chwili dostawy, jeśli ujawniono ją w ciągu roku (zakupy po 01.01.2023). To sprzedawca musi udowodnić, że towar był sprawny.",
+              response: "Art. 43c ust. 1 UPK: domniemywa się, że niezgodność istniała w chwili dostawy, jeśli ujawniono ją w ciągu 2 lat (zakupy po 01.01.2023). To sprzedawca musi udowodnić, że towar był sprawny.",
             },
             {
               claim: 'Minął termin 30 dni',
-              response: "Ustawa o prawach konsumenta nie zna terminu 30 dni dla reklamacji. Masz 2 lata od wydania towaru (art. 43a ust. 2). Termin 30 dni dotyczy odstąpienia od umowy, to zupełnie inna sprawa.",
+              response: "Ustawa o prawach konsumenta nie zna terminu 30 dni dla reklamacji. Masz 2 lata od wydania towaru (art. 43c ust. 1). Termin 30 dni dotyczy odstąpienia od umowy, to zupełnie inna sprawa.",
             },
             {
               claim: 'Uszkodzenia mechaniczne nie są objęte reklamacją',

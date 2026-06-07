@@ -94,10 +94,10 @@ export default function JakNapisacReklamacje() {
         </p>
         <div className="grid sm:grid-cols-2 gap-3 mb-10">
           {[
-            { label: "Naprawa (art. 43c ust. 1)", desc: "Pierwszeństwo przy drobnych wadach. Sklep ma rozsądny czas na naprawę." },
-            { label: "Wymiana (art. 43c ust. 1)", desc: "Gdy naprawa jest niemożliwa lub zbyt kosztowna — wymiana na nowy egzemplarz." },
-            { label: "Obniżenie ceny (art. 43c ust. 3)", desc: "Gdy sklep nie naprawił / nie wymienił w terminie, lub odmówił." },
-            { label: "Odstąpienie od umowy (art. 43e)", desc: "Zwrot pieniędzy — gdy niezgodność jest istotna i inne środki zawiodły." },
+            { label: "Naprawa (art. 43d ust. 1)", desc: "Pierwszeństwo przy drobnych wadach. Sklep ma rozsądny czas na naprawę." },
+            { label: "Wymiana (art. 43d ust. 1)", desc: "Gdy naprawa jest niemożliwa lub zbyt kosztowna — wymiana na nowy egzemplarz." },
+            { label: "Obniżenie ceny (art. 43e ust. 1)", desc: "Gdy sklep nie naprawił / nie wymienił w terminie, lub odmówił." },
+            { label: "Odstąpienie od umowy (art. 43e ust. 1)", desc: "Zwrot pieniędzy — gdy niezgodność jest istotna i inne środki zawiodły." },
           ].map((item) => (
             <div key={item.label} className="p-4 border border-gray-100 rounded-xl bg-gray-50">
               <div className="font-semibold text-gray-900 text-sm mb-1">{item.label}</div>
@@ -113,7 +113,7 @@ export default function JakNapisacReklamacje() {
             { err: "Pismo bez uzasadnienia prawnego", fix: "Sklep może odmówić powołując się na regulamin. Żądanie musi wynikać z konkretnego przepisu." },
             { err: "Wysyłka przez formularz na stronie sklepu", fix: "Nie ma dowodu daty złożenia. Wyślij emailem albo listem poleconym i zachowaj kopię." },
             { err: "Pominięcie daty ujawnienia wady", fix: "Sklep może kwestionować, czy wada istniała w chwili sprzedaży. Data ujawnienia i opis okoliczności są kluczowe." },
-            { err: "Reklamacja po 2 latach", fix: "Termin odpowiedzialności sprzedawcy wynosi 2 lata od wydania towaru (art. 43a ust. 2 UPK)." },
+            { err: "Reklamacja po 2 latach", fix: "Termin odpowiedzialności sprzedawcy wynosi 2 lata od wydania towaru (art. 43c ust. 1 UPK)." },
           ].map((item, i) => (
             <div key={i} className="flex gap-4 p-4 border border-red-50 bg-red-50/50 rounded-xl">
               <div className="shrink-0 mt-0.5">

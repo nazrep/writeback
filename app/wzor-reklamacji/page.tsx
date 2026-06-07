@@ -73,7 +73,7 @@ export default function WzorReklamacji() {
             </div>
             <div className="bg-indigo-50 text-indigo-800 p-3 rounded-lg font-sans text-xs">
               <strong>ŻĄDANIE</strong><br />
-              Na podstawie art. 43c ust. 1 ustawy o prawach konsumenta żądam wymiany towaru na wolny od wad / naprawy towaru. W przypadku niemożności spełnienia żądania — obniżenia ceny o [kwota] zł lub odstąpienia od umowy i zwrotu ceny.
+              Na podstawie art. 43d ust. 1 ustawy o prawach konsumenta żądam wymiany towaru na wolny od wad / naprawy towaru. W przypadku niemożności spełnienia żądania — obniżenia ceny o [kwota] zł lub odstąpienia od umowy i zwrotu ceny (art. 43e ust. 1 UPK).
             </div>
             <div className="bg-indigo-50 text-indigo-800 p-3 rounded-lg font-sans text-xs">
               <strong>PODSTAWA PRAWNA</strong><br />
