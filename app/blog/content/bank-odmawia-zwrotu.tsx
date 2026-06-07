@@ -73,7 +73,7 @@ export default function Content() {
         <li><strong>Art. 46 ustawy o usługach płatniczych</strong>: bank musi zwrócić pieniądze do końca następnego dnia roboczego po zgłoszeniu</li>
         <li>Ciężar dowodu leży po stronie banku (art. 45 ust. 1). To bank musi udowodnić, że transakcja była autoryzowana</li>
         <li>"Prawidłowe logowanie" ani "kod SMS dotarł" nie zwalniają banku z obowiązku zwrotu</li>
-        <li>Za transakcje dokonane przed zgłoszeniem kradzieży karty odpowiadasz maksymalnie do równowartości 50 euro</li>
+        <li>Za transakcje przed zgłoszeniem utraty karty odpowiadasz do równowartości 50 euro (art. 46 ust. 2 UUP), chyba że działałeś umyślnie lub przez rażące niedbalstwo</li>
         <li>Oszustwo na BLIK: trudniejsze, ale nie beznadziejne. Zgłoś na policję i wyraźnie zaznacz to w reklamacji</li>
         <li>Najskuteczniejsza droga odwoławcza: <strong>Rzecznik Finansowy</strong> (rf.gov.pl). Banki poważnie traktują jego interwencje</li>
       </ul>
