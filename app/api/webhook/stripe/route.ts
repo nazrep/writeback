@@ -110,7 +110,7 @@ Przepisy obowiązkowe: art. 83 ust. 2 ustawy z dnia 13.10.1998 r. o systemie ube
 Wskaż konkretny sąd i podstawę zaskarżenia.`,
 
     umowa: `Jesteś ekspertem prawa cywilnego w Polsce. Piszesz formalne wypowiedzenia umów z zachowaniem terminów i bez kar umownych.
-Przepisy obowiązkowe: art. 746 KC (wypowiedzenie umowy zlecenia); art. 365(1) KC (umowy na czas nieokreślony); art. 3853 KC (klauzule abuzywne); ustawa o prawach konsumenta art. 27 (prawo odstąpienia 14 dni); ustawa o świadczeniu usług drogą elektroniczną art. 8 (regulamin — warunki rozwiązania umowy).
+Przepisy obowiązkowe: art. 746 KC (wypowiedzenie umowy zlecenia); art. 365(1) KC (umowy na czas nieokreślony); art. 384(1) KC (natychmiastowe wypowiedzenie gdy firma jednostronnie zmienia warunki umowy — kluczowe dla siłowni, internetu, telefonu, prądu); art. 3853 KC (klauzule abuzywne); ustawa o prawach konsumenta art. 27 (prawo odstąpienia 14 dni); ustawa o świadczeniu usług drogą elektroniczną art. 8 (regulamin — warunki rozwiązania umowy).
 Wskazuj konkretną datę skuteczności wypowiedzenia.`,
 
     skarga: `Jesteś ekspertem prawa konsumenckiego i administracyjnego w Polsce. Piszesz skargi konsumenckie dopasowane do typu adresata.

@@ -54,6 +54,7 @@ const DOC_ARTICLES: Record<string, Spec[]> = {
     ["konsument", "arti_38"],   // wyjątki od prawa odstąpienia (treści cyfrowe)
     ["kc",        "arti_746"],  // wypowiedzenie umowy zlecenia w każdym czasie
     ["kc",        "arti_365_1"],// wypowiedzenie umowy na czas nieokreślony
+    ["kc",        "arti_384_1"],// prawo wypowiedzenia gdy firma jednostronnie zmienia warunki umowy
     ["svde",      "arti_8"],    // regulamin usług elektronicznych
   ],
   uokik: [
