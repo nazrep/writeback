@@ -104,7 +104,7 @@ export default function PolitykaPrywatnosci() {
             <h2 className="text-lg font-bold text-gray-900 mb-3">7. Pliki cookies i analityka</h2>
             <p>Serwis wykorzystuje następujące rodzaje plików cookies:</p>
             <ul className="list-disc pl-5 space-y-2 mt-2">
-              <li><strong>Techniczne (niezbędne)</strong> — wymagane do prawidłowego działania serwisu i realizacji płatności. Nie wymagają zgody (art. 173 ust. 3 Prawa telekomunikacyjnego).</li>
+              <li><strong>Techniczne (niezbędne)</strong> — wymagane do prawidłowego działania serwisu i realizacji płatności. Nie wymagają zgody (art. 399 ustawy z dnia 16 lipca 2022 r. o prawie komunikacji elektronicznej).</li>
               <li><strong>Analityczne — Google Analytics 4</strong> — używamy usługi Google Analytics 4 (Google LLC, USA) do analizy ruchu na stronie. GA4 zbiera anonimowe dane o odwiedzinach (strony, czas, kraj). Adres IP jest anonimizowany przed przekazaniem do Google. Dane przetwarzane są na podstawie Twojej zgody. Możesz wyrazić lub cofnąć zgodę przez baner cookies. Polityka Google: <a href="https://policies.google.com/privacy" className="text-indigo-600 underline" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</li>
               <li><strong>Płatnicze — Stripe</strong> — Stripe ustawia cookies techniczne (<code>__stripe_mid</code>, <code>__stripe_sid</code>) służące do wykrywania oszustw. Szczegóły: <a href="https://stripe.com/cookies-policy/legal" className="text-indigo-600 underline" target="_blank" rel="noopener noreferrer">stripe.com/cookies-policy</a>.</li>
             </ul>

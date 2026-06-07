@@ -72,7 +72,7 @@ const DOC_ARTICLES: Record<string, Spec[]> = {
     ["pke",       "arti_83"],   // PKE: zmiana warunków umowy — telecom
     ["pke",       "arti_84"],   // PKE: prawo rozwiązania umowy przy zmianie warunków
     ["pke",       "arti_88"],   // PKE: odszkodowanie za niedotrzymanie parametrów usługi
-    ["pe",        "arti_8"],    // PE: reklamacja do przedsiębiorstwa energetycznego
+    ["pe",        "arti_6c"],   // PE: reklamacja do przedsiębiorstwa energetycznego (art. 6c)
     ["pp",        "arti_65"],   // PP: odpowiedzialność przewoźnika za utratę/uszkodzenie
     ["pp",        "arti_75"],   // PP: obowiązek reklamacji przed roszczeniem sądowym
   ],
