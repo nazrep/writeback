@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse, after } from "next/server";
 import Stripe from "stripe";
 import Anthropic from "@anthropic-ai/sdk";
-import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import { PDFDocument, rgb } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import { Resend } from "resend";
 import fs from "fs";
@@ -428,8 +428,9 @@ DATA PISMA: ${today}`,
   const fmtPLN = (n: number) => n.toFixed(2).replace(".", ",") + " zł";
 
   const invDoc = await PDFDocument.create();
-  const iF  = await invDoc.embedFont(StandardFonts.Helvetica);
-  const iFB = await invDoc.embedFont(StandardFonts.HelveticaBold);
+  invDoc.registerFontkit(fontkit);
+  const iF  = await invDoc.embedFont(regularBytes);
+  const iFB = await invDoc.embedFont(boldBytes);
   const IP  = invDoc.addPage([595, 842]);
 
   // Helper: draw text at absolute (x,y), optional right-align within maxX
