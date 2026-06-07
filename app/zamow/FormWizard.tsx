@@ -616,6 +616,10 @@ export function FormWizard({ lang }: { lang?: string }) {
       {/* Krok 1 — Co się stało */}
       {step === 1 && (
         <div>
+          <button onClick={() => setStep(0)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            Zmień typ pisma
+          </button>
           <div className="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 border border-indigo-100">
             {type.label}
           </div>
@@ -743,6 +747,10 @@ export function FormWizard({ lang }: { lang?: string }) {
       {/* Krok 2 — Dane */}
       {step === 2 && (
         <div>
+          <button onClick={() => setStep(1)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            Wróć
+          </button>
           <div className="inline-block bg-indigo-50 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 border border-indigo-100">
             {type.label}
           </div>
@@ -799,6 +807,10 @@ export function FormWizard({ lang }: { lang?: string }) {
       {/* Krok 3 — Podgląd pisma */}
       {step === 3 && (
         <div>
+          <button onClick={() => setStep(2)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            Wróć
+          </button>
           <div className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full mb-4 border transition-all ${
             previewLoading
               ? "bg-indigo-50 text-indigo-600 border-indigo-100"
@@ -928,6 +940,10 @@ export function FormWizard({ lang }: { lang?: string }) {
       {/* Krok 4 — Podsumowanie i płatność */}
       {step === 4 && (
         <div>
+          <button onClick={() => setStep(3)} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 font-medium transition-colors mb-4">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            Wróć do podglądu
+          </button>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Podsumowanie zamówienia</h1>
           <p className="text-gray-600 text-sm mb-8">Sprawdź dane i opłać — PDF dostaniesz na maila od razu</p>
 
