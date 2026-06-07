@@ -27,14 +27,14 @@ export default function GotowePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Nav */}
-      <nav className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur border-b border-white/5 px-6 flex items-center h-14">
+      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 px-6 flex items-center h-14">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center">
             <span className="text-white font-black text-sm leading-none">W</span>
           </div>
-          <span className="text-white font-bold text-base tracking-tight">writeback</span>
+          <span className="text-gray-900 font-bold text-base tracking-tight">writeback<span className="text-indigo-600">.pl</span></span>
         </div>
       </nav>
 
@@ -106,7 +106,7 @@ export default function GotowePage() {
                 </a>
                 <Link
                   href="/"
-                  className="flex items-center justify-center w-full bg-slate-950 hover:bg-slate-800 text-white py-3 rounded-xl text-sm font-semibold transition-colors"
+                  className="flex items-center justify-center w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-xl text-sm font-semibold transition-colors"
                 >
                   Wróć na stronę główną
                 </Link>
@@ -115,7 +115,7 @@ export default function GotowePage() {
           </div>
 
           {/* Footer note */}
-          <p className="text-center text-xs text-slate-500 mt-6">
+          <p className="text-center text-xs text-gray-400 mt-6">
             writeback.pl · Narzędzie do tworzenia pism konsumenckich, nie porada prawna
           </p>
         </div>

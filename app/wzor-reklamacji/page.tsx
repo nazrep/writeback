@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { SiteHeader } from "../../components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Wzór reklamacji do sklepu internetowego z art. 43b — PDF | Writeback",
@@ -17,29 +18,19 @@ export const metadata: Metadata = {
 export default function WzorReklamacji() {
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      <nav className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur border-b border-white/5">
-        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm shrink-0">W</span>
-            <span className="font-bold text-lg tracking-tight text-white">writeback</span>
-          </Link>
-          <Link href="/zamow" className="bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-colors">
-            Napisz pismo — 29 zł
-          </Link>
-        </div>
-      </nav>
+      <SiteHeader />
 
-      <div className="bg-slate-950 py-14 px-6">
+      <div className="bg-gray-50 border-b border-gray-100 py-14 px-6">
         <div className="max-w-3xl mx-auto">
-          <div className="text-xs text-slate-500 mb-4">
-            <Link href="/" className="hover:text-slate-300 transition-colors">writeback.pl</Link>
+          <div className="text-xs text-gray-400 mb-4">
+            <Link href="/" className="hover:text-gray-600 transition-colors">writeback.pl</Link>
             <span className="mx-2">›</span>
-            <span className="text-slate-400">Wzór reklamacji</span>
+            <span className="text-gray-500">Wzór reklamacji</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-4">
             Wzór reklamacji do sklepu internetowego<br className="hidden sm:block" /> z podstawą prawną
           </h1>
-          <p className="text-slate-400 text-base leading-relaxed max-w-2xl">
+          <p className="text-gray-500 text-base leading-relaxed max-w-2xl">
             Pismo reklamacyjne bez powołania na konkretny przepis to prośba, nie roszczenie.
             Poniżej struktura skutecznego pisma i jak wygenerować je automatycznie w 5 minut.
           </p>
@@ -127,34 +118,34 @@ export default function WzorReklamacji() {
           ))}
         </div>
 
-        <div className="bg-slate-950 rounded-2xl p-8 text-center">
+        <div className="bg-gradient-to-br from-indigo-600 via-indigo-600 to-violet-700 rounded-2xl p-8 text-center shadow-lg shadow-indigo-100">
           <h2 className="text-xl font-bold text-white mb-3">Wygeneruj swoje pismo reklamacyjne</h2>
-          <p className="text-slate-400 text-sm mb-2 leading-relaxed">
+          <p className="text-indigo-100 text-sm mb-2 leading-relaxed">
             Zamiast wypełniać wzór ręcznie — opisz sytuację w formularzu, a wygenerujemy pismo dopasowane do Twojego przypadku z właściwymi artykułami ustaw.
           </p>
-          <p className="text-slate-500 text-xs mb-6">Reklamacja do sklepu, banku, ZUS, wypowiedzenie umowy — wszystkie typy pism.</p>
+          <p className="text-indigo-200 text-xs mb-6">Reklamacja do sklepu, banku, ZUS, wypowiedzenie umowy — wszystkie typy pism.</p>
           <Link
             href="/zamow"
-            className="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 text-white font-bold px-8 py-3.5 rounded-xl transition-colors text-sm"
+            className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-indigo-700 font-bold px-8 py-3.5 rounded-xl transition-colors text-sm shadow-sm"
           >
             Wygeneruj pismo — 29 zł
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </Link>
-          <p className="text-slate-500 text-xs mt-3">Jednorazowa opłata · PDF na maila w 5 minut · Odwołanie gratis jeśli nie pomoże</p>
+          <p className="text-indigo-200 text-xs mt-3">Jednorazowa opłata · PDF na maila w 5 minut · Odwołanie gratis jeśli nie pomoże</p>
         </div>
       </div>
 
-      <footer className="bg-slate-950 border-t border-white/5 py-8 px-6 text-center text-xs text-slate-500">
+      <footer className="bg-gray-50 border-t border-gray-100 py-8 px-6 text-center text-xs text-gray-400">
         <p className="mb-2">© 2026 writeback.pl</p>
-        <p className="mb-3 text-slate-600 leading-relaxed max-w-xl mx-auto">Pisma generowane przez writeback.pl mają charakter informacyjny i pomocniczy. Nie stanowią porady prawnej ani zastępstwa adwokata lub radcy prawnego. W sprawach złożonych zalecamy konsultację z prawnikiem lub rzecznikiem praw konsumentów.</p>
+        <p className="mb-3 text-gray-400 leading-relaxed max-w-xl mx-auto">Pisma generowane przez writeback.pl mają charakter informacyjny i pomocniczy. Nie stanowią porady prawnej ani zastępstwa adwokata lub radcy prawnego. W sprawach złożonych zalecamy konsultację z prawnikiem lub rzecznikiem praw konsumentów.</p>
         <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-          <Link href="/" className="hover:text-slate-300 transition-colors">Strona główna</Link>
+          <Link href="/" className="hover:text-gray-600 transition-colors">Strona główna</Link>
           <span>·</span>
-          <Link href="/jak-napisac-reklamacje" className="hover:text-slate-300 transition-colors">Jak napisać reklamację</Link>
+          <Link href="/jak-napisac-reklamacje" className="hover:text-gray-600 transition-colors">Jak napisać reklamację</Link>
           <span>·</span>
-          <Link href="/reklamacja-allegro" className="hover:text-slate-300 transition-colors">Reklamacja Allegro</Link>
+          <Link href="/reklamacja-allegro" className="hover:text-gray-600 transition-colors">Reklamacja Allegro</Link>
           <span>·</span>
-          <Link href="/regulamin" className="hover:text-slate-300 transition-colors">Regulamin</Link>
+          <Link href="/regulamin" className="hover:text-gray-600 transition-colors">Regulamin</Link>
         </p>
       </footer>
     </div>

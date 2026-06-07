@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteHeader } from "../../components/SiteHeader";
 
 export const metadata = {
   title: "Regulamin — Writeback",
@@ -7,14 +8,7 @@ export const metadata = {
 export default function RegulaminPage() {
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      <nav className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur border-b border-white/5 px-6 py-0">
-        <div className="max-w-3xl mx-auto h-14 flex items-center">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm shrink-0">W</span>
-            <span className="font-bold text-lg tracking-tight text-white">writeback</span>
-          </Link>
-        </div>
-      </nav>
+      <SiteHeader />
 
       <main className="max-w-3xl mx-auto px-6 py-16">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Regulamin świadczenia usług</h1>
