@@ -454,7 +454,7 @@ DATA PISMA: ${today}`,
   IP.drawRectangle({ x: 50, y: 790, width: 32, height: 32, color: rgb(0.31, 0.27, 0.9) });
   const wSize = 15;
   const wW = iFB.widthOfTextAtSize("W", wSize);
-  IP.drawText("W", { x: 50 + 16 - wW / 2, y: 797, size: wSize, font: iFB, color: rgb(1, 1, 1) });
+  IP.drawText("W", { x: 50 + 16 - wW / 2, y: 801, size: wSize, font: iFB, color: rgb(1, 1, 1) });
   iT("writeback.pl", 90, 809, 11, true, [0.12, 0.12, 0.18]);
   iT("Maciej Perzankowski", 90, 795, 7.5, false, [0.5, 0.5, 0.56]);
 

@@ -13,7 +13,7 @@ export default function Content() {
 
       <h3>„Wada wynika z nieprawidłowego użytkowania"</h3>
       <p>Najczęstszy argument. Sklep musi go udowodnić — ekspertyzą, opinią techniczną, protokołem serwisowym. Jeśli tego nie zrobił, odmowa jest bezpodstawna. W odwołaniu zażądaj pisemnego uzasadnienia z powołaniem na art. 43d ust. 2 UPK i wezwij do ponownego rozpatrzenia reklamacji.</p>
-      <p>Wzmacniający argument: jeśli ta sama wada pojawiła się ponownie po naprawie lub wymianie — sklep praktycznie nie ma już możliwości obrony. Zgodnie z art. 43d ust. 6 UPK, gdy naprawa lub wymiana okazała się nieskuteczna, masz prawo do <strong>obniżenia ceny lub pełnego zwrotu</strong>.</p>
+      <p>Wzmacniający argument: jeśli ta sama wada pojawiła się ponownie po naprawie lub wymianie — sklep praktycznie nie ma już możliwości obrony. Ustawa o prawach konsumenta wprost przewiduje, że gdy naprawa lub wymiana okazała się nieskuteczna, konsument ma prawo do <strong>obniżenia ceny lub pełnego zwrotu</strong> (odstąpienia od umowy).</p>
 
       <h3>„Towar był sprawny przy wysyłce / w chwili wydania"</h3>
       <p>Sklep może tak twierdzić, ale bez ekspertyzy to tylko słowa. Domniemanie z art. 43d ust. 2 działa właśnie na wypadek takiej sytuacji: prawo zakłada, że skoro wada ujawniła się w ciągu 2 lat, to istniała już wcześniej. To sklep musi obalić to domniemanie.</p>
