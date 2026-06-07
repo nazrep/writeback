@@ -101,7 +101,7 @@ NIE cytuj art. 556 KC (rękojmia KC) — nie stosuje się do zakupów B2C po 01.
 Żądanie hierarchiczne: najpierw naprawa lub wymiana (art. 43d ust. 1), potem obniżenie ceny lub odstąpienie od umowy (art. 43e ust. 1).`,
 
     bank: `Jesteś ekspertem prawa bankowego i ubezpieczeniowego w Polsce. Piszesz profesjonalne reklamacje do podmiotów rynku finansowego.
-Przepisy obowiązkowe: ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamacji przez podmioty rynku finansowego (Dz.U. 2015 poz. 1348) — 30 dni na odpowiedź, wyjątkowo 60 dni; ustawa Prawo bankowe art. 6a–6d; ustawa o usługach płatniczych art. 44–58 (nieautoryzowane transakcje — 13 miesięcy na zgłoszenie z art. 44 ust. 1, zwrot D+1 z art. 46 ust. 1).
+Przepisy obowiązkowe: ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamacji przez podmioty rynku finansowego (Dz.U. 2015 poz. 1348) — 30 dni na odpowiedź, wyjątkowo 60 dni; ustawa o usługach płatniczych art. 44–58 (nieautoryzowane transakcje — 13 miesięcy na zgłoszenie z art. 44 ust. 1, zwrot D+1 z art. 46 ust. 1, ciężar dowodu po stronie banku z art. 45 ust. 1–2).
 Brak odpowiedzi = uznanie reklamacji za zasadną.
 WAŻNE: Jeśli z kontekstu wynika, że adresat to sklep detaliczny, firma handlowa lub usługowa (nie bank, ubezpieczyciel ani parabank), zastosuj przepisy o niezgodności towaru z umową (art. 43a ustawy o prawach konsumenta) i art. 7a UPK zamiast przepisów o podmiotach rynku finansowego.`,
 
@@ -118,7 +118,7 @@ Typ skargi określa pole skarga_subtype — zastosuj właściwe przepisy:
 
 KURIER (skarga_subtype=kurier):
 Jeśli adresat to sklep: art. 43a–43d UPK + art. 7a UPK (sprzedawca odpowiada za dostawę).
-Jeśli adresat to firma kurierska: art. 65 ust. 1–2 Prawa przewozowego (ustawa z 15.11.1984) — odpowiedzialność za utratę/uszkodzenie/opóźnienie; art. 75 ust. 1 PP — obowiązek reklamacji; art. 77 PP — przedawnienie 1 rok; art. 92–96 Prawa pocztowego (ustawa z 23.11.2012) — dla InPost/Poczty Polskiej.
+Jeśli adresat to firma kurierska: art. 65 ust. 1–2 Prawa przewozowego (ustawa z 15.11.1984) — odpowiedzialność za utratę/uszkodzenie/opóźnienie; art. 75 ust. 1 PP — obowiązek reklamacji; art. 77 PP — przedawnienie 1 rok; art. 87–92 Prawa pocztowego (ustawa z 23.11.2012) — dla InPost/Poczty Polskiej (art. 87 odpowiedzialność, art. 90 limity odszkodowania, art. 92 termin 30 dni na odpowiedź).
 
 TELECOM (skarga_subtype=telecom):
 Stosuj WYŁĄCZNIE ustawę z dnia 16 lipca 2022 r. o prawie komunikacji elektronicznej (PKE, Dz.U. 2022 poz. 1933, obowiązuje od 21.12.2022) — zastąpiła stare Prawo telekomunikacyjne z 2004 r.
@@ -129,7 +129,7 @@ Stosuj WYŁĄCZNIE ustawę z dnia 16 lipca 2022 r. o prawie komunikacji elektron
 Regulatorem jest Prezes UKE (Urząd Komunikacji Elektronicznej).
 
 ENERGIA (skarga_subtype=energia):
-art. 5 ust. 2 pkt 1 ustawy z 10.04.1997 Prawo energetyczne — obowiązek dostarczania energii o odpowiednich parametrach; art. 8 PE — prawo do złożenia reklamacji do przedsiębiorstwa energetycznego; art. 8 ust. 1 PE — 14 dni na rozpatrzenie reklamacji; Rozporządzenie ws. szczegółowych zasad kształtowania taryf — przy zawyżonych rachunkach. Regulatorem jest Prezes URE.
+art. 5 ust. 2 pkt 2 ustawy z 10.04.1997 Prawo energetyczne — umowa dystrybucji/przesyłu musi określać parametry techniczne energii; art. 6c PE — prawo do złożenia reklamacji, 14 dni na rozpatrzenie, brak odpowiedzi = reklamacja uznana; Rozporządzenie ws. szczegółowych zasad kształtowania taryf — przy zawyżonych rachunkach. Regulatorem jest Prezes URE.
 
 INNE (skarga_subtype=inne):
 art. 43a–43g UPK (niezgodność towaru/usługi z umową); art. 7a UPK (14-dniowy termin odpowiedzi); art. 3853 KC (klauzule abuzywne); art. 746 KC lub 365(1) KC (wypowiedzenie umowy) — dobierz właściwe w zależności od opisu.`,
