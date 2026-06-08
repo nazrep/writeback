@@ -17,7 +17,7 @@ export default function Content() {
       <p>Zaniżona wycena to najczęstszy scenariusz przy szkodach komunikacyjnych. Ubezpieczyciele stosują kosztorysy zakładające najtańsze zamienniki i „amortyzację" nowych części. To niezgodne z celem odszkodowania — które powinno przywrócić stan sprzed szkody. W reklamacji zażądaj wyceny przywrócenia pojazdu do stanu poprzedniego, a nie kosztorysu z przecenionymi częściami.</p>
 
       <h3>AC — „szkoda mieści się w wyłączeniach z OWU"</h3>
-      <p>Ogólne Warunki Ubezpieczenia (OWU) zawierają wyłączenia — ale tylko te, które zostały Ci dostarczone przed zawarciem umowy i na które wyraziłeś zgodę. <strong>Art. 807 KC</strong>: postanowienia OWU sprzeczne z bezwzględnie obowiązującymi przepisami prawa są nieważne. <strong>Art. 385³ pkt 2 KC</strong> zakazuje klauzul, które wyłączają odpowiedzialność ubezpieczyciela za szkody wyrządzone z winy nieumyślnej ubezpieczonego w sposób, który konsument mógłby uznać za zaskakujący.</p>
+      <p>Ogólne Warunki Ubezpieczenia (OWU) zawierają wyłączenia — ale tylko te, które zostały Ci dostarczone przed zawarciem umowy i na które wyraziłeś zgodę. <strong>Art. 807 KC</strong>: postanowienia OWU sprzeczne z bezwzględnie obowiązującymi przepisami prawa są nieważne. <strong>Art. 385¹ KC</strong>: postanowienia OWU nieuzgodnione indywidualnie, sprzeczne z dobrymi obyczajami i rażąco naruszające interesy konsumenta, nie wiążą go — nawet jeśli podpisał umowę.</p>
       <p>Praktyczna zasada: jeśli wyłączenie jest niejednoznaczne lub mogłeś go nie zauważyć w standardowych warunkach użytkowania pojazdu — kwestionuj je. KNF (Komisja Nadzoru Finansowego) wielokrotnie nakazywała towarzystwom ubezpieczeniowym usuwanie klauzul abuzywnych z OWU.</p>
 
       <h3>NNW i ubezpieczenie na życie — „zdarzenie nie spełnia definicji z OWU"</h3>
@@ -36,7 +36,7 @@ export default function Content() {
       <ul>
         <li><strong>Rzecznik Finansowy (rf.gov.pl)</strong> — bezpłatne postępowanie interwencyjne i polubowne. Ubezpieczyciele bardzo poważnie traktują interwencje RF. Postępowanie można wszcząć online.</li>
         <li><strong>KNF (knf.gov.pl)</strong> — skarga na działania ubezpieczyciela naruszające przepisy prawa lub interesy klientów. KNF może wszcząć postępowanie nadzorcze i nałożyć karę finansową.</li>
-        <li><strong>Sąd powszechny</strong> — w sprawach o wartości do 100 000 zł, postępowanie uproszczone (art. 505¹ KPC) jeśli roszczenie nie przekracza 30 000 zł.</li>
+        <li><strong>Sąd powszechny</strong> — roszczenia o niższej wartości rozpatrywane są w trybie uproszczonym (art. 505¹ KPC), co obniża koszty i skraca postępowanie.</li>
       </ul>
       <p>Warto pamiętać, że złożenie wniosku do Rzecznika Finansowego <strong>przerywa bieg przedawnienia</strong> roszczenia (art. 35 ust. 1 ustawy o Rzeczniku Finansowym) — termin zaczyna biec od nowa, co jest dodatkową zaletą tego trybu.</p>
 

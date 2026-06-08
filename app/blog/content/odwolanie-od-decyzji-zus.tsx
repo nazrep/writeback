@@ -6,7 +6,7 @@ export default function Content() {
       <p>ZUS wydał decyzję odmawiającą zasiłku, renty, emerytury lub obniżającą Twoje świadczenie? Masz miesiąc na odwołanie — i wbrew powszechnemu przekonaniu, nie piszesz go do ZUS, ale do sądu. Przez ZUS. To ważna różnica, która decyduje o tym jak napisać pismo.</p>
 
       <h2>Kluczowa zasada: odwołanie od decyzji ZUS trafia do sądu, nie do organu</h2>
-      <p>Odwołania od decyzji ZUS NIE rozpatruje się w trybie administracyjnym (nie stosuje się KPA art. 127–140). <strong>Art. 83 ust. 2 ustawy z dnia 13 października 1998 r. o systemie ubezpieczeń społecznych</strong> (tekst jedn. Dz.U. 2024 poz. 497) stanowi wprost: od decyzji ZUS przysługuje odwołanie do właściwego sądu na zasadach określonych w przepisach KPC.</p>
+      <p>Odwołania od decyzji ZUS NIE rozpatruje się w trybie administracyjnym (nie stosuje się KPA art. 127–140). <strong>Art. 83 ust. 2 ustawy z dnia 13 października 1998 r. o systemie ubezpieczeń społecznych</strong> (tekst jedn. Dz.U. 2026 poz. 199) stanowi wprost: od decyzji ZUS przysługuje odwołanie do właściwego sądu na zasadach określonych w przepisach KPC.</p>
       <p>Konkretny przepis: <strong>art. 477⁹ § 1 Kodeksu postępowania cywilnego</strong> — odwołanie wnosi się na piśmie do sądu pracy i ubezpieczeń społecznych <strong>za pośrednictwem organu, który wydał zaskarżoną decyzję</strong>. Czyli: pismo adresujesz do sądu, ale składasz fizycznie w ZUS lub wysyłasz na adres ZUS.</p>
 
       <h2>Termin odwołania — 1 miesiąc od doręczenia</h2>
@@ -23,7 +23,7 @@ export default function Content() {
       <p>Podstawa prawna do powołania w odwołaniu: ustawa z dnia 25 czerwca 1999 r. o świadczeniach pieniężnych z ubezpieczenia społecznego w razie choroby i macierzyństwa. Art. 4: prawo do zasiłku po 30 dniach nieprzerwanego ubezpieczenia (pracownicy) lub 90 dniach (zleceniobiorcy). Art. 9: okresy poprzedniego ubezpieczenia wlicza się do okresu wyczekiwania jeśli przerwa nie przekroczyła 30 dni lub jest kontynuacja.</p>
 
       <h3>Odmowa renty z tytułu niezdolności do pracy</h3>
-      <p>Ustawa z dnia 17 grudnia 1998 r. o emeryturach i rentach z Funduszu Ubezpieczeń Społecznych (Dz.U. 2023 poz. 1251 — tekst jedn.): art. 12 (definicja niezdolności do pracy), art. 57 (warunki przyznania renty). ZUS często zaniża stopień niezdolności — orzeczenie lekarza orzecznika nie jest ostateczne; masz prawo złożyć sprzeciw do komisji lekarskiej ZUS (art. 14 ust. 2a ustawy) w terminie 14 dni, a następnie odwołać się do sądu.</p>
+      <p>Ustawa z dnia 17 grudnia 1998 r. o emeryturach i rentach z Funduszu Ubezpieczeń Społecznych (tekst jedn. Dz.U. 2025 poz. 1749): art. 12 (definicja niezdolności do pracy), art. 57 (warunki przyznania renty). ZUS często zaniża stopień niezdolności — orzeczenie lekarza orzecznika nie jest ostateczne; masz prawo złożyć sprzeciw do komisji lekarskiej ZUS (art. 14 ust. 2a ustawy) w terminie 14 dni, a następnie odwołać się do sądu.</p>
 
       <h3>Decyzja o zaległych składkach</h3>
       <p>Art. 83 ust. 1 uSUS: decyzje w sprawach indywidualnych dotyczących ustalania wymiaru składek i ich poboru. Odwołanie do <strong>sądu okręgowego</strong> wydziału pracy i ubezpieczeń społecznych (właściwego dla miejsca zamieszkania lub siedziby płatnika) — sprawy z zakresu ubezpieczeń społecznych rozpatruje sąd okręgowy jako pierwsza instancja (art. 477⁸ KPC). Warto zaskarżyć gdy ZUS zaniżył podstawę wymiaru, błędnie ustalił okres ubezpieczenia lub błędnie naliczył odsetki.</p>
