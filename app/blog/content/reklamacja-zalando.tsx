@@ -33,7 +33,7 @@ export default function Content() {
         <li><strong>Wymiany</strong> na nowy egzemplarz wolny od wad</li>
       </ul>
       <p>
-        To <strong>Ty wybierasz</strong> między naprawą a wymianą. Zalando może odmówić tylko gdy wybrany sposób jest niemożliwy lub wymagałby kosztów rażąco nieproporcjonalnych względem wartości towaru (art. 43d ust. 2 UPK).
+        To <strong>Ty wybierasz</strong> między naprawą a wymianą. Zalando może odmówić tylko gdy wybrany sposób jest niemożliwy lub wymagałby <strong>nadmiernych kosztów</strong> w stosunku do drugiego sposobu (art. 43d ust. 2 UPK).
       </p>
       <p>
         Jeśli naprawa lub wymiana okazała się nieskuteczna albo Zalando odmówiło obu opcji — masz prawo żądać <strong>obniżenia ceny lub pełnego zwrotu pieniędzy</strong> (art. 43e ust. 1 UPK). Przy istotnej wadzie możesz żądać zwrotu od razu.
@@ -80,7 +80,7 @@ export default function Content() {
         <li><strong>Rzecznik Praw Konsumentów</strong> w Twoim powiecie — bezpłatna interwencja</li>
         <li><strong>UOKiK (uokik.gov.pl)</strong> — skarga gdy praktyka dotyczy wielu konsumentów</li>
         <li><strong>Platforma ODR (ec.europa.eu/consumers/odr)</strong> — pozasądowe rozstrzyganie sporów transgranicznych, bo Zalando to spółka z siedzibą w Niemczech</li>
-        <li><strong>Sąd rejonowy</strong> — roszczenia do 30 000 zł rozpatrywane w trybie uproszczonym (art. 505¹ KPC)</li>
+        <li><strong>Sąd rejonowy</strong> — roszczenia o niższej wartości rozpatrywane w trybie uproszczonym (art. 505¹ KPC), co obniża koszty postępowania</li>
       </ul>
 
       <div style={{ margin: "2rem 0", padding: "1.5rem", background: "#eef2ff", borderRadius: "12px", border: "1px solid #c7d2fe" }}>
