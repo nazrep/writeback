@@ -128,6 +128,15 @@ const TYPES = [
   {
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+      </svg>
+    ),
+    label: "Skarga konsumencka",
+    desc: "Kurier, internet, telefon, energia — firma nie reaguje",
+  },
+  {
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
       </svg>
     ),
@@ -550,15 +559,15 @@ export default function HomePage() {
           {[
             {
               group: "Reklamacje konsumenckie",
-              items: TYPES.slice(0, 3),
+              items: TYPES.slice(0, 4),
             },
             {
               group: "Umowy i inne prawa",
-              items: TYPES.slice(3, 6),
+              items: TYPES.slice(4, 7),
             },
             {
               group: "Nowe",
-              items: TYPES.slice(6),
+              items: TYPES.slice(7),
             },
           ].map((section, si) => (
             <AnimateIn key={section.group} delay={si * 80} className="mb-8">
