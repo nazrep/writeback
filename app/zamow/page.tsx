@@ -3,6 +3,8 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Napisz pismo — Writeback",
+  description: "Wygeneruj formalne pismo reklamacyjne z właściwymi przepisami prawa. Reklamacja do sklepu, banku, ZUS, linie lotnicze — PDF na maila w 5 minut. 29 zł, jednorazowo.",
+  robots: { index: false },
 };
 
 export default async function ZamowPage({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {

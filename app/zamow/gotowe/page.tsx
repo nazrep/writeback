@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-export const metadata = { title: "Pismo gotowe — Writeback" };
+export const metadata = {
+  title: "Pismo gotowe — Writeback",
+  description: "Twoje pismo reklamacyjne zostało wygenerowane i wysłane na email. Sprawdź skrzynkę i wyślij pismo do adresata.",
+  robots: { index: false },
+};
 
 export default function GotowePage() {
   const steps = [

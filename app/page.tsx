@@ -669,9 +669,10 @@ export default function HomePage() {
               <div className="text-gray-200 font-semibold text-xs uppercase tracking-widest mb-4">Poradniki</div>
               <ul className="space-y-2.5">
                 <li><Link href="/blog" className="hover:text-gray-200 transition-colors">Wszystkie poradniki</Link></li>
+                <li><Link href="/blog/reklamacja-zalando" className="hover:text-gray-200 transition-colors">Reklamacja Zalando</Link></li>
                 <li><Link href="/blog/reklamacja-sklep-internetowy" className="hover:text-gray-200 transition-colors">Reklamacja do sklepu</Link></li>
                 <li><Link href="/blog/bank-odmawia-zwrotu" className="hover:text-gray-200 transition-colors">Bank odmawia zwrotu</Link></li>
-                <li><Link href="/blog/wypowiedzenie-silownia" className="hover:text-gray-200 transition-colors">Wypowiedzenie siłowni</Link></li>
+                <li><Link href="/blog/odszkodowanie-za-opozniony-lot" className="hover:text-gray-200 transition-colors">Odszkodowanie za lot</Link></li>
               </ul>
             </div>
             <div>

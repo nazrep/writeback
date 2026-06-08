@@ -465,6 +465,15 @@ export default function EnPage() {
       {/* Footer */}
       <footer className="bg-gray-50 border-t border-gray-100 py-8 px-6 text-center text-xs text-gray-400">
         <p className="mb-2">© 2026 writeback.pl · A letter-writing tool, not legal advice</p>
+        <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 mb-2">
+          <Link href="/blog?lang=en" className="hover:text-gray-600 transition-colors">Guides</Link>
+          <span>·</span>
+          <Link href="/blog/reklamacja-zalando?lang=en" className="hover:text-gray-600 transition-colors">Zalando complaint</Link>
+          <span>·</span>
+          <Link href="/blog/odszkodowanie-za-opozniony-lot?lang=en" className="hover:text-gray-600 transition-colors">Flight compensation</Link>
+          <span>·</span>
+          <Link href="/blog/bank-odmawia-zwrotu?lang=en" className="hover:text-gray-600 transition-colors">Bank refuses refund</Link>
+        </p>
         <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
           <a href="mailto:hello@writeback.pl" className="hover:text-gray-600 transition-colors">hello@writeback.pl</a>
           <span>·</span>
