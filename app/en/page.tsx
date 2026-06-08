@@ -65,6 +65,54 @@ const PROBLEMS = [
   },
 ];
 
+const TYPES_EN = [
+  {
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>,
+    label: "Store / Allegro complaint",
+    desc: "Item not delivered, damaged, not as described, refund refused",
+  },
+  {
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>,
+    label: "Bank / insurer complaint",
+    desc: "Unauthorised transaction, refused payout, incorrect charge",
+  },
+  {
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
+    label: "ZUS / Tax authority appeal",
+    desc: "Benefit refused, contribution overcharged, tax decision",
+  },
+  {
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>,
+    label: "Consumer complaint",
+    desc: "Courier, internet, phone, energy — company not responding",
+  },
+  {
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>,
+    label: "Contract termination",
+    desc: "Internet, gym, electricity, phone — without penalties",
+  },
+  {
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
+    label: "UOKiK / Ombudsman complaint",
+    desc: "Store ignores complaints, unfair practices",
+  },
+  {
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 00-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>,
+    label: "Flight delay / cancellation",
+    desc: "Up to €600 compensation — EU Regulation 261/2004",
+  },
+  {
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><line x1="6" y1="9" x2="18" y2="9"/><line x1="6" y1="13" x2="13" y2="13"/></svg>,
+    label: "Payment demand",
+    desc: "Unpaid invoice, loan, contract — recover what you're owed",
+  },
+  {
+    icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>,
+    label: "Traffic fine appeal",
+    desc: "Road or administrative fine — challenge it",
+  },
+];
+
 const FAQS = [
   {
     q: "I don't speak Polish — can I still use Writeback?",
@@ -268,6 +316,43 @@ export default function EnPage() {
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* What letters we write */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Scope</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">What letters we write</h2>
+            <p className="text-gray-500 text-sm">All types available instantly — PLN 29, PDF to your inbox in 5 minutes</p>
+          </div>
+          {[
+            { group: "Consumer complaints", items: TYPES_EN.slice(0, 4) },
+            { group: "Contracts & other rights", items: TYPES_EN.slice(4, 7) },
+            { group: "New", items: TYPES_EN.slice(7) },
+          ].map((section, si) => (
+            <div key={section.group} className="mb-8">
+              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">{section.group}</p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {section.items.map((t) => (
+                  <Link
+                    key={t.label}
+                    href="/zamow?lang=en"
+                    className="flex items-start gap-3 rounded-2xl px-4 py-4 border border-gray-100 bg-white shadow-sm hover:border-indigo-200 hover:shadow-md hover:shadow-indigo-50 hover:-translate-y-0.5 transition-all duration-200 group"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-indigo-100 transition-colors">
+                      {t.icon}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm text-gray-900 group-hover:text-indigo-700 transition-colors leading-snug">{t.label}</div>
+                      <div className="text-xs mt-0.5 text-gray-400 leading-relaxed">{t.desc}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
