@@ -21,8 +21,8 @@ export default function GotowePage() {
     },
     {
       n: "4",
-      title: "Czekaj na odpowiedź — 14 dni",
-      desc: "Brak odpowiedzi w terminie = reklamacja uznana za zasadną (art. 7a UPK).",
+      title: "Czekaj na odpowiedź",
+      desc: "Sklep ma 14 dni (art. 7a UPK), bank 30 dni — brak odpowiedzi w ustawowym terminie to uznanie reklamacji za zasadną.",
     },
   ];
 
@@ -93,17 +93,12 @@ export default function GotowePage() {
 
               {/* Buttons */}
               <div className="space-y-3">
-                <a
-                  href="https://mail.google.com/mail/u/0/#search/from:hello@writeback.pl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2.5 w-full bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-800 py-3 rounded-xl text-sm font-semibold transition-colors"
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.909 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#EA4335"/>
-                  </svg>
-                  Otwórz Gmail i sprawdź email
-                </a>
+                <div className="bg-indigo-50 border border-indigo-100 rounded-xl px-4 py-3 flex items-center gap-3">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <p className="text-sm text-indigo-800 leading-relaxed">
+                    Sprawdź skrzynkę <strong>hello@writeback.pl</strong> — PDF jest już na Twoim emailu. Jeśli nie widzisz, zajrzyj do folderu <strong>Spam</strong>.
+                  </p>
+                </div>
                 <Link
                   href="/"
                   className="flex items-center justify-center w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-xl text-sm font-semibold transition-colors"

@@ -16,6 +16,10 @@ const DOC_TYPE_NAMES: Record<string, string> = {
   zus: "Odwołanie od decyzji ZUS / US",
   umowa: "Wypowiedzenie umowy",
   uokik: "Skarga do UOKiK / Rzecznika",
+  skarga: "Skarga konsumencka",
+  lot: "Odszkodowanie za opóźniony / odwołany lot",
+  wezwanie: "Wezwanie do zapłaty",
+  mandat: "Odwołanie od mandatu",
 };
 
 function trunc(s: string | undefined, n: number) {

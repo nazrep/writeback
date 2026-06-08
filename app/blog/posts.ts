@@ -20,6 +20,166 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-do-ubezpieczyciela",
+    title: "Reklamacja do ubezpieczyciela: OC, AC, NNW — prawa i wzór pisma (2026)",
+    description: "Ubezpieczyciel odmówił wypłaty lub zaniżył odszkodowanie? Art. 817 KC: 30 dni na wypłatę. Brak odpowiedzi na reklamację w 30 dniach = uznana za zasadną. Jak napisać skuteczne pismo do towarzystwa ubezpieczeniowego.",
+    date: "2026-06-13",
+    readTime: "6 min",
+    category: "Ubezpieczenia",
+    faq: [
+      {
+        q: "Ile czasu ma ubezpieczyciel na wypłatę odszkodowania?",
+        a: "Zgodnie z art. 817 § 1 Kodeksu cywilnego — 30 dni od daty zawiadomienia o szkodzie. Jeśli wyjaśnienie okoliczności jest niemożliwe w tym terminie, maksymalnie 14 dni od ich wyjaśnienia, ale nie więcej niż 90 dni od zgłoszenia. Za każdy dzień opóźnienia należą Ci się odsetki ustawowe za opóźnienie.",
+      },
+      {
+        q: "Ile dni ma ubezpieczyciel na odpowiedź na reklamację?",
+        a: "30 dni kalendarzowych (art. 5 ustawy o rozpatrywaniu reklamacji przez podmioty rynku finansowego). Wyjątkowo 60 dni przy szczególnie skomplikowanych sprawach. Brak odpowiedzi w terminie = reklamacja uznana za zasadną (art. 6 tej ustawy).",
+      },
+      {
+        q: "Ubezpieczyciel zaniżył wartość szkody w AC. Czy mogę się odwołać?",
+        a: "Tak. Masz prawo zakwestionować wycenę i powołać własnego rzeczoznawcę. Ubezpieczyciel musi wykazać metodologię wyceny. Klauzule OWU ograniczające odszkodowanie do kosztorysu z amortyzacją i najtańszymi zamiennikami są często kwestionowane przez sądy jako niezgodne z celem ubezpieczenia AC.",
+      },
+      {
+        q: "Kiedy ubezpieczyciel może zgodnie z prawem odmówić wypłaty?",
+        a: "Tylko gdy zdarzenie mieści się w wyłączeniach OWU, które były Ci dostarczone przed zawarciem umowy. Niejednoznaczne postanowienia OWU tłumaczy się na korzyść ubezpieczonego (art. 12 ust. 3 ustawy o działalności ubezpieczeniowej). Wyłączenia sprzeczne z przepisami bezwzględnie obowiązującymi są nieważne (art. 807 KC).",
+      },
+      {
+        q: "Co zrobić jeśli reklamacja do ubezpieczyciela nie pomoże?",
+        a: "Złóż wniosek do Rzecznika Finansowego (rf.gov.pl) — bezpłatne postępowanie interwencyjne lub polubowne. Możesz też złożyć skargę do KNF lub skierować sprawę do sądu. Złożenie wniosku do RF zawiesza bieg przedawnienia roszczenia.",
+      },
+    ],
+  },
+  {
+    slug: "reklamacja-dewelopera",
+    title: "Reklamacja dewelopera: wady mieszkania i jak je egzekwować (2026)",
+    description: "Deweloper nie usunął wad z protokołu odbioru? Art. 43 nowej ustawy deweloperskiej: 30 dni na usunięcie wad. Rękojmia KC — 5 lat na reklamację wad nieruchomości. Jak napisać skuteczne pismo.",
+    date: "2026-06-20",
+    readTime: "6 min",
+    category: "Nieruchomości",
+    faq: [
+      {
+        q: "Ile lat mam na reklamację wad mieszkania od dewelopera?",
+        a: "5 lat od daty odbioru lokalu — to termin rękojmi za wady nieruchomości z art. 568 § 1 Kodeksu cywilnego. Niezależnie od gwarancji dewelopera, która może być krótsza.",
+      },
+      {
+        q: "Deweloper nie usunął wad wskazanych w protokole odbioru. Co zrobić?",
+        a: "Art. 43 ust. 1 nowej ustawy deweloperskiej: deweloper ma 30 dni na usunięcie wad z protokołu. Po tym terminie możesz wyznaczyć dodatkowy termin, a po jego upływie — usunąć wady na koszt dewelopera lub żądać obniżenia ceny.",
+      },
+      {
+        q: "Czy mogę odmówić odbioru mieszkania z powodu wad?",
+        a: "Tak — jeśli wada jest istotna. Art. 41 ust. 4 ustawy deweloperskiej z 2021 r. (obowiązuje dla umów od 1.07.2022 r.): nabywca może odmówić odbioru i wyznaczyć termin usunięcia istotnej wady. Przy wadach nieistotnych odbioru dokonujesz z zastrzeżeniami wpisanymi do protokołu.",
+      },
+      {
+        q: "Deweloper twierdzi że wady wynikają z mojego użytkowania. Co robić?",
+        a: "Art. 556³ KC: jeśli wada ujawniła się w ciągu roku od odbioru, domniemywa się że istniała w chwili wydania lokalu. To deweloper musi obalić to domniemanie ekspertyzą — nie Ty musisz dowodzić że wada jest fabryczna.",
+      },
+    ],
+  },
+  {
+    slug: "odwolanie-od-decyzji-zus",
+    title: "Odwołanie od decyzji ZUS: jak i gdzie złożyć — krok po kroku (2026)",
+    description: "ZUS odmówił zasiłku, renty lub emerytury? Masz 1 miesiąc na odwołanie do sądu pracy — nie do ZUS. Art. 477⁹ KPC i art. 83 uSUS. Postępowanie wolne od opłat. Jak napisać skuteczne odwołanie.",
+    date: "2026-06-27",
+    readTime: "6 min",
+    category: "ZUS / US",
+    faq: [
+      {
+        q: "Ile czasu mam na odwołanie od decyzji ZUS?",
+        a: "1 miesiąc od daty doręczenia decyzji (art. 477¹⁰ § 1 KPC). Termin jest procesowy — liczony od faktycznego odbioru pisma. Po upływie miesiąca odwołanie jest spóźnione i sąd je odrzuci.",
+      },
+      {
+        q: "Gdzie składa się odwołanie od decyzji ZUS?",
+        a: "Pismo adresujesz do właściwego sądu okręgowego (wydziału pracy i ubezpieczeń społecznych), ale składasz fizycznie w ZUS lub wysyłasz pocztą na adres ZUS. ZUS przekazuje je do sądu lub sam zmienia decyzję w 30 dni (art. 83a uSUS).",
+      },
+      {
+        q: "Czy odwołanie od decyzji ZUS jest płatne?",
+        a: "Nie. Postępowanie w sprawach z zakresu ubezpieczeń społecznych jest wolne od opłat sądowych dla ubezpieczonego (art. 96 ust. 1 pkt 4 ustawy o kosztach sądowych w sprawach cywilnych).",
+      },
+      {
+        q: "Czy ZUS może sam zmienić swoją decyzję po otrzymaniu odwołania?",
+        a: "Tak. Art. 83a ust. 2 uSUS: ZUS może w ciągu 30 dni od otrzymania odwołania samodzielnie zmienić lub uchylić zaskarżoną decyzję. Jeśli tego nie zrobi, przekazuje odwołanie do sądu wraz z aktami sprawy.",
+      },
+    ],
+  },
+  {
+    slug: "wezwanie-do-zaplaty",
+    title: "Wezwanie do zapłaty: wzór pisma z przepisami KC (2026)",
+    description: "Ktoś Ci nie zapłacił? Formalne wezwanie z art. 455 KC uruchamia bieg odsetek. Przy transakcjach B2B: odsetki 10% + zryczałtowane koszty 40/70/100 EUR z ustawy o transakcjach handlowych. Wzór pisma PDF.",
+    date: "2026-07-04",
+    readTime: "5 min",
+    category: "Windykacja",
+    faq: [
+      {
+        q: "Co daje formalne wezwanie do zapłaty w porównaniu do zwykłego przypomnienia?",
+        a: "Wezwanie z art. 455 KC ustala datę wymagalności długu i uruchamia bieg odsetek ustawowych za opóźnienie od dnia następnego po terminie w wezwaniu. Jest też dowodem w postępowaniu sądowym — warunkiem uzyskania nakazu zapłaty.",
+      },
+      {
+        q: "Ile wynoszą odsetki za opóźnienie w zapłacie?",
+        a: "Odsetki ustawowe za opóźnienie (art. 481 § 2 KC) = stopa referencyjna NBP + 5,5 punktu procentowego. Dla transakcji handlowych między przedsiębiorcami: stopa NBP + 10 pp (ustawa o transakcjach handlowych).",
+      },
+      {
+        q: "Ile mam czasu na dochodzenie długu zanim się przedawni?",
+        a: "Ogólny termin przedawnienia: 6 lat (art. 118 KC). Dla roszczeń z działalności gospodarczej i faktur między przedsiębiorcami: 3 lata. Termin liczy się od daty wymagalności długu.",
+      },
+      {
+        q: "Dłużnik nie zapłacił po wezwaniu — co dalej?",
+        a: "Postępowanie upominawcze (art. 498 KPC): sąd wydaje nakaz zapłaty bez rozprawy na podstawie wezwania i dokumentów. Opłata 5% wartości roszczenia. Przy braku sprzeciwu dłużnika nakaz jest prawomocny i możesz skierować sprawę do komornika.",
+      },
+    ],
+  },
+  {
+    slug: "reklamacja-uslugi",
+    title: "Reklamacja usługi: remont, naprawa, instalacja — prawa i wzór pisma (2026)",
+    description: "Firma remontowa zostawiła wady? Hydraulik nie naprawił usterki? Art. 636 KC: możesz wyznaczyć termin na poprawki i zlecić je innej firmie na koszt wykonawcy. Rękojmia 5 lat przy nieruchomościach. Wzór pisma.",
+    date: "2026-07-11",
+    readTime: "5 min",
+    category: "Usługi",
+    faq: [
+      {
+        q: "Ile lat mam na reklamację wadliwego remontu?",
+        a: "5 lat od oddania dzieła — przy usługach dotyczących nieruchomości (remont, instalacje, prace budowlane). 2 lata — przy usługach dotyczących rzeczy ruchomych (naprawa sprzętu). Podstawa: art. 568 § 1 KC w zw. z art. 638 KC.",
+      },
+      {
+        q: "Firma remontowa robi remont niezgodnie z umową. Czy muszę czekać na koniec?",
+        a: "Nie. Art. 636 § 1 KC: możesz wezwać wykonawcę do zmiany sposobu wykonania i wyznaczyć termin. Jeśli nie zmieni sposobu — możesz odstąpić od umowy lub zlecić wykonanie innej firmie na koszt i ryzyko pierwszego wykonawcy.",
+      },
+      {
+        q: "Wykonawca twierdzi że wada wynika z mojego użytkowania. Co zrobić?",
+        a: "Art. 556³ KC (stosowany przez analogię): jeśli wada ujawniła się w ciągu roku od wydania dzieła, domniemywa się że istniała przy wydaniu. Wykonawca musi obalić to domniemanie ekspertyzą — nie Ty musisz dowodzić że wada jest jego winą.",
+      },
+      {
+        q: "Czy mogę żądać zwrotu pieniędzy za wadliwą usługę?",
+        a: "Tak, jeśli wada jest istotna i wykonawca jej nie usunął. Art. 638 KC w zw. z art. 560 § 1 KC: przy istotnej wadzie możesz odstąpić od umowy i żądać zwrotu wynagrodzenia. Przy wadzie nieistotnej: obniżenie wynagrodzenia.",
+      },
+    ],
+  },
+  {
+    slug: "odszkodowanie-za-opozniony-lot",
+    title: "Odszkodowanie za opóźniony i odwołany lot: 250–600 EUR z rozporządzenia UE (2026)",
+    description: "Lot opóźniony ponad 3 godziny lub odwołany? Rozporządzenie (WE) 261/2004: 250–600 EUR odszkodowania. Awaria techniczna NIE jest wyjątkiem (wyrok TSUE C-549/07). Jak napisać roszczenie do linii lotniczej.",
+    date: "2026-07-18",
+    readTime: "6 min",
+    category: "Podróże",
+    faq: [
+      {
+        q: "Od jakiego opóźnienia przysługuje odszkodowanie za lot?",
+        a: "Od 3 godzin opóźnienia przy przylocie do celu (nie przy odlocie). Wyrok TSUE C-402/07 Sturgeon: pasażerowie opóźnionych lotów mają te same prawa co pasażerowie odwołanych. Odszkodowanie: 250, 400 lub 600 EUR zależnie od długości trasy (art. 7 rozporządzenia 261/2004).",
+      },
+      {
+        q: "Linia twierdzi że opóźnienie wynikało z awarii technicznej. Czy mam prawo do odszkodowania?",
+        a: "Tak, w większości przypadków. Wyrok TSUE C-549/07 (Wallentin-Hermann v. Alitalia): awaria techniczna NIE jest nadzwyczajną okolicznością zwalniającą z odszkodowania, chyba że wynika z ukrytej wady fabrycznej wykrytej przez producenta. Regularne usterki to ryzyko wchodzące w zakres działalności linii.",
+      },
+      {
+        q: "Czy odszkodowanie przysługuje przy lotach spoza UE?",
+        a: "Rozporządzenie 261/2004 obejmuje: wszystkie loty wylatujące z lotnisk w UE (niezależnie od linii) oraz loty przylatujące do UE obsługiwane przez przewoźnika z siedzibą w UE. Lot z Polski do Turcji — tak. Lot z Turcji do Polski obsługiwany przez Turkish Airlines — nie.",
+      },
+      {
+        q: "Ile mam czasu na złożenie roszczenia do linii?",
+        a: "Rozporządzenie nie określa terminu. W Polsce stosuje się ogólny termin przedawnienia — 3 lata od daty lotu (art. 118 KC). Składaj jak najszybciej — linie mają pełną dokumentację lotu, Ty możesz ją tracić z czasem.",
+      },
+    ],
+  },
+  {
     slug: "reklamacja-odrzucona",
     title: "Reklamacja odrzucona — co zrobić dalej? [Poradnik 2026]",
     description: "Sklep nie uznał reklamacji? Masz prawo do odwołania. Dowiedz się jak obalić odmowę z powołaniem na art. 43c ust. 1 UPK — domniemanie wady, ekspertyza na koszt sklepu, zwrot po nieskutecznej wymianie.",
@@ -291,13 +451,13 @@ export const POSTS: Post[] = [
     categoryEn: "Courier",
     readTimeEn: "5 min",
     faq: [
-      { q: "Ile mam czasu na zgłoszenie szkody w paczce od kuriera?", a: "Jeśli szkodę stwierdzono przy odbiorze — sporządź protokół od razu z kurierem. Jeśli odkryłeś szkodę po odbiorze — masz 7 dni na zgłoszenie reklamacji (art. 76 ust. 4 Prawa przewozowego). Po tym terminie roszczenie wygasa." },
+      { q: "Ile mam czasu na zgłoszenie szkody w paczce od kuriera?", a: "Jeśli szkodę stwierdzono przy odbiorze — sporządź protokół od razu z kurierem. Jeśli odkryłeś szkodę po odbiorze — masz 7 dni na zażądanie protokolarnego ustalenia stanu przesyłki (art. 74 ust. 3 Prawa przewozowego). Po tym terminie dochodzenie roszczenia jest znacząco utrudnione." },
       { q: "Kurier odmówił sporządzenia protokołu szkody. Co zrobić?", a: "Zaznacz własnoręcznie zastrzeżenia na liście przewozowym i sfotografuj. Zrób zdjęcia opakowania i zawartości. Następnie złóż reklamację pisemnie — brak protokołu nie pozbawia Cię prawa do odszkodowania, ale utrudnia postępowanie." },
       { q: "Paczka zaginęła w InPost. Co mi przysługuje?", a: "Odszkodowanie do wysokości zadeklarowanej wartości przesyłki lub do limitu ustawowego. Dla paczek bez deklaracji wartości limit wynika z regulaminu i Prawa pocztowego. Złóż reklamację przez aplikację InPost lub formularz online w ciągu 12 miesięcy od nadania." },
       { q: "Sklep mówi że nie odpowiada za uszkodzenia w transporcie. Czy muszę walczyć z kurierem?", a: "Nie. Jeśli towar dotarł do Ciebie uszkodzony, możesz złożyć reklamację do sklepu (sprzedawca odpowiada za niezgodność towaru z umową) LUB do kuriera. Kwestia rozliczeń między sklepem a kurierem to ich sprawa — nie musisz w tym uczestniczyć." },
     ],
     faqEn: [
-      { q: "How long do I have to report damage in a parcel from the courier?", a: "If the damage was found at the time of delivery — draw up a damage report immediately with the courier. If you discovered it after accepting the parcel — you have 7 days to file a complaint (Art. 76 §4 of the Transport Law). After this deadline the claim expires." },
+      { q: "How long do I have to report damage in a parcel from the courier?", a: "If the damage was found at the time of delivery — draw up a damage report immediately with the courier. If you discovered it after accepting the parcel — you have 7 days to request a formal assessment of the parcel's condition (Art. 74 §3 of the Transport Law). After this period it becomes significantly harder to pursue the claim." },
       { q: "The courier refused to draw up a damage report. What should I do?", a: "Note your objections manually on the waybill and photograph it. Take photos of the packaging and contents. Then file a complaint in writing — the absence of a report does not remove your right to compensation, but it makes the process harder." },
       { q: "My parcel was lost by InPost. What am I entitled to?", a: "Compensation up to the declared value of the shipment or the statutory limit. For parcels without a declared value, the limit follows the terms of service and Postal Law. File a complaint via the InPost app or online form within 12 months of sending." },
       { q: "The store says it is not responsible for damage in transit. Do I have to fight the courier myself?", a: "No. If the goods arrived damaged, you can file a complaint with the store (the seller is liable for non-conformity) OR with the courier. The settlement between the store and the courier is their matter — you do not have to be involved." },

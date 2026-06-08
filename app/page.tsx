@@ -16,7 +16,7 @@ const STEPS = [
   {
     n: "02",
     title: "Generujemy pismo",
-    desc: "Tworzymy pismo powołując się na konkretne artykuły ustaw dopasowane do Twojej sytuacji.",
+    desc: "Tworzymy pismo powołując się na konkretne artykuły ustaw dopasowane do Twojej sytuacji. Gotowe w 30 sekund.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
@@ -26,7 +26,7 @@ const STEPS = [
   {
     n: "03",
     title: "PDF na maila od razu",
-    desc: "Gotowy dokument w 30 sekund. Adresat ma ustawowy obowiązek odpowiedzi w 14 dniach.",
+    desc: "PDF na Twoją skrzynkę od razu po płatności. Sklep ma ustawowy obowiązek odpowiedzi w 14 dniach (art. 7a UPK).",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
@@ -143,6 +143,34 @@ const TYPES = [
     label: "Skarga do UOKiK / Rzecznika",
     desc: "Gdy sklep nie odpowiada na reklamację, nieuczciwe praktyki",
   },
+  {
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 00-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+      </svg>
+    ),
+    label: "Odszkodowanie za opóźniony / odwołany lot",
+    desc: "Do 600€ odszkodowania — rozporządzenie UE 261/2004",
+  },
+  {
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        <line x1="6" y1="9" x2="18" y2="9"/><line x1="6" y1="13" x2="13" y2="13"/>
+      </svg>
+    ),
+    label: "Wezwanie do zapłaty",
+    desc: "Nieopłacona faktura, pożyczka, umowa — odzyskaj należne pieniądze",
+  },
+  {
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    ),
+    label: "Odwołanie od mandatu",
+    desc: "Mandat drogowy lub administracyjny — zakwestionuj go",
+  },
 ];
 
 const FAQS = [
@@ -183,48 +211,116 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/60 via-white to-white pointer-events-none" />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-100/30 rounded-full blur-[120px] pointer-events-none -translate-y-1/3 translate-x-1/3" />
 
-        <div className="relative max-w-3xl mx-auto px-6 pt-20 pb-20 text-center">
-          <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-8 border border-indigo-100 animate-fade-up">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
-            Polskie prawo konsumenta po Twojej stronie
-          </div>
+        <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.06] text-gray-900 mb-6 animate-fade-up delay-100">
-            Zignorowali Cię?<br />
-            <span className="text-indigo-600">Napisz pismo,<br className="hidden sm:block" /> które muszą przeczytać.</span>
-          </h1>
-
-          <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed animate-fade-up delay-200">
-            Formalne pismo z właściwą podstawą prawną do sklepu, banku, ZUS lub operatora.
-            Gotowe w <strong className="text-gray-800 font-semibold">5 minut</strong>, PDF na maila od razu.
-          </p>
-
-          <div className="animate-fade-up delay-300">
-            <Link
-              href="/zamow"
-              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-200 hover:-translate-y-0.5 active:scale-95"
-            >
-              Napisz pismo — 29 zł
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </Link>
-            <p className="text-sm text-gray-400 mt-3">
-              Jednorazowa opłata · PDF na maila od razu · Odwołanie gratis jeśli nie pomoże
-            </p>
-          </div>
-
-          {/* Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 mt-14 pt-10 border-t border-gray-100 animate-fade-in delay-400">
-            {[
-              { val: "29 zł", sub: "jednorazowo" },
-              { val: "5 min", sub: "gotowe pismo" },
-              { val: "14 dni", sub: "sklep musi odpowiedzieć" },
-              { val: "100%", sub: "polskie przepisy" },
-            ].map((s, i) => (
-              <div key={i} className="text-center">
-                <div className="text-2xl font-bold text-gray-900">{s.val}</div>
-                <div className="text-xs text-gray-400 mt-0.5 font-medium">{s.sub}</div>
+            {/* Left — copy */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-8 border border-indigo-100 animate-fade-up">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
+                Polskie prawo konsumenta po Twojej stronie
               </div>
-            ))}
+
+              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.06] text-gray-900 mb-6 animate-fade-up delay-100">
+                Zignorowali Cię?<br />
+                <span className="text-indigo-600">Napisz pismo,<br className="hidden sm:block" /> które muszą przeczytać.</span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-gray-500 max-w-xl mb-10 leading-relaxed animate-fade-up delay-200">
+                Formalne pismo z właściwą podstawą prawną do sklepu, banku, ZUS lub operatora.
+                Gotowe w <strong className="text-gray-800 font-semibold">5 minut</strong>, PDF na maila od razu.
+              </p>
+
+              <div className="animate-fade-up delay-300">
+                <Link
+                  href="/zamow"
+                  className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-200 hover:-translate-y-0.5 active:scale-95"
+                >
+                  Napisz pismo — 29 zł
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </Link>
+                <p className="text-sm text-gray-400 mt-3">
+                  Jednorazowa opłata · PDF na maila od razu · Odwołanie gratis jeśli nie pomoże
+                </p>
+              </div>
+
+              {/* Stats */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-8 gap-y-4 mt-12 pt-10 border-t border-gray-100 animate-fade-in delay-400">
+                {[
+                  { val: "29 zł", sub: "jednorazowo" },
+                  { val: "5 min", sub: "gotowe pismo" },
+                  { val: "14 dni", sub: "sklep musi odpowiedzieć" },
+                  { val: "100%", sub: "polskie przepisy" },
+                ].map((s, i) => (
+                  <div key={i} className="text-center lg:text-left">
+                    <div className="text-2xl font-bold text-gray-900">{s.val}</div>
+                    <div className="text-xs text-gray-400 mt-0.5 font-medium">{s.sub}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right — letter mockup */}
+            <div className="hidden lg:block animate-fade-up delay-200">
+              <div className="relative">
+                {/* Shadow/glow */}
+                <div className="absolute inset-0 bg-indigo-200/30 rounded-3xl blur-2xl scale-95 translate-y-4" />
+                {/* Letter card */}
+                <div className="relative bg-white rounded-2xl border border-gray-200 shadow-2xl shadow-gray-200/60 overflow-hidden">
+                  {/* Top bar */}
+                  <div className="bg-gradient-to-r from-indigo-600 to-indigo-500 px-5 py-3 flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                    </div>
+                    <span className="text-xs font-bold text-white/80 ml-2 uppercase tracking-wider">reklamacja.pdf</span>
+                  </div>
+                  {/* Letter body */}
+                  <div className="p-6 font-mono text-[11px] leading-relaxed text-gray-700 space-y-3">
+                    <div className="text-gray-500 space-y-0.5">
+                      <div className="font-bold text-gray-800">Anna Kowalska</div>
+                      <div>ul. Kwiatowa 5/12, 00-001 Warszawa</div>
+                      <div>anna@example.com</div>
+                    </div>
+                    <div className="text-right text-gray-400 text-[10px]">Warszawa, {new Date().toLocaleDateString("pl-PL", { day: "numeric", month: "long", year: "numeric" })} r.</div>
+                    <div className="text-gray-500 space-y-0.5">
+                      <div className="font-bold text-gray-800">TechShop Sp. z o.o.</div>
+                      <div>ul. Handlowa 1, 00-100 Warszawa</div>
+                    </div>
+                    <div className="border-l-4 border-indigo-500 pl-3 py-0.5">
+                      <div className="font-bold text-indigo-700 text-[10px]">DOTYCZY: Reklamacja — Smartfon Samsung, nr zam. TS/2026/4821</div>
+                    </div>
+                    <div className="text-gray-600 leading-relaxed">
+                      W dniu 10 maja 2026 r. nabyłam w Państwa sklepie smartfon Samsung Galaxy S24 za kwotę 3 499 zł. W dniu 1 czerwca 2026 r. stwierdziłam, że urządzenie jest niezgodne z umową — ekran wykazuje defekty fabryczne bez mechanicznego uszkodzenia.
+                    </div>
+                    <div className="bg-indigo-50 rounded-lg p-3 space-y-1.5">
+                      <div className="font-bold text-indigo-800 text-[10px] uppercase tracking-wide">Żądanie</div>
+                      <div className="text-indigo-700">Na podstawie <span className="font-bold">art. 43d ust. 1 UPK</span> żądam wymiany towaru na wolny od wad.</div>
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-3 space-y-1">
+                      <div className="font-bold text-gray-600 text-[10px] uppercase tracking-wide">Podstawa prawna</div>
+                      <div className="text-gray-500">- Art. 43b UPK (odpowiedzialność sprzedawcy)</div>
+                      <div className="text-gray-500">- Art. 43c ust. 1 UPK (domniemanie wady — 2 lata)</div>
+                      <div className="text-gray-500">- Art. 7a UPK (14-dniowy termin odpowiedzi)</div>
+                    </div>
+                    <div className="text-gray-500 text-[10px] pt-1">
+                      Z poważaniem,<br />
+                      <span className="font-bold text-gray-700">Anna Kowalska</span>
+                    </div>
+                  </div>
+                  {/* Footer badge */}
+                  <div className="bg-gray-50 border-t border-gray-100 px-6 py-2.5 flex items-center justify-between">
+                    <span className="text-[10px] text-gray-400">Wygenerowano przez writeback.pl</span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      <span className="text-[10px] text-emerald-600 font-semibold">Gotowe do wysłania</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -326,7 +422,7 @@ export default function HomePage() {
                               <svg key={i} width="11" height="11" viewBox="0 0 12 12" fill="#fbbf24"><path d="M6 1l1.4 2.8 3.1.5-2.2 2.2.5 3.1L6 8.2l-2.8 1.4.5-3.1L1.5 4.3l3.1-.5z"/></svg>
                             ))}
                           </div>
-                          <span className="text-[10px] text-gray-400 font-medium">Przykładowy przypadek</span>
+                          <span className="text-[10px] text-gray-400 font-medium">Typowy przypadek</span>
                         </div>
                         <p className="text-sm text-gray-700 italic leading-relaxed">&bdquo;{c.quote}&rdquo;</p>
                         <p className="text-xs text-gray-400 mt-1.5 font-medium">{c.name}, {c.city}</p>
@@ -444,35 +540,48 @@ export default function HomePage() {
 
       {/* Jakie pisma */}
       <section className="py-24 px-6 bg-white">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <AnimateIn className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">Zakres</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">Jakie pisma piszemy</h2>
-            <p className="text-gray-500 text-sm">Wszystkie typy pism dostępne od ręki</p>
+            <p className="text-gray-500 text-sm">Wszystkie typy dostępne od ręki — 29 zł, PDF na maila w 5 minut</p>
           </AnimateIn>
-          <div className="space-y-2.5">
-            {TYPES.map((t, i) => (
-              <AnimateIn key={t.label} delay={i * 60}>
-                <Link
-                  href="/zamow"
-                  className="flex items-center justify-between rounded-2xl px-5 py-4 border border-gray-100 bg-white shadow-sm hover:border-indigo-200 hover:shadow-md hover:shadow-indigo-50 hover:-translate-y-0.5 transition-all duration-200 group"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 group-hover:bg-indigo-100 transition-colors">
+
+          {[
+            {
+              group: "Reklamacje konsumenckie",
+              items: TYPES.slice(0, 3),
+            },
+            {
+              group: "Umowy i inne prawa",
+              items: TYPES.slice(3, 6),
+            },
+            {
+              group: "Nowe",
+              items: TYPES.slice(6),
+            },
+          ].map((section, si) => (
+            <AnimateIn key={section.group} delay={si * 80} className="mb-8">
+              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">{section.group}</p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {section.items.map((t, i) => (
+                  <Link
+                    key={t.label}
+                    href="/zamow"
+                    className="flex items-start gap-3 rounded-2xl px-4 py-4 border border-gray-100 bg-white shadow-sm hover:border-indigo-200 hover:shadow-md hover:shadow-indigo-50 hover:-translate-y-0.5 transition-all duration-200 group"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-indigo-100 transition-colors">
                       {t.icon}
                     </div>
-                    <div>
-                      <div className="font-semibold text-sm text-gray-900 group-hover:text-indigo-700 transition-colors">{t.label}</div>
-                      <div className="text-xs mt-0.5 text-gray-400">{t.desc}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm text-gray-900 group-hover:text-indigo-700 transition-colors leading-snug">{t.label}</div>
+                      <div className="text-xs mt-0.5 text-gray-400 leading-relaxed">{t.desc}</div>
                     </div>
-                  </div>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 ml-4 text-gray-300 group-hover:text-indigo-400 transition-colors">
-                    <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </Link>
-              </AnimateIn>
-            ))}
-          </div>
+                  </Link>
+                ))}
+              </div>
+            </AnimateIn>
+          ))}
         </div>
       </section>
 

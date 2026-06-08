@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { EnNav } from "./EnNav";
 
 export const metadata: Metadata = {
   title: "Writeback — Consumer Complaint Letters for Poland | PLN 29",
@@ -36,7 +37,7 @@ const STEPS = [
   {
     n: "03",
     title: "Send and wait",
-    desc: "PDF to your inbox immediately. The store has 14 days to respond under art. 7a.",
+    desc: "PDF to your inbox immediately. The store has 14 days to respond under art. 7a of the Consumer Rights Act.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>
@@ -71,7 +72,7 @@ const FAQS = [
   },
   {
     q: "Which stores and companies does this work for?",
-    a: "Any business operating in Poland — including Allegro, OLX, Polish online stores, banks, insurance companies, telecom providers (Orange, Play, T-Mobile), and gyms. Polish consumer law applies to all of them.",
+    a: "Any business operating in Poland — including Allegro, OLX, Polish online stores, banks, insurance companies, telecom providers (Orange, Play, T-Mobile), gyms. We also handle flight compensation claims (EU Regulation 261/2004), payment demands, and traffic fine appeals.",
   },
   {
     q: "What happens if the store doesn't reply within 14 days?",
@@ -95,27 +96,7 @@ export default function EnPage() {
   return (
     <div className="min-h-screen bg-white text-gray-900">
 
-      {/* Nav */}
-      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="w-8 h-8 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">W</span>
-            <span className="font-bold text-lg tracking-tight text-gray-900">writeback<span className="text-indigo-600">.pl</span></span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center rounded-lg border border-gray-200 text-xs font-semibold overflow-hidden">
-              <Link href="/" className="w-9 text-center py-1.5 text-gray-400 hover:text-gray-700 transition-colors">PL</Link>
-              <span className="w-9 text-center py-1.5 bg-indigo-600 text-white">EN</span>
-            </div>
-            <Link
-              href="/zamow?lang=en"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-5 py-2 rounded-xl transition-colors shadow-sm"
-            >
-              Write a letter
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <EnNav />
 
       {/* Hero */}
       <section className="relative bg-gradient-to-b from-indigo-50/60 via-white to-white overflow-hidden">

@@ -1,4 +1,10 @@
 import type { FC } from "react";
+import ReklamacjaDoUbezpieczyciela from "./reklamacja-do-ubezpieczyciela";
+import ReklamacjaDewelopera from "./reklamacja-dewelopera";
+import OdwolanieOdDecyzjiZus from "./odwolanie-od-decyzji-zus";
+import WezwanieDoZaplaty from "./wezwanie-do-zaplaty";
+import ReklamacjaUslugi from "./reklamacja-uslugi";
+import OdszkodowanieZaOpoznionyLot from "./odszkodowanie-za-opozniony-lot";
 import ReklamacjaOdrzucona from "./reklamacja-odrzucona";
 import ReklamacjaSklepInternetowy from "./reklamacja-sklep-internetowy";
 import ReklamacjaAllegro from "./reklamacja-allegro";
@@ -20,6 +26,12 @@ import ZwrotOdKurieraEn from "./zwrot-od-kuriera.en";
 import WypowiedzeniesilowniaIEn from "./wypowiedzenie-silownia.en";
 
 const CONTENT: Record<string, FC> = {
+  "reklamacja-do-ubezpieczyciela": ReklamacjaDoUbezpieczyciela,
+  "reklamacja-dewelopera": ReklamacjaDewelopera,
+  "odwolanie-od-decyzji-zus": OdwolanieOdDecyzjiZus,
+  "wezwanie-do-zaplaty": WezwanieDoZaplaty,
+  "reklamacja-uslugi": ReklamacjaUslugi,
+  "odszkodowanie-za-opozniony-lot": OdszkodowanieZaOpoznionyLot,
   "reklamacja-odrzucona": ReklamacjaOdrzucona,
   "reklamacja-sklep-internetowy": ReklamacjaSklepInternetowy,
   "reklamacja-allegro": ReklamacjaAllegro,

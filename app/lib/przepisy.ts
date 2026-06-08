@@ -10,6 +10,7 @@ const ACT_DEFS = {
   kc:        { q: "Kodeks cywilny",                              name: "Kodeks cywilny" },
   kpa:       { q: "Kodeks postępowania administracyjnego",       name: "Kodeks postępowania administracyjnego" },
   kpc:       { q: "Kodeks postępowania cywilnego",               name: "Kodeks postępowania cywilnego" },
+  kpw:       { q: "Kodeks postępowania w sprawach o wykroczenia", name: "Kodeks postępowania w sprawach o wykroczenia" },
   sus:       { q: "systemie ubezpieczeń społecznych",            name: "ustawa o systemie ubezpieczeń społecznych" },
   uokik:     { q: "ochronie konkurencji i konsumentów",          name: "ustawa o ochronie konkurencji i konsumentów" },
   rekl_fin:  { q: "reklamacji przez podmioty rynku finansowego", name: "ustawa o rozpatrywaniu reklamacji przez podmioty rynku finansowego" },
@@ -66,13 +67,27 @@ const DOC_ARTICLES: Record<string, Spec[]> = {
     ["uokik",     "arti_23d"],  // działania i zaniechania przedsiębiorcy
     ["kc",        "arti_385_3"],// katalog niedozwolonych klauzul umownych
   ],
+  wezwanie: [
+    ["kc", "arti_455"],  // termin spełnienia świadczenia — niezwłocznie po wezwaniu
+    ["kc", "arti_481"],  // odsetki ustawowe za opóźnienie w spełnieniu świadczenia pieniężnego
+    ["kc", "arti_6"],    // ciężar dowodu — wierzyciel udowadnia istnienie zobowiązania
+  ],
+  mandat: [
+    ["kpw", "arti_97"],  // nałożenie grzywny w drodze mandatu karnego; prawo odmowy na miejscu
+    ["kpw", "arti_99"],  // uchylenie prawomocnego mandatu — przesłanki (niebędący wykroczeniem / nieodpowiedzialna osoba)
+    ["kpw", "arti_101"], // skutek odmowy — skierowanie wniosku o ukaranie do sądu rejonowego
+  ],
   // skarga — wspólne przepisy dla wszystkich subtypów; subtyp specyficzne dołączane dynamicznie
   skarga: [
     ["konsument", "arti_7a"],   // 14-dniowy termin odpowiedzi (sklep/usługodawca)
     ["kc",        "arti_385_3"],// klauzule niedozwolone — wszystkie typy umów
-    ["pke",       "arti_83"],   // PKE: zmiana warunków umowy — telecom
-    ["pke",       "arti_84"],   // PKE: prawo rozwiązania umowy przy zmianie warunków
-    ["pke",       "arti_88"],   // PKE: odszkodowanie za niedotrzymanie parametrów usługi
+    // PKE = ustawa z dnia 12 lipca 2024 r. — Prawo komunikacji elektronicznej (Dz.U. 2024 poz. 1221)
+    // Weszła w życie 10 listopada 2024 r. Zweryfikowane w ISAP: api.sejm.gov.pl/eli/acts/DU/2024/1221
+    ["pke",       "arti_306"],  // PKE art. 306: jednostronna zmiana warunków gdy wynika z prawa/decyzji UKE; min. 1 miesiąc wyprzedzenia
+    ["pke",       "arti_307"],  // PKE art. 307: zmiana warunków (czas określony) z obiektywnych przyczyn; abonent może wypowiedzieć BEZ odszkodowania
+    ["pke",       "arti_308"],  // PKE art. 308: zmiana warunków (czas nieokreślony / auto-przedłużona); abonent może wypowiedzieć
+    ["pke",       "arti_378"],  // PKE art. 378: reklamacja usługi komunikacji elektronicznej (niedotrzymanie terminu, nienależyte wykonanie, błędne naliczenia); termin 12 mies.
+    ["pke",       "arti_380"],  // PKE art. 380: prawo wypowiedzenia umowy z winy dostawcy przy stałych rozbieżnościach w jakości usługi
     ["pe",        "arti_6c"],   // PE: reklamacja do przedsiębiorstwa energetycznego (art. 6c)
     ["pp",        "arti_65"],   // PP: odpowiedzialność przewoźnika za utratę/uszkodzenie
     ["pp",        "arti_75"],   // PP: obowiązek reklamacji przed roszczeniem sądowym

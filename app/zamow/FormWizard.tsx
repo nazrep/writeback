@@ -157,6 +157,72 @@ const DOC_TYPES = [
     summaryOrg: "Firma",
     summarySubject: "Przedmiot skargi",
   },
+  {
+    id: "lot",
+    label: "Odszkodowanie za opóźniony / odwołany lot",
+    desc: "Opóźnienie ponad 3h, odwołanie lotu, odmowa wejścia na pokład — do 600€",
+    subjectLabel: "Numer lotu i trasa",
+    subjectPlaceholder: "np. LO237 Warszawa → Londyn",
+    kwotaLabel: "Kwota odszkodowania (€)",
+    kwotaPlaceholder: "400",
+    dataLabel: "Data lotu",
+    refLabel: "Numer rezerwacji",
+    refPlaceholder: "np. ABC123",
+    orgLabel: "Nazwa linii lotniczej",
+    orgPlaceholder: "np. LOT Polish Airlines S.A.",
+    orgAdresLabel: "Adres linii lotniczej",
+    orgAdresHint: "Opcjonalnie",
+    opisPlaceholder: "Opisz co się stało — o ile opóźnił się lot, czy podano przyczynę, czy zaoferowano pomoc (jedzenie, hotel)...",
+    podjeteLabel: "Kontakt z linią lotniczą",
+    podjetePlaceholder: "np. Złożyłem reklamację online 2 tygodnie temu, brak odpowiedzi...",
+    zadaniePlaceholder: "np. Odszkodowania 400€ na podstawie rozporządzenia UE 261/2004",
+    summaryOrg: "Linia lotnicza",
+    summarySubject: "Lot",
+  },
+  {
+    id: "wezwanie",
+    label: "Wezwanie do zapłaty",
+    desc: "Nieopłacona faktura, pożyczka, umowa — odzyskaj należne pieniądze",
+    subjectLabel: "Tytuł należności",
+    subjectPlaceholder: "np. Faktura VAT nr 2026/05/123 za usługę projektową",
+    kwotaLabel: "Kwota należna (zł)",
+    kwotaPlaceholder: "3500",
+    dataLabel: "Termin płatności który minął",
+    refLabel: "Numer faktury / umowy",
+    refPlaceholder: "np. FV/2026/05/123",
+    orgLabel: "Nazwa dłużnika (firma lub osoba)",
+    orgPlaceholder: "np. XYZ Sp. z o.o. / Jan Kowalski",
+    orgAdresLabel: "Adres dłużnika",
+    orgAdresHint: "Wymagany — do pisma formalnego",
+    opisPlaceholder: "Opisz kiedy powstał dług, na jakiej podstawie (faktura, umowa, pożyczka), czy dłużnik reagował na kontakt...",
+    podjeteLabel: "Poprzednie próby odzyskania należności",
+    podjetePlaceholder: "np. Dzwoniłem 3 razy, obiecywał zapłatę, nic nie zrobił...",
+    zadaniePlaceholder: "np. Zapłaty kwoty 3500 zł wraz z odsetkami ustawowymi za opóźnienie",
+    summaryOrg: "Dłużnik",
+    summarySubject: "Należność",
+  },
+  {
+    id: "mandat",
+    label: "Odwołanie od mandatu",
+    desc: "Mandat drogowy lub administracyjny — zakwestionuj go lub odwołaj się",
+    subjectLabel: "Rodzaj mandatu",
+    subjectPlaceholder: "np. Mandat drogowy za przekroczenie prędkości / mandat parkingowy",
+    kwotaLabel: "Kwota mandatu (zł)",
+    kwotaPlaceholder: "500",
+    dataLabel: "Data wystawienia mandatu",
+    refLabel: "Numer mandatu / serii",
+    refPlaceholder: "np. seria ABC nr 123456",
+    orgLabel: "Organ który wystawił mandat",
+    orgPlaceholder: "np. Komenda Miejska Policji w Warszawie / Straż Miejska",
+    orgAdresLabel: "Adres organu",
+    orgAdresHint: "Opcjonalnie",
+    opisPlaceholder: "Opisz dokładnie okoliczności — gdzie, kiedy, co się stało, dlaczego uważasz że mandat jest niesłuszny...",
+    podjeteLabel: "Czy podpisałeś mandat?",
+    podjetePlaceholder: "np. Podpisałem pod presją / Odmówiłem podpisania / Nie wiedziałem że mam prawo odmówić...",
+    zadaniePlaceholder: "np. Uchylenia mandatu i umorzenia postępowania",
+    summaryOrg: "Organ",
+    summarySubject: "Mandat",
+  },
 ] as const;
 
 type SkargaSubtype = "kurier" | "telecom" | "energia" | "inne";
@@ -274,7 +340,29 @@ const STEPS = ["Typ pisma", "Co się stało", "Twoje dane", "Podgląd", "Płatno
 function ProgressBar({ step }: { step: number }) {
   return (
     <div className="mb-10">
-      <div className="flex items-start">
+      {/* Mobile: krok X / Y */}
+      <div className="sm:hidden flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold bg-indigo-600 text-white`}>
+            {step < STEPS.length - 1 ? (
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6l2.5 2.5L10 3" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            ) : step + 1}
+          </div>
+          <span className="text-sm font-semibold text-gray-900">{STEPS[step]}</span>
+        </div>
+        <span className="text-xs text-gray-400 font-medium">{step + 1} / {STEPS.length}</span>
+      </div>
+      <div className="sm:hidden h-1.5 bg-gray-100 rounded-full overflow-hidden">
+        <div
+          className="h-full bg-indigo-600 rounded-full transition-all duration-300"
+          style={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
+        />
+      </div>
+
+      {/* Desktop: pełny stepper z etykietami */}
+      <div className="hidden sm:flex items-start">
         {STEPS.map((label, i) => (
           <div key={i} className="flex items-start flex-1 last:flex-none">
             <div className="flex flex-col items-center">
@@ -440,7 +528,7 @@ export function FormWizard({ lang }: { lang?: string }) {
   const [imageLoading, setImageLoading] = useState(false);
   const [imageExtracted, setImageExtracted] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [previewPoints, setPreviewPoints] = useState<string[]>([]);
+  const [previewText, setPreviewText] = useState<string>("");
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState(false);
 
@@ -493,9 +581,8 @@ export function FormWizard({ lang }: { lang?: string }) {
         });
         if (res.ok) {
           const json = await res.json();
-          const pts = json.points ?? [];
-          if (pts.length > 0) {
-            setPreviewPoints(pts);
+          if (json.text && json.text.length > 100) {
+            setPreviewText(json.text);
             setPreviewLoading(false);
             return;
           }
@@ -600,6 +687,9 @@ export function FormWizard({ lang }: { lang?: string }) {
                 umowa: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>,
                 uokik: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
                 skarga: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg>,
+                lot: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 00-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>,
+                wezwanie: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><line x1="6" y1="9" x2="18" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/></svg>,
+                mandat: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>,
               };
               return (
                 <button
@@ -637,7 +727,18 @@ export function FormWizard({ lang }: { lang?: string }) {
             {type.label}
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Co się stało?</h1>
-          <p className="text-gray-600 text-sm mb-8">Im więcej szczegółów, tym mocniejsze pismo</p>
+          <p className="text-gray-600 text-sm mb-5">Im więcej szczegółów, tym mocniejsze pismo</p>
+
+          {/* Ostrzeżenie dla mandatu */}
+          {docType === "mandat" && (
+            <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5 text-amber-600"><path d="M8 1L15 14H1L8 1z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M8 6v3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><circle cx="8" cy="11.5" r="0.75" fill="currentColor"/></svg>
+              <div className="text-xs text-amber-800 leading-relaxed">
+                <strong>Ważne:</strong> Odmowy mandatu karnego dokonuje się <strong>na miejscu, przy proponowaniu</strong> — nie ma możliwości odmowy po fakcie. Jeśli mandat już podpisałeś, możemy napisać wniosek o uchylenie (art. 99 KPW) — ale tylko gdy grzywna nałożona była za czyn niebędący wykroczeniem lub na nieodpowiedzialną osobę.
+              </div>
+            </div>
+          )}
+
           <div className="space-y-5">
             {/* Upload zdjęcia */}
             {docType === "skarga" && (
@@ -807,7 +908,7 @@ export function FormWizard({ lang }: { lang?: string }) {
               disabled={previewLoading}
               onClick={async () => {
                 if (!validateStep3()) return;
-                setPreviewPoints([]);
+                setPreviewText("");
                 setPreviewError(false);
                 navigate(3);
                 await fetchPreview();
@@ -830,7 +931,7 @@ export function FormWizard({ lang }: { lang?: string }) {
           <div className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full mb-4 border transition-all ${
             previewLoading
               ? "bg-indigo-50 text-indigo-600 border-indigo-100"
-              : previewPoints.length > 0
+              : previewText
                 ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                 : "bg-indigo-50 text-indigo-700 border-indigo-100"
           }`}>
@@ -840,65 +941,76 @@ export function FormWizard({ lang }: { lang?: string }) {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
                 </svg>
-                Analizuję sprawę…
+                Generuję podgląd pisma…
               </>
-            ) : previewPoints.length > 0 ? (
+            ) : previewText ? (
               <>
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                   <path d="M2 5l2 2 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                Analiza gotowa
+                Podgląd gotowy
               </>
             ) : type.label}
           </div>
 
           <h1 className="text-2xl font-bold text-gray-900 mb-1">
-            {previewLoading ? "Analizuję Twoją sprawę…" : "Czy dobrze rozumiemy sprawę?"}
+            {previewLoading ? "Generuję Twoje pismo…" : "Podgląd pisma"}
           </h1>
-          <p className="text-gray-500 text-sm mb-6">Sprawdź co znajdzie się w Twoim piśmie — zatwierdź lub popraw dane</p>
+          <p className="text-gray-500 text-sm mb-6">
+            {previewText
+              ? "To jest szkic — finalne pismo zawiera aktualne przepisy pobrane na żywo z oficjalnych baz prawnych"
+              : "Sprawdź co znajdzie się w Twoim piśmie"}
+          </p>
 
           {previewLoading ? (
-            <div className="bg-white border border-indigo-200 rounded-2xl overflow-hidden mb-5 shadow-sm">
-              <div className="bg-gradient-to-r from-indigo-600 to-indigo-500 px-5 py-3.5 flex items-center gap-2">
-                <svg className="animate-spin w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none">
+            <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden mb-5 shadow-sm">
+              <div className="bg-gray-50 border-b border-gray-200 px-5 py-3 flex items-center gap-2">
+                <svg className="animate-spin w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
                 </svg>
-                <span className="text-xs font-bold text-white uppercase tracking-wider">Generuję podgląd pisma…</span>
+                <span className="text-xs text-gray-500 font-medium">Piszę pismo z właściwymi przepisami…</span>
               </div>
-              <ul className="divide-y divide-gray-50">
-                {[72, 55, 80, 63].map((w, i) => (
-                  <li key={i} className="flex items-start gap-3 px-5 py-4">
-                    <div className="w-6 h-6 rounded-full bg-gray-100 shrink-0 mt-0.5 animate-pulse" />
-                    <div className="flex-1 space-y-1.5">
-                      <div className="h-3.5 bg-gray-100 rounded animate-pulse" style={{ width: `${w}%` }} />
-                      {i % 2 === 0 && <div className="h-3.5 bg-gray-100 rounded animate-pulse" style={{ width: `${w - 20}%` }} />}
-                    </div>
-                  </li>
+              <div className="p-5 space-y-3">
+                {[90, 70, 85, 60, 75, 55, 80].map((w, i) => (
+                  <div key={i} className="h-3 bg-gray-100 rounded animate-pulse" style={{ width: `${w}%` }} />
                 ))}
-              </ul>
+              </div>
             </div>
-          ) : previewPoints.length > 0 ? (
-            <div className="bg-white border border-indigo-200 rounded-2xl overflow-hidden mb-5 shadow-sm">
-              <div className="bg-gradient-to-r from-indigo-600 to-indigo-500 px-5 py-3.5 flex items-center gap-2">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
-                  <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-                </svg>
-                <span className="text-xs font-bold text-white uppercase tracking-wider">Twoje pismo będzie zawierać</span>
+          ) : previewText ? (
+            <div className="relative mb-5">
+              {/* Watermark */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 overflow-hidden rounded-2xl">
+                <span className="text-[80px] font-black text-gray-200/60 rotate-[-30deg] select-none tracking-widest whitespace-nowrap">
+                  PODGLĄD
+                </span>
               </div>
-              <ul className="divide-y divide-gray-50">
-                {previewPoints.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 px-5 py-4 animate-fade-up" style={{ animationDelay: `${i * 80}ms` }}>
-                    <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
-                      <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                        <path d="M2 5.5l2.5 2.5L9 3" stroke="#059669" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <span className="text-sm text-gray-700 leading-relaxed">{point}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="bg-white border border-indigo-200 rounded-2xl overflow-hidden shadow-md">
+                {/* Header */}
+                <div className="bg-gradient-to-r from-indigo-600 to-indigo-500 px-5 py-3 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                    </svg>
+                    <span className="text-xs font-bold text-white uppercase tracking-wider">Szkic pisma — podgląd</span>
+                  </div>
+                  <span className="text-xs text-indigo-200">Finalne pismo zawiera aktualne przepisy z oficjalnych baz prawnych</span>
+                </div>
+                {/* Letter text */}
+                <div className="p-5 max-h-72 overflow-y-auto relative">
+                  <pre className="text-xs text-gray-700 leading-relaxed font-mono whitespace-pre-wrap">
+                    {previewText}
+                  </pre>
+                </div>
+                {/* Fade-out at bottom */}
+                <div className="h-10 bg-gradient-to-t from-white to-transparent -mt-10 relative z-10 pointer-events-none" />
+                <div className="px-5 pb-4 pt-1 bg-white border-t border-gray-100">
+                  <p className="text-xs text-gray-400 text-center">
+                    ↑ Przewiń żeby zobaczyć całe pismo · Finalna wersja PDF zawiera aktualne przepisy z oficjalnych baz prawnych
+                  </p>
+                </div>
+              </div>
             </div>
           ) : previewError ? (
             <div className="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-6 mb-5 text-center">

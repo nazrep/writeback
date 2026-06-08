@@ -24,6 +24,14 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <Link
+            href="/en"
+            className="hidden sm:inline-flex items-center rounded-lg border border-gray-200 text-xs font-semibold overflow-hidden"
+            title="English version"
+          >
+            <span className="w-9 text-center py-1.5 text-gray-400 hover:text-gray-700 transition-colors">PL</span>
+            <span className="w-9 text-center py-1.5 text-gray-400 hover:text-gray-700 transition-colors border-l border-gray-200">EN</span>
+          </Link>
+          <Link
             href="/zamow"
             className="hidden sm:inline-flex bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md active:scale-95"
           >

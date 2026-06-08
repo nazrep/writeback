@@ -50,7 +50,7 @@ export default function RegulaminPage() {
             <h2 className="text-lg font-bold text-gray-900 mb-3">§4. Zamówienie i płatność</h2>
             <ol className="list-decimal pl-5 space-y-2">
               <li>Złożenie zamówienia następuje przez wypełnienie formularza i dokonanie płatności przez system Stripe.</li>
-              <li>Cena usługi wynosi <strong>29 zł brutto</strong> za jedno pismo reklamacyjne. Ceny innych typów pism podane są każdorazowo przy danej usłudze.</li>
+              <li>Cena usługi wynosi <strong>29 zł brutto</strong> za jedno wygenerowane pismo, niezależnie od jego typu.</li>
               <li>Płatność obsługiwana jest przez Stripe Payments Europe, Ltd. Akceptowane metody płatności: karta płatnicza, BLIK, Przelewy24.</li>
               <li>Potwierdzenie zamówienia i wygenerowane pismo w formacie PDF przesyłane są na podany adres e-mail niezwłocznie po zaksięgowaniu płatności.</li>
               <li>Usługodawca wystawia fakturę na żądanie Użytkownika — w tym celu należy skontaktować się pod adresem hello@writeback.pl.</li>
@@ -60,7 +60,7 @@ export default function RegulaminPage() {
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-3">§5. Prawo odstąpienia od umowy</h2>
             <ol className="list-decimal pl-5 space-y-2">
-              <li>Zgodnie z art. 38 pkt 13 ustawy o prawach konsumenta, prawo odstąpienia od umowy nie przysługuje w odniesieniu do umów o dostarczanie treści cyfrowych niedostarczanych na nośniku materialnym, jeżeli spełnianie świadczenia rozpoczęło się za wyraźną zgodą konsumenta przed upływem terminu do odstąpienia od umowy i po poinformowaniu go przez przedsiębiorcę o utracie prawa odstąpienia od umowy.</li>
+              <li>Zgodnie z art. 38 pkt 13 ustawy o prawach konsumenta, prawo odstąpienia od umowy nie przysługuje w odniesieniu do umów o dostarczanie treści cyfrowych niedostarczanych na nośniku materialnym, za które konsument jest zobowiązany do zapłaty ceny, jeżeli Usługodawca rozpoczął świadczenie za wyraźną zgodą Użytkownika, który został poinformowany przed rozpoczęciem świadczenia, że po jego spełnieniu utraci prawo odstąpienia od umowy, i przyjął to do wiadomości, a Usługodawca przekazał Użytkownikowi potwierdzenie, o którym mowa w art. 15 ust. 1 i 2 ustawy o prawach konsumenta.</li>
               <li>Akceptując niniejszy Regulamin i składając zamówienie, Użytkownik wyraża zgodę na natychmiastowe dostarczenie treści cyfrowej (pisma PDF) i tym samym potwierdza, że jest świadomy utraty prawa odstąpienia od umowy z chwilą dostarczenia pisma.</li>
             </ol>
           </section>
@@ -70,7 +70,7 @@ export default function RegulaminPage() {
             <ol className="list-decimal pl-5 space-y-2">
               <li>Reklamacje dotyczące świadczonych usług należy składać na adres e-mail: <strong>hello@writeback.pl</strong>.</li>
               <li>Reklamacja powinna zawierać: imię i nazwisko, adres e-mail podany przy zamówieniu, datę zamówienia oraz opis nieprawidłowości.</li>
-              <li>Usługodawca rozpatruje reklamacje w terminie 14 dni roboczych od jej otrzymania.</li>
+              <li>Usługodawca rozpatruje reklamacje w terminie 14 dni kalendarzowych od jej otrzymania.</li>
               <li>W przypadku niemożności wygenerowania pisma z przyczyn technicznych leżących po stronie Usługodawcy, Użytkownik otrzyma zwrot pełnej kwoty zamówienia.</li>
               <li><strong>Bezpłatne odwołanie:</strong> Jeżeli wygenerowane pismo nie przyniosło oczekiwanego rezultatu (sklep lub inny adresat odmówił lub nie odpowiedział na ponowną korespondencję), Usługodawca na wniosek Użytkownika przygotuje jedno pismo odwoławcze lub skargę do odpowiedniego organu (np. Rzecznika Praw Konsumentów, UOKiK) bezpłatnie. Wniosek należy złożyć na adres hello@writeback.pl w terminie 60 dni od dostarczenia pierwotnego pisma.</li>
             </ol>
@@ -91,7 +91,7 @@ export default function RegulaminPage() {
               <li>Usługodawca nie ponosi odpowiedzialności za skutki prawne lub finansowe wynikające z wykorzystania wygenerowanego pisma.</li>
               <li>Usługodawca nie odpowiada za działania lub zaniechania podmiotów trzecich (sklepy, banki, instytucje), do których adresowane jest wygenerowane pismo.</li>
               <li>Usługodawca nie ponosi odpowiedzialności za przerwy w działaniu Serwisu wynikające z przyczyn technicznych niezależnych od Usługodawcy.</li>
-              <li>Odpowiedzialność Usługodawcy wobec Użytkownika ograniczona jest do wysokości uiszczonej opłaty za zamówione pismo.</li>
+              <li>Odpowiedzialność Usługodawcy wobec Użytkownika z tytułu niewykonania lub nienależytego wykonania umowy ograniczona jest do wysokości uiszczonej opłaty za zamówione pismo. Ograniczenie nie dotyczy szkody wyrządzonej umyślnie.</li>
             </ol>
           </section>
 
@@ -109,7 +109,7 @@ export default function RegulaminPage() {
             <ol className="list-decimal pl-5 space-y-2">
               <li>Usługodawca zastrzega prawo do zmiany niniejszego Regulaminu. O zmianach Usługodawca informuje na stronie Serwisu z co najmniej 14-dniowym wyprzedzeniem.</li>
               <li>Regulamin dostępny jest pod adresem writeback.pl/regulamin.</li>
-              <li>Wszelkie spory wynikające z korzystania z Serwisu będą rozstrzygane przez sąd właściwy dla siedziby Usługodawcy, chyba że przepisy prawa przewidują wyłączną właściwość innego sądu.</li>
+              <li>Spory wynikające z korzystania z Serwisu rozstrzygane są przez sąd właściwy rzeczowo i miejscowo zgodnie z przepisami Kodeksu postępowania cywilnego. Konsument może wytoczyć powództwo przed sądem właściwym dla swojego miejsca zamieszkania lub przed sądem właściwym dla siedziby Usługodawcy.</li>
             </ol>
           </section>
 
