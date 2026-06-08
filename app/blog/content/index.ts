@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import ReklamacjaZalando from "./reklamacja-zalando";
 import ReklamacjaDoUbezpieczyciela from "./reklamacja-do-ubezpieczyciela";
 import ReklamacjaDewelopera from "./reklamacja-dewelopera";
 import OdwolanieOdDecyzjiZus from "./odwolanie-od-decyzji-zus";
@@ -26,6 +27,7 @@ import ZwrotOdKurieraEn from "./zwrot-od-kuriera.en";
 import WypowiedzeniesilowniaIEn from "./wypowiedzenie-silownia.en";
 
 const CONTENT: Record<string, FC> = {
+  "reklamacja-zalando": ReklamacjaZalando,
   "reklamacja-do-ubezpieczyciela": ReklamacjaDoUbezpieczyciela,
   "reklamacja-dewelopera": ReklamacjaDewelopera,
   "odwolanie-od-decyzji-zus": OdwolanieOdDecyzjiZus,

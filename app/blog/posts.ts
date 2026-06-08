@@ -20,6 +20,36 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-zalando",
+    title: "Reklamacja Zalando: prawa konsumenta i jak złożyć pismo (2026)",
+    description: "Zalando odmówiło reklamacji albo nie odpowiada? Art. 43b ustawy o prawach konsumenta: 2 lata na reklamację, koszty odesłania pokrywa Zalando. Brak odpowiedzi w 14 dniach = reklamacja uznana. Wzór pisma.",
+    date: "2026-06-08",
+    readTime: "5 min",
+    category: "Sklep internetowy",
+    faq: [
+      {
+        q: "Czy mogę złożyć reklamację po upływie 100-dniowego okresu zwrotów Zalando?",
+        a: "Tak. Polityka 100-dniowych zwrotów to oferta handlowa Zalando, a nie Twoje ustawowe prawo. Reklamacja z tytułu niezgodności towaru z umową (art. 43b UPK) obowiązuje przez 2 lata od odbioru towaru, niezależnie od polityki zwrotów.",
+      },
+      {
+        q: "Ile dni ma Zalando na odpowiedź na reklamację?",
+        a: "14 dni kalendarzowych (art. 7a ustawy o prawach konsumenta). Brak odpowiedzi w tym terminie = reklamacja uznana za zasadną z mocy prawa.",
+      },
+      {
+        q: "Czy muszę płacić za odesłanie reklamowanego towaru do Zalando?",
+        a: "Nie. Koszty odesłania towaru w ramach reklamacji (naprawa lub wymiana) ponosi Zalando jako sprzedawca — art. 43d ust. 4 ustawy o prawach konsumenta. Dotyczy to kosztu opłat pocztowych i transportu.",
+      },
+      {
+        q: "Zalando mówi że wada powstała z mojej winy. Co zrobić?",
+        a: "Zażądaj pisemnego uzasadnienia z wynikami ekspertyzy technicznej. Samo stwierdzenie emailem nie wystarczy. Art. 43c ust. 1 UPK: przez 2 lata od dostarczenia towaru domniemywa się, że wada istniała już przy dostawie — to Zalando musi obalić to domniemanie ekspertyzą, nie Ty musisz dowodzić wady.",
+      },
+      {
+        q: "Kupiłem od sprzedawcy Zalando Partner, nie od Zalando. Do kogo piszę?",
+        a: "Do sprzedawcy partnerskiego — to on zawarł z Tobą umowę i odpowiada za niezgodność towaru z umową. Dane sprzedawcy znajdziesz w potwierdzeniu zamówienia. Zalando jako platforma nie odpowiada za towar partnerów, ale często pośredniczy w procesie reklamacji.",
+      },
+    ],
+  },
+  {
     slug: "reklamacja-do-ubezpieczyciela",
     title: "Reklamacja do ubezpieczyciela: OC, AC, NNW — prawa i wzór pisma (2026)",
     description: "Ubezpieczyciel odmówił wypłaty lub zaniżył odszkodowanie? Art. 817 KC: 30 dni na wypłatę. Brak odpowiedzi na reklamację w 30 dniach = uznana za zasadną. Jak napisać skuteczne pismo do towarzystwa ubezpieczeniowego.",
