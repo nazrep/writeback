@@ -147,49 +147,112 @@ export default function EnPage() {
       <EnNav />
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-b from-indigo-50/60 via-white to-white overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-indigo-100/30 rounded-full blur-[120px] pointer-events-none" />
+      <section className="relative bg-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/60 via-white to-white pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-100/30 rounded-full blur-[120px] pointer-events-none -translate-y-1/3 translate-x-1/3" />
 
-        <div className="relative max-w-3xl mx-auto px-6 pt-20 pb-16 text-center">
-          <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-8 border border-indigo-100">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
-            Polish law is on your side
-          </div>
+        <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.08] text-gray-900 mb-6">
-            Polish store ignored you?<br />
-            <span className="text-indigo-600">Write a letter they<br className="hidden sm:block" /> must respond to.</span>
-          </h1>
-
-          <p className="text-base sm:text-lg text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">
-            Professional complaint letter citing art. 43b of the Polish Consumer Rights Act.
-            Ready in 5 minutes. The store has <strong className="text-gray-900 font-semibold">14 days</strong> to respond —
-            no reply = complaint legally accepted.
-          </p>
-
-          <Link
-            href="/zamow?lang=en"
-            className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-colors text-base shadow-lg shadow-indigo-100"
-          >
-            Write a letter — PLN 29
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </Link>
-          <p className="text-sm text-gray-400 mt-3">
-            One-time payment · PDF to your inbox immediately · Free appeal if it doesn&apos;t work
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-8 mt-14 pt-10 border-t border-gray-100">
-            {[
-              { val: "PLN 29", sub: "one-time" },
-              { val: "5 min", sub: "letter ready" },
-              { val: "14 days", sub: "store must reply" },
-              { val: "100%", sub: "Polish law citations" },
-            ].map((s, i) => (
-              <div key={i} className="text-center">
-                <div className="text-2xl font-bold text-gray-900">{s.val}</div>
-                <div className="text-xs text-gray-400 mt-0.5">{s.sub}</div>
+            {/* Left — copy */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-8 border border-indigo-100">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
+                Polish law is on your side
               </div>
-            ))}
+
+              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.06] text-gray-900 mb-6">
+                Polish store ignored you?<br />
+                <span className="text-indigo-600">Write a letter they<br className="hidden sm:block" /> must respond to.</span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-gray-500 max-w-xl mb-10 leading-relaxed">
+                Professional complaint letter citing art. 43b of the Polish Consumer Rights Act.
+                Ready in <strong className="text-gray-800 font-semibold">5 minutes</strong>, PDF to your inbox immediately.
+              </p>
+
+              <Link
+                href="/zamow?lang=en"
+                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-lg shadow-indigo-200 hover:shadow-xl hover:-translate-y-0.5 active:scale-95"
+              >
+                Write a letter — PLN 29
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </Link>
+              <p className="text-sm text-gray-400 mt-3">
+                One-time payment · PDF to your inbox immediately · Free appeal if it doesn&apos;t work
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-8 gap-y-4 mt-12 pt-10 border-t border-gray-100">
+                {[
+                  { val: "PLN 29", sub: "one-time" },
+                  { val: "5 min", sub: "letter ready" },
+                  { val: "14 days", sub: "store must reply" },
+                  { val: "100%", sub: "Polish law citations" },
+                ].map((s, i) => (
+                  <div key={i} className="text-center lg:text-left">
+                    <div className="text-2xl font-bold text-gray-900">{s.val}</div>
+                    <div className="text-xs text-gray-400 mt-0.5 font-medium">{s.sub}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right — letter mockup */}
+            <div className="hidden lg:block">
+              <div className="relative">
+                <div className="absolute inset-0 bg-indigo-200/30 rounded-3xl blur-2xl scale-95 translate-y-4" />
+                <div className="relative bg-white rounded-2xl border border-gray-200 shadow-2xl shadow-gray-200/60 overflow-hidden">
+                  <div className="bg-gradient-to-r from-indigo-600 to-indigo-500 px-5 py-3 flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/25" />
+                    </div>
+                    <span className="text-xs font-bold text-white/80 ml-2 uppercase tracking-wider">complaint.pdf</span>
+                  </div>
+                  <div className="p-6 font-mono text-[11px] leading-relaxed text-gray-700 space-y-3">
+                    <div className="text-gray-500 space-y-0.5">
+                      <div className="font-bold text-gray-800">Anna Kowalska</div>
+                      <div>ul. Kwiatowa 5/12, 00-001 Warszawa</div>
+                      <div>anna@example.com</div>
+                    </div>
+                    <div className="text-right text-gray-400 text-[10px]">Warsaw, {new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</div>
+                    <div className="text-gray-500 space-y-0.5">
+                      <div className="font-bold text-gray-800">TechShop Sp. z o.o.</div>
+                      <div>ul. Handlowa 1, 00-100 Warszawa</div>
+                    </div>
+                    <div className="border-l-4 border-indigo-500 pl-3 py-0.5">
+                      <div className="font-bold text-indigo-700 text-[10px]">RE: Complaint — Samsung Smartphone, order no. TS/2026/4821</div>
+                    </div>
+                    <div className="text-gray-600 leading-relaxed">
+                      On 10 May 2026 I purchased a Samsung Galaxy S24 smartphone for PLN 3,499. On 1 June 2026 I found the device to be non-conforming — the display shows factory defects without any mechanical damage.
+                    </div>
+                    <div className="bg-indigo-50 rounded-lg p-3 space-y-1.5">
+                      <div className="font-bold text-indigo-800 text-[10px] uppercase tracking-wide">Demand</div>
+                      <div className="text-indigo-700">Under <span className="font-bold">art. 43d §1 CRA</span> I demand replacement of the goods with a defect-free unit.</div>
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-3 space-y-1">
+                      <div className="font-bold text-gray-600 text-[10px] uppercase tracking-wide">Legal basis</div>
+                      <div className="text-gray-500">- Art. 43b CRA (seller&apos;s liability)</div>
+                      <div className="text-gray-500">- Art. 43c §1 CRA (presumption of defect — 2 years)</div>
+                      <div className="text-gray-500">- Art. 7a CRA (14-day response deadline)</div>
+                    </div>
+                    <div className="text-gray-500 text-[10px] pt-1">
+                      Yours faithfully,<br />
+                      <span className="font-bold text-gray-700">Anna Kowalska</span>
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 border-t border-gray-100 px-6 py-2.5 flex items-center justify-between">
+                    <span className="text-[10px] text-gray-400">Generated by writeback.pl</span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      <span className="text-[10px] text-emerald-600 font-semibold">Ready to send</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
