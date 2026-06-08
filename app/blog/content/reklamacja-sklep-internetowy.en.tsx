@@ -22,7 +22,7 @@ export default function ContentEn() {
         <li><strong>Replacement</strong> with a new, defect-free item</li>
       </ul>
       <p>The store may refuse only one of these options if it is impossible or would involve disproportionate costs. It cannot refuse both without justification.</p>
-      <p>If repair or replacement turned out to be ineffective, the store refused both twice, or the defect is significant enough to affect use of the product, you may demand:</p>
+      <p>If repair or replacement turned out to be ineffective, the store refused both options, or the defect is significant enough to qualify for immediate withdrawal (Art. 43e §3 CRA), you may demand:</p>
       <ul>
         <li><strong>Price reduction</strong> by an appropriate amount</li>
         <li><strong>Withdrawal from the contract</strong>, meaning a full refund</li>
@@ -78,7 +78,7 @@ export default function ContentEn() {
         <li><strong>Consumer Ombudsman (Rzecznik Praw Konsumentów)</strong>: every county authority has an ombudsman who intervenes in disputes with businesses free of charge</li>
         <li><strong>UOKiK</strong>: if the store engages in practices violating consumer rights on a large scale, file a complaint at uokik.gov.pl</li>
         <li><strong>Arbitration Court at the Trade Inspection (Sąd polubowny przy Inspekcji Handlowej)</strong>: free proceedings that end in a settlement or ruling. The seller must agree to participate</li>
-        <li><strong>Civil court</strong>: for higher-value disputes — several thousand zloty for electronics — consider a lawsuit. For disputes up to 20,000 PLN, court costs are low</li>
+        <li><strong>Civil court</strong>: for higher-value disputes — several thousand zloty for electronics — consider a lawsuit. For disputes up to 30,000 PLN the simplified procedure is cost-effective (Art. 505¹ CCP)</li>
       </ul>
       <p>Having trouble with a bank transaction rather than a store complaint? Read <Link href="/blog/bank-odmawia-zwrotu?lang=en" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">how to get a refund from your bank</Link>.</p>
 

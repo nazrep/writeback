@@ -42,8 +42,8 @@ export default function Content() {
       <ul>
         <li>File a complaint with the <strong>Trade Inspection (Inspekcja Handlowa)</strong></li>
         <li>Contact the <strong>Consumer Rights Ombudsman</strong> in your district</li>
-        <li>Apply for mediation at the <strong>Permanent Consumer Arbitration Court at UOKiK</strong></li>
-        <li>Take the matter to <strong>civil court</strong> — claims up to PLN 20,000 follow a simplified procedure</li>
+        <li>Apply for mediation at the <strong>Permanent Consumer Arbitration Court at the Trade Inspection (Stały Polubowny Sąd Konsumencki przy Inspekcji Handlowej)</strong></li>
+        <li>Take the matter to <strong>civil court</strong> — claims up to PLN 30,000 follow a simplified procedure (Art. 505¹ CCP)</li>
       </ul>
 
       <h2>Manufacturer warranty vs. statutory complaint</h2>

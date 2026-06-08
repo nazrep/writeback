@@ -26,6 +26,10 @@ export const POSTS: Post[] = [
     date: "2026-06-08",
     readTime: "5 min",
     category: "Sklep internetowy",
+    titleEn: "Zalando Complaint: Consumer Rights and How to File (2026)",
+    descriptionEn: "Zalando refused your complaint or isn't responding? Art. 43b Consumer Rights Act: 2 years to complain, return shipping covered by Zalando. No reply in 14 days = complaint accepted by law.",
+    categoryEn: "Online Store",
+    readTimeEn: "5 min",
     faq: [
       {
         q: "Czy mogę złożyć reklamację po upływie 100-dniowego okresu zwrotów Zalando?",
@@ -56,6 +60,10 @@ export const POSTS: Post[] = [
     date: "2026-06-13",
     readTime: "6 min",
     category: "Ubezpieczenia",
+    titleEn: "Insurance Complaint: OC, AC, NNW — Your Rights and Letter Template (2026)",
+    descriptionEn: "Insurer refused payout or underpaid? Art. 817 CC: 30 days to pay. No reply to complaint in 30 days = accepted by law. How to write an effective letter to a Polish insurance company.",
+    categoryEn: "Insurance",
+    readTimeEn: "6 min",
     faq: [
       {
         q: "Ile czasu ma ubezpieczyciel na wypłatę odszkodowania?",
@@ -86,6 +94,10 @@ export const POSTS: Post[] = [
     date: "2026-06-20",
     readTime: "6 min",
     category: "Nieruchomości",
+    titleEn: "Developer Complaint: Flat Defects and How to Enforce Your Rights (2026)",
+    descriptionEn: "Developer didn't fix defects from the handover protocol? Art. 43 Developer Act: 30 days to fix. Civil Code warranty — 5 years for property defects. How to write an effective letter.",
+    categoryEn: "Property",
+    readTimeEn: "6 min",
     faq: [
       {
         q: "Ile lat mam na reklamację wad mieszkania od dewelopera?",
@@ -112,6 +124,10 @@ export const POSTS: Post[] = [
     date: "2026-06-27",
     readTime: "6 min",
     category: "ZUS / US",
+    titleEn: "ZUS Appeal: How and Where to File — Step by Step (2026)",
+    descriptionEn: "ZUS refused your benefit, pension or disability payment? You have 1 month to appeal to the labour court — not to ZUS. Art. 477⁹ CPC. Proceedings are free of court fees.",
+    categoryEn: "ZUS / Social Insurance",
+    readTimeEn: "6 min",
     faq: [
       {
         q: "Ile czasu mam na odwołanie od decyzji ZUS?",
@@ -138,6 +154,10 @@ export const POSTS: Post[] = [
     date: "2026-07-04",
     readTime: "5 min",
     category: "Windykacja",
+    titleEn: "Payment Demand Letter: Template with Polish Civil Code (2026)",
+    descriptionEn: "Someone owes you money? A formal demand under Art. 455 CC starts interest running. B2B: 10% interest + flat-rate recovery costs €40/70/100 under the Commercial Transactions Act.",
+    categoryEn: "Debt Recovery",
+    readTimeEn: "5 min",
     faq: [
       {
         q: "Co daje formalne wezwanie do zapłaty w porównaniu do zwykłego przypomnienia?",
@@ -164,6 +184,10 @@ export const POSTS: Post[] = [
     date: "2026-07-11",
     readTime: "5 min",
     category: "Usługi",
+    titleEn: "Service Complaint: Renovation, Repair, Installation — Rights and Letter Template (2026)",
+    descriptionEn: "Renovation company left defects? Plumber didn't fix the fault? Art. 636 CC: set a deadline and commission another contractor at the first one's cost. 5-year warranty for property work.",
+    categoryEn: "Services",
+    readTimeEn: "5 min",
     faq: [
       {
         q: "Ile lat mam na reklamację wadliwego remontu?",
@@ -190,6 +214,10 @@ export const POSTS: Post[] = [
     date: "2026-07-18",
     readTime: "6 min",
     category: "Podróże",
+    titleEn: "Flight Delay and Cancellation Compensation: €250–600 under EU Regulation (2026)",
+    descriptionEn: "Flight delayed over 3 hours or cancelled? EU Regulation 261/2004: €250–600 compensation. Technical failure is NOT an exception (CJEU C-549/07). How to write a claim to the airline.",
+    categoryEn: "Travel",
+    readTimeEn: "6 min",
     faq: [
       {
         q: "Od jakiego opóźnienia przysługuje odszkodowanie za lot?",

@@ -18,7 +18,7 @@ export default function Content() {
         <li><strong>Take photos</strong> — the packaging, tape, contents, visible damage. Photos are your primary evidence.</li>
         <li><strong>Draw up a damage report</strong> in the courier's presence — you have the right to demand one under Art. 74 of the Transport Law. The courier is obliged to issue it.</li>
         <li>If the courier refuses to issue a report — note your objections on the waybill and photograph it.</li>
-        <li>If you discovered the damage after accepting the parcel — you have <strong>7 days</strong> to file a complaint (Art. 76 §4 of the Transport Law). After this deadline the claim expires.</li>
+        <li>If you discovered the damage after accepting the parcel — you have <strong>7 days</strong> to request a formal assessment of the parcel's condition (Art. 74 §3 of the Transport Law). After this period it becomes significantly harder to pursue the claim.</li>
       </ul>
 
       <h2>How much compensation can you get</h2>

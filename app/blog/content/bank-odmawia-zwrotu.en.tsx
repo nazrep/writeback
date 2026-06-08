@@ -57,10 +57,10 @@ export default function ContentEn() {
       <h2>What if the bank still refuses</h2>
       <p>If the bank maintains its refusal after your written complaint, you have several options:</p>
       <ul>
-        <li><strong>Financial Ombudsman (Rzecznik Finansowy)</strong>: the most effective route. Banks take complaints directed to the RF very seriously, as the regulator closely monitors their complaint statistics. The process is free and fast. More at rf.gov.pl</li>
+        <li><strong>Financial Ombudsman (Rzecznik Finansowy)</strong>: the most effective route. Banks take RF complaints very seriously — the RF can escalate cases to KNF and publishes complaint statistics that affect the bank's reputation. The process is free and fast. More at rf.gov.pl</li>
         <li><strong>KNF (Polish Financial Supervision Authority)</strong>: accepts complaints about banks violating regulations. Works more slowly than the RF, but a signal to the regulator has long-term significance</li>
         <li><strong>Arbitration Court at KNF</strong>: free mediation/arbitration proceedings, requires the bank's consent to participate</li>
-        <li><strong>Civil court</strong>: for amounts above a few thousand zloty it is worth considering. For disputes up to 20,000 PLN the simplified procedure is relatively inexpensive</li>
+        <li><strong>Civil court</strong>: for amounts above a few thousand zloty it is worth considering. For disputes up to 30,000 PLN the simplified procedure is relatively inexpensive (Art. 505¹ CCP)</li>
       </ul>
       <p>Having a store complaint rather than a bank issue? Read <Link href="/blog/reklamacja-sklep-internetowy?lang=en" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">how to file an effective complaint to an online store</Link>.</p>
 

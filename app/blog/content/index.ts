@@ -1,4 +1,6 @@
 import type { FC } from "react";
+
+// PL
 import ReklamacjaZalando from "./reklamacja-zalando";
 import ReklamacjaDoUbezpieczyciela from "./reklamacja-do-ubezpieczyciela";
 import ReklamacjaDewelopera from "./reklamacja-dewelopera";
@@ -15,7 +17,16 @@ import ReklamacjaMediaExpert from "./reklamacja-media-expert";
 import ReklamacjaRtvEuroAgd from "./reklamacja-rtv-euro-agd";
 import ReklamacjaTelefonu from "./reklamacja-telefonu";
 import ZwrotOdKuriera from "./zwrot-od-kuriera";
-import WypowiedzeniesilowniaI from "./wypowiedzenie-silownia";
+import WypowiedzenieSilownia from "./wypowiedzenie-silownia";
+
+// EN
+import ReklamacjaZalandoEn from "./reklamacja-zalando.en";
+import ReklamacjaDoUbezpieczycielaEn from "./reklamacja-do-ubezpieczyciela.en";
+import ReklamacjaDeweloperaEn from "./reklamacja-dewelopera.en";
+import OdwolanieOdDecyzjiZusEn from "./odwolanie-od-decyzji-zus.en";
+import WezwanieDoZaplatyEn from "./wezwanie-do-zaplaty.en";
+import ReklamacjaUslugiEn from "./reklamacja-uslugi.en";
+import OdszkodowanieZaOpoznionyLotEn from "./odszkodowanie-za-opozniony-lot.en";
 import ReklamacjaSklepInternetowyEn from "./reklamacja-sklep-internetowy.en";
 import ReklamacjaAllegroEn from "./reklamacja-allegro.en";
 import BankOdmawaZwrotuEn from "./bank-odmawia-zwrotu.en";
@@ -24,7 +35,7 @@ import ReklamacjaMediaExpertEn from "./reklamacja-media-expert.en";
 import ReklamacjaRtvEuroAgdEn from "./reklamacja-rtv-euro-agd.en";
 import ReklamacjaTelefonuEn from "./reklamacja-telefonu.en";
 import ZwrotOdKurieraEn from "./zwrot-od-kuriera.en";
-import WypowiedzeniesilowniaIEn from "./wypowiedzenie-silownia.en";
+import WypowiedzenieSilowniaEn from "./wypowiedzenie-silownia.en";
 
 const CONTENT: Record<string, FC> = {
   "reklamacja-zalando": ReklamacjaZalando,
@@ -43,10 +54,17 @@ const CONTENT: Record<string, FC> = {
   "reklamacja-rtv-euro-agd": ReklamacjaRtvEuroAgd,
   "reklamacja-telefonu": ReklamacjaTelefonu,
   "zwrot-od-kuriera": ZwrotOdKuriera,
-  "wypowiedzenie-silownia": WypowiedzeniesilowniaI,
+  "wypowiedzenie-silownia": WypowiedzenieSilownia,
 };
 
 const CONTENT_EN: Record<string, FC> = {
+  "reklamacja-zalando": ReklamacjaZalandoEn,
+  "reklamacja-do-ubezpieczyciela": ReklamacjaDoUbezpieczycielaEn,
+  "reklamacja-dewelopera": ReklamacjaDeweloperaEn,
+  "odwolanie-od-decyzji-zus": OdwolanieOdDecyzjiZusEn,
+  "wezwanie-do-zaplaty": WezwanieDoZaplatyEn,
+  "reklamacja-uslugi": ReklamacjaUslugiEn,
+  "odszkodowanie-za-opozniony-lot": OdszkodowanieZaOpoznionyLotEn,
   "reklamacja-sklep-internetowy": ReklamacjaSklepInternetowyEn,
   "reklamacja-allegro": ReklamacjaAllegroEn,
   "bank-odmawia-zwrotu": BankOdmawaZwrotuEn,
@@ -55,7 +73,7 @@ const CONTENT_EN: Record<string, FC> = {
   "reklamacja-rtv-euro-agd": ReklamacjaRtvEuroAgdEn,
   "reklamacja-telefonu": ReklamacjaTelefonuEn,
   "zwrot-od-kuriera": ZwrotOdKurieraEn,
-  "wypowiedzenie-silownia": WypowiedzeniesilowniaIEn,
+  "wypowiedzenie-silownia": WypowiedzenieSilowniaEn,
 };
 
 export function getContent(slug: string, lang = "pl"): FC | null {
