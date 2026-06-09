@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+        env:
+          ANTHROPIC_API_KEY: placeholder
+          STRIPE_SECRET_KEY: placeholder
+          STRIPE_WEBHOOK_SECRET: placeholder
+          RESEND_API_KEY: placeholder
+          NEXT_PUBLIC_URL: https://writeback.pl
+          UPSTASH_REDIS_KV_URL: placeholder
+          UPSTASH_REDIS_KV_REST_API_URL: placeholder
+          UPSTASH_REDIS_KV_REST_API_TOKEN: placeholder
+          UPSTASH_REDIS_KV_REST_API_READ_ONLY_TOKEN: placeholder
+          UPSTASH_REDIS_REDIS_URL: placeholder
