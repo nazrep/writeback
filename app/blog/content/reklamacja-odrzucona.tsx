@@ -43,8 +43,8 @@ export default function Content() {
       <ul>
         <li><strong>UOKiK</strong> — złóż zawiadomienie o podejrzeniu naruszenia zbiorowych interesów konsumentów. Działa szczególnie gdy sklep stosuje tę praktykę masowo.</li>
         <li><strong>Miejski lub Powiatowy Rzecznik Praw Konsumentów</strong> — bezpłatna pomoc prawna, interwencja w imieniu konsumenta.</li>
-        <li><strong>Sąd Polubowny przy UOKiK</strong> — bezpłatne postępowanie mediacyjne między konsumentem a przedsiębiorcą.</li>
-        <li><strong>Sąd rejonowy</strong> — przy sporach do 20 000 zł sprawa trafia do sądu rejonowego. Koszty sądowe przy wygranej pokrywa sklep.</li>
+        <li><strong>Stały Polubowny Sąd Konsumencki przy Inspekcji Handlowej</strong> — bezpłatne postępowanie mediacyjne między konsumentem a przedsiębiorcą, wymaga zgody przedsiębiorcy.</li>
+        <li><strong>Sąd rejonowy</strong> — obsługuje sprawy do 100 000 zł; roszczenia do 30 000 zł rozpatrywane są w trybie uproszczonym (art. 505¹ KPC), co obniża koszty. Koszty sądowe przy wygranej pokrywa sklep.</li>
       </ul>
       <p>W praktyce większość spraw kończy się na etapie formalnego pisma lub odwołania — sklepy rzadko chcą ryzykować postępowaniem sądowym przy wartości sporu poniżej 2000 zł.</p>
 

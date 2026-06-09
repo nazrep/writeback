@@ -4,6 +4,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { PDFDocument, rgb } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import { Resend } from "resend";
+import { Redis } from "@upstash/redis";
 import fs from "fs";
 import path from "path";
 import { fetchPrzepisy, formatPrzepisy } from "@/app/lib/przepisy";
@@ -105,9 +106,14 @@ Przepisy obowiązkowe: ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamac
 Brak odpowiedzi = uznanie reklamacji za zasadną.
 WAŻNE: Jeśli z kontekstu wynika, że adresat to sklep detaliczny, firma handlowa lub usługowa (nie bank, ubezpieczyciel ani parabank), zastosuj przepisy o niezgodności towaru z umową (art. 43a ustawy o prawach konsumenta) i art. 7a UPK zamiast przepisów o podmiotach rynku finansowego.`,
 
-    zus: `Jesteś ekspertem prawa ubezpieczeń społecznych i administracyjnego w Polsce. Piszesz odwołania od decyzji ZUS/US do właściwego sądu za pośrednictwem organu.
-Przepisy obowiązkowe: art. 83 ust. 2 ustawy z dnia 13.10.1998 r. o systemie ubezpieczeń społecznych; art. 477(9)–477(10) KPC — odwołanie do sądu pracy i ubezpieczeń społecznych, termin 1 miesiąc od doręczenia decyzji (art. 477(10) § 1 KPC); art. 127–140 KPA (procedura odwołania administracyjnego); art. 156 KPA (nieważność decyzji).
-Wskaż konkretny sąd i podstawę zaskarżenia.`,
+    zus: `Jesteś ekspertem prawa ubezpieczeń społecznych w Polsce. Piszesz odwołania od decyzji ZUS/US do właściwego sądu za pośrednictwem organu.
+WAŻNE: Odwołania od decyzji ZUS NIE idą drogą administracyjną (KPA) — trafiają BEZPOŚREDNIO do sądu pracy i ubezpieczeń społecznych, składane za pośrednictwem ZUS.
+Przepisy obowiązkowe:
+- art. 83 ust. 2 ustawy z dnia 13.10.1998 r. o systemie ubezpieczeń społecznych (uSUS): od decyzji ZUS przysługuje odwołanie do właściwego sądu na zasadach KPC
+- art. 477(9) KPC: odwołanie składa się do sądu pracy i ubezpieczeń społecznych za pośrednictwem organu, który wydał decyzję
+- art. 477(10) § 1 KPC: termin 1 miesiąc od dnia doręczenia decyzji
+- art. 83a ust. 2 uSUS: ZUS może zmienić lub uchylić decyzję przed skierowaniem do sądu (tryb wewnętrzny)
+Pismo kieruj do ZUS (organ przekazuje je do sądu). Wskaż konkretny sąd rejonowy/okręgowy właściwy dla miejsca zamieszkania. NIE powołuj się na KPA art. 127-140 — ten tryb nie dotyczy odwołań od decyzji ZUS.`,
 
     umowa: `Jesteś ekspertem prawa cywilnego w Polsce. Piszesz formalne wypowiedzenia umów z zachowaniem terminów i bez kar umownych.
 Przepisy obowiązkowe: art. 746 KC (wypowiedzenie umowy zlecenia); art. 365(1) KC (umowy na czas nieokreślony); art. 384(1) KC (natychmiastowe wypowiedzenie gdy firma jednostronnie zmienia warunki umowy — kluczowe dla siłowni, internetu, telefonu, prądu); art. 3853 KC (klauzule abuzywne); ustawa o prawach konsumenta art. 27 (prawo odstąpienia 14 dni); ustawa o świadczeniu usług drogą elektroniczną art. 8 (regulamin — warunki rozwiązania umowy).
@@ -121,10 +127,14 @@ Jeśli adresat to sklep: art. 43a–43e UPK + art. 7a UPK (sprzedawca odpowiada 
 Jeśli adresat to firma kurierska: art. 65 ust. 1–2 Prawa przewozowego (ustawa z 15.11.1984) — odpowiedzialność za utratę/uszkodzenie/opóźnienie; art. 75 ust. 1 PP — obowiązek reklamacji; art. 77 PP — przedawnienie 1 rok; art. 87–92 Prawa pocztowego (ustawa z 23.11.2012) — dla InPost/Poczty Polskiej (art. 87 odpowiedzialność, art. 90 limity odszkodowania, art. 92 termin 30 dni na odpowiedź).
 
 TELECOM (skarga_subtype=telecom):
-Stosuj WYŁĄCZNIE ustawę z dnia 16 lipca 2022 r. o prawie komunikacji elektronicznej (PKE, Dz.U. 2022 poz. 1933, obowiązuje od 21.12.2022) — zastąpiła stare Prawo telekomunikacyjne z 2004 r.
-- Art. 83 PKE: dostawca musi powiadomić abonenta o zmianie warunków umowy z 30-dniowym wyprzedzeniem
-- Art. 84 PKE: abonent ma prawo rozwiązać umowę bez kar, jeśli nie akceptuje zmiany warunków
-- Art. 88 PKE: prawo do odszkodowania za niedotrzymanie terminu dostarczenia usługi lub parametrów jakości
+Stosuj ustawę z dnia 12 lipca 2024 r. — Prawo komunikacji elektronicznej (PKE, Dz.U. 2024 poz. 1221, obowiązuje od 10 listopada 2024 r.) — zastąpiła stare Prawo telekomunikacyjne z 2004 r.
+ARTYKUŁY ZWERYFIKOWANE W ISAP (DU/2024/1221):
+- Art. 306 PKE: dostawca może jednostronnie zmienić warunki gdy wynika to ze zmiany prawa lub decyzji UKE; min. miesięczne wyprzedzenie; abonent może wypowiedzieć (z ewentualnymi kosztami z art. 304)
+- Art. 307 PKE: zmiana warunków umowy NA CZAS OKREŚLONY z obiektywnych przyczyn; abonent może wypowiedzieć BEZ odszkodowania (art. 307 ust. 2)
+- Art. 308 PKE: zmiana warunków umowy NA CZAS NIEOKREŚLONY lub auto-przedłużonej; abonent może wypowiedzieć
+- Art. 302 PKE: abonent może wypowiedzieć umowę automatycznie przedłużoną z miesięcznym wyprzedzeniem
+- Art. 378 PKE: reklamacja usługi komunikacji elektronicznej z tytułu niedotrzymania terminu, nienależytego wykonania usługi, błędnych naliczeń; termin złożenia: 12 miesięcy; 30 dni na odpowiedź dostawcy
+- Art. 380 PKE: przy stałych rozbieżnościach między rzeczywistą a umówioną jakością usług — konsument może wypowiedzieć umowę z winy dostawcy bez odszkodowania
 - Art. 3853 pkt 10 KC: klauzule abuzywne przy zmianie cen
 Regulatorem jest Prezes UKE (Urząd Komunikacji Elektronicznej).
 
@@ -137,6 +147,43 @@ art. 43a–43g UPK (niezgodność towaru/usługi z umową); art. 7a UPK (14-dnio
     uokik: `Jesteś ekspertem prawa ochrony konsumentów w Polsce. Piszesz skargi do UOKiK i Rzecznika Praw Konsumentów.
 Przepisy obowiązkowe: ustawa z dnia 16.02.2007 r. o ochronie konkurencji i konsumentów art. 23a–23d (niedozwolone postanowienia w umowach wzorcowych — rejestr UOKiK); art. 24 ustawy o ochronie konkurencji i konsumentów (zakaz praktyk naruszających zbiorowe interesy konsumentów); art. 7a UPK (obowiązek odpowiedzi w 14 dniach); Dyrektywa Omnibus 2019/2161; art. 3853 KC (klauzule abuzywne).
 Skarga powinna żądać: wszczęcia postępowania, nałożenia kary, nakazania zaniechania praktyki.`,
+
+    lot: `Jesteś ekspertem prawa lotniczego i ochrony praw pasażerów w UE. Piszesz roszczenia o odszkodowanie za opóźnione/odwołane loty.
+KLUCZOWY AKT PRAWNY: Rozporządzenie (WE) nr 261/2004 Parlamentu Europejskiego i Rady z dnia 11 lutego 2004 r. ustanawiające wspólne zasady odszkodowania i pomocy dla pasażerów w przypadku odmowy przyjęcia na pokład albo odwołania lub dużego opóźnienia lotów.
+KWOTY ODSZKODOWANIA (art. 7 rozporządzenia 261/2004):
+- 250 EUR: loty do 1500 km
+- 400 EUR: loty wewnątrzunijne powyżej 1500 km i inne loty 1500–3500 km
+- 600 EUR: loty powyżej 3500 km (poza UE)
+Kwota może być zmniejszona o 50% gdy linia zaoferowała zmianę trasy i pasażer dotarł do celu z opóźnieniem nieprzekraczającym: 2h (do 1500 km), 3h (1500-3500 km), 4h (>3500 km).
+WARUNKI (art. 5 i 6): opóźnienie co najmniej 3 godziny przy przylądzie do celu; odwołanie lotu z powiadomieniem poniżej 14 dni; odmowa przyjęcia na pokład (overbooking).
+WYJĄTEK: nadzwyczajne okoliczności (art. 5 ust. 3) — burza, strajk służb kontroli lotów, decyzja władz. Awaria techniczna NIE jest nadzwyczajną okolicznością (wyrok TSUE C-549/07).
+TERMIN PRZEDAWNIENIA: 2 lata od daty przybycia lub planowanego przybycia (art. 35 Konwencji montrealskiej, Dz.U. 2007 nr 37 poz. 235) — dla lotów międzynarodowych. Alternatywnie art. 118 KC: 3 lata dla roszczeń z UE 261/2004 (wyrok TSUE C-139/11 Moré v KLM — roszczenia z rozp. 261/2004 są niezależne od Konwencji montrealskiej). W piśmie powołuj 2 lata jako najbardziej konserwatywny termin.
+PRAWO DO OPIEKI (art. 9): posiłki, napoje, zakwaterowanie przy opóźnieniu powyżej 2/3/4h.
+Pismo kieruj do przewoźnika lotniczego (nie lotniska). Żądaj zapłaty w EUR lub PLN według kursu NBP.`,
+
+    wezwanie: `Jesteś ekspertem prawa cywilnego w Polsce. Piszesz formalne wezwania do zapłaty.
+KLUCZOWE PRZEPISY (wszyscy dłużnicy):
+- Art. 455 KC: jeżeli termin spełnienia świadczenia nie jest oznaczony, dłużnik obowiązany jest je spełnić niezwłocznie po wezwaniu
+- Art. 481 § 1 KC: jeżeli dłużnik opóźnia się ze spełnieniem świadczenia pieniężnego, wierzyciel może żądać odsetek za opóźnienie
+- Art. 481 § 2 KC: odsetki ustawowe za opóźnienie = stopa referencyjna NBP + 8 punktów procentowych (po nowelizacji z 2015 r.)
+- Art. 6 KC: ciężar udowodnienia faktu spoczywa na osobie, która z faktu tego wywodzi skutki prawne
+DODATKOWE PRZEPISY gdy adresat to FIRMA (transakcja handlowa B2B):
+- Ustawa z dnia 8 marca 2013 r. o przeciwdziałaniu nadmiernym opóźnieniom w transakcjach handlowych: odsetki = stopa NBP + 10 pkt proc.; zryczałtowane odszkodowanie za koszty odzyskania należności: 40 EUR (dług do 5000 zł), 70 EUR (5000–50 000 zł), 100 EUR (powyżej 50 000 zł) — art. 10 ustawy
+ELEMENTY WEZWANIA: tytuł należności (faktura/umowa/pożyczka), kwota główna, odsetki od dnia wymagalności, termin zapłaty (7 lub 14 dni), ostrzeżenie o skierowaniu do sądu i wpisie do rejestru dłużników (BIG InfoMonitor, KRD).
+WAŻNE: wyraźnie oznacz termin zapłaty i ostateczność wezwania.`,
+
+    mandat: `Jesteś ekspertem prawa wykroczeń i postępowania mandatowego w Polsce.
+KLUCZOWE PRZEPISY (KPW = Kodeks postępowania w sprawach o wykroczenia, Dz.U. 2024 poz. 977):
+- Art. 97 § 1 KPW: uprawniony organ może nałożyć grzywnę w drodze mandatu karnego
+- Art. 97 § 2 KPW: sprawca MOŻE ODMÓWIĆ przyjęcia mandatu — odmowa następuje NA MIEJSCU w chwili proponowania mandatu. Nie istnieje żaden 7-dniowy termin na odmowę po fakcie. Po podpisaniu mandat jest PRAWOMOCNY z chwilą pokwitowania odbioru.
+- Art. 99 KPW: prawomocny mandat podlega uchyleniu w WĄSKICH okolicznościach (7 dni od uprawomocnienia): (a) grzywna nałożona za czyn niebędący wykroczeniem, lub (b) nałożona na osobę nieponoszącą odpowiedzialności. NIE jest to ogólne prawo do odwołania — przesłanki są ograniczone.
+- Art. 101 § 1 KPW: odmowa przyjęcia → organ kieruje wniosek o ukaranie do sądu rejonowego — wynik postępowania niepewny
+- Art. 45 KW: przedawnienie karalności — 1 rok od popełnienia; jeśli wszczęto postępowanie — 2 lata
+WAŻNE ROZRÓŻNIENIA:
+1. Mandat NIEPODPISANY: można odmówić na miejscu → sprawa idzie do sądu
+2. Mandat PODPISANY (prawomocny): uchylenie możliwe tylko przez art. 99 KPW (niebędący wykroczeniem / nieodpowiedzialna osoba)
+3. „Mandaty" parkingowe Straży Miejskiej mogą być opłatami dodatkowymi z ustawy o drogach publicznych — procedura odwołania wtedy cywilnoprawna lub administracyjna, NIE z KPW
+Wskaż w piśmie konkretny powód: brak ustawowych znamion wykroczenia, przekroczenie uprawnień organu, błąd w ustaleniu sprawcy.`,
   };
 
   const PROMPTS: Record<string, string> = {
@@ -187,6 +234,31 @@ FIRMA SKARŻONA: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""
 PRZEDMIOT: ${m.produkt}${m.cena ? " | wartość sporu: " + m.cena + " zł" : ""}${m.data_zakupu ? " | data reklamacji: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr reklamacji: " + m.numer_zamowienia : ""}
 OPIS NARUSZENIA: ${m.opis}
 HISTORIA: ${m.podjete_kroki || "Brak odpowiedzi na reklamację"}
+ŻĄDANIE: ${m.zadanie}
+DATA PISMA: ${today}`,
+
+    lot: `Napisz roszczenie o odszkodowanie za opóźniony/odwołany lot na podstawie rozporządzenia (WE) 261/2004.
+NADAWCA: ${m.imie_nazwisko} | ${m.adres} | ${m.email}
+LINIA LOTNICZA: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
+LOT: ${m.produkt}${m.data_zakupu ? " | data lotu: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr rezerwacji: " + m.numer_zamowienia : ""}
+KWOTA ŻĄDANEGO ODSZKODOWANIA: ${m.cena ? m.cena + " EUR" : "do ustalenia na podstawie trasy"}
+OPIS ZDARZENIA: ${m.opis}${m.podjete_kroki ? "\nKONTAKT Z LINIĄ: " + m.podjete_kroki : ""}
+ŻĄDANIE: ${m.zadanie}
+DATA PISMA: ${today}`,
+
+    wezwanie: `Napisz formalne wezwanie do zapłaty.
+WIERZYCIEL (NADAWCA): ${m.imie_nazwisko} | ${m.adres} | ${m.email}
+DŁUŻNIK: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
+NALEŻNOŚĆ: ${m.produkt}${m.cena ? " | kwota: " + m.cena + " zł" : ""}${m.data_zakupu ? " | termin płatności który minął: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | nr faktury/umowy: " + m.numer_zamowienia : ""}
+OPIS: ${m.opis}${m.podjete_kroki ? "\nPOPRZEDNIE PRÓBY: " + m.podjete_kroki : ""}
+ŻĄDANIE: ${m.zadanie}
+DATA PISMA: ${today}`,
+
+    mandat: `Napisz pismo dotyczące odmowy przyjęcia mandatu lub wniosku o jego uchylenie.
+NADAWCA: ${m.imie_nazwisko} | ${m.adres} | ${m.email}
+ORGAN: ${m.nazwa_sklepu}${m.adres_sklepu ? " | " + m.adres_sklepu : ""}
+MANDAT: ${m.produkt}${m.cena ? " | kwota: " + m.cena + " zł" : ""}${m.data_zakupu ? " | data wystawienia: " + m.data_zakupu : ""}${m.numer_zamowienia ? " | seria i nr mandatu: " + m.numer_zamowienia : ""}
+OKOLICZNOŚCI: ${m.opis}${m.podjete_kroki ? "\nSTATUS MANDATU: " + m.podjete_kroki : ""}
 ŻĄDANIE: ${m.zadanie}
 DATA PISMA: ${today}`,
   };
@@ -296,6 +368,9 @@ DATA PISMA: ${today}`,
     umowa: "WYPOWIEDZENIE UMOWY",
     uokik: "SKARGA DO UOKiK / RZECZNIKA",
     skarga: "SKARGA KONSUMENCKA",
+    lot: "ROSZCZENIE O ODSZKODOWANIE — LOT",
+    wezwanie: "WEZWANIE DO ZAPŁATY",
+    mandat: "ODWOŁANIE OD MANDATU",
   };
   let docLabel = LABELS[docType] ?? "PISMO REKLAMACYJNE";
   if (docType === "bank" && !/(bank|ubezpiecz|pkobp|mbank|alior|ing\b|bnp|pzu|aviva|warta|axa|generali|ergo|hestia|skandia|prudential|aegon|metlife|credit\s*agricole|santander|millennium|getin|nest\s*bank|toyota\s*bank|eurobank|plus\s*bank|pocztowy|bph|raiffeisen)/i.test(m.nazwa_sklepu)) {
@@ -423,7 +498,25 @@ DATA PISMA: ${today}`,
   const invoiceDate = new Date();
   const invoiceYear = invoiceDate.getFullYear();
   const invoiceMonth = String(invoiceDate.getMonth() + 1).padStart(2, "0");
-  const invoiceSeq = String(session.created).slice(-6);
+
+  // Atomowy licznik sekwencyjny w Upstash Redis
+  // Spełnia wymóg "kolejnego numeru" z art. 106e ust. 1 pkt 2 ustawy o VAT.
+  // INCR jest atomowy — wyklucza podwójne nadanie numeru przy równoległych żądaniach.
+  // Wymagane zmienne środowiskowe: UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN
+  // (ustawiane automatycznie po dodaniu Upstash Redis w Vercel Marketplace → Storage).
+  let invoiceSeq: string;
+  try {
+    const redis = new Redis({
+      url: process.env.UPSTASH_REDIS_KV_REST_API_URL!,
+      token: process.env.UPSTASH_REDIS_KV_REST_API_TOKEN!,
+    });
+    const seq = await redis.incr(`fv:${invoiceYear}:${invoiceMonth}`);
+    invoiceSeq = String(seq).padStart(4, "0");
+  } catch (err) {
+    // Fallback gdy Redis nie skonfigurowane (dev lokalny bez zmiennych środowiskowych)
+    console.warn("[invoice] Redis niedostępne, używam timestamp jako fallback:", err);
+    invoiceSeq = String(session.created);
+  }
   const invoiceNumber = `FV/${invoiceYear}/${invoiceMonth}/${invoiceSeq}`;
   const invDateStr = invoiceDate.toLocaleDateString("pl-PL", { day: "2-digit", month: "2-digit", year: "numeric" });
   const fmtPLN = (n: number) => n.toFixed(2).replace(".", ",") + " zł";
@@ -570,7 +663,12 @@ DATA PISMA: ${today}`,
     { emoji: "📄", bg: "#eef2ff", color: "#111827", title: "Otwórz załącznik PDF",            desc: "Twoje gotowe pismo reklamacyjne jest w załączniku do tego emaila." },
     { emoji: "📤", bg: "#eef2ff", color: "#111827", title: "Wyślij pismo do adresata",         desc: "Emailem na adres obsługi klienta lub listem poleconym za potwierdzeniem odbioru." },
     { emoji: "🗓️", bg: "#eef2ff", color: "#111827", title: "Zachowaj potwierdzenie wysyłki",  desc: "Data wysyłki jest kluczowa — od niej biegnie ustawowy termin odpowiedzi." },
-    { emoji: "✅", bg: "#f0fdf4", color: "#065f46", title: `Termin mija: ${deadline}`,         desc: "Brak odpowiedzi w 14 dniach = reklamacja uznana za zasadną z mocy prawa (art. 7a UPK)." },
+    { emoji: "✅", bg: "#f0fdf4", color: "#065f46", title: `Termin odpowiedzi`,
+      desc: docType === "bank"
+        ? `Bank ma 30 dni na odpowiedź (art. 6 ustawy o reklamacjach podmiotów rynku finansowego) — brak odpowiedzi = reklamacja uznana za zasadną.`
+        : docType === "zus"
+        ? `Odwołanie składasz za pośrednictwem ZUS do właściwego sądu pracy i ubezpieczeń społecznych. Termin wynikowy — sprawdź decyzję.`
+        : `Brak odpowiedzi w 14 dniach = reklamacja uznana za zasadną z mocy prawa (art. 7a UPK).` },
   ];
 
   const stepsHtml = stepsData.map(s => `
@@ -642,7 +740,12 @@ DATA PISMA: ${today}`,
     </div>
     <div style="font-size:15px;color:#a5b4fc;line-height:1.65;font-family:${F};margin-bottom:24px">
       Reklamacja do <strong style="color:#e0e7ff;font-weight:700">${m.nazwa_sklepu}</strong> czeka w załączniku.<br>
-      Sklep ma <strong style="color:#ffffff;font-weight:700">14 dni</strong> na odpowiedź — brak reakcji = reklamacja uznana z mocy prawa.
+      ${docType === "bank"
+        ? `Bank ma <strong style="color:#ffffff;font-weight:700">30 dni</strong> na odpowiedź — brak reakcji = reklamacja uznana za zasadną.`
+        : docType === "zus"
+        ? `Odwołanie składasz do sądu pracy i ubezpieczeń społecznych za pośrednictwem ZUS.`
+        : `Adresat ma <strong style="color:#ffffff;font-weight:700">14 dni</strong> na odpowiedź — brak reakcji = reklamacja uznana z mocy prawa.`
+      }
     </div>
     <!-- Stats row -->
     <table cellpadding="0" cellspacing="0" width="100%"><tr>
@@ -732,11 +835,27 @@ DATA PISMA: ${today}`,
 
     <!-- Support box -->
     <table cellpadding="0" cellspacing="0" width="100%"><tr>
-      <td style="background:#f8fafc;border:1px solid #e2e8f0;border-left:3px solid #4f46e5;border-radius:0 12px 12px 0;padding:16px 20px">
+      <td style="background:#f8fafc;border:1px solid #e2e8f0;border-left:3px solid #4f46e5;border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:16px">
         <div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:4px;font-family:${F}">Pismo nie pomogło?</div>
         <div style="font-size:13px;color:#475569;line-height:1.6;font-family:${F}">
           Napisz na <a href="mailto:hello@writeback.pl" style="color:#4f46e5;font-weight:600;text-decoration:none">hello@writeback.pl</a> — odwołanie do wyższej instancji przygotujemy za darmo.
         </div>
+      </td>
+    </tr></table>
+
+    <!-- Review request (po 14 dniach gdy sklep odpowie) -->
+    <div style="height:16px"></div>
+    <table cellpadding="0" cellspacing="0" width="100%"><tr>
+      <td style="background:linear-gradient(135deg,#fefce8 0%,#fef9c3 100%);border:1px solid #fde047;border-radius:12px;padding:16px 20px">
+        <div style="font-size:13px;font-weight:700;color:#713f12;margin-bottom:6px;font-family:${F}">
+          ⭐ Pismo pomogło? Zostaw opinię — zajmuje 1 minutę
+        </div>
+        <div style="font-size:12px;color:#92400e;line-height:1.6;margin-bottom:12px;font-family:${F}">
+          Po otrzymaniu odpowiedzi od adresata — powiedz nam jak poszło. Twoja opinia pomaga innym konsumentom.
+        </div>
+        <a href="mailto:hello@writeback.pl?subject=Opinia%20writeback.pl%20-%20${encodeURIComponent(m.nazwa_sklepu)}&body=Hej%2C%0A%0APismo%20do%20${encodeURIComponent(m.nazwa_sklepu)}%20w%20sprawie%20${encodeURIComponent(m.produkt)}%20posz%C5%82o%3A%0A%0AEfekt%3A%20(np.%20%22Zwrot%20XXX%20z%C5%82%20po%207%20dniach%22%20lub%20%22Brak%20odpowiedzi%22)%0A%0ACzy%20mo%C5%BCemy%20u%C5%BCy%C4%87%20Twojej%20opinii%20na%20stronie%3F%20(tak%2Fnie)%3A%0ANazwa%20i%20miasto%20do%20wy%C5%9Bwietlenia%3A" style="display:inline-block;background:#eab308;color:#1c1917;font-weight:700;font-size:12px;padding:8px 18px;border-radius:8px;text-decoration:none;font-family:${F}">
+          Napisz nam jak poszło →
+        </a>
       </td>
     </tr></table>
 
@@ -747,6 +866,9 @@ DATA PISMA: ${today}`,
     <p style="margin:0 0 6px;font-size:12px;color:#475569;line-height:1.8;font-family:${F}">
       <strong style="color:#94a3b8">writeback.pl</strong> &nbsp;·&nbsp; Maciej Perzankowski<br>
       ul. 19-go Lutego 8/14, 96-100 Skierniewice &nbsp;·&nbsp; NIP: 8361881457
+    </p>
+    <p style="margin:0 0 6px;font-size:11px;color:#94a3b8;font-family:${F};line-height:1.7">
+      Treść cyfrowa (pismo PDF) została dostarczona natychmiastowo za Twoją wyraźną zgodą. Prawo odstąpienia od umowy nie przysługuje (art. 38 pkt 13 ustawy o prawach konsumenta).
     </p>
     <p style="margin:0;font-size:12px;color:#475569;font-family:${F}">
       <a href="https://writeback.pl/regulamin" style="color:#64748b;text-decoration:underline">Regulamin</a>

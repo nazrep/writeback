@@ -61,10 +61,10 @@ export default function Content() {
       <h2>Co jeśli bank nadal odmawia</h2>
       <p>Jeśli bank utrzymuje odmowę po Twoim piśmie, masz kilka opcji:</p>
       <ul>
-        <li><strong>Rzecznik Finansowy</strong>: najskuteczniejsza droga. Banki bardzo poważnie traktują skargi kierowane do RF, bo regulator bacznie obserwuje ich statystyki skarg. Postępowanie jest bezpłatne i działa szybko. Więcej na rf.gov.pl</li>
+        <li><strong>Rzecznik Finansowy</strong>: najskuteczniejsza droga. Banki bardzo poważnie traktują skargi kierowane do RF — RF może kierować sprawy do KNF i publikuje statystyki skarg, które wpływają na reputację banku. Postępowanie jest bezpłatne i działa szybko. Więcej na rf.gov.pl</li>
         <li><strong>KNF (Komisja Nadzoru Finansowego)</strong>: przyjmuje skargi na banki naruszające przepisy. Działa wolniej niż RF, ale sygnał do regulatora ma długofalowe znaczenie</li>
         <li><strong>Sąd polubowny przy KNF</strong>: bezpłatne postępowanie mediacyjno-arbitrażowe, wymaga zgody banku na udział</li>
-        <li><strong>Sąd powszechny</strong>: przy kwotach powyżej kilku tysięcy złotych warto to rozważyć. Przy wartości sporu do 20 tys. złotych postępowanie uproszczone jest relatywnie tanie</li>
+        <li><strong>Sąd powszechny</strong>: przy kwotach powyżej kilku tysięcy złotych warto to rozważyć. Przy wartości sporu do 30 tys. złotych postępowanie uproszczone jest relatywnie tanie (art. 505¹ KPC)</li>
       </ul>
       <p>Masz problem z reklamacją do sklepu, nie do banku? Przeczytaj <Link href="/blog/reklamacja-sklep-internetowy" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">jak napisać skuteczną reklamację do sklepu internetowego</Link>.</p>
 

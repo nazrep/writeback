@@ -24,23 +24,31 @@ const jsonLd = {
       name: "Czy mogę złożyć reklamację przy zakupie na Allegro?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Tak. Jeśli kupiłeś towar od sprzedawcy-przedsiębiorcy (nie od osoby prywatnej), przysługuje Ci pełna ochrona z ustawy o prawach konsumenta, w tym prawo do reklamacji na podstawie art. 43b przez 2 lata od zakupu.",
+        text: "Tak — jeśli kupiłeś od sprzedawcy-przedsiębiorcy. Masz pełną ochronę z ustawy o prawach konsumenta przez 2 lata od zakupu.",
       },
     },
     {
       "@type": "Question",
-      name: "Czy reklamacja na Allegro przez formularz wystarczy?",
+      name: "Czy reklamacja przez formularz Allegro wystarczy?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Formalnie wystarczy, ale nie masz dowodu daty złożenia ani treści. Lepiej wysłać emailem bezpośrednio do sprzedawcy lub przez wiadomości Allegro — masz wtedy historię korespondencji jako dowód.",
+        text: "Formalnie tak, ale nie masz dowodu daty ani treści pisma. Bezpieczniej jest wysłać wiadomość przez system Allegro lub emailem — masz wtedy historię jako dowód.",
       },
     },
     {
       "@type": "Question",
-      name: "Sprzedawca na Allegro nie odpowiada na reklamację — co mogę zrobić?",
+      name: "Sprzedawca ignoruje moje wiadomości — co robić?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Zgodnie z art. 7a ustawy o prawach konsumenta, brak odpowiedzi w 14 dniach = reklamacja uznana za zasadną. Możesz to wprost wpisać w kolejnym piśmie i powołać się na ten przepis żądając spełnienia roszczenia.",
+        text: "Wyślij formalne pismo z podstawą prawną. Brak odpowiedzi w 14 dniach = reklamacja uznana z mocy art. 7a ustawy o prawach konsumenta. Możesz też zgłosić spór do Allegro (program ochrony kupujących) lub do Rzecznika Praw Konsumentów.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Allegro twierdzi, że nie odpowiada za towar — mam pisać do nich czy do sprzedawcy?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Do sprzedawcy. Allegro to platforma — umowę zawierasz ze sprzedawcą. Program ochrony kupujących Allegro to dodatkowe narzędzie, nie zastępuje Twoich praw ustawowych.",
       },
     },
   ],
@@ -150,7 +158,7 @@ export default function ReklamacjaAllegro() {
             },
             {
               claim: 'Minął termin 30 dni',
-              response: "Ustawa o prawach konsumenta nie zna terminu 30 dni dla reklamacji. Masz 2 lata od wydania towaru (art. 43c ust. 1). Termin 30 dni dotyczy odstąpienia od umowy, to zupełnie inna sprawa.",
+              response: "Ustawa o prawach konsumenta nie zna żadnego terminu 30 dni dla reklamacji. Masz 2 lata od daty otrzymania towaru (art. 43c ust. 1 UPK). Sprzedawca musi odpowiedzieć w 14 dniach (art. 7a UPK) — brak odpowiedzi to uznanie reklamacji.",
             },
             {
               claim: 'Uszkodzenia mechaniczne nie są objęte reklamacją',

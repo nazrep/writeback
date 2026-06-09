@@ -69,7 +69,7 @@ export default function PolitykaPrywatnosci() {
             <h2 className="text-lg font-bold text-gray-900 mb-3">4. Podmioty przetwarzające dane (procesorzy)</h2>
             <ul className="list-disc pl-5 space-y-2">
               <li><strong>Stripe Payments Europe, Ltd.</strong> — obsługa płatności. Polityka prywatności: stripe.com/privacy</li>
-              <li><strong>Anthropic, PBC</strong> (USA) — system generowania treści pisma. Dane: imię, nazwisko, adres, opis sytuacji. Podstawa transferu: SCC (art. 46 RODO). Dane nie są przechowywane po realizacji usługi.</li>
+              <li><strong>Anthropic, PBC</strong> (USA) — system generowania treści pisma. Dane: imię, nazwisko, adres, opis sytuacji. Podstawa transferu: Standardowe Klauzule Umowne (SCC, art. 46 RODO) wraz z dodatkowymi środkami technicznymi i organizacyjnymi wymaganymi po wyroku TSUE C-311/18 (Schrems II). Dane przekazywane są wyłącznie w celu wygenerowania treści pisma i <strong>nie są przechowywane przez Anthropic</strong> po zakończeniu przetwarzania żądania (przetwarzanie tranzytowe). Polityka prywatności Anthropic: <a href="https://www.anthropic.com/privacy" className="text-indigo-600 underline" target="_blank" rel="noopener noreferrer">anthropic.com/privacy</a>.</li>
               <li><strong>Resend, Inc.</strong> — wysyłka wiadomości e-mail z pismem PDF. Dane: adres e-mail, imię, treść wiadomości.</li>
               <li><strong>Vercel, Inc.</strong> — hosting aplikacji. Dane: logi serwera (adres IP, żądania HTTP).</li>
               <li><strong>Google LLC</strong> (USA) — analityka (Google Analytics 4). Dane: anonimowy adres IP, strony odwiedzin, czas sesji, kraj. Podstawa transferu: SCC (art. 46 RODO). Przetwarzanie tylko za zgodą użytkownika.</li>
@@ -104,11 +104,11 @@ export default function PolitykaPrywatnosci() {
             <h2 className="text-lg font-bold text-gray-900 mb-3">7. Pliki cookies i analityka</h2>
             <p>Serwis wykorzystuje następujące rodzaje plików cookies:</p>
             <ul className="list-disc pl-5 space-y-2 mt-2">
-              <li><strong>Techniczne (niezbędne)</strong> — wymagane do prawidłowego działania serwisu i realizacji płatności. Nie wymagają zgody (art. 399 ustawy z dnia 16 lipca 2022 r. o prawie komunikacji elektronicznej).</li>
+              <li><strong>Techniczne (niezbędne)</strong> — wymagane do prawidłowego działania serwisu i realizacji płatności. Nie wymagają zgody (art. 399 ustawy z dnia 12 lipca 2024 r. — Prawo komunikacji elektronicznej (Dz.U. 2024 poz. 1221)).</li>
               <li><strong>Analityczne — Google Analytics 4</strong> — używamy usługi Google Analytics 4 (Google LLC, USA) do analizy ruchu na stronie. GA4 zbiera anonimowe dane o odwiedzinach (strony, czas, kraj). Adres IP jest anonimizowany przed przekazaniem do Google. Dane przetwarzane są na podstawie Twojej zgody. Możesz wyrazić lub cofnąć zgodę przez baner cookies. Polityka Google: <a href="https://policies.google.com/privacy" className="text-indigo-600 underline" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</li>
               <li><strong>Płatnicze — Stripe</strong> — Stripe ustawia cookies techniczne (<code>__stripe_mid</code>, <code>__stripe_sid</code>) służące do wykrywania oszustw. Szczegóły: <a href="https://stripe.com/cookies-policy/legal" className="text-indigo-600 underline" target="_blank" rel="noopener noreferrer">stripe.com/cookies-policy</a>.</li>
             </ul>
-            <p className="mt-2">Możesz zarządzać zgodami przez baner cookies widoczny przy pierwszej wizycie lub cofnąć zgodę w dowolnej chwili przez ustawienia przeglądarki.</p>
+            <p className="mt-2">Możesz zarządzać zgodami przez baner cookies widoczny przy pierwszej wizycie. Aby zmienić decyzję w dowolnej chwili, kliknij ikonę 🍪 w lewym dolnym rogu strony — baner pojawi się ponownie i możesz wybrać na nowo.</p>
           </section>
 
           <section>

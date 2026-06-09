@@ -94,8 +94,8 @@ export default function JakNapisacReklamacje() {
         </p>
         <div className="grid sm:grid-cols-2 gap-3 mb-10">
           {[
-            { label: "Naprawa (art. 43d ust. 1)", desc: "Pierwszeństwo przy drobnych wadach. Sklep ma rozsądny czas na naprawę." },
-            { label: "Wymiana (art. 43d ust. 1)", desc: "Gdy naprawa jest niemożliwa lub zbyt kosztowna — wymiana na nowy egzemplarz." },
+            { label: "Naprawa (art. 43d ust. 1)", desc: "To Ty wybierasz — możesz żądać naprawy zamiast wymiany. Sklep musi wykonać ją bezpłatnie i w rozsądnym czasie." },
+            { label: "Wymiana (art. 43d ust. 1)", desc: "To Ty wybierasz — możesz żądać wymiany zamiast naprawy. Sklep może odmówić tylko gdy wymiana jest niemożliwa lub zbyt kosztowna." },
             { label: "Obniżenie ceny (art. 43e ust. 1)", desc: "Gdy sklep nie naprawił / nie wymienił w terminie, lub odmówił." },
             { label: "Odstąpienie od umowy (art. 43e ust. 1)", desc: "Zwrot pieniędzy — gdy niezgodność jest istotna i inne środki zawiodły." },
           ].map((item) => (

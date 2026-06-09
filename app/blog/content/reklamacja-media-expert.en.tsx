@@ -37,6 +37,26 @@ export default function Content() {
         <li>Send by email or registered post to Media Expert S.A., keeping a copy</li>
       </ul>
 
+      <h2>The store tells you to wait — what to do step by step</h2>
+      <p>
+        You filed a complaint, two weeks passed, you got an SMS saying "service work is in progress," and the store staff told you to wait another 30 days. This is a very common scenario — and you have specific tools to deal with it.
+      </p>
+      <p>
+        <strong>Step 1: Check whether 14 days have passed since you filed.</strong> An SMS about "service work" is not a response to your complaint — it is just a status update. If the store has not formally addressed your demand (repair / replacement / rejection) within 14 calendar days, the complaint is <strong>automatically deemed accepted</strong> (Art. 7a of the Consumer Rights Act).
+      </p>
+      <p>
+        <strong>Step 2: If 14 days have passed — act in writing.</strong> Do not go back to the store for a conversation. Send an email or registered letter with the following:
+      </p>
+      <p>
+        <em>"Due to the store's failure to respond to my complaint dated [date] within the statutory 14-day period, pursuant to Art. 7a of the Consumer Rights Act the complaint is deemed accepted. I hereby demand fulfilment of my original request — [repair/replacement] — within 14 days of receiving this letter."</em>
+      </p>
+      <p>
+        <strong>Step 3: If 14 days have not yet passed.</strong> A vacuum cleaner, steamer, washing machine, or fridge is everyday equipment. The law requires repair within a reasonable time <strong>without excessive inconvenience</strong> to the consumer (Art. 43d §2 of the Consumer Rights Act). Waiting over a month for a household appliance qualifies as excessive inconvenience — you can demand in writing that the store replace the unit with a new one instead of continuing the repair.
+      </p>
+      <p>
+        In both cases the key is the same: <strong>always in writing</strong>. A verbal conversation at the store does not exist legally — the store can later claim anything. An email with a read receipt or a registered letter gives you a date and proof.
+      </p>
+
       <h2>If Media Expert refuses or delays</h2>
       <p>If the store rejects the complaint or fails to respond within 14 days you can:</p>
       <ul>

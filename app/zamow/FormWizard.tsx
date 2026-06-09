@@ -397,6 +397,7 @@ const textareaCls = inputCls + " resize-none";
 const textareaErrCls = inputErrCls + " resize-none";
 const ic = (err?: string) => err ? inputErrCls : inputCls;
 const tc = (err?: string) => err ? textareaErrCls : textareaCls;
+const ia = (err?: string): { "aria-invalid"?: true } => err ? { "aria-invalid": true } : {};
 
 const MONTHS_SHORT = ["Sty","Lut","Mar","Kwi","Maj","Cze","Lip","Sie","Wrz","Paź","Lis","Gru"];
 const MONTHS_FULL = ["Styczeń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"];
@@ -529,6 +530,7 @@ export function FormWizard({ lang }: { lang?: string }) {
   const [imageExtracted, setImageExtracted] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewText, setPreviewText] = useState<string>("");
+  const [checkoutError, setCheckoutError] = useState(false);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState(false);
 
@@ -600,6 +602,7 @@ export function FormWizard({ lang }: { lang?: string }) {
     if (!consentDigital) { setConsentDigitalError(true); return; }
     setConsentError(false);
     setLoading(true);
+    setCheckoutError(false);
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -611,7 +614,7 @@ export function FormWizard({ lang }: { lang?: string }) {
       if (json.url) window.location.href = json.url;
       else throw new Error();
     } catch {
-      alert("Coś poszło nie tak. Spróbuj ponownie lub napisz na hello@writeback.pl");
+      setCheckoutError(true);
     } finally {
       setLoading(false);
     }
@@ -824,11 +827,11 @@ export function FormWizard({ lang }: { lang?: string }) {
             </div>
 
             <Field label={type.subjectLabel} required error={errors.produkt}>
-              <input className={ic(errors.produkt)} placeholder={type.subjectPlaceholder} value={data.produkt} onChange={set("produkt")} />
+              <input className={ic(errors.produkt)} {...ia(errors.produkt)} placeholder={type.subjectPlaceholder} value={data.produkt} onChange={set("produkt")} />
             </Field>
             <div className="grid grid-cols-2 gap-4">
               <Field label={type.kwotaLabel} required={docType !== "zus"} error={errors.cena}>
-                <input className={ic(errors.cena)} placeholder={type.kwotaPlaceholder} type={docType !== "zus" ? "number" : "text"} min="0" value={data.cena} onChange={set("cena")} />
+                <input className={ic(errors.cena)} {...ia(errors.cena)} placeholder={type.kwotaPlaceholder} type={docType !== "zus" ? "number" : "text"} min="0" value={data.cena} onChange={set("cena")} />
               </Field>
               <Field label={type.dataLabel} required error={errors.data_zakupu}>
                 <DateSelect value={data.data_zakupu} onChange={v => { setData(p => ({ ...p, data_zakupu: v })); setErrors(p => ({ ...p, data_zakupu: undefined })); }} error={errors.data_zakupu} />
@@ -838,13 +841,13 @@ export function FormWizard({ lang }: { lang?: string }) {
               <input className={inputCls} placeholder={type.refPlaceholder} value={data.numer_zamowienia} onChange={set("numer_zamowienia")} />
             </Field>
             <Field label="Co się stało?" required error={errors.opis}>
-              <textarea className={tc(errors.opis)} rows={4} placeholder={type.opisPlaceholder} value={data.opis} onChange={set("opis")} />
+              <textarea className={tc(errors.opis)} {...ia(errors.opis)} rows={4} placeholder={type.opisPlaceholder} value={data.opis} onChange={set("opis")} />
             </Field>
             <Field label={type.podjeteLabel} hint="Opcjonalnie">
               <textarea className={textareaCls} rows={2} placeholder={type.podjetePlaceholder} value={data.podjete_kroki} onChange={set("podjete_kroki")} />
             </Field>
             <Field label="Czego żądasz?" required error={errors.zadanie}>
-              <input className={ic(errors.zadanie)} placeholder={type.zadaniePlaceholder} value={data.zadanie} onChange={set("zadanie")} />
+              <input className={ic(errors.zadanie)} {...ia(errors.zadanie)} placeholder={type.zadaniePlaceholder} value={data.zadanie} onChange={set("zadanie")} />
             </Field>
           </div>
           <div className="flex gap-3 mt-8">
@@ -878,13 +881,13 @@ export function FormWizard({ lang }: { lang?: string }) {
               <h3 className="text-xs font-bold text-indigo-700 uppercase tracking-wider mb-4">Twoje dane</h3>
               <div className="space-y-4">
                 <Field label="Imię i nazwisko" required error={errors.imie_nazwisko}>
-                  <input className={ic(errors.imie_nazwisko)} placeholder="Anna Kowalska" value={data.imie_nazwisko} onChange={set("imie_nazwisko")} />
+                  <input className={ic(errors.imie_nazwisko)} {...ia(errors.imie_nazwisko)} placeholder="Anna Kowalska" value={data.imie_nazwisko} onChange={set("imie_nazwisko")} />
                 </Field>
                 <Field label="Adres zamieszkania" required error={errors.adres} hint="Format: ul. Nazwa XX/YY, XX-XXX Miasto — wymagany kod pocztowy">
-                  <input className={ic(errors.adres)} placeholder="ul. Kwiatowa 5/12, 00-001 Warszawa" value={data.adres} onChange={set("adres")} />
+                  <input className={ic(errors.adres)} {...ia(errors.adres)} placeholder="ul. Kwiatowa 5/12, 00-001 Warszawa" value={data.adres} onChange={set("adres")} />
                 </Field>
                 <Field label="Adres email" required error={errors.email} hint="Na ten adres wyślemy PDF z pismem">
-                  <input className={ic(errors.email)} type="email" placeholder="anna@example.com" value={data.email} onChange={set("email")} />
+                  <input className={ic(errors.email)} {...ia(errors.email)} type="email" placeholder="anna@example.com" value={data.email} onChange={set("email")} />
                 </Field>
               </div>
             </div>
@@ -892,7 +895,7 @@ export function FormWizard({ lang }: { lang?: string }) {
               <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-4">Dane adresata</h3>
               <div className="space-y-4">
                 <Field label={type.orgLabel} required error={errors.nazwa_sklepu}>
-                  <input className={ic(errors.nazwa_sklepu)} placeholder={type.orgPlaceholder} value={data.nazwa_sklepu} onChange={set("nazwa_sklepu")} />
+                  <input className={ic(errors.nazwa_sklepu)} {...ia(errors.nazwa_sklepu)} placeholder={type.orgPlaceholder} value={data.nazwa_sklepu} onChange={set("nazwa_sklepu")} />
                 </Field>
                 <Field label={type.orgAdresLabel} hint={type.orgAdresHint}>
                   <input className={inputCls} placeholder="ul. Przykładowa 1, 00-001 Warszawa" value={data.adres_sklepu} onChange={set("adres_sklepu")} />
@@ -1129,6 +1132,9 @@ export function FormWizard({ lang }: { lang?: string }) {
           </label>
           {consentDigitalError && <p className="text-xs text-red-500 font-medium -mt-3 mb-4 ml-3">Musisz wyrazić zgodę na dostarczenie treści cyfrowej</p>}
 
+          <p className="text-xs text-gray-400 bg-gray-50 rounded-lg px-3 py-2 mb-3 leading-relaxed">
+            Writeback jest narzędziem do tworzenia pism konsumenckich, nie kancelarią prawną. Pismo zawiera właściwe przepisy, ale nie gwarantujemy skuteczności w każdej sprawie. W sprawach skomplikowanych lub o wysokiej wartości warto skonsultować się z prawnikiem.
+          </p>
           <button
             onClick={handlePay}
             disabled={loading}
@@ -1136,6 +1142,12 @@ export function FormWizard({ lang }: { lang?: string }) {
           >
             {loading ? "Przekierowuję do płatności..." : "Opłać i pobierz pismo — 29 zł"}
           </button>
+          {checkoutError && (
+            <p role="alert" className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3 mt-3 text-center">
+              Coś poszło nie tak. Spróbuj ponownie lub napisz na{" "}
+              <a href="mailto:hello@writeback.pl" className="underline">hello@writeback.pl</a>
+            </p>
+          )}
           <p className="text-xs text-gray-500 text-center mt-3">
             Bezpieczna płatność przez Stripe · BLIK · Karta · Przelewy24
           </p>

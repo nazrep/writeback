@@ -16,17 +16,31 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://writeback.pl/blog" },
 };
 
-export default async function BlogPage({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {
-  const { lang } = await searchParams;
+export default async function BlogPage({ searchParams }: { searchParams: Promise<{ lang?: string; cat?: string }> }) {
+  const { lang, cat } = await searchParams;
   const isEn = lang === "en";
   const langParam = isEn ? "?lang=en" : "";
+
+  const sorted = [...POSTS].sort((a, b) => b.date.localeCompare(a.date));
+
+  const categories = Array.from(new Set(sorted.map(p => p.category))).sort();
+
+  const filtered = cat ? sorted.filter(p => p.category === cat) : sorted;
+
+  const catParam = (c: string) => {
+    const params = new URLSearchParams();
+    if (isEn) params.set("lang", "en");
+    if (c) params.set("cat", c);
+    const s = params.toString();
+    return s ? `?${s}` : "";
+  };
 
   return (
     <div className="min-h-screen bg-white">
       <Suspense><BlogHeader /></Suspense>
 
-      <div className="max-w-2xl mx-auto px-6 py-12">
-        <div className="mb-10">
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="mb-8">
           <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">
             {isEn ? "Guides" : "Poradniki"}
           </p>
@@ -38,49 +52,82 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
           </p>
         </div>
 
-        <div className="space-y-3">
-          {[...POSTS].sort((a, b) => b.date.localeCompare(a.date)).map((post) => (
+        {/* Filtry kategorii */}
+        <div className="flex flex-wrap gap-2 mb-8">
+          <Link
+            href={`/blog${langParam}`}
+            className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${
+              !cat
+                ? "bg-indigo-600 text-white border-indigo-600"
+                : "bg-white text-gray-600 border-gray-200 hover:border-indigo-300 hover:text-indigo-600"
+            }`}
+          >
+            {isEn ? "All" : "Wszystkie"}
+          </Link>
+          {categories.map(c => (
             <Link
-              key={post.slug}
-              href={`/blog/${post.slug}${langParam}`}
-              className="flex items-start gap-5 p-5 rounded-2xl border border-gray-200 hover:border-indigo-200 hover:shadow-sm transition-all duration-200 group bg-white"
+              key={c}
+              href={`/blog${catParam(c)}`}
+              className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${
+                cat === c
+                  ? "bg-indigo-600 text-white border-indigo-600"
+                  : "bg-white text-gray-600 border-gray-200 hover:border-indigo-300 hover:text-indigo-600"
+              }`}
             >
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0 text-indigo-600 font-bold text-[11px] text-center leading-tight">
-                {formatShortDate(post.date)}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[11px] font-semibold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full whitespace-nowrap">
-                    {isEn ? (post.categoryEn ?? post.category) : post.category}
-                  </span>
-                  <span className="text-[11px] text-gray-400">
-                    {isEn ? (post.readTimeEn ?? post.readTime) : post.readTime} {isEn ? "read" : "czytania"}
-                  </span>
-                </div>
-                <h2 className="text-sm font-bold text-gray-900 group-hover:text-indigo-700 transition-colors leading-snug mb-1">
-                  {isEn ? (post.titleEn ?? post.title) : post.title}
-                </h2>
-                <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
-                  {isEn ? (post.descriptionEn ?? post.description) : post.description}
-                </p>
-              </div>
-              <svg className="w-4 h-4 text-gray-300 group-hover:text-indigo-400 transition-colors shrink-0 mt-1" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              {c}
             </Link>
           ))}
         </div>
 
-        <div className="mt-10 p-5 bg-gray-50 rounded-2xl border border-gray-200">
-          <p className="text-sm font-bold text-gray-900 mb-1">
+        <div className="grid sm:grid-cols-2 gap-4">
+          {filtered.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}${langParam}`}
+              className="flex flex-col p-5 rounded-2xl border border-gray-200 hover:border-indigo-200 hover:shadow-md hover:shadow-indigo-50 hover:-translate-y-0.5 transition-all duration-200 group bg-white"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-[11px] font-semibold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-full whitespace-nowrap">
+                  {isEn ? (post.categoryEn ?? post.category) : post.category}
+                </span>
+                <span className="text-[11px] text-gray-400">
+                  {isEn ? (post.readTimeEn ?? post.readTime) : post.readTime} {isEn ? "read" : "czytania"}
+                </span>
+              </div>
+              <h2 className="text-sm font-bold text-gray-900 group-hover:text-indigo-700 transition-colors leading-snug mb-2 flex-1">
+                {isEn ? (post.titleEn ?? post.title) : post.title}
+              </h2>
+              <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-4">
+                {isEn ? (post.descriptionEn ?? post.description) : post.description}
+              </p>
+              <div className="flex items-center justify-between mt-auto">
+                <span className="text-[11px] text-gray-400">{formatShortDate(post.date)}</span>
+                <span className="text-xs font-semibold text-indigo-600 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+                  {isEn ? "Read" : "Czytaj"}
+                  <svg aria-hidden="true" className="w-3 h-3" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {filtered.length === 0 && (
+          <p className="text-center text-gray-400 py-16 text-sm">Brak artykułów w tej kategorii.</p>
+        )}
+
+        {/* CTA */}
+        <div className="mt-12 bg-indigo-600 rounded-2xl p-7 text-white text-center">
+          <p className="font-bold text-lg mb-2">
             {isEn ? "Need a letter right now?" : "Potrzebujesz pisma teraz?"}
           </p>
-          <p className="text-xs text-gray-500 mb-4">
+          <p className="text-indigo-200 text-sm mb-6 leading-relaxed">
             {isEn
-              ? "No need to write it yourself. We generate the letter with the correct legal provisions — PDF ready in 5 minutes."
-              : "Nie musisz pisać sam. Generujemy pismo z właściwymi przepisami — PDF gotowy w 5 minut."}
+              ? "No need to write it yourself. Generate a formal letter with the correct legal provisions — PDF ready in 5 minutes."
+              : "Nie musisz pisać sam. Wygeneruj formalne pismo z właściwymi przepisami — PDF gotowy w 5 minut."}
           </p>
-          <Link href="/zamow" className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-2.5 rounded-xl transition-colors text-sm">
+          <Link href="/zamow" className="inline-flex items-center gap-2 bg-white text-indigo-700 font-bold px-6 py-3 rounded-xl transition-all hover:bg-indigo-50 text-sm shadow-sm">
             {isEn ? "Generate your letter — 29 PLN" : "Napisz pismo — 29 zł"}
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </Link>
         </div>
       </div>

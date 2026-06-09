@@ -26,7 +26,7 @@ export default function Content() {
         <li><strong>Zrób zdjęcia</strong> — opakowanie, taśmy, zawartość, widoczne uszkodzenia. Zdjęcia to podstawowy dowód.</li>
         <li><strong>Sporządź protokół szkody</strong> w obecności kuriera — masz prawo zażądać protokołu zgodnie z art. 74 Prawa przewozowego. Kurier jest zobowiązany go wystawić.</li>
         <li>Jeśli kurier nie chce wystawić protokołu — zaznacz zastrzeżenia własnoręcznie na liście przewozowym i sfotografuj.</li>
-        <li>Jeśli szkodę odkryłeś po odebraniu paczki — masz <strong>7 dni</strong> na zgłoszenie reklamacji (art. 76 ust. 4 Prawa przewozowego). Po tym terminie roszczenie wygasa.</li>
+        <li>Jeśli szkodę odkryłeś po odebraniu paczki — masz <strong>7 dni</strong> na zażądanie protokolarnego ustalenia stanu przesyłki (art. 74 ust. 3 Prawa przewozowego). Po tym terminie dochodzenie roszczenia jest znacząco utrudnione.</li>
       </ul>
 
       <h2>Ile wynosi odszkodowanie od kuriera</h2>
@@ -78,7 +78,7 @@ export default function Content() {
         <li><strong>Odwołania</strong> od decyzji kuriera — wewnętrzna procedura odwoławcza</li>
         <li>Złożenia skargi do <strong>Prezesa UKE</strong> (dla operatorów pocztowych)</li>
         <li>Postępowania przed <strong>Stałym Polubownym Sądem Konsumenckim przy UKE</strong></li>
-        <li>Pozwu cywilnego — dla roszczeń do 20 000 zł postępowanie uproszczone</li>
+        <li>Pozwu cywilnego — dla roszczeń do 30 000 zł postępowanie uproszczone (art. 505¹ KPC)</li>
       </ul>
     </>
   );

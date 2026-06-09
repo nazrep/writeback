@@ -22,7 +22,7 @@ export default function Content() {
         <li><strong>Wymianą</strong> na nowy, wolny od wad egzemplarz</li>
       </ul>
       <p>Sklep może odmówić tylko jednej z tych opcji, jeśli jest ona niemożliwa lub wymagałaby nadmiernych kosztów. Nie może odmówić obu naraz bez podania uzasadnienia.</p>
-      <p>Jeżeli naprawa lub wymiana okazała się nieskuteczna, sklep odmawiał dwukrotnie albo wada jest na tyle istotna, że wpływa na korzystanie z towaru, możesz żądać:</p>
+      <p>Jeżeli naprawa lub wymiana okazała się nieskuteczna, sklep odmówił obu opcji, albo niezgodność jest na tyle istotna że uprawnia bezpośrednio do odstąpienia (art. 43e ust. 3 UPK), możesz żądać:</p>
       <ul>
         <li><strong>Obniżenia ceny</strong> o adekwatną kwotę</li>
         <li><strong>Odstąpienia od umowy</strong>, czyli zwrotu pełnej kwoty zakupu</li>
@@ -69,7 +69,7 @@ export default function Content() {
       <p>Nie reklamuj przez formularz kontaktowy na stronie sklepu: często nie zostawia żadnego śladu po Twojej stronie. Zawsze wysyłaj na adres email obsługi klienta lub adres pocztowy.</p>
 
       <h2>Sklep nie odpowiedział w 14 dniach: co teraz</h2>
-      <p>Art. 7a ustawy o prawach konsumenta jest bardzo precyzyjny: jeśli sprzedawca nie odpowie na reklamację w terminie 14 dni kalendarzowych od jej złożenia, uważa się, że uznał ją za zasadną. To nie jest formalność, to obowiązujące prawo.</p>
+      <p>Art. 7a ustawy o prawach konsumenta jest bardzo precyzyjny: jeśli sprzedawca nie odpowie na reklamację w terminie 14 dni kalendarzowych od dnia jej otrzymania, uważa się, że uznał ją za zasadną. To nie jest formalność, to obowiązujące prawo.</p>
       <p>Jeśli minęło 14 dni bez odpowiedzi, wyślij drugie pismo z informacją, że na podstawie art. 7a reklamacja jest uznana i żądasz realizacji Twojego żądania (naprawy, wymiany lub zwrotu). Podaj termin 7 dni i zaznacz, że w razie braku reakcji skierujesz sprawę do UOKiK.</p>
 
       <h2>Kiedy i gdzie szukać pomocy z zewnątrz</h2>
@@ -78,7 +78,7 @@ export default function Content() {
         <li><strong>Rzecznik Praw Konsumentów</strong>: każde starostwo powiatowe ma swojego rzecznika, który bezpłatnie interweniuje w sporach z przedsiębiorcami</li>
         <li><strong>UOKiK</strong>: jeśli sklep stosuje praktyki naruszające przepisy na szeroką skalę (np. celowo ignoruje reklamacje wielu klientów), możesz złożyć skargę na stronie uokik.gov.pl</li>
         <li><strong>Sąd polubowny przy Inspekcji Handlowej</strong>: bezpłatne postępowanie, które kończy się ugodą lub wyrokiem. Sprzedawca musi wyrazić zgodę na udział</li>
-        <li><strong>Sąd powszechny</strong>: przy wyższych kwotach, np. kilka tysięcy złotych za sprzęt elektroniczny, warto rozważyć pozew. Przy wartości sporu do 20 tys. złotych koszty sądowe są niskie</li>
+        <li><strong>Sąd powszechny</strong>: przy wyższych kwotach, np. kilka tysięcy złotych za sprzęt elektroniczny, warto rozważyć pozew. Przy wartości sporu do 30 tys. złotych postępowanie jest uproszczone i tanie (art. 505¹ KPC)</li>
       </ul>
       <p>Masz problem z transakcją bankową zamiast reklamacją do sklepu? Przeczytaj <Link href="/blog/bank-odmawia-zwrotu" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">jak egzekwować zwrot od banku</Link>.</p>
 

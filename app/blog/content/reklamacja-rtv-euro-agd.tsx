@@ -20,7 +20,7 @@ export default function Content() {
         <li><strong>Wymiany</strong> na identyczny lub równorzędny produkt wolny od wad</li>
       </ul>
       <p>
-        Jeśli naprawa lub wymiana jest niemożliwa, sklep odmawia albo wada wróciła po naprawie — masz prawo żądać <strong>obniżenia ceny</strong> lub <strong>zwrotu pieniędzy</strong> (odstąpienie od umowy) na podstawie art. 43e ust. 1 ustawy. Sklep sam decyduje, czy naprawia czy wymienia, ale musi to wykonać bezpłatnie i bez zbędnej zwłoki.
+        Jeśli naprawa lub wymiana jest niemożliwa, sklep odmawia albo wada wróciła po naprawie — masz prawo żądać <strong>obniżenia ceny</strong> lub <strong>zwrotu pieniędzy</strong> (odstąpienie od umowy) na podstawie art. 43e ust. 1 ustawy. To <strong>Ty wybierasz</strong>, czy żądasz naprawy czy wymiany (art. 43d ust. 1 UPK) — sklep może zmienić wybrany przez Ciebie sposób jedynie gdy jest on niemożliwy lub wymagałby nadmiernych kosztów (art. 43d ust. 2 UPK), i musi to wykonać bezpłatnie i bez zbędnej zwłoki.
       </p>
 
       <h2>14-dniowy termin na odpowiedź</h2>
@@ -61,7 +61,7 @@ export default function Content() {
       <ul>
         <li>Złożyć skargę do <strong>Inspekcji Handlowej</strong> właściwej dla siedziby sklepu</li>
         <li>Zgłosić się do <strong>Rzecznika Praw Konsumentów</strong> w swoim powiecie</li>
-        <li>Wejść na drogę sądową — roszczenia do 20 000 zł rozpatruje sąd w trybie uproszczonym</li>
+        <li>Wejść na drogę sądową — roszczenia do 30 000 zł rozpatruje sąd w trybie uproszczonym (art. 505¹ KPC)</li>
       </ul>
 
       <h2>Ubezpieczenie i gwarancja rozszerzona od RTV Euro AGD</h2>

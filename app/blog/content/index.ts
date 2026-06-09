@@ -18,6 +18,8 @@ import ReklamacjaRtvEuroAgd from "./reklamacja-rtv-euro-agd";
 import ReklamacjaTelefonu from "./reklamacja-telefonu";
 import ZwrotOdKuriera from "./zwrot-od-kuriera";
 import WypowiedzenieSilownia from "./wypowiedzenie-silownia";
+import ReklamacjaOperatora from "./reklamacja-operatora";
+import ReklamacjaFirmyEnergetycznej from "./reklamacja-firmy-energetycznej";
 
 // EN
 import ReklamacjaZalandoEn from "./reklamacja-zalando.en";
@@ -36,6 +38,8 @@ import ReklamacjaRtvEuroAgdEn from "./reklamacja-rtv-euro-agd.en";
 import ReklamacjaTelefonuEn from "./reklamacja-telefonu.en";
 import ZwrotOdKurieraEn from "./zwrot-od-kuriera.en";
 import WypowiedzenieSilowniaEn from "./wypowiedzenie-silownia.en";
+import ReklamacjaOperatoraEn from "./reklamacja-operatora.en";
+import ReklamacjaFirmyEnergetycznejEn from "./reklamacja-firmy-energetycznej.en";
 
 const CONTENT: Record<string, FC> = {
   "reklamacja-zalando": ReklamacjaZalando,
@@ -55,6 +59,8 @@ const CONTENT: Record<string, FC> = {
   "reklamacja-telefonu": ReklamacjaTelefonu,
   "zwrot-od-kuriera": ZwrotOdKuriera,
   "wypowiedzenie-silownia": WypowiedzenieSilownia,
+  "reklamacja-operatora": ReklamacjaOperatora,
+  "reklamacja-firmy-energetycznej": ReklamacjaFirmyEnergetycznej,
 };
 
 const CONTENT_EN: Record<string, FC> = {
@@ -74,6 +80,8 @@ const CONTENT_EN: Record<string, FC> = {
   "reklamacja-telefonu": ReklamacjaTelefonuEn,
   "zwrot-od-kuriera": ZwrotOdKurieraEn,
   "wypowiedzenie-silownia": WypowiedzenieSilowniaEn,
+  "reklamacja-operatora": ReklamacjaOperatoraEn,
+  "reklamacja-firmy-energetycznej": ReklamacjaFirmyEnergetycznejEn,
 };
 
 export function getContent(slug: string, lang = "pl"): FC | null {

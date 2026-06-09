@@ -19,13 +19,27 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.title,
     description: post.description,
-    alternates: { canonical: `https://writeback.pl/blog/${slug}` },
+    alternates: {
+      canonical: `https://writeback.pl/blog/${slug}`,
+      ...(post.titleEn ? {
+        languages: {
+          "pl": `https://writeback.pl/blog/${slug}`,
+          "en": `https://writeback.pl/blog/${slug}?lang=en`,
+          "x-default": `https://writeback.pl/blog/${slug}`,
+        },
+      } : {}),
+    },
     openGraph: {
       title: post.title,
       description: post.description,
       type: "article",
       publishedTime: post.date,
       locale: "pl_PL",
+      images: [{ url: `https://writeback.pl/blog/${slug}/opengraph-image`, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [`https://writeback.pl/blog/${slug}/opengraph-image`],
     },
   };
 }

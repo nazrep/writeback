@@ -40,15 +40,35 @@ export default function Content() {
         <li>Wyślij e-mailem na adres obsługi klienta lub listem poleconym do siedziby Media Expert S.A.</li>
       </ul>
 
+      <h2>Sklep każe czekać — co robić krok po kroku</h2>
+      <p>
+        Złożyłeś reklamację, minęło kilkanaście dni, dostałeś SMS że "trwają prace serwisowe", a w sklepie powiedzieli żebyś czekał kolejne 30 dni. To częsty scenariusz — i masz konkretne narzędzia żeby go rozwiązać.
+      </p>
+      <p>
+        <strong>Krok 1: Sprawdź czy minęło 14 dni od złożenia reklamacji.</strong> SMS o "pracach serwisowych" to nie jest odpowiedź na reklamację — to tylko informacja o statusie. Jeśli sklep nie ustosunkował się formalnie do Twojego żądania (naprawa / wymiana / odmowa) w ciągu 14 dni kalendarzowych, reklamacja jest <strong>automatycznie uznana za zasadną</strong> (art. 7a ustawy o prawach konsumenta).
+      </p>
+      <p>
+        <strong>Krok 2: Jeśli 14 dni minęło — działaj pisemnie.</strong> Nie wracaj do sklepu na rozmowę. Wyślij emailem lub listem poleconym pismo z treścią:
+      </p>
+      <p>
+        <em>"W związku z brakiem odpowiedzi na moją reklamację z dnia [data] w ustawowym terminie 14 dni, na podstawie art. 7a ustawy o prawach konsumenta reklamacja uważana jest za uznaną. Żądam realizacji mojego pierwotnego żądania — [naprawy/wymiany] — w terminie 14 dni od daty otrzymania niniejszego pisma."</em>
+      </p>
+      <p>
+        <strong>Krok 3: Jeśli 14 dni jeszcze nie minęło.</strong> Odkurzacz, parownica, lodówka, pralka — to sprzęt codziennego użytku. Prawo wymaga naprawy w rozsądnym czasie <strong>bez nadmiernych niedogodności</strong> dla konsumenta (art. 43d ust. 2 ustawy). Czekanie ponad miesiąc na sprzęt AGD to nadmierna niedogodność — możesz pisemnie żądać wymiany na nowy egzemplarz zamiast dalszej naprawy.
+      </p>
+      <p>
+        W obu przypadkach kluczowe jest jedno: <strong>zawsze pisemnie</strong>. Ustna rozmowa w sklepie nie istnieje — sklep może powiedzieć potem cokolwiek. Email z potwierdzeniem lub list polecony daje Ci datę i dowód.
+      </p>
+
       <h2>Gdy Media Expert odmawia lub zwleka</h2>
       <p>
         Jeśli sklep odrzuci reklamację lub nie odpowie w 14 dniach, możesz:
       </p>
       <ul>
-        <li>Złożyć skargę do <strong>Inspekcji Handlowej</strong> (bezpłatna, wiążąca dla przedsiębiorców)</li>
-        <li>Skorzystać z <strong>Rzecznika Praw Konsumentów</strong> w Twoim powiecie</li>
-        <li>Złożyć wniosek o mediację do <strong>Stałego Polubownego Sądu Konsumenckiego przy UOKiK</strong></li>
-        <li>Skierować sprawę do <strong>sądu powszechnego</strong> — dla roszczeń do 20 000 zł postępowanie jest uproszczone</li>
+        <li>Złożyć skargę do <strong>Inspekcji Handlowej</strong> (bezpłatna — może zainicjować kontrolę IH i wydanie wiążącej decyzji)</li>
+        <li>Skorzystać z <strong>Rzecznika Konsumentów</strong> w Twoim powiecie</li>
+        <li>Złożyć wniosek o mediację do <strong>Stałego Polubownego Sądu Konsumenckiego przy Inspekcji Handlowej</strong></li>
+        <li>Skierować sprawę do <strong>sądu powszechnego</strong> — dla roszczeń do 30 000 zł postępowanie jest uproszczone (art. 505¹ KPC)</li>
       </ul>
 
       <h2>Gwarancja producenta vs reklamacja do sklepu</h2>

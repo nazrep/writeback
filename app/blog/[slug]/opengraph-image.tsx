@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getPost } from "../posts";
 
+export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -12,6 +13,10 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
   const category = post?.category ?? "Poradnik";
   const readTime = post?.readTime ?? "";
 
+  const fontData = await fetch(
+    "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2"
+  ).then((r) => r.arrayBuffer()).catch(() => null);
+
   return new ImageResponse(
     (
       <div
@@ -22,7 +27,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
           display: "flex",
           flexDirection: "column",
           padding: "64px",
-          fontFamily: "system-ui, -apple-system, sans-serif",
+          fontFamily: fontData ? "Inter" : "sans-serif",
           position: "relative",
         }}
       >
@@ -120,6 +125,6 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
         </div>
       </div>
     ),
-    { ...size }
+    { ...size, ...(fontData ? { fonts: [{ name: "Inter", data: fontData, weight: 700 }] } : {}) }
   );
 }

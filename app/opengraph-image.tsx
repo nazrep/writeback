@@ -1,10 +1,15 @@
 import { ImageResponse } from "next/og";
 
+export const runtime = "edge";
 export const alt = "Writeback — pisma z podstawą prawną";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
+  const fontData = await fetch(
+    "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2"
+  ).then((r) => r.arrayBuffer()).catch(() => null);
+
   return new ImageResponse(
     (
       <div

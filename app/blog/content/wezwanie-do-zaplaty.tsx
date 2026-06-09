@@ -11,7 +11,7 @@ export default function Content() {
 
       <h2>Odsetki ustawowe za opóźnienie — ile wynoszą</h2>
       <p><strong>Art. 481 § 1 KC</strong>: jeżeli dłużnik opóźnia się ze spełnieniem świadczenia pieniężnego, wierzyciel może żądać odsetek za czas opóźnienia, chociażby nie poniósł żadnej szkody i chociażby opóźnienie było następstwem okoliczności, za które dłużnik odpowiedzialności nie ponosi.</p>
-      <p><strong>Art. 481 § 2 KC</strong>: odsetki ustawowe za opóźnienie wynoszą tyle, ile aktualna stopa referencyjna Narodowego Banku Polskiego plus <strong>5,5 punktów procentowych</strong>. Aktualną stopę referencyjną NBP sprawdzisz na nbp.pl.</p>
+      <p><strong>Art. 481 § 2 KC</strong>: odsetki ustawowe za opóźnienie wynoszą tyle, ile aktualna stopa referencyjna Narodowego Banku Polskiego plus <strong>5,5 punktów procentowych</strong>. Wysokość zależy od bieżącej decyzji RPP — aktualną stopę referencyjną sprawdzisz zawsze na <strong>nbp.pl</strong> (zakładka „Stopy procentowe").</p>
 
       <h2>Transakcje handlowe B2B — wyższe odsetki i zryczałtowane koszty</h2>
       <p>Gdy obie strony są przedsiębiorcami i dług wynika z transakcji handlowej (dostawa towaru, świadczenie usług), zastosowanie ma <strong>ustawa z dnia 8 marca 2013 r. o przeciwdziałaniu nadmiernym opóźnieniom w transakcjach handlowych</strong> (tekst jedn. Dz.U. 2023 poz. 1790). Daje ona wierzycielowi dodatkowe uprawnienia:</p>
