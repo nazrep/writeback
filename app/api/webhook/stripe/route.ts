@@ -11,7 +11,7 @@ import path from "path";
 import { fetchPrzepisy, formatPrzepisy } from "@/app/lib/przepisy";
 
 const getStripe = () => new Stripe(process.env.STRIPE_SECRET_KEY!);
-const processedSessions = new Set<string>();
+const getRedis = () => new Redis({ url: process.env.UPSTASH_REDIS_KV_REST_API_URL!, token: process.env.UPSTASH_REDIS_KV_REST_API_TOKEN! });
 const getAnthropic = () => new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
 const getResend = () => new Resend(process.env.RESEND_API_KEY!);
 
@@ -37,10 +37,10 @@ export async function POST(req: NextRequest) {
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
-  if (processedSessions.has(session.id)) {
+  const dedup = await getRedis().set(`webhook:dedup:${session.id}`, 1, { nx: true, ex: 3600 });
+  if (!dedup) {
     return NextResponse.json({ received: true });
   }
-  processedSessions.add(session.id);
 
   after(async () => {
   try {

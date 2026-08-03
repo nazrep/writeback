@@ -23,6 +23,7 @@ vi.mock("resend", () => ({
 
 vi.mock("@upstash/redis", () => ({
   Redis: class MockRedis {
+    set = vi.fn().mockResolvedValue("OK");
     incr = vi.fn().mockResolvedValue(1);
   },
 }));
