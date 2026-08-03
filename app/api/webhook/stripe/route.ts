@@ -5,6 +5,7 @@ import { PDFDocument, rgb } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import { Resend } from "resend";
 import { Redis } from "@upstash/redis";
+import * as Sentry from "@sentry/nextjs";
 import fs from "fs";
 import path from "path";
 import { fetchPrzepisy, formatPrzepisy } from "@/app/lib/przepisy";
@@ -42,6 +43,13 @@ export async function POST(req: NextRequest) {
   processedSessions.add(session.id);
 
   after(async () => {
+  try {
+  Sentry.setContext("stripe_session", {
+    sessionId: session.id,
+    customerEmail: session.customer_details?.email,
+    docType: session.metadata?.doc_type,
+  });
+
   const m = session.metadata!;
   const docType = m.doc_type || "sklep";
 
@@ -900,6 +908,13 @@ DATA PISMA: ${today}`,
       },
     ],
   });
+  } catch (error) {
+    Sentry.captureException(error, {
+      tags: { component: "stripe-webhook" },
+      extra: { sessionId: session.id },
+    });
+    console.error("[webhook] after() failed:", error);
+  }
   }); // end after()
 
   return NextResponse.json({ received: true });
