@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { rateLimit } from "@/app/lib/rate-limit";
 
 const getAnthropic = () => new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
 
@@ -57,6 +58,9 @@ OBOWIĄZKOWA STRUKTURA PISMA:
 ZASADY: Ton formalny i asertywny. Bez emocji. Tylko gotowe pismo — bez komentarzy.`;
 
 export async function POST(req: NextRequest) {
+  const blocked = await rateLimit(req, "preview", 5, "1 m");
+  if (blocked) return blocked;
+
   const data = await req.json();
   const docType: string = data.doc_type || "sklep";
   const system = (SYSTEMS[docType] ?? SYSTEMS.sklep) + "\n\n" + STRUCTURE;

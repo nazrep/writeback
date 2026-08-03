@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { rateLimit } from "@/app/lib/rate-limit";
 
 const getAnthropic = () => new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
 
 export async function POST(req: NextRequest) {
+  const blocked = await rateLimit(req, "extract-image", 10, "1 m");
+  if (blocked) return blocked;
   let body: { image_base64: string; doc_type?: string };
   try {
     body = await req.json();
