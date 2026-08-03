@@ -20,6 +20,20 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-wycieczki",
+    title: "Reklamacja wycieczki: hotel niezgodny z opisem i zmarnowany urlop (2026)",
+    description: "Hotel z katalogu nie zgadza się z rzeczywistością? Masz prawo do obniżki ceny i zadośćuczynienia za zmarnowany urlop. 3 lata na reklamację, nie 30 dni.",
+    date: "2026-08-03",
+    readTime: "6 min",
+    category: "Turystyka",
+    faq: [
+      { q: "Czy mogę żądać zadośćuczynienia za „zmarnowany urlop”, jeśli hotel po prostu nie odpowiadał opisowi?", a: "Tak, jeśli niezgodność była na tyle istotna, że realnie pozbawiła Cię przyjemności z wypoczynku — np. cały pobyt bez obiecanego basenu czy hałas z budowy przez większość doby. Drobne niedogodności zwykle uzasadniają tylko obniżkę ceny (art. 50 ust. 1), a nie zadośćuczynienie (art. 50 ust. 2) — decyduje skala i wpływ na cały wyjazd." },
+      { q: "Kupiłem wycieczkę przez lokalne biuro podróży odsprzedające ofertę dużego touroperatora. Do kogo składam reklamację?", a: "Możesz skierować pismo do agenta turystycznego, u którego kupiłeś wycieczkę — art. 51 ustawy o imprezach turystycznych nakazuje mu niezwłocznie przekazać żądanie organizatorowi. Możesz też napisać bezpośrednio do organizatora, który odpowiada za realizację imprezy." },
+      { q: "Organizator zaproponował mi voucher na kolejny wyjazd zamiast zwrotu pieniędzy. Czy muszę się zgodzić?", a: "Nie. Voucher to propozycja handlowa, nie obowiązek. Na podstawie art. 50 ustawy o imprezach turystycznych masz prawo żądać obniżki ceny lub odszkodowania w pieniądzu." },
+      { q: "Ile czasu mam na reklamację niezgodności wycieczki?", a: "3 lata od zakończenia imprezy turystycznej (art. 50 ust. 4 ustawy o imprezach turystycznych). Stary 30-dniowy termin zniesiono w 2018 roku — ale uwaga, zniesiono też automatyczne uznanie reklamacji przy braku odpowiedzi organizatora." },
+    ],
+  },
+  {
     slug: "reklamacja-pepco",
     title: "Reklamacja w Pepco: prawa konsumenta niezależnie od ceny (2026)",
     description: "Kasjerka w Pepco twierdzi że przy tej cenie nie ma co reklamować? Nieprawda. Art. 43b UPK chroni Cię tak samo przy zakupie za 39 zł jak za 3 900 zł. 2 lata na reklamację, 14 dni na odpowiedź.",
