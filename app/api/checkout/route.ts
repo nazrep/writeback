@@ -74,7 +74,9 @@ export async function POST(req: NextRequest) {
         quantity: 1,
       }],
       mode: "payment",
-      allow_promotion_codes: true,
+      ...(data.promo_code_id
+        ? { discounts: [{ promotion_code: data.promo_code_id }] }
+        : { allow_promotion_codes: true }),
       success_url: `${process.env.NEXT_PUBLIC_URL}/zamow/gotowe?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/zamow`,
       customer_email: data.email,

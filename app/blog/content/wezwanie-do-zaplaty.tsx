@@ -40,7 +40,7 @@ export default function Content() {
         <li><strong>Postępowanie upominawcze</strong> (art. 498 i nast. KPC) — sąd wydaje nakaz zapłaty na podstawie wezwania i dokumentów bez rozprawy. Jeśli dłużnik nie wniesie sprzeciwu w 2 tygodniach, nakaz jest prawomocny i możesz skierować do komornika.</li>
         <li><strong>Postępowanie nakazowe</strong> (art. 485 KPC) — gdy masz faktury zaakceptowane przez dłużnika, umowę z podpisem. Korzystniejsze — dłużnik musi zapłacić lub wnieść zarzuty z zaliczką.</li>
       </ul>
-      <p>Opłata sądowa w postępowaniu upominawczym wynosi 5% wartości roszczenia i przy wygranej jest zwracana przez dłużnika.</p>
+      <p>Opłata sądowa w postępowaniu upominawczym wynosi <strong>1,25% wartości roszczenia</strong> (¼ opłaty stosunkowej — art. 19 ust. 2 ustawy o kosztach sądowych) i przy wygranej jest zwracana przez dłużnika.</p>
 
       <div style={{ margin: "2rem 0", padding: "1.5rem", background: "#eef2ff", borderRadius: "12px", border: "1px solid #c7d2fe" }}>
         <p style={{ margin: 0, fontWeight: 600, color: "#3730a3", marginBottom: "0.5rem" }}>Ktoś Ci nie zapłacił? Wygeneruj formalne wezwanie z przepisami KC.</p>

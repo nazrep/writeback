@@ -11,6 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const blogPostsEn = POSTS.filter(p => p.titleEn).map(p => ({
+    url: `${BASE}/blog/${p.slug}?lang=en`,
+    lastModified: new Date(p.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   const landingPages = [
     "/wzor-reklamacji",
     "/reklamacja-allegro",
@@ -43,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...landingPages,
     ...blogPosts,
+    ...blogPostsEn,
     {
       url: `${BASE}/regulamin`,
       lastModified: new Date(),

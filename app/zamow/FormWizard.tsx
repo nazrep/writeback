@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useId, Children, cloneElement, isValidElement } from "react";
+import NextImage from "next/image";
 
 async function compressImage(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -496,14 +497,26 @@ function DateSelect({ value, onChange, error }: { value: string; onChange: (v: s
 function Field({ label, required, hint, error, children }: {
   label: string; required?: boolean; hint?: string; error?: string; children: React.ReactNode;
 }) {
+  const id = useId();
+  const errorId = `${id}-error`;
+  const childWithId = Children.map(children, (child, i) => {
+    if (i === 0 && isValidElement(child)) {
+      return cloneElement(child as React.ReactElement<Record<string, unknown>>, {
+        id,
+        ...(error ? { "aria-describedby": errorId } : {}),
+      });
+    }
+    return child;
+  });
   return (
     <div>
-      <label className="block text-sm font-semibold text-gray-800 mb-1.5">
-        {label}{required && <span className="text-red-500 ml-0.5">*</span>}
+      <label htmlFor={id} className="block text-sm font-semibold text-gray-800 mb-1.5">
+        {label}{required && <span className="text-red-500 ml-0.5" aria-hidden="true">*</span>}
+        {required && <span className="sr-only"> (wymagane)</span>}
       </label>
-      {children}
+      {childWithId}
       {hint && !error && <p className="text-xs text-gray-500 mt-1.5">{hint}</p>}
-      {error && <p className="text-xs text-red-500 mt-1.5 font-medium">{error}</p>}
+      {error && <p id={errorId} role="alert" className="text-xs text-red-500 mt-1.5 font-medium">{error}</p>}
     </div>
   );
 }
@@ -533,6 +546,10 @@ export function FormWizard({ lang }: { lang?: string }) {
   const [checkoutError, setCheckoutError] = useState(false);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState(false);
+  const [promoInput, setPromoInput] = useState("");
+  const [promoData, setPromoData] = useState<{ discount: number; priceAfter: number; promoCodeId: string; label: string } | null>(null);
+  const [promoLoading, setPromoLoading] = useState(false);
+  const [promoError, setPromoError] = useState("");
 
   const baseType = DOC_TYPES.find(t => t.id === docType) ?? DOC_TYPES[0];
   const skargaSub = data.skarga_subtype as SkargaSubtype | "";
@@ -562,12 +579,35 @@ export function FormWizard({ lang }: { lang?: string }) {
     const e: Partial<Record<keyof FormData, string>> = {};
     if (!data.imie_nazwisko.trim()) e.imie_nazwisko = "Wpisz imię i nazwisko";
     if (!data.adres.trim()) e.adres = "Wpisz adres zamieszkania";
-    else if (!/\d{2}-\d{3}/.test(data.adres)) e.adres = "Wpisz pełny adres z kodem pocztowym (np. ul. Kwiatowa 5/12, 00-001 Warszawa)";
     if (!data.email.trim()) e.email = "Wpisz adres email";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) e.email = "Nieprawidłowy adres email";
     if (!data.nazwa_sklepu.trim()) e.nazwa_sklepu = "To pole jest wymagane";
     setErrors(e);
     return Object.keys(e).length === 0;
+  }
+
+  async function applyPromo() {
+    if (!promoInput.trim()) return;
+    setPromoLoading(true);
+    setPromoError("");
+    setPromoData(null);
+    try {
+      const res = await fetch("/api/promo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: promoInput.trim() }),
+      });
+      const json = await res.json();
+      if (json.valid) {
+        setPromoData(json);
+      } else {
+        setPromoError(json.error ?? "Nieprawidłowy kod");
+      }
+    } catch {
+      setPromoError("Błąd weryfikacji — spróbuj ponownie");
+    } finally {
+      setPromoLoading(false);
+    }
   }
 
   async function fetchPreview() {
@@ -590,7 +630,7 @@ export function FormWizard({ lang }: { lang?: string }) {
           }
         }
       } catch {}
-      if (attempt === 0) await new Promise(r => setTimeout(r, 1200));
+      if (attempt === 0) await new Promise(r => setTimeout(r, 3000));
     }
     setPreviewError(true);
     setPreviewLoading(false);
@@ -607,7 +647,7 @@ export function FormWizard({ lang }: { lang?: string }) {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, doc_type: docType, image_base64: imageBase64 }),
+        body: JSON.stringify({ ...data, doc_type: docType, image_base64: imageBase64, promo_code_id: promoData?.promoCodeId }),
       });
       if (!res.ok) throw new Error();
       const json = await res.json();
@@ -795,7 +835,7 @@ export function FormWizard({ lang }: { lang?: string }) {
                 </button>
               ) : (
                 <div className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl">
-                  <img src={imagePreview} alt="Podgląd" className="w-14 h-14 object-cover rounded-lg shrink-0 border border-gray-200" />
+                  <NextImage src={imagePreview} alt="Podgląd dokumentu" width={56} height={56} className="object-cover rounded-lg shrink-0 border border-gray-200" />
                   <div className="flex-1 min-w-0">
                     {imageLoading ? (
                       <div className="flex items-center gap-2 text-sm text-indigo-700 font-medium">
@@ -841,7 +881,7 @@ export function FormWizard({ lang }: { lang?: string }) {
               <input className={inputCls} placeholder={type.refPlaceholder} value={data.numer_zamowienia} onChange={set("numer_zamowienia")} />
             </Field>
             <Field label="Co się stało?" required error={errors.opis}>
-              <textarea className={tc(errors.opis)} {...ia(errors.opis)} rows={4} placeholder={type.opisPlaceholder} value={data.opis} onChange={set("opis")} />
+              <textarea className={tc(errors.opis)} {...ia(errors.opis)} rows={5} placeholder={type.opisPlaceholder} value={data.opis} onChange={set("opis")} />
             </Field>
             <Field label={type.podjeteLabel} hint="Opcjonalnie">
               <textarea className={textareaCls} rows={2} placeholder={type.podjetePlaceholder} value={data.podjete_kroki} onChange={set("podjete_kroki")} />
@@ -883,7 +923,7 @@ export function FormWizard({ lang }: { lang?: string }) {
                 <Field label="Imię i nazwisko" required error={errors.imie_nazwisko}>
                   <input className={ic(errors.imie_nazwisko)} {...ia(errors.imie_nazwisko)} placeholder="Anna Kowalska" value={data.imie_nazwisko} onChange={set("imie_nazwisko")} />
                 </Field>
-                <Field label="Adres zamieszkania" required error={errors.adres} hint="Format: ul. Nazwa XX/YY, XX-XXX Miasto — wymagany kod pocztowy">
+                <Field label="Adres zamieszkania" required error={errors.adres} hint="np. ul. Kwiatowa 5/12, 00-001 Warszawa">
                   <input className={ic(errors.adres)} {...ia(errors.adres)} placeholder="ul. Kwiatowa 5/12, 00-001 Warszawa" value={data.adres} onChange={set("adres")} />
                 </Field>
                 <Field label="Adres email" required error={errors.email} hint="Na ten adres wyślemy PDF z pismem">
@@ -1096,9 +1136,44 @@ export function FormWizard({ lang }: { lang?: string }) {
               <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">PDF wyślemy na</div>
               <div className="text-sm font-semibold text-gray-900">{data.email}</div>
             </div>
+            <div className="px-5 py-4">
+              <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Kod rabatowy</div>
+              {promoData ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-emerald-700 font-semibold bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg">{promoInput.toUpperCase()} — {promoData.label}</span>
+                  <button onClick={() => { setPromoData(null); setPromoInput(""); }} className="text-xs text-gray-400 hover:text-gray-600 underline">Usuń</button>
+                </div>
+              ) : (
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={promoInput}
+                    onChange={e => { setPromoInput(e.target.value.toUpperCase()); setPromoError(""); }}
+                    onKeyDown={e => e.key === "Enter" && applyPromo()}
+                    placeholder="Wpisz kod"
+                    className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono uppercase focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                  />
+                  <button
+                    onClick={applyPromo}
+                    disabled={promoLoading || !promoInput.trim()}
+                    className="px-4 py-2 text-sm font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors disabled:opacity-50"
+                  >
+                    {promoLoading ? "..." : "Zastosuj"}
+                  </button>
+                </div>
+              )}
+              {promoError && <p className="text-xs text-red-500 mt-1.5">{promoError}</p>}
+            </div>
             <div className="px-5 py-4 bg-gray-50 flex items-center justify-between">
               <div className="font-bold text-gray-900">Do zapłaty</div>
-              <div className="text-2xl font-bold text-gray-900">29 zł</div>
+              <div className="flex items-center gap-3">
+                {promoData && promoData.discount > 0 && (
+                  <span className="text-sm text-gray-400 line-through">29 zł</span>
+                )}
+                <div className="text-2xl font-bold text-gray-900">
+                  {promoData ? (promoData.priceAfter === 0 ? "Gratis!" : `${(promoData.priceAfter / 100).toFixed(2).replace(".", ",")} zł`) : "29 zł"}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1140,7 +1215,13 @@ export function FormWizard({ lang }: { lang?: string }) {
             disabled={loading}
             className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white py-4 rounded-xl font-bold text-base transition-colors shadow-lg shadow-indigo-200"
           >
-            {loading ? "Przekierowuję do płatności..." : "Opłać i pobierz pismo — 29 zł"}
+            {loading
+              ? "Przekierowuję do płatności..."
+              : promoData?.priceAfter === 0
+              ? "Pobierz pismo — Gratis!"
+              : promoData?.priceAfter
+              ? `Opłać i pobierz pismo — ${(promoData.priceAfter / 100).toFixed(2).replace(".", ",")} zł`
+              : "Opłać i pobierz pismo — 29 zł"}
           </button>
           {checkoutError && (
             <p role="alert" className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3 mt-3 text-center">

@@ -4,12 +4,17 @@ import { EnNav } from "./EnNav";
 
 export const metadata: Metadata = {
   title: "Writeback — Consumer Complaint Letters for Poland | PLN 29",
-  description: "Got ignored by a Polish online store? Generate a professional complaint letter citing Polish consumer law (art. 43b) in 5 minutes. The store has 14 days to respond — no reply means your complaint is legally accepted.",
+  description: "Ignored by a Polish store or bank? Formal complaint letter with exact Polish law citations. 14 days to respond by law. PDF in 5 min — PLN 29.",
   alternates: { canonical: "https://writeback.pl/en" },
   openGraph: {
     locale: "en_US",
-    title: "Polish store ignored you? Write a letter they must respond to.",
-    description: "Professional complaint letter with Polish consumer law references. PDF ready in 5 minutes. PLN 29.",
+    title: "Ignored by a store or bank? Write a letter they must respond to.",
+    description: "Formal complaint letter citing Polish consumer law. Store, bank, ZUS or telecom. PDF in 5 minutes — PLN 29.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ignored by a store or bank? Write a letter they must respond to.",
+    description: "Formal complaint letter citing Polish consumer law. PDF in 5 minutes — PLN 29.",
   },
 };
 
@@ -132,7 +137,7 @@ const FAQS = [
   },
   {
     q: "What if the letter doesn't work?",
-    a: "We write a follow-up appeal for free. Just email hello@writeback.pl — we'll prepare the next letter at no extra charge.",
+    a: "We write a follow-up appeal for free — no limit. Just email hello@writeback.pl and we'll prepare the next letter at no extra charge, until it's resolved.",
   },
   {
     q: "How much does it cost and what do I get?",
@@ -162,12 +167,12 @@ export default function EnPage() {
               </div>
 
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.06] text-gray-900 mb-6">
-                Polish store ignored you?<br />
+                Ignored by a store or bank?<br />
                 <span className="text-indigo-600">Write a letter they<br className="hidden sm:block" /> must respond to.</span>
               </h1>
 
               <p className="text-base sm:text-lg text-gray-500 max-w-xl mb-10 leading-relaxed">
-                Professional complaint letter citing art. 43b of the Polish Consumer Rights Act.
+                Formal complaint letter to a store, bank, insurer, ZUS or telecom — with the exact Polish law articles that apply.
                 Ready in <strong className="text-gray-800 font-semibold">5 minutes</strong>, PDF to your inbox immediately.
               </p>
 
@@ -186,7 +191,7 @@ export default function EnPage() {
                 {[
                   { val: "PLN 29", sub: "one-time" },
                   { val: "5 min", sub: "letter ready" },
-                  { val: "14 days", sub: "store must reply" },
+                  { val: "14 days", sub: "mandatory response" },
                   { val: "100%", sub: "Polish law citations" },
                 ].map((s, i) => (
                   <div key={i} className="text-center lg:text-left">
@@ -270,7 +275,7 @@ export default function EnPage() {
       </div>
 
       {/* How it works */}
-      <section className="py-24 px-6 bg-white">
+      <section id="how-it-works" className="py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">How it works</p>
@@ -420,7 +425,7 @@ export default function EnPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 px-6 bg-gray-50 border-y border-gray-100">
+      <section id="faq" className="py-24 px-6 bg-gray-50 border-y border-gray-100">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">FAQ</p>

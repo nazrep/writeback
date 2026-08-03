@@ -39,6 +39,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
     <div className="min-h-screen bg-white">
       <Suspense><BlogHeader /></Suspense>
 
+      <main>
       <div className="max-w-5xl mx-auto px-6 py-12">
         <div className="mb-8">
           <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3">
@@ -101,7 +102,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
                 {isEn ? (post.descriptionEn ?? post.description) : post.description}
               </p>
               <div className="flex items-center justify-between mt-auto">
-                <span className="text-[11px] text-gray-400">{formatShortDate(post.date)}</span>
+                <time dateTime={post.date} className="text-[11px] text-gray-400">{formatShortDate(post.date)}</time>
                 <span className="text-xs font-semibold text-indigo-600 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
                   {isEn ? "Read" : "Czytaj"}
                   <svg aria-hidden="true" className="w-3 h-3" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -131,6 +132,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
           </Link>
         </div>
       </div>
+      </main>
     </div>
   );
 }

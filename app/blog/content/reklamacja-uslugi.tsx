@@ -45,7 +45,7 @@ export default function Content() {
       <ul>
         <li><strong>Rzecznik Praw Konsumentów</strong> (jeśli zamawiałeś jako osoba prywatna) — bezpłatna interwencja</li>
         <li><strong>UOKiK</strong> — gdy wykonawca stosuje nieuczciwe praktyki wobec konsumentów systemowo</li>
-        <li><strong>Sąd rejonowy</strong> — postępowanie upominawcze lub uproszczone; przy wartości sporu do 30 000 zł koszty sądowe są niskie, przy wygranej pokrywa wykonawca</li>
+        <li><strong>Sąd rejonowy</strong> — postępowanie upominawcze lub uproszczone; przy wartości sporu do 20 000 zł koszty sądowe są niskie (tryb uproszczony), przy wygranej pokrywa wykonawca</li>
         <li><strong>Powierzenie naprawy innemu wykonawcy na koszt pierwszego</strong> (art. 636 § 1 KC) — ale wymaga wcześniejszego wezwania z wyznaczonym terminem</li>
       </ul>
 

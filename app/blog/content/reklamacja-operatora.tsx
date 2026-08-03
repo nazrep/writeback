@@ -55,7 +55,7 @@ export default function Content() {
         <li>Złóż skargę do <strong>Prezesa UKE</strong> (Urząd Komunikacji Elektronicznej) — urzad.uke.gov.pl. UKE może wszcząć postępowanie wyjaśniające.</li>
         <li>Skorzystaj z <strong>pozasądowego rozwiązywania sporów</strong> — Stały Polubowny Sąd Konsumencki przy UKE, bezpłatny.</li>
         <li>Złóż skargę do <strong>Rzecznika Praw Konsumenta</strong> w swoim powiecie.</li>
-        <li>Przy roszczeniach do 30 000 zł — <strong>sąd powszechny w postępowaniu uproszczonym</strong> (art. 505¹ KPC).</li>
+        <li>Przy roszczeniach do 20 000 zł — <strong>sąd powszechny w postępowaniu uproszczonym</strong> (art. 505¹ KPC).</li>
       </ul>
 
       <h2>Przeniesienie numeru — prawa konsumenta</h2>

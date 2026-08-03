@@ -70,8 +70,8 @@ export default function PolitykaPrywatnosci() {
             <ul className="list-disc pl-5 space-y-2">
               <li><strong>Stripe Payments Europe, Ltd.</strong> — obsługa płatności. Polityka prywatności: stripe.com/privacy</li>
               <li><strong>Anthropic, PBC</strong> (USA) — system generowania treści pisma. Dane: imię, nazwisko, adres, opis sytuacji. Podstawa transferu: Standardowe Klauzule Umowne (SCC, art. 46 RODO) wraz z dodatkowymi środkami technicznymi i organizacyjnymi wymaganymi po wyroku TSUE C-311/18 (Schrems II). Dane przekazywane są wyłącznie w celu wygenerowania treści pisma i <strong>nie są przechowywane przez Anthropic</strong> po zakończeniu przetwarzania żądania (przetwarzanie tranzytowe). Polityka prywatności Anthropic: <a href="https://www.anthropic.com/privacy" className="text-indigo-600 underline" target="_blank" rel="noopener noreferrer">anthropic.com/privacy</a>.</li>
-              <li><strong>Resend, Inc.</strong> — wysyłka wiadomości e-mail z pismem PDF. Dane: adres e-mail, imię, treść wiadomości.</li>
-              <li><strong>Vercel, Inc.</strong> — hosting aplikacji. Dane: logi serwera (adres IP, żądania HTTP).</li>
+              <li><strong>Resend, Inc.</strong> (USA) — wysyłka wiadomości e-mail z pismem PDF. Dane: adres e-mail, imię, treść wiadomości. Podstawa transferu poza EOG: Standardowe Klauzule Umowne (SCC, art. 46 RODO).</li>
+              <li><strong>Vercel, Inc.</strong> (USA) — hosting aplikacji. Dane: logi serwera (adres IP, żądania HTTP). Podstawa transferu poza EOG: Standardowe Klauzule Umowne (SCC, art. 46 RODO).</li>
               <li><strong>Google LLC</strong> (USA) — analityka (Google Analytics 4). Dane: anonimowy adres IP, strony odwiedzin, czas sesji, kraj. Podstawa transferu: SCC (art. 46 RODO). Przetwarzanie tylko za zgodą użytkownika.</li>
             </ul>
           </section>
@@ -95,6 +95,8 @@ export default function PolitykaPrywatnosci() {
               <li><strong>Prawo do ograniczenia przetwarzania</strong> (art. 18 RODO)</li>
               <li><strong>Prawo do przenoszenia danych</strong> (art. 20 RODO)</li>
               <li><strong>Prawo sprzeciwu</strong> wobec przetwarzania (art. 21 RODO)</li>
+              <li><strong>Prawo do niepodlegania zautomatyzowanemu podejmowaniu decyzji</strong> (art. 22 RODO) — dane nie są przetwarzane w celu profilowania ani zautomatyzowanego podejmowania decyzji o znaczącym wpływie na Użytkownika</li>
+              <li><strong>Prawo do wycofania zgody</strong> w dowolnym momencie (art. 7 ust. 3 RODO) — wycofanie zgody nie wpływa na zgodność przetwarzania dokonanego przed jej wycofaniem</li>
             </ul>
             <p className="mt-3">Aby skorzystać z powyższych praw, skontaktuj się z nami: <strong>hello@writeback.pl</strong>. Odpowiadamy w terminie do 30 dni.</p>
             <p className="mt-2">Masz prawo wnieść skargę do <strong>Prezesa Urzędu Ochrony Danych Osobowych</strong> (ul. Stawki 2, 00-193 Warszawa, uodo.gov.pl), jeśli uważasz, że przetwarzanie Twoich danych narusza przepisy RODO.</p>
@@ -108,7 +110,7 @@ export default function PolitykaPrywatnosci() {
               <li><strong>Analityczne — Google Analytics 4</strong> — używamy usługi Google Analytics 4 (Google LLC, USA) do analizy ruchu na stronie. GA4 zbiera anonimowe dane o odwiedzinach (strony, czas, kraj). Adres IP jest anonimizowany przed przekazaniem do Google. Dane przetwarzane są na podstawie Twojej zgody. Możesz wyrazić lub cofnąć zgodę przez baner cookies. Polityka Google: <a href="https://policies.google.com/privacy" className="text-indigo-600 underline" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</li>
               <li><strong>Płatnicze — Stripe</strong> — Stripe ustawia cookies techniczne (<code>__stripe_mid</code>, <code>__stripe_sid</code>) służące do wykrywania oszustw. Szczegóły: <a href="https://stripe.com/cookies-policy/legal" className="text-indigo-600 underline" target="_blank" rel="noopener noreferrer">stripe.com/cookies-policy</a>.</li>
             </ul>
-            <p className="mt-2">Możesz zarządzać zgodami przez baner cookies widoczny przy pierwszej wizycie. Aby zmienić decyzję w dowolnej chwili, kliknij ikonę 🍪 w lewym dolnym rogu strony — baner pojawi się ponownie i możesz wybrać na nowo.</p>
+            <p className="mt-2">Możesz zarządzać zgodami przez baner cookies widoczny przy pierwszej wizycie. Aby zmienić decyzję w dowolnej chwili, kliknij ikonę ciasteczka w lewym dolnym rogu strony — baner pojawi się ponownie i możesz wybrać na nowo.</p>
           </section>
 
           <section>

@@ -10,7 +10,7 @@ export default function Content() {
       <p>Kluczowe punkty, które musisz znać:</p>
       <ul>
         <li>Masz <strong>2 lata</strong> na złożenie reklamacji liczone od daty otrzymania towaru</li>
-        <li>Przez pierwsze <strong>2 lata</strong> obowiązuje domniemanie, że wada istniała już w chwili zakupu (art. 43c ust. 1). To sklep musi udowodnić, że towar był sprawny, a nie Ty że był zepsuty</li>
+        <li>Przez pierwsze <strong>2 lata</strong> obowiązuje domniemanie, że wada istniała już w chwili dostarczenia towaru (art. 43c ust. 1). To sklep musi udowodnić, że towar był sprawny, a nie Ty że był zepsuty</li>
         <li>Sklep ma <strong>14 dni</strong> na odpowiedź na reklamację (art. 7a). Brak odpowiedzi w tym terminie to uznanie reklamacji za zasadną z mocy prawa</li>
         <li>Przepisy te mają charakter bezwzględny: sklep nie może ich wyłączyć ani ograniczyć swoim regulaminem</li>
       </ul>
@@ -43,7 +43,7 @@ export default function Content() {
       <p>Żaden przepis prawa polskiego nie przewiduje 30-dniowego terminu na reklamację. Sklep może mieć taki zapis w swoim regulaminie, ale jest on nieważny. Postanowienia regulaminów, które skracają ustawowe prawa konsumenta, nie mają mocy prawnej. Termin z ustawy to 2 lata i tego nikt Ci nie odbierze.</p>
 
       <h3>"Wada powstała przez nieprawidłowe użytkowanie"</h3>
-      <p>Sklep może tak twierdzić, ale musi to udowodnić. Nie wystarczy stwierdzenie: musi przedstawić opinię techniczną lub ekspertyzę. Jeśli tego nie robi, a wada ujawniła się w ciągu 2 lat od zakupu, przysługuje Ci domniemanie z art. 43c. Zażądaj pisemnego uzasadnienia odmowy reklamacji.</p>
+      <p>Sklep może tak twierdzić, ale musi to udowodnić. Nie wystarczy stwierdzenie: musi przedstawić opinię techniczną lub ekspertyzę. Jeśli tego nie robi, a wada ujawniła się w ciągu 2 lat od dostarczenia towaru, przysługuje Ci domniemanie z art. 43c. Zażądaj pisemnego uzasadnienia odmowy reklamacji.</p>
 
       <h3>"Reklamacja nie dotyczy towaru używanego"</h3>
       <p>Nieprawda. Towar był nowy gdy go kupowałeś, więc w całości podlega ochronie przez 2 lata. Fakt, że go używałeś zgodnie z przeznaczeniem, nie pozbawia Cię prawa do reklamacji.</p>
@@ -78,7 +78,7 @@ export default function Content() {
         <li><strong>Rzecznik Praw Konsumentów</strong>: każde starostwo powiatowe ma swojego rzecznika, który bezpłatnie interweniuje w sporach z przedsiębiorcami</li>
         <li><strong>UOKiK</strong>: jeśli sklep stosuje praktyki naruszające przepisy na szeroką skalę (np. celowo ignoruje reklamacje wielu klientów), możesz złożyć skargę na stronie uokik.gov.pl</li>
         <li><strong>Sąd polubowny przy Inspekcji Handlowej</strong>: bezpłatne postępowanie, które kończy się ugodą lub wyrokiem. Sprzedawca musi wyrazić zgodę na udział</li>
-        <li><strong>Sąd powszechny</strong>: przy wyższych kwotach, np. kilka tysięcy złotych za sprzęt elektroniczny, warto rozważyć pozew. Przy wartości sporu do 30 tys. złotych postępowanie jest uproszczone i tanie (art. 505¹ KPC)</li>
+        <li><strong>Sąd powszechny</strong>: przy wyższych kwotach, np. kilka tysięcy złotych za sprzęt elektroniczny, warto rozważyć pozew. Przy wartości sporu do 20 tys. złotych postępowanie jest uproszczone i tanie (art. 505¹ KPC)</li>
       </ul>
       <p>Masz problem z transakcją bankową zamiast reklamacją do sklepu? Przeczytaj <Link href="/blog/bank-odmawia-zwrotu" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">jak egzekwować zwrot od banku</Link>.</p>
 

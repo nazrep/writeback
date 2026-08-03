@@ -65,7 +65,7 @@ export default function Content() {
         <li>Złóż skargę do <strong>Prezesa URE</strong> (ure.gov.pl) — może wszcząć postępowanie i nakazać spółce działanie</li>
         <li>Skorzystaj z <strong>mediacji przy Prezesie URE</strong> — bezpłatna, skuteczna przy sporach taryfowych</li>
         <li>Zgłoś się do <strong>Rzecznika Praw Konsumenta</strong> w swoim powiecie</li>
-        <li>Przy roszczeniach do 30 000 zł — sąd powszechny w postępowaniu uproszczonym (art. 505¹ KPC)</li>
+        <li>Przy roszczeniach do 20 000 zł — sąd powszechny w postępowaniu uproszczonym (art. 505¹ KPC)</li>
       </ul>
     </>
   );

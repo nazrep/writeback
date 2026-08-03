@@ -23,6 +23,7 @@ export default function RegulaminPage() {
               <li>Serwis internetowy dostępny pod adresem <strong>writeback.pl</strong> (dalej: „Serwis") umożliwia generowanie profesjonalnych pism konsumenckich z powołaniem na właściwe przepisy prawa polskiego.</li>
               <li>Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu.</li>
               <li>W sprawach nieuregulowanych niniejszym Regulaminem zastosowanie mają przepisy prawa polskiego, w szczególności Kodeksu cywilnego, ustawy o świadczeniu usług drogą elektroniczną oraz ustawy o prawach konsumenta.</li>
+              <li>Zasady przetwarzania danych osobowych określa <Link href="/polityka" className="text-indigo-600 underline">Polityka prywatności</Link> dostępna pod adresem writeback.pl/polityka.</li>
             </ol>
           </section>
 
@@ -53,7 +54,7 @@ export default function RegulaminPage() {
               <li>Cena usługi wynosi <strong>29 zł brutto</strong> za jedno wygenerowane pismo, niezależnie od jego typu.</li>
               <li>Płatność obsługiwana jest przez Stripe Payments Europe, Ltd. Akceptowane metody płatności: karta płatnicza, BLIK, Przelewy24.</li>
               <li>Potwierdzenie zamówienia i wygenerowane pismo w formacie PDF przesyłane są na podany adres e-mail niezwłocznie po zaksięgowaniu płatności.</li>
-              <li>Usługodawca wystawia fakturę na żądanie Użytkownika — w tym celu należy skontaktować się pod adresem hello@writeback.pl.</li>
+              <li>Faktura VAT wysyłana jest automatycznie na adres e-mail podany przy zamówieniu, wraz z wygenerowanym pismem.</li>
             </ol>
           </section>
 
@@ -70,9 +71,9 @@ export default function RegulaminPage() {
             <ol className="list-decimal pl-5 space-y-2">
               <li>Reklamacje dotyczące świadczonych usług należy składać na adres e-mail: <strong>hello@writeback.pl</strong>.</li>
               <li>Reklamacja powinna zawierać: imię i nazwisko, adres e-mail podany przy zamówieniu, datę zamówienia oraz opis nieprawidłowości.</li>
-              <li>Usługodawca rozpatruje reklamacje w terminie 14 dni kalendarzowych od jej otrzymania.</li>
+              <li>Usługodawca potwierdza otrzymanie reklamacji w ciągu 2 dni roboczych i rozpatruje ją w terminie 14 dni kalendarzowych od jej otrzymania. Odpowiedź zawiera uzasadnienie stanowiska.</li>
               <li>W przypadku niemożności wygenerowania pisma z przyczyn technicznych leżących po stronie Usługodawcy, Użytkownik otrzyma zwrot pełnej kwoty zamówienia.</li>
-              <li><strong>Bezpłatne odwołanie:</strong> Jeżeli wygenerowane pismo nie przyniosło oczekiwanego rezultatu (sklep lub inny adresat odmówił lub nie odpowiedział na ponowną korespondencję), Usługodawca na wniosek Użytkownika przygotuje jedno pismo odwoławcze lub skargę do odpowiedniego organu (np. Rzecznika Praw Konsumentów, UOKiK) bezpłatnie. Wniosek należy złożyć na adres hello@writeback.pl w terminie 60 dni od dostarczenia pierwotnego pisma.</li>
+              <li><strong>Bezpłatne odwołanie:</strong> Jeżeli wygenerowane pismo nie przyniosło oczekiwanego rezultatu (adresat odmówił lub nie odpowiedział), Usługodawca na wniosek Użytkownika przygotuje kolejne pisma odwoławcze lub skargi do właściwych organów (np. Rzecznika Praw Konsumentów, UOKiK) bezpłatnie, bez limitu prób. Wniosek należy złożyć na adres hello@writeback.pl w terminie 60 dni od dostarczenia pierwotnego pisma.</li>
             </ol>
           </section>
 

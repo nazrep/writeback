@@ -7,10 +7,10 @@ export default function Content() {
 
       <h2>Podstawa prawna reklamacji w RTV Euro AGD</h2>
       <p>
-        Art. 43b ustawy o prawach konsumenta (Dz.U. 2014 poz. 827 z późn. zm.) zobowiązuje sprzedawcę do dostarczenia towaru zgodnego z umową. Jeśli w ciągu 2 lat od zakupu wystąpi wada — mechaniczna, elektryczna, fabryczna — możesz złożyć reklamację bezpośrednio w RTV Euro AGD jako sprzedawcy, bez potrzeby kontaktowania się z producentem.
+        Art. 43b ustawy o prawach konsumenta (Dz.U. 2014 poz. 827 z późn. zm.) zobowiązuje sprzedawcę do dostarczenia towaru zgodnego z umową. Jeśli w ciągu 2 lat od dostarczenia towaru wystąpi wada — mechaniczna, elektryczna, fabryczna — możesz złożyć reklamację bezpośrednio w RTV Euro AGD jako sprzedawcy, bez potrzeby kontaktowania się z producentem.
       </p>
       <p>
-        Przez cały 2-letni okres obowiązuje <strong>domniemanie wady przy zakupie</strong> (art. 43c ust. 1 UPK). To oznacza, że to sklep musi udowodnić, że wada powstała z Twojej winy — nie Ty musisz udowadniać, że produkt był wadliwy od początku.
+        Przez cały 2-letni okres obowiązuje <strong>domniemanie wady w chwili dostarczenia</strong> (art. 43c ust. 1 UPK). To oznacza, że to sklep musi udowodnić, że wada powstała z Twojej winy — nie Ty musisz udowadniać, że produkt był wadliwy od początku.
       </p>
 
       <h2>Czego możesz żądać</h2>
@@ -30,7 +30,7 @@ export default function Content() {
 
       <h2>Jak złożyć reklamację w RTV Euro AGD</h2>
       <ul>
-        <li>Przygotuj dowód zakupu: paragon, fakturę, potwierdzenie zamówienia z konta rtveuроagd.pl</li>
+        <li>Przygotuj dowód zakupu: paragon, fakturę, potwierdzenie zamówienia z konta rtveuroagd.pl</li>
         <li>Opisz wadę: datę wystąpienia, objawy, czy sprzęt był użytkowany zgodnie z instrukcją</li>
         <li>Jasno określ żądanie: naprawa, wymiana lub zwrot</li>
         <li>Powołaj się na art. 43b i art. 43d ust. 1 ustawy o prawach konsumenta</li>
@@ -61,7 +61,7 @@ export default function Content() {
       <ul>
         <li>Złożyć skargę do <strong>Inspekcji Handlowej</strong> właściwej dla siedziby sklepu</li>
         <li>Zgłosić się do <strong>Rzecznika Praw Konsumentów</strong> w swoim powiecie</li>
-        <li>Wejść na drogę sądową — roszczenia do 30 000 zł rozpatruje sąd w trybie uproszczonym (art. 505¹ KPC)</li>
+        <li>Wejść na drogę sądową — roszczenia do 20 000 zł rozpatruje sąd w trybie uproszczonym (art. 505¹ KPC)</li>
       </ul>
 
       <h2>Ubezpieczenie i gwarancja rozszerzona od RTV Euro AGD</h2>

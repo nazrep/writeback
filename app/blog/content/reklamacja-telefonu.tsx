@@ -2,7 +2,7 @@ export default function Content() {
   return (
     <>
       <p>
-        Smartfon to jeden z najczęściej reklamowanych produktów w Polsce. Pęknięty wyświetlacz bez uderzenia, szybko rozładowująca się bateria, problemy z głośnikiem czy aparatem — każda z tych wad może być podstawą skutecznej reklamacji. Masz na to <strong>2 lata</strong> od daty zakupu, niezależnie od producenta i operatora.
+        Smartfon to jeden z najczęściej reklamowanych produktów w Polsce. Pęknięty wyświetlacz bez uderzenia, szybko rozładowująca się bateria, problemy z głośnikiem czy aparatem — każda z tych wad może być podstawą skutecznej reklamacji. Masz na to <strong>2 lata</strong> od daty dostarczenia towaru, niezależnie od producenta i operatora.
       </p>
 
       <h2>Reklamacja telefonu do sklepu czy do producenta?</h2>

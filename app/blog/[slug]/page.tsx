@@ -30,16 +30,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       } : {}),
     },
     openGraph: {
+      url: `https://writeback.pl/blog/${slug}`,
       title: post.title,
       description: post.description,
       type: "article",
       publishedTime: post.date,
       locale: "pl_PL",
-      images: [{ url: `https://writeback.pl/blog/${slug}/opengraph-image`, width: 1200, height: 630 }],
+      images: [{ url: `https://writeback.pl/api/og?slug=${slug}`, width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
-      images: [`https://writeback.pl/blog/${slug}/opengraph-image`],
+      title: post.title,
+      description: post.description,
+      images: [`https://writeback.pl/api/og?slug=${slug}`],
     },
   };
 }
@@ -72,7 +75,10 @@ export default async function BlogPostPage({
   const faq       = isEn ? (post.faqEn       ?? post.faq)       : post.faq;
   const langParam = isEn ? "?lang=en" : "";
 
-  const related = POSTS.filter(p => p.slug !== slug).slice(0, 4);
+  const sameCategory = POSTS.filter(p => p.slug !== slug && p.category === post.category);
+  const related = sameCategory.length >= 2
+    ? sameCategory.slice(0, 4)
+    : POSTS.filter(p => p.slug !== slug).slice(0, 4);
   const postUrl = `https://writeback.pl/blog/${slug}`;
 
   const articleSchema = {
@@ -83,6 +89,7 @@ export default async function BlogPostPage({
     "datePublished": post.date,
     "dateModified": post.date,
     "url": postUrl,
+    "image": { "@type": "ImageObject", "url": `https://writeback.pl/api/og?slug=${slug}`, "width": 1200, "height": 630 },
     "author": {
       "@type": "Person",
       "name": "Maciej Perzankowski",
@@ -112,7 +119,16 @@ export default async function BlogPostPage({
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Poradniki", "item": "https://writeback.pl/blog" },
+          { "@type": "ListItem", "position": 2, "name": title, "item": postUrl },
+        ],
+      }) }} />
 
+      <main>
       <article className="max-w-2xl mx-auto px-6 py-10">
 
         {/* Breadcrumb */}
@@ -128,7 +144,7 @@ export default async function BlogPostPage({
             <span className="text-xs font-semibold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-full">
               {category}
             </span>
-            <span className="text-xs text-gray-400">{formatDate(post.date)}</span>
+            <time dateTime={post.date} className="text-xs text-gray-400">{formatDate(post.date)}</time>
             <span className="text-gray-200">·</span>
             <span className="text-xs text-gray-400">{readTime} {isEn ? "read" : "czytania"}</span>
           </div>
@@ -150,7 +166,18 @@ export default async function BlogPostPage({
                 <div className="text-xs text-gray-400">writeback.pl · {isEn ? "consumer law · Poland" : "prawa konsumenta"}</div>
               </div>
             </div>
-            <CopyLinkButton url={postUrl} />
+            <div className="flex items-center gap-2">
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Udostępnij na Facebooku"
+                className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 hover:bg-indigo-50 hover:text-indigo-600 transition-colors text-gray-500"
+              >
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </a>
+              <CopyLinkButton url={postUrl} />
+            </div>
           </div>
         </header>
 
@@ -195,7 +222,7 @@ export default async function BlogPostPage({
             </div>
             <div>
               <div className="font-semibold text-gray-900 mb-0.5">Maciej Perzankowski</div>
-              <div className="text-xs text-indigo-600 font-semibold mb-3">{isEn ? "Creator of writeback.pl" : "Twórca writeback.pl"}</div>
+              <div className="text-xs text-indigo-700 font-semibold mb-3">{isEn ? "Creator of writeback.pl" : "Twórca writeback.pl"}</div>
               <p className="text-sm text-gray-600 leading-relaxed">
                 {isEn
                   ? "I build tools that help consumers enforce their rights without a lawyer. I wrote hundreds of consumer letters before I started building writeback.pl. I know what works and what stores and banks simply ignore."
@@ -219,6 +246,28 @@ export default async function BlogPostPage({
           </p>
         </div>
 
+        {/* FAQ */}
+        {faq && faq.length > 0 && (
+          <div className="mt-10">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">
+              {isEn ? "Frequently asked questions" : "Najczęstsze pytania"}
+            </h2>
+            <div className="space-y-3">
+              {faq.map((item, i) => (
+                <details key={i} className="group border border-gray-200 rounded-xl overflow-hidden">
+                  <summary className="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer text-sm font-semibold text-gray-900 hover:bg-gray-50 transition-colors list-none">
+                    {item.q}
+                    <svg aria-hidden="true" className="arrow w-4 h-4 shrink-0 text-gray-400 transition-transform" viewBox="0 0 16 16" fill="none">
+                      <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </summary>
+                  <p className="px-5 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Related articles */}
         {related.length > 0 && (
           <div className="mt-10">
@@ -232,7 +281,7 @@ export default async function BlogPostPage({
                   href={`/blog/${p.slug}${langParam}`}
                   className="group border border-gray-200 rounded-xl p-4 hover:border-indigo-200 hover:bg-indigo-50/50 transition-all"
                 >
-                  <span className="text-xs font-semibold text-indigo-600 block mb-2">
+                  <span className="text-xs font-semibold text-indigo-700 block mb-2">
                     {isEn ? (p.categoryEn ?? p.category) : p.category}
                   </span>
                   <h3 className="text-sm font-semibold text-gray-900 leading-snug group-hover:text-indigo-700 transition-colors line-clamp-2">
@@ -248,6 +297,7 @@ export default async function BlogPostPage({
         )}
 
       </article>
+      </main>
     </div>
   );
 }

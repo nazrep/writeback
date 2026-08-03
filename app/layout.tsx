@@ -11,10 +11,10 @@ const BASE = "https://writeback.pl";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
   title: {
-    default: "Writeback — Reklamacja do sklepu internetowego z podstawami prawnymi | 29 zł",
+    default: "Writeback — pismo reklamacyjne z art. 43b UPK | 29 zł",
     template: "%s | Writeback",
   },
-  description: "Reklamacja do sklepu internetowego z art. 43b ustawy o prawach konsumenta. Profesjonalne pismo PDF w 5 minut — sklep ma 14 dni na odpowiedź, brak odpowiedzi = reklamacja uznana. Skuteczne dla Allegro, OLX i innych sklepów.",
+  description: "Sklep odmówił lub nie odpowiada? Pismo reklamacyjne z właściwymi przepisami gotowe w 5 minut. 14 dni na odpowiedź, brak odpowiedzi = reklamacja uznana. PDF na maila — 29 zł.",
   keywords: [
     "reklamacja sklep internetowy",
     "pismo reklamacyjne wzór",
@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     "reklamacja towar niezgodny z opisem",
     "prawa konsumenta",
     "art 43b ustawa o prawach konsumenta",
-    "zwrot towaru sklep",
-    "reklamacja odmowa sklepu",
-    "pismo do sklepu",
-    "reklamacja wzór pdf",
+    "sklep nie odpowiada na reklamację",
+    "reklamacja po roku",
+    "jak reklamować towar w internecie",
+    "jaki termin na reklamację",
   ],
   authors: [{ name: "Writeback" }],
   creator: "Writeback",
@@ -144,7 +144,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen bg-white text-gray-900 antialiased">
-        {children}
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold">
+          Przejdź do treści
+        </a>
+        <div id="main-content">{children}</div>
         <CookieBanner />
         <Analytics />
       </body>

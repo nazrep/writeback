@@ -49,7 +49,7 @@ const CASES = [
   {
     category: "Reklamacja do banku",
     situation: `Z konta zniknęło 890 zł. Transakcja, której nie wykonałam. Bank odpisał, że logowanie było prawidłowe i nie zwróci środków.`,
-    law: "art. 45 ustawy o usługach płatniczych",
+    law: "art. 46 ustawy o usługach płatniczych",
     result: "Zwrot 890 zł w 6 dni",
     initial: "K",
     name: "Karolina M.",
@@ -197,11 +197,11 @@ const FAQS = [
   },
   {
     q: "Co jeśli pismo nie pomoże?",
-    a: "Piszemy odwołanie za darmo. Wystarczy napisać na hello@writeback.pl. Przygotujemy kolejne pismo bez dodatkowych opłat.",
+    a: "Jeśli sklep lub instytucja nie odpowie lub odmówi — piszemy odwołanie gratis. Wystarczy napisać na hello@writeback.pl. Drugie pismo bez dodatkowych opłat, bez limitu prób.",
   },
   {
     q: "Ile kosztuje i co dokładnie dostaję?",
-    a: "29 zł jednorazowo. Dostajesz: pismo PDF z właściwymi przepisami prawnymi, gotowe do wysłania w ciągu 5 minut, na wskazany adres email. Bez subskrypcji, bez ukrytych opłat.",
+    a: "29 zł brutto jednorazowo (zawiera VAT 23%). Dostajesz: pismo PDF z właściwymi przepisami prawnymi, gotowe do wysłania w ciągu 5 minut, na wskazany adres email. Faktura VAT w załączniku. Bez subskrypcji, bez ukrytych opłat.",
   },
   {
     q: "Czy moje dane są bezpieczne?",
@@ -214,6 +214,8 @@ export default function HomePage() {
     <div className="min-h-screen bg-white text-gray-900">
 
       <SiteHeader />
+
+      <main>
 
       {/* Hero */}
       <section className="relative bg-white overflow-hidden">
@@ -232,7 +234,7 @@ export default function HomePage() {
 
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.06] text-gray-900 mb-6 animate-fade-up delay-100">
                 Zignorowali Cię?<br />
-                <span className="text-indigo-600">Napisz pismo,<br className="hidden sm:block" /> które muszą przeczytać.</span>
+                <span className="text-indigo-700">Napisz pismo,<br className="hidden sm:block" /> które muszą przeczytać.</span>
               </h1>
 
               <p className="text-base sm:text-lg text-gray-500 max-w-xl mb-10 leading-relaxed animate-fade-up delay-200">
@@ -243,7 +245,7 @@ export default function HomePage() {
               <div className="animate-fade-up delay-300">
                 <Link
                   href="/zamow"
-                  className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-200 hover:-translate-y-0.5 active:scale-95"
+                  className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-10 py-4 rounded-xl transition-all duration-200 text-base shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-200 hover:-translate-y-0.5 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
                 >
                   Napisz pismo — 29 zł
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -256,7 +258,7 @@ export default function HomePage() {
               {/* Stats */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-8 gap-y-4 mt-12 pt-10 border-t border-gray-100 animate-fade-in delay-400">
                 {[
-                  { val: "29 zł", sub: "jednorazowo" },
+                  { val: "29 zł", sub: "brutto, jednorazowo" },
                   { val: "5 min", sub: "gotowe pismo" },
                   { val: "14 dni", sub: "sklep musi odpowiedzieć" },
                   { val: "100%", sub: "polskie przepisy" },
@@ -514,7 +516,7 @@ export default function HomePage() {
             <AnimateIn animation="scaleIn" delay={100}>
               <div className="border-2 border-indigo-500 rounded-2xl p-7 text-center bg-white relative shadow-xl shadow-indigo-100/60 -translate-y-1 h-full">
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow-sm">Najlepszy wybór</div>
-                <div className="text-3xl font-bold text-indigo-600 mb-1">29 zł</div>
+                <div className="text-3xl font-bold text-indigo-600 mb-1">29 zł brutto</div>
                 <div className="font-semibold text-gray-900 mb-5 text-sm">Writeback</div>
                 <ul className="text-sm text-gray-700 text-left space-y-3">
                   <li className="flex gap-2.5 items-start"><span className="text-indigo-500 shrink-0 font-bold">✓</span>Gotowe w 5 minut</li>
@@ -530,7 +532,7 @@ export default function HomePage() {
                 <ul className="text-sm text-gray-400 text-left space-y-3">
                   <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Droga porada za reklamację</li>
                   <li className="flex gap-2.5 items-start"><span className="text-red-400 shrink-0">✗</span>Termin wizyty za kilka dni</li>
-                  <li className="flex gap-2.5 items-start"><span className="text-emerald-500 shrink-0">✓</span>Potrzebne przy poważnych sporach</li>
+                  <li className="flex gap-2.5 items-start"><span className="text-amber-500 shrink-0">⚠</span>Rozważ przy sporach powyżej 5 000 zł</li>
                 </ul>
               </div>
             </AnimateIn>
@@ -646,26 +648,28 @@ export default function HomePage() {
         </AnimateIn>
       </section>
 
+      </main>
+
       {/* Footer */}
-      <footer className="bg-gray-900 py-12 px-6 text-xs text-gray-400">
+      <footer role="contentinfo" className="bg-gray-900 py-12 px-6 text-xs text-gray-400">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10">
-            <div>
+            <div role="region" aria-label="O serwisie">
               <div className="flex items-center gap-2 mb-4">
                 <span className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-xs">W</span>
                 <span className="font-bold text-sm text-white">writeback.pl</span>
               </div>
               <p className="text-gray-500 leading-relaxed text-xs">Pisma konsumenckie z właściwymi przepisami prawa polskiego.</p>
             </div>
-            <div>
+            <nav aria-label="Pisma">
               <div className="text-gray-200 font-semibold text-xs uppercase tracking-widest mb-4">Pisma</div>
               <ul className="space-y-2.5">
                 <li><Link href="/zamow" className="hover:text-gray-200 transition-colors">Napisz pismo</Link></li>
                 <li><Link href="/wzor-reklamacji" className="hover:text-gray-200 transition-colors">Wzór reklamacji</Link></li>
                 <li><Link href="/reklamacja-allegro" className="hover:text-gray-200 transition-colors">Reklamacja Allegro</Link></li>
               </ul>
-            </div>
-            <div>
+            </nav>
+            <nav aria-label="Poradniki">
               <div className="text-gray-200 font-semibold text-xs uppercase tracking-widest mb-4">Poradniki</div>
               <ul className="space-y-2.5">
                 <li><Link href="/blog" className="hover:text-gray-200 transition-colors">Wszystkie poradniki</Link></li>
@@ -674,15 +678,15 @@ export default function HomePage() {
                 <li><Link href="/blog/bank-odmawia-zwrotu" className="hover:text-gray-200 transition-colors">Bank odmawia zwrotu</Link></li>
                 <li><Link href="/blog/odszkodowanie-za-opozniony-lot" className="hover:text-gray-200 transition-colors">Odszkodowanie za lot</Link></li>
               </ul>
-            </div>
-            <div>
+            </nav>
+            <nav aria-label="Serwis">
               <div className="text-gray-200 font-semibold text-xs uppercase tracking-widest mb-4">Serwis</div>
               <ul className="space-y-2.5">
                 <li><Link href="/regulamin" className="hover:text-gray-200 transition-colors">Regulamin</Link></li>
                 <li><Link href="/polityka" className="hover:text-gray-200 transition-colors">Polityka prywatności</Link></li>
                 <li><a href="mailto:hello@writeback.pl" className="hover:text-gray-200 transition-colors">hello@writeback.pl</a></li>
               </ul>
-            </div>
+            </nav>
           </div>
           <div className="border-t border-white/5 pt-6 space-y-3">
             <p className="text-gray-500 text-[11px] leading-relaxed text-center max-w-2xl mx-auto">

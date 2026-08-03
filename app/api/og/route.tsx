@@ -1,12 +1,12 @@
 import { ImageResponse } from "next/og";
-import { getPost } from "../posts";
+import { NextRequest } from "next/server";
+import { getPost } from "../../blog/posts";
 
-export const alt = "Writeback — pisma konsumenckie";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+export const runtime = "edge";
 
-export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const slug = searchParams.get("slug") ?? "";
   const post = getPost(slug);
 
   const title = post?.title ?? "Writeback — pisma konsumenckie";
@@ -36,7 +36,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             height: "100%",
           }}
         >
-          {/* logo row */}
+          {/* logo */}
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 40 }}>
             <div
               style={{
@@ -124,6 +124,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         </div>
       </div>
     ),
-    { ...size }
+    { width: 1200, height: 630 }
   );
 }

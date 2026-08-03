@@ -78,7 +78,7 @@ export default function Content() {
         <li><strong>Odwołania</strong> od decyzji kuriera — wewnętrzna procedura odwoławcza</li>
         <li>Złożenia skargi do <strong>Prezesa UKE</strong> (dla operatorów pocztowych)</li>
         <li>Postępowania przed <strong>Stałym Polubownym Sądem Konsumenckim przy UKE</strong></li>
-        <li>Pozwu cywilnego — dla roszczeń do 30 000 zł postępowanie uproszczone (art. 505¹ KPC)</li>
+        <li>Pozwu cywilnego — dla roszczeń do 20 000 zł postępowanie uproszczone (art. 505¹ KPC)</li>
       </ul>
     </>
   );

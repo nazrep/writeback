@@ -15,17 +15,24 @@ export function EnNav() {
         </Link>
 
         {/* Desktop */}
-        <div className="hidden sm:flex items-center gap-3">
-          <div className="flex items-center rounded-lg border border-gray-200 text-xs font-semibold overflow-hidden">
-            <Link href="/" className="w-9 text-center py-1.5 text-gray-400 hover:text-gray-700 transition-colors">PL</Link>
-            <span className="w-9 text-center py-1.5 bg-indigo-600 text-white border-l border-indigo-500">EN</span>
+        <div className="hidden sm:flex items-center gap-6">
+          <div className="flex items-center gap-5 text-sm text-gray-600 font-medium">
+            <Link href="/blog?lang=en" className="hover:text-gray-900 transition-colors">Guides</Link>
+            <Link href="/en#how-it-works" className="hover:text-gray-900 transition-colors">How it works</Link>
+            <Link href="/en#faq" className="hover:text-gray-900 transition-colors">FAQ</Link>
           </div>
-          <Link
-            href="/zamow?lang=en"
-            className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-5 py-2 rounded-xl transition-colors shadow-sm"
-          >
-            Write a letter
-          </Link>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center rounded-lg border border-gray-200 text-xs font-semibold overflow-hidden">
+              <Link href="/" className="w-9 text-center py-1.5 text-gray-400 hover:text-gray-700 transition-colors">PL</Link>
+              <span className="w-9 text-center py-1.5 bg-indigo-600 text-white border-l border-indigo-500">EN</span>
+            </div>
+            <Link
+              href="/zamow?lang=en"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-5 py-2 rounded-xl transition-colors shadow-sm"
+            >
+              Write a letter
+            </Link>
+          </div>
         </div>
 
         {/* Mobile hamburger */}

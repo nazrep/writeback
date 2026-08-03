@@ -68,7 +68,7 @@ export default function Content() {
         <li>Złożyć skargę do <strong>Inspekcji Handlowej</strong> (bezpłatna — może zainicjować kontrolę IH i wydanie wiążącej decyzji)</li>
         <li>Skorzystać z <strong>Rzecznika Konsumentów</strong> w Twoim powiecie</li>
         <li>Złożyć wniosek o mediację do <strong>Stałego Polubownego Sądu Konsumenckiego przy Inspekcji Handlowej</strong></li>
-        <li>Skierować sprawę do <strong>sądu powszechnego</strong> — dla roszczeń do 30 000 zł postępowanie jest uproszczone (art. 505¹ KPC)</li>
+        <li>Skierować sprawę do <strong>sądu powszechnego</strong> — dla roszczeń do 20 000 zł postępowanie jest uproszczone (art. 505¹ KPC)</li>
       </ul>
 
       <h2>Gwarancja producenta vs reklamacja do sklepu</h2>

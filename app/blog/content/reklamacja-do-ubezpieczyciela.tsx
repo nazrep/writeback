@@ -8,7 +8,7 @@ export default function Content() {
       <h2>Kluczowy przepis, o którym ubezpieczyciel Ci nie powie</h2>
       <p><strong>Art. 817 § 1 Kodeksu cywilnego</strong> stanowi wprost: ubezpieczyciel zobowiązany jest wypłacić odszkodowanie w terminie <strong>30 dni</strong> od daty zawiadomienia o szkodzie. Jeśli wyjaśnienie okoliczności w tym terminie jest niemożliwe — maksymalnie <strong>14 dni od wyjaśnienia tych okoliczności</strong>, ale nie więcej niż <strong>90 dni od zgłoszenia szkody</strong> (art. 817 § 2 KC).</p>
       <p>Dla ubezpieczeń OC komunikacyjnego obowiązuje dodatkowo ustawa z dnia 22 maja 2003 r. o ubezpieczeniach obowiązkowych — termin wypłaty jest tu identyczny (30 dni), ale za każdy dzień opóźnienia należą Ci się <strong>odsetki ustawowe za opóźnienie</strong> (KC art. 481 § 2: aktualna stopa referencyjna NBP + 5,5 punktu procentowego).</p>
-      <p>Do tego dochodzi <strong>ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamacji przez podmioty rynku finansowego</strong>: ubezpieczyciel ma <strong>30 dni</strong> na rozpatrzenie reklamacji (wyjątkowo 60 dni przy szczególnie skomplikowanych sprawach — art. 5 ust. 4). Brak odpowiedzi w terminie = <strong>reklamacja uznana za zasadną</strong> (art. 6 ustawy).</p>
+      <p>Do tego dochodzi <strong>ustawa z dnia 5 sierpnia 2015 r. o rozpatrywaniu reklamacji przez podmioty rynku finansowego</strong>: ubezpieczyciel ma <strong>30 dni</strong> na rozpatrzenie reklamacji (wyjątkowo 60 dni przy szczególnie skomplikowanych sprawach — art. 6 tej ustawy). Brak odpowiedzi w terminie = <strong>reklamacja uznana za zasadną</strong> (art. 8 ustawy).</p>
 
       <h2>Najczęstsze powody odmowy i jak je obalić</h2>
 

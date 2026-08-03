@@ -41,6 +41,10 @@ export default function ContentEn() {
       </ul>
       <p>Important: ordinary negligence does not forfeit your right to a refund. Clicking on a phishing link that appeared legitimate (e.g. impersonating a bank website) is generally not gross negligence. The bank must prove a very high level of carelessness on your part.</p>
 
+      <h2>Credit card vs debit card: practical differences</h2>
+      <p>With a <strong>debit card</strong>, the bank must return the funds under Art. 46 promptly and then conduct its own investigation. The money goes back to your account even before the matter is resolved.</p>
+      <p>With a <strong>credit card</strong>, the situation is similar, but banks have an additional chargeback procedure through the Visa or Mastercard network that allows a transaction to be reversed at the seller's end. You can invoke both Art. 46 and the chargeback mechanism. Call the helpline and ask about both options.</p>
+
       <h2>How to write an effective letter to the bank</h2>
       <p>A telephone report is worth following up with a written complaint. A phone call is often logged as a "verbal complaint" with lower priority. A letter citing statutory provisions is harder to ignore.</p>
       <p>Include in the letter:</p>
@@ -60,7 +64,7 @@ export default function ContentEn() {
         <li><strong>Financial Ombudsman (Rzecznik Finansowy)</strong>: the most effective route. Banks take RF complaints very seriously — the RF can escalate cases to KNF and publishes complaint statistics that affect the bank's reputation. The process is free and fast. More at rf.gov.pl</li>
         <li><strong>KNF (Polish Financial Supervision Authority)</strong>: accepts complaints about banks violating regulations. Works more slowly than the RF, but a signal to the regulator has long-term significance</li>
         <li><strong>Arbitration Court at KNF</strong>: free mediation/arbitration proceedings, requires the bank's consent to participate</li>
-        <li><strong>Civil court</strong>: for amounts above a few thousand zloty it is worth considering. For disputes up to 30,000 PLN the simplified procedure is relatively inexpensive (Art. 505¹ CCP)</li>
+        <li><strong>Civil court</strong>: for amounts above a few thousand zloty it is worth considering. For disputes up to 20,000 PLN the simplified procedure is relatively inexpensive (Art. 505¹ CCP)</li>
       </ul>
       <p>Having a store complaint rather than a bank issue? Read <Link href="/blog/reklamacja-sklep-internetowy?lang=en" className="text-indigo-600 underline underline-offset-2 hover:text-indigo-700">how to file an effective complaint to an online store</Link>.</p>
 
