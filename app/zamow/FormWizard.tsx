@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useId, Children, cloneElement, isValidElement } from "react";
 import NextImage from "next/image";
+import posthog from "posthog-js";
 
 async function compressImage(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -528,6 +529,7 @@ export function FormWizard({ lang }: { lang?: string }) {
   function navigate(newStep: number) {
     setDirection(newStep > step ? "forward" : "back");
     setStep(newStep);
+    posthog.capture("wizard_step", { step: newStep, step_name: STEPS[newStep], doc_type: docType });
   }
   const [docType, setDocType] = useState<DocTypeId | null>(null);
   const [data, setData] = useState<FormData>(EMPTY);
@@ -643,6 +645,7 @@ export function FormWizard({ lang }: { lang?: string }) {
     setConsentError(false);
     setLoading(true);
     setCheckoutError(false);
+    posthog.capture("checkout_initiated", { doc_type: docType, has_promo: !!promoData });
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -654,6 +657,7 @@ export function FormWizard({ lang }: { lang?: string }) {
       if (json.url) window.location.href = json.url;
       else throw new Error();
     } catch {
+      posthog.capture("checkout_error", { doc_type: docType });
       setCheckoutError(true);
     } finally {
       setLoading(false);

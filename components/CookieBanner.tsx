@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import posthog from "posthog-js";
 
 const GA_ID = "G-433MLRJZJJ";
 
@@ -34,13 +35,17 @@ export function CookieBanner() {
 
   function accept() {
     localStorage.setItem("cookies_choice", "accepted");
+    localStorage.setItem("cookie_consent", "accepted");
     loadGA();
+    posthog.opt_in_capturing();
     setVisible(false);
     setDecided(true);
   }
 
   function decline() {
     localStorage.setItem("cookies_choice", "declined");
+    localStorage.setItem("cookie_consent", "declined");
+    posthog.opt_out_capturing();
     setVisible(false);
     setDecided(true);
   }
