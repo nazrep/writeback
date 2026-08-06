@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-kaufland",
+    title: "Reklamacja w Kaufland: elektronika z oferty tygodnia i lada mięsna (2026)",
+    description: "Kaufland twierdzi, że grill z oferty tygodnia to towar sezonowy? Nieprawda — masz 2 lata na reklamację. Jak reklamować mięso i pieczywo kupione na wagę.",
+    date: "2026-08-06",
+    readTime: "6 min",
+    category: "Sklep stacjonarny",
+    titleEn: "Complaint at Kaufland: Weekly-Offer Electronics and the Meat Counter (2026)",
+    descriptionEn: "Kaufland says a weekly-offer grill is seasonal, no complaints allowed? Not true — you get 2 years. How to complain about meat and bread bought by weight.",
+    categoryEn: "Physical Store",
+    readTimeEn: "6 min",
+    faq: [
+      { q: "Kaufland mówi że grill/basen to towar sezonowy i po sezonie nie przyjmują reklamacji. Czy to prawda?", a: "Nie. Sezonowość produktu nie ma znaczenia dla ustawowego terminu reklamacji. Masz 2 lata od daty zakupu (art. 43c ust. 1 UPK), niezależnie od pory roku czy tego, czy sklep nadal sprzedaje dany model." },
+      { q: "Kupiłem mięso na wagę w Kauflandzie i było nieświeże mimo ważnej daty przydatności. Czy mogę reklamować?", a: "Tak. To niezgodność towaru z umową na podstawie art. 43b UPK. Zachowaj resztki produktu oraz etykietę wagową jako dowód i zgłoś reklamację z paragonem lub e-paragonem z aplikacji Kaufland Card. Przy podejrzeniu zagrożenia zdrowia zgłoś sprawę też do Sanepidu." },
+      { q: "Produkt z oferty tygodnia nie jest już dostępny w Kauflandzie. Czy mogą odmówić reklamacji?", a: "Nie. Jeśli wymiana na identyczny egzemplarz jest niemożliwa, przysługuje Ci obniżenie ceny lub pełny zwrot pieniędzy (art. 43e ust. 1 UPK). Brak towaru w bieżącym asortymencie to podstawa do zwrotu, a nie odmowy." },
+      { q: "Kasjer zaproponował mi płatną gwarancję rozszerzoną przy kasie, a ja odmówiłem. Czy zostałem bez ochrony?", a: "Nie. Płatna gwarancja rozszerzona to osobna, dobrowolna umowa z zewnętrznym ubezpieczycielem. Twoje ustawowe prawo do reklamacji z tytułu niezgodności towaru z umową działa niezależnie od niej i obowiązuje przez pełne 2 lata." },
+    ],
+    faqEn: [
+      { q: "Kaufland says a grill/pool is a seasonal item and won't accept complaints after the season. Is that true?", a: "No. Product seasonality has no bearing on the statutory complaint period. You have 2 years from the date of purchase (Art. 43c §1 CRA), regardless of the time of year or whether the store still sells that model." },
+      { q: "I bought meat by weight at Kaufland and it was stale despite being within its use-by date. Can I complain?", a: "Yes. That is non-conformity under Art. 43b CRA. Keep the remains of the product and the weight label as evidence, and file the complaint with your receipt or e-receipt from the Kaufland Card app. If you suspect a health risk, also report it to the Sanitary Inspectorate." },
+      { q: "The weekly-offer product is no longer available at Kaufland. Can they refuse my complaint?", a: "No. If replacement with an identical item is impossible, you are entitled to a price reduction or a full refund (Art. 43e §1 CRA). The item being out of the current range is grounds for a refund, not for refusal." },
+      { q: "The cashier offered me a paid extended warranty at checkout and I declined. Am I left without protection?", a: "No. A paid extended warranty is a separate, voluntary contract with a third-party insurer. Your statutory right to complain about non-conformity applies independently of it and lasts the full 2 years." },
+    ],
+  },
+  {
     slug: "reklamacja-wycieczki",
     title: "Reklamacja wycieczki: hotel niezgodny z opisem i zmarnowany urlop (2026)",
     description: "Hotel z katalogu nie zgadza się z rzeczywistością? Masz prawo do obniżki ceny i zadośćuczynienia za zmarnowany urlop. 3 lata na reklamację, nie 30 dni.",
