@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-zabka",
+    title: "Reklamacja w Żabce: przeterminowany produkt i franczyza a Twoje prawa (2026)",
+    description: "Ekspedientka w Żabce mówi że żywność nie podlega reklamacji, a sklep to osobna firma? Nieprawda — masz 2 lata, a sklep musi reklamację przyjąć mimo franczyzy.",
+    date: "2026-08-13",
+    readTime: "6 min",
+    category: "Sklep stacjonarny",
+    titleEn: "Complaint at Żabka: Expired Products and Franchise Rules (2026)",
+    descriptionEn: "Żabka staff claim food cannot be complained about, or that it is a separate franchise business? Not true — you get 2 years and the store must accept it.",
+    categoryEn: "Physical Store",
+    readTimeEn: "6 min",
+    faq: [
+      { q: "Czy mogę reklamować przeterminowaną lub zepsutą kanapkę z Żabki, skoro to żywność?", a: "Tak. Wyłączony jest tylko zwrot bez podania przyczyny (14 dni), i to wyłącznie przy zakupach na odległość — a nie reklamacja z tytułu wady. Spleśniałe pieczywo, skwaśniałe mleko czy napój bez gazu mimo nieotwartej butelki to niezgodność towaru z umową (art. 43b UPK), która dotyczy żywności tak samo jak każdego innego towaru." },
+      { q: "Sklep Żabka to osobna firma (franczyza). Czy w ogóle mogę tam złożyć reklamację?", a: "Tak. To prawda, że większość sklepów Żabka prowadzą niezależni franczyzobiorcy, a nie Żabka Polska bezpośrednio — to oni są stroną umowy sprzedaży (art. 535 KC) i sprzedawcą odpowiedzialnym za towar. Ale to nie zwalnia sklepu z obowiązku przyjęcia Twojej reklamacji na miejscu. Dane sprzedawcy do formalnego pisma znajdziesz na paragonie." },
+      { q: "Automat z kawą w Żabce pobrał ode mnie pieniądze BLIK-iem, a nie wydał kawy. Co mi przysługuje?", a: "Zwrot pieniędzy. Sprzedawca pobrał zapłatę i nie wykonał umowy sprzedaży — na podstawie art. 471 Kodeksu cywilnego masz prawo żądać zwrotu zapłaconej kwoty. Zgłoś to obsłudze z potwierdzeniem płatności z aplikacji bankowej, zwykle rozwiązuje się to od ręki, bez formalnej reklamacji." },
+      { q: "Kupiłem coś w autonomicznym sklepie Żabka Nano i produkt okazał się wadliwy. Jak reklamować, skoro nie ma kasjera?", a: "Reklamację składasz przez aplikację Żappka lub infolinię wskazaną na zabka.pl, dołączając zdjęcie produktu i historię transakcji z aplikacji. Obowiązują te same terminy: 2 lata na zgłoszenie wady i 14 dni na odpowiedź sprzedawcy (art. 43c i 7a UPK)." },
+    ],
+    faqEn: [
+      { q: "Can I complain about an expired or spoiled sandwich from Żabka, since it's food?", a: "Yes. Only the no-reason 14-day return right is excluded for perishable goods, and only for distance purchases — not a complaint for a defect. Moldy bread, soured milk, or a flat drink in an unopened bottle are non-conformity under Art. 43b of the Consumer Rights Act, which applies to food just like any other good." },
+      { q: "A Żabka store is a separate franchise business. Can I even file a complaint there?", a: "Yes. It's true most Żabka stores are run by independent franchisees, not Żabka Polska directly — they are the party to the sales contract (Art. 535 Civil Code) and the seller liable for the goods. But that doesn't exempt the store from accepting your complaint on the spot. The seller's details for a formal letter are on your receipt." },
+      { q: "A coffee machine at Żabka took my BLIK payment but didn't dispense the coffee. What am I entitled to?", a: "A refund. The seller took payment and failed to perform the sales contract — under Art. 471 of the Civil Code you can demand your money back. Report it to staff with your banking app confirmation; this is usually resolved on the spot without a formal complaint." },
+      { q: "I bought something at an unstaffed Żabka Nano store and it was defective. How do I complain with no cashier?", a: "File the complaint through the Żappka app or the helpline listed on zabka.pl, attaching a photo of the product and your transaction history from the app. The same deadlines apply: 2 years to report a defect and 14 days for the seller to respond (Art. 43c and 7a of the Consumer Rights Act)." },
+    ],
+  },
+  {
     slug: "reklamacja-kaufland",
     title: "Reklamacja w Kaufland: elektronika z oferty tygodnia i lada mięsna (2026)",
     description: "Kaufland twierdzi, że grill z oferty tygodnia to towar sezonowy? Nieprawda — masz 2 lata na reklamację. Jak reklamować mięso i pieczywo kupione na wagę.",
