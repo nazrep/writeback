@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-smyk",
+    title: "Reklamacja w Smyk: wyprawka szkolna, zabawki i wózki dziecięce (2026)",
+    description: "Tornister rozpadł się po miesiącu, a Smyk odsyła Cię do producenta? Nieprawda — masz 2 lata na reklamację wyprawki szkolnej, zabawek i wózka dziecięcego.",
+    date: "2026-08-20",
+    readTime: "6 min",
+    category: "Artykuły dziecięce",
+    titleEn: "Complaint at Smyk: School Gear, Toys and Strollers (2026)",
+    descriptionEn: "Backpack fell apart after a month and Smyk staff send you to the manufacturer? Not true — you get 2 years to complain about school gear, toys, and strollers.",
+    categoryEn: "Children's Products",
+    readTimeEn: "6 min",
+    faq: [
+      { q: "Sprzedawczyni w Smyk twierdzi, że tornister trzeba reklamować u producenta, a nie w sklepie. Czy to prawda?", a: "Nie. Art. 43b ustawy o prawach konsumenta: to sprzedawca (Smyk) odpowiada za niezgodność towaru z umową, nie producent tornistra. Gwarancja producenta to opcja dodatkowa, z której możesz, ale nie musisz korzystać — sklep nie może Cię do niej odsyłać zamiast przyjąć reklamację." },
+      { q: "Obuwie szkolne kupione w Smyk rozkleiło się po miesiącu noszenia przez dziecko. Czy mogę je jeszcze reklamować?", a: "Tak. Normalne noszenie butów przez miesiąc nie wyklucza reklamacji — masz na nią 2 lata od zakupu (art. 43c ust. 1 UPK), a przez ten czas obowiązuje domniemanie, że wada istniała już w chwili sprzedaży. To sklep musiałby udowodnić, że to Ty ją spowodowałeś, a nie odwrotnie." },
+      { q: "Zabawka kupiona w Smyk okazała się niebezpieczna — np. odpadł mały element, którym dziecko mogło się udławić. Co poza reklamacją mogę zrobić?", a: "Zgłoś sprawę do Inspekcji Handlowej lub UOKiK jako produkt niebezpieczny, niezależnie od reklamacji do sklepu o zwrot pieniędzy. Urząd może wszcząć postępowanie w sprawie bezpieczeństwa produktu i wycofać dany model z obrotu w całej Polsce." },
+      { q: "Smyk proponuje mi kartę podarunkową zamiast zwrotu pieniędzy za wadliwy produkt. Czy muszę się zgodzić?", a: "Nie. Karta podarunkowa to propozycja handlowa, nie Twój obowiązek. Jeśli żądasz zwrotu pieniędzy na podstawie art. 43e ust. 1 UPK, sklep musi przelać środki na Twoje konto — możesz przyjąć kartę, ale nie musisz." },
+    ],
+    faqEn: [
+      { q: "Smyk staff say I need to complain to the manufacturer about the backpack, not the store. Is that true?", a: "No. Art. 43b of the Consumer Rights Act: the seller (Smyk) is liable for non-conformity, not the backpack's manufacturer. The manufacturer's warranty is an optional extra you may use, but the store cannot redirect you to it instead of accepting your complaint." },
+      { q: "School shoes bought at Smyk fell apart after a month of my child wearing them. Can I still complain?", a: "Yes. Normal wear for a month does not rule out a complaint — you have 2 years from purchase (Art. 43c §1 CRA), and throughout that time it is presumed the defect existed at the time of sale. The store would have to prove you caused it, not the other way around." },
+      { q: "A toy from Smyk turned out to be dangerous — e.g. a small part came loose that a child could choke on. What can I do besides filing a complaint?", a: "Report it to the Trade Inspection or UOKiK as a dangerous product, separately from your refund complaint to the store. The authority can open a product-safety investigation and pull the model from sale across Poland." },
+      { q: "Smyk offered me a gift card instead of a refund for a defective product. Do I have to accept it?", a: "No. A gift card is a commercial offer, not your obligation. If you demand a cash refund under Art. 43e §1 CRA, the store must transfer the funds to your account — you may accept the card, but you don't have to." },
+    ],
+  },
+  {
     slug: "reklamacja-zabka",
     title: "Reklamacja w Żabce: przeterminowany produkt i franczyza a Twoje prawa (2026)",
     description: "Ekspedientka w Żabce mówi że żywność nie podlega reklamacji, a sklep to osobna firma? Nieprawda — masz 2 lata, a sklep musi reklamację przyjąć mimo franczyzy.",

@@ -47,6 +47,7 @@ import ReklamacjaHomeYou from "./reklamacja-home-you";
 import ReklamacjaKaufland from "./reklamacja-kaufland";
 import ReklamacjaWycieczki from "./reklamacja-wycieczki";
 import ReklamacjaZabka from "./reklamacja-zabka";
+import ReklamacjaSmyk from "./reklamacja-smyk";
 
 // EN
 import ReklamacjaSamochoduZKomisuEn from "./reklamacja-samochodu-z-komisu.en";
@@ -117,6 +118,7 @@ const CONTENT: Record<string, FC> = {
   "reklamacja-kaufland": ReklamacjaKaufland,
   "reklamacja-wycieczki": ReklamacjaWycieczki,
   "reklamacja-zabka": ReklamacjaZabka,
+  "reklamacja-smyk": ReklamacjaSmyk,
 };
 
 const CONTENT_EN: Record<string, FC> = {
