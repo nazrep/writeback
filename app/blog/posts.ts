@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-obi",
+    title: "Reklamacja w OBI: narzędzia, materiały budowlane i rośliny ogrodowe (2026)",
+    description: "OBI twierdzi że rośliny to towar żywy i nie podlegają reklamacji? Nieprawda — obumarły krzew ma taką samą wadę jak zepsute narzędzie. 2 lata na reklamację, 14 dni na odpowiedź sklepu.",
+    date: "2026-08-27",
+    readTime: "6 min",
+    category: "Dom i wnętrze",
+    titleEn: "Complaint at OBI: Tools, Building Materials and Garden Plants (2026)",
+    descriptionEn: "OBI claims plants are a living product and can't be complained about? Not true — a dead shrub has the same defect as a broken tool. 2 years to complain, 14 days for the store to respond.",
+    categoryEn: "Home & Garden",
+    readTimeEn: "6 min",
+    faq: [
+      { q: "Czy mogę reklamować roślinę kupioną w OBI, jeśli uschła po dwóch tygodniach?", a: "Tak, jeśli sadziłeś i pielęgnowałeś ją zgodnie z instrukcją na etykiecie. Roślina, która obumiera mimo prawidłowej pielęgnacji, ma wadę ukrytą już w chwili sprzedaży — to niezgodność towaru z umową (art. 43b UPK), a nie „naturalna kolej rzeczy”. OBI musi udowodnić, że to Twój błąd w pielęgnacji, a nie odwrotnie." },
+      { q: "OBI odsyła mnie do producenta narzędzia. Czy muszę się do niego zwracać?", a: "Nie. Art. 43b UPK jasno mówi, że to sprzedawca — czyli Superhobby Market Budowlany sp. z o.o. jako operator OBI — odpowiada za niezgodność towaru z umową. Gwarancja producenta to osobna, dodatkowa opcja, z której możesz, ale nie musisz korzystać." },
+      { q: "Wypożyczyłem sprzęt z wypożyczalni OBI i okazał się niesprawny. Czy to reklamacja z ustawy o prawach konsumenta?", a: "Nie. Najem sprzętu rządzi się Kodeksem cywilnym (art. 664 KC), a nie ustawą o prawach konsumenta, która dotyczy umów sprzedaży. Przy wadliwym sprzęcie z wypożyczalni żądasz obniżenia czynszu za okres niesprawności lub zwrotu opłaty, jeśli sprzęt nie nadawał się do użytku od początku." },
+      { q: "Kupiłem produkt na obi.pl od sprzedawcy z platformy OBI Marketplace. Do kogo składam reklamację?", a: "Do tego sprzedawcy — to on zawarł z Tobą umowę sprzedaży, nie sama Superhobby Market Budowlany. Dane sprzedawcy znajdziesz na karcie produktu i w potwierdzeniu zamówienia. Obowiązują go te same ustawowe terminy: 2 lata na reklamację i 14 dni na odpowiedź." },
+    ],
+    faqEn: [
+      { q: "Can I complain about a plant bought at OBI if it withered after two weeks?", a: "Yes, if you planted and cared for it according to the label instructions. A plant that dies despite proper care had a defect already hidden at the time of sale — that is non-conformity under Art. 43b of the Consumer Rights Act, not just 'nature taking its course'. OBI must prove the fault was in your care, not the other way around." },
+      { q: "OBI is sending me to the tool's manufacturer. Do I have to go there?", a: "No. Art. 43b of the Consumer Rights Act clearly states that the seller — Superhobby Market Budowlany sp. z o.o., which operates OBI — is liable for non-conformity. The manufacturer's warranty is a separate, optional extra you may use, but don't have to." },
+      { q: "I rented equipment from the OBI rental service and it turned out to be faulty. Is this a consumer-law complaint?", a: "No. Equipment rental is governed by the Civil Code (Art. 664 CC), not the Consumer Rights Act, which covers sales contracts. For faulty rented equipment you can demand a reduced rental fee for the time it was unusable, or a full refund if it never worked at all." },
+      { q: "I bought a product on obi.pl from a seller on the OBI Marketplace platform. Who do I complain to?", a: "To that seller — they are the party to your sales contract, not Superhobby Market Budowlany itself. You'll find the seller's details on the product page and in your order confirmation. The same statutory deadlines apply to them: 2 years to complain and 14 days to respond." },
+    ],
+  },
+  {
     slug: "reklamacja-smyk",
     title: "Reklamacja w Smyk: wyprawka szkolna, zabawki i wózki dziecięce (2026)",
     description: "Tornister rozpadł się po miesiącu, a Smyk odsyła Cię do producenta? Nieprawda — masz 2 lata na reklamację wyprawki szkolnej, zabawek i wózka dziecięcego.",

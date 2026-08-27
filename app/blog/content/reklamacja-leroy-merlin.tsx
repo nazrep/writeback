@@ -31,7 +31,7 @@ export default function Content() {
       <h2>Typowe problemy z produktami Leroy Merlin</h2>
 
       <h3>Farby i lakiery — łuszczenie, złe krycie, zmiana koloru</h3>
-      <p>Farba, która łuszczy się po tygodniu na prawidłowo przygotowanym podłożu, nie ma trwałości, jakiej konsument może rozsądnie oczekiwać (art. 43b ust. 2 pkt 3 UPK). Zachowaj puszkę z numerem partii i zrób zdjęcia efektu. Jeśli stosowałeś się do instrukcji na opakowaniu, wina nie leży po Twojej stronie.</p>
+      <p>Farba, która łuszczy się po tygodniu na prawidłowo przygotowanym podłożu, nie ma trwałości, jakiej konsument może rozsądnie oczekiwać (art. 43b ust. 2 pkt 2 UPK). Zachowaj puszkę z numerem partii i zrób zdjęcia efektu. Jeśli stosowałeś się do instrukcji na opakowaniu, wina nie leży po Twojej stronie.</p>
 
       <h3>Panele podłogowe — pęcznienie, rozwarstwienie, niezgodność wzoru</h3>
       <p>Panele, które pęcznieją po miesiącu w normalnych warunkach (wilgotność zgodna z instrukcją), mają wadę. Leroy Merlin nie może bronić się argumentem „za wysoka wilgotność" bez przedstawienia dowodu. Zrób zdjęcia i zmierz wilgotność pomieszczenia — to Twój główny argument.</p>
