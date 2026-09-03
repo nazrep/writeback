@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-ccc",
+    title: "Reklamacja w CCC: odklejona podeszwa, pęknięta skóra, brak pudełka (2026)",
+    description: "CCC twierdzi że odklejona podeszwa to wada mechaniczna, a bez pudełka nie przyjmą reklamacji? Nieprawda — to sprzedawca musi udowodnić Twoją winę. 2 lata na reklamację obuwia.",
+    date: "2026-09-03",
+    readTime: "6 min",
+    category: "Obuwie",
+    titleEn: "Complaint at CCC: Detached Sole, Cracked Leather, Missing Box (2026)",
+    descriptionEn: "CCC claims a detached sole is mechanical damage, or won't accept a complaint without the original box? Not true — the seller must prove you're at fault. 2 years to complain about footwear.",
+    categoryEn: "Footwear",
+    readTimeEn: "6 min",
+    faq: [
+      { q: "Czy mogę reklamować buty z CCC, jeśli wyrzuciłem oryginalne pudełko?", a: "Tak. Brak oryginalnego opakowania nie jest podstawą do odmowy reklamacji z tytułu wady — to wymóg dotyczy co najwyżej dobrowolnego zwrotu. Wystarczy, że but dotrze do sprzedawcy w stanie umożliwiającym ocenę wady, zapakowany w dowolny sposób chroniący go w transporcie." },
+      { q: "CCC mówi, że odklejona podeszwa to wada mechaniczna spowodowana noszeniem. Czy mają rację?", a: "Niekoniecznie. Przez 2 lata od zakupu obowiązuje domniemanie, że wada istniała już w chwili sprzedaży (art. 43c ust. 1 UPK) — to sprzedawca musi udowodnić, że przyczyną było niewłaściwe użytkowanie, np. konkretną ekspertyzą, a nie samo stwierdzenie na oko przy ladzie." },
+      { q: "Ile mam czasu na reklamację butów kupionych w CCC?", a: "2 lata od dnia otrzymania obuwia (art. 43c ust. 1 UPK), niezależnie od tego, czy kupiłeś w salonie stacjonarnym, czy online. To zupełnie inny termin niż 14- lub 30-dniowe okno na dobrowolny zwrot towaru bez wady." },
+      { q: "Kupiłem buty na eobuwie.pl lub Modivo, a nie w salonie CCC. Czy zasady reklamacji są inne?", a: "Zasady prawne są identyczne — 2 lata, domniemanie wady, 14 dni na odpowiedź. Różni się tylko adresat reklamacji: składasz ją do spółki, z którą faktycznie zawarłeś umowę sprzedaży (eobuwie.pl lub Modivo), a nie w przypadkowym salonie CCC — dane sprzedawcy znajdziesz w potwierdzeniu zamówienia." },
+    ],
+    faqEn: [
+      { q: "Can I complain about CCC shoes if I threw away the original box?", a: "Yes. A missing original box is not grounds to refuse a defect complaint — that requirement applies at most to a voluntary return. It's enough for the shoes to reach the seller in a state that allows the defect to be assessed, packed in any way that protects them in transit." },
+      { q: "CCC says the detached sole is mechanical damage caused by wear. Are they right?", a: "Not necessarily. For 2 years from purchase, the defect is presumed to have existed at the time of sale (Art. 43c §1 CRA) — the seller must prove the cause was improper use, e.g. with a specific expert opinion, not just a visual judgment at the counter." },
+      { q: "How much time do I have to complain about shoes bought at CCC?", a: "2 years from the date you received the footwear (Art. 43c §1 CRA), whether you bought in a physical store or online. That is a completely different deadline than the 14- or 30-day window for a voluntary no-defect return." },
+      { q: "I bought shoes on eobuwie.pl or Modivo, not in a CCC store. Are the complaint rules different?", a: "The legal rules are identical — 2 years, presumption of defect, 14 days to respond. Only the recipient differs: you file the complaint with the company you actually contracted with (eobuwie.pl or Modivo), not a random CCC store — you'll find the seller's details in your order confirmation." },
+    ],
+  },
+  {
     slug: "reklamacja-obi",
     title: "Reklamacja w OBI: narzędzia, materiały budowlane i rośliny ogrodowe (2026)",
     description: "OBI twierdzi że rośliny to towar żywy i nie podlegają reklamacji? Nieprawda — obumarły krzew ma taką samą wadę jak zepsute narzędzie. 2 lata na reklamację, 14 dni na odpowiedź sklepu.",

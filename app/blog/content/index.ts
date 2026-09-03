@@ -35,6 +35,7 @@ import ReklamacjaZara from "./reklamacja-zara";
 import ReklamacjaRossmann from "./reklamacja-rossmann";
 import ReklamacjaLidl from "./reklamacja-lidl";
 import ReklamacjaEmpik from "./reklamacja-empik";
+import ReklamacjaCcc from "./reklamacja-ccc";
 import ReklamacjaDecathlon from "./reklamacja-decathlon";
 import ReklamacjaAction from "./reklamacja-action";
 import ReklamacjaPepco from "./reklamacja-pepco";
@@ -107,6 +108,7 @@ const CONTENT: Record<string, FC> = {
   "reklamacja-rossmann": ReklamacjaRossmann,
   "reklamacja-lidl": ReklamacjaLidl,
   "reklamacja-empik": ReklamacjaEmpik,
+  "reklamacja-ccc": ReklamacjaCcc,
   "reklamacja-decathlon": ReklamacjaDecathlon,
   "reklamacja-action": ReklamacjaAction,
   "reklamacja-pepco": ReklamacjaPepco,
