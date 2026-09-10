@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-vinted-olx",
+    title: "Reklamacja na Vinted i OLX: kiedy masz prawa konsumenta, a kiedy nie (2026)",
+    description: "Sprzedawca na Vinted zniknął po sprzedaży wadliwej rzeczy? Sprawdź, kiedy chroni Cię ustawa o prawach konsumenta, a kiedy tylko rękojmia z kodeksu cywilnego.",
+    date: "2026-09-10",
+    readTime: "7 min",
+    category: "Rynek wtórny",
+    titleEn: "Complaints on Vinted and OLX: When You Have Consumer Rights, and When You Don't (2026)",
+    descriptionEn: "Seller on Vinted vanished after selling you a defective item? Find out when Polish consumer law protects you, and when only Civil Code warranty rules apply.",
+    categoryEn: "Secondhand Market",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Czy mogę zwrócić towar z Vinted bez podania przyczyny, tak jak w sklepie internetowym?", a: "Nie, jeśli sprzedawca jest osobą prywatną. Prawo do odstąpienia od umowy zawartej na odległość bez podania przyczyny (14 dni, art. 27 UPK) przysługuje tylko wobec sprzedawcy-przedsiębiorcy. Kupując od osoby prywatnej na Vinted, możesz reklamować wyłącznie faktyczną wadę rzeczy na zasadach rękojmi z Kodeksu cywilnego — a nie zmienić zdanie bez powodu." },
+      { q: "Sprzedawca na OLX ma w ogłoszeniu dane firmy i NIP. Czy to zmienia moje prawa?", a: "Tak, zasadniczo. Jeśli sprzedawca występuje w ogłoszeniu jako przedsiębiorca — dane firmy, NIP, sprzedaż w ramach działalności gospodarczej — stosuje się ustawa o prawach konsumenta w pełnym zakresie: 2 lata na reklamację, domniemanie wady przez cały ten okres (art. 43c ust. 1 UPK) i 14 dni dla sprzedawcy na odpowiedź (art. 7a UPK), a nie tylko ograniczona rękojmia z Kodeksu cywilnego." },
+      { q: "Zgłosiłem problem w Ochronie Kupujących Vinted za późno. Czy straciłem wszystkie prawa?", a: "Nie wszystkie. Straciłeś dostęp do wewnętrznego, szybkiego trybu zwrotu pieniędzy przez platformę, ale Twoje uprawnienia z rękojmi wobec sprzedawcy (art. 556 i nast. KC) trwają nadal — 2 lata od wydania rzeczy. Możesz skontaktować się bezpośrednio ze sprzedawcą z żądaniem, a w razie odmowy — dochodzić roszczenia na drodze cywilnej." },
+      { q: "Kupiony na Vinted sweter okazał się podróbką, mimo że w ogłoszeniu był opisany jako oryginalny. Co mogę zrobić?", a: "To niezgodność rzeczy z opisem oferty, czyli wada w rozumieniu rękojmi (art. 5561 KC), niezależnie od tego, czy sprzedawca zrobił to świadomie. Możesz żądać obniżenia ceny albo odstąpić od umowy i zwrócić towar za zwrotem pieniędzy (art. 560 KC). Jeśli sprzedawca świadomie wprowadził Cię w błąd co do autentyczności, rozważ też zgłoszenie sprawy na policji — może to wyczerpywać znamiona oszustwa (art. 286 Kodeksu karnego)." },
+    ],
+    faqEn: [
+      { q: "Can I return an item from Vinted without giving a reason, like from an online store?", a: "No, if the seller is a private individual. The right to withdraw from a distance contract without giving a reason (14 days, Art. 27 CRA) only applies against a business seller. Buying from a private person on Vinted, you can only complain about an actual defect under the Civil Code's warranty rules — not simply change your mind." },
+      { q: "The seller on OLX lists company details and a tax ID in the ad. Does that change my rights?", a: "Yes, generally. If the seller appears in the ad as a business — company details, tax ID, selling as part of a business activity — the Consumer Rights Act applies in full: 2 years to file a complaint, a presumption of defect throughout that period (Art. 43c §1 CRA), and 14 days for the seller to respond (Art. 7a CRA), not just the limited Civil Code warranty." },
+      { q: "I reported an issue to Vinted Buyer Protection too late. Have I lost all my rights?", a: "Not all of them. You've lost access to the platform's fast internal refund process, but your warranty rights against the seller (Art. 556 ff. Civil Code) still stand — 2 years from delivery. You can contact the seller directly with a demand, and pursue a civil claim if they refuse." },
+      { q: "A sweater I bought on Vinted turned out to be counterfeit, even though the listing described it as genuine. What can I do?", a: "That's a mismatch between the item and the listing's description — a defect under Civil Code warranty rules (Art. 5561), regardless of whether the seller did it knowingly. You can demand a price reduction, or withdraw from the contract and return the item for a refund (Art. 560 Civil Code). If the seller knowingly misled you about authenticity, consider also reporting it to the police — it may amount to fraud (Art. 286 Criminal Code)." },
+    ],
+  },
+  {
     slug: "reklamacja-ccc",
     title: "Reklamacja w CCC: odklejona podeszwa, pęknięta skóra, brak pudełka (2026)",
     description: "CCC twierdzi że odklejona podeszwa to wada mechaniczna, a bez pudełka nie przyjmą reklamacji? Nieprawda — to sprzedawca musi udowodnić Twoją winę. 2 lata na reklamację obuwia.",
