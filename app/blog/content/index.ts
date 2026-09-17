@@ -9,6 +9,7 @@ import OdwolanieOdDecyzjiZus from "./odwolanie-od-decyzji-zus";
 import WezwanieDoZaplaty from "./wezwanie-do-zaplaty";
 import ReklamacjaUslugi from "./reklamacja-uslugi";
 import OdszkodowanieZaOpoznionyLot from "./odszkodowanie-za-opozniony-lot";
+import OdszkodowanieZaOpoznionyPociag from "./odszkodowanie-za-opozniony-pociag";
 import ReklamacjaOdrzucona from "./reklamacja-odrzucona";
 import ReklamacjaSklepInternetowy from "./reklamacja-sklep-internetowy";
 import ReklamacjaAllegro from "./reklamacja-allegro";
@@ -83,6 +84,7 @@ const CONTENT: Record<string, FC> = {
   "wezwanie-do-zaplaty": WezwanieDoZaplaty,
   "reklamacja-uslugi": ReklamacjaUslugi,
   "odszkodowanie-za-opozniony-lot": OdszkodowanieZaOpoznionyLot,
+  "odszkodowanie-za-opozniony-pociag": OdszkodowanieZaOpoznionyPociag,
   "reklamacja-odrzucona": ReklamacjaOdrzucona,
   "reklamacja-sklep-internetowy": ReklamacjaSklepInternetowy,
   "reklamacja-allegro": ReklamacjaAllegro,

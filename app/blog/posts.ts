@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "odszkodowanie-za-opozniony-pociag",
+    title: "Odszkodowanie za opóźniony lub odwołany pociąg PKP: krok po kroku (2026)",
+    description: "Pociąg PKP spóźnił się 2 godziny, a obsługa mówi że rekompensata to łaska przewoźnika? Nieprawda — należy Ci się 25–50% ceny biletu (rozporządzenie UE 2021/782).",
+    date: "2026-09-17",
+    readTime: "7 min",
+    category: "Podróże",
+    titleEn: "Compensation for a Delayed or Cancelled PKP Train: Step by Step (2026)",
+    descriptionEn: "Your PKP train was 2 hours late and staff say compensation is discretionary? Not true — you're entitled to 25–50% of the ticket price under EU Regulation 2021/782. How to claim it.",
+    categoryEn: "Travel",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Czy rekompensata przysługuje przy bilecie miesięcznym lub sieciowym?", a: "Tak, ale liczona jest proporcjonalnie do liczby opóźnień w okresie ważności biletu, a nie od razu za każde pojedyncze spóźnienie — szczegółowy sposób wyliczenia znajdziesz w regulaminie danego przewoźnika, bo rozporządzenie 2021/782 pozwala przewoźnikom ustalić tu własne, korzystniejsze dla pasażera zasady rozliczania." },
+      { q: "Czy muszę zgłosić opóźnienie konduktorowi, zanim wysiądę z pociągu?", a: "Nie, prawo do rekompensaty z rozporządzenia 2021/782 nie jest uzależnione od zgłoszenia na miejscu. Wystarczy złożyć wniosek u przewoźnika po zakończeniu podróży, dołączając bilet i dowód rzeczywistego czasu przyjazdu — dane o opóźnieniach pociągów przewoźnik i UTK rejestrują niezależnie od Twojego zgłoszenia." },
+      { q: "Co jeśli przez opóźnienie pierwszego pociągu straciłem przesiadkę i dojechałem znacznie później?", a: "Jeśli podróż była objęta jednym biletem na całą trasę, opóźnienie liczysz względem finalnego miejsca docelowego z tego biletu, a nie punktualności pierwszego odcinka — pełne opóźnienie na mecie uprawnia Cię do rekompensaty z art. 19 rozporządzenia 2021/782, tak jakby to był jeden nieprzerwany przejazd." },
+      { q: "Czy poza rekompensatą ryczałtową mogę żądać zwrotu kosztów, np. noclegu czy przepadłego biletu na wydarzenie?", a: "Tak, to osobne roszczenie o odszkodowanie za rzeczywistą szkodę wynikłą z nienależytego wykonania umowy przewozu, dochodzone na zasadach ogólnych Prawa przewozowego i Kodeksu cywilnego, niezależnie od zryczałtowanej rekompensaty za opóźnienie. Musisz jednak udokumentować wysokość szkody — rachunkiem za nocleg, potwierdzeniem ceny przepadłego biletu itp. — samo złożenie wniosku o rekompensatę z rozporządzenia nie wyklucza dochodzenia tej dodatkowej kwoty." },
+    ],
+    faqEn: [
+      { q: "Am I entitled to compensation with a monthly or network season ticket?", a: "Yes, but it's calculated proportionally to the number of delays during the ticket's validity period, not per single delay — check the carrier's own terms for the exact formula, since Regulation 2021/782 lets carriers set their own, more passenger-friendly calculation rules here." },
+      { q: "Do I have to report the delay to the conductor before getting off the train?", a: "No, the right to compensation under Regulation 2021/782 doesn't depend on reporting it on the spot. It's enough to file a claim with the carrier after your journey, attaching your ticket and proof of the actual arrival time — carriers and the Office of Rail Transport (UTK) record train delay data independently of your report." },
+      { q: "What if a delayed first train made me miss a connection and I arrived much later?", a: "If your journey was covered by a single through ticket, the delay is measured against the final destination on that ticket, not the punctuality of the first leg — the full delay at your final stop entitles you to compensation under Art. 19 of Regulation 2021/782, as if it were one uninterrupted journey." },
+      { q: "Besides the flat-rate compensation, can I claim costs like a hotel stay or a forfeited event ticket?", a: "Yes, that's a separate claim for actual damages resulting from improper performance of the carriage contract, pursued under the general rules of the Transport Law and Civil Code, independent of the flat-rate delay compensation. You do need to document the loss — a hotel receipt, proof of the forfeited ticket's price, etc. — filing for the regulation's flat-rate compensation doesn't rule out pursuing this additional amount." },
+    ],
+  },
+  {
     slug: "reklamacja-vinted-olx",
     title: "Reklamacja na Vinted i OLX: kiedy masz prawa konsumenta, a kiedy nie (2026)",
     description: "Sprzedawca na Vinted zniknął po sprzedaży wadliwej rzeczy? Sprawdź, kiedy chroni Cię ustawa o prawach konsumenta, a kiedy tylko rękojmia z kodeksu cywilnego.",
