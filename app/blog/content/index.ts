@@ -52,6 +52,7 @@ import ReklamacjaZabka from "./reklamacja-zabka";
 import ReklamacjaSmyk from "./reklamacja-smyk";
 import ReklamacjaObi from "./reklamacja-obi";
 import ReklamacjaVintedOlx from "./reklamacja-vinted-olx";
+import ZwrotTowaruUzywanego from "./zwrot-towaru-uzywanego";
 
 // EN
 import ReklamacjaSamochoduZKomisuEn from "./reklamacja-samochodu-z-komisu.en";
@@ -127,6 +128,7 @@ const CONTENT: Record<string, FC> = {
   "reklamacja-smyk": ReklamacjaSmyk,
   "reklamacja-obi": ReklamacjaObi,
   "reklamacja-vinted-olx": ReklamacjaVintedOlx,
+  "zwrot-towaru-uzywanego": ZwrotTowaruUzywanego,
 };
 
 const CONTENT_EN: Record<string, FC> = {

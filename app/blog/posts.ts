@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "zwrot-towaru-uzywanego",
+    title: "Zwrot towaru używanego kupionego online: ile sklep może potrącić? (2026)",
+    description: "Sklep potrącił połowę zwrotu za brak metki albo odmówił przyjęcia noszonych butów? To bezprawne — art. 34 UPK pozwala odliczyć tylko realną utratę wartości.",
+    date: "2026-09-24",
+    readTime: "7 min",
+    category: "Sklep internetowy",
+    titleEn: "Returning a Used Item Bought Online: How Much Can the Store Deduct? (2026)",
+    descriptionEn: "Store docked half your refund for a missing tag or refused worn shoes back? That's unlawful — Polish law only allows deducting the item's actual loss in value.",
+    categoryEn: "Online Store",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Sklep odmówił przyjęcia zwrotu butów, bo mają ślady chodzenia na zewnątrz. Czy mogą tak zrobić?", a: "Nie, jeśli towar w ogóle podlega zwrotowi (czyli nie jest to jeden z wyjątków z art. 38 UPK). Sklep nie może odmówić przyjęcia zwrotu tylko dlatego, że produkt nosi ślady użytkowania — może co najwyżej potrącić kwotę odpowiadającą realnemu zmniejszeniu wartości rzeczy (art. 34 ust. 4 UPK), a nie odrzucić zwrot w całości." },
+      { q: "Ile procent wartości sklep może potrącić za brak metki lub otwarte opakowanie?", a: "Nie ma ustawowego wskaźnika procentowego — sklep musi wykazać rzeczywistą utratę wartości konkretnego egzemplarza, a nie stosować ryczałt w rodzaju „zawsze potrącamy 50%”. Sam brak metki bez widocznych śladów faktycznego użytkowania zwykle nie uzasadnia żadnego potrącenia, bo nie zmniejsza wartości rzeczy." },
+      { q: "Kupiłam kosmetyk lub bieliznę online, przymierzyłam/otworzyłam i chcę zwrócić. Czy mam do tego prawo?", a: "Zależy, czy naruszyłaś zapieczętowane opakowanie chroniące higienę. Art. 38 pkt 5 UPK wyłącza prawo do zwrotu rzeczy dostarczonej w zapieczętowanym opakowaniu, której po otwarciu nie można zwrócić ze względów higienicznych — ale tylko jeśli sklep wyraźnie poinformował Cię o tym wyjątku przed zakupem, a opakowanie faktycznie miało plombę. Przymierzenie bielizny przez ubranie na sobie, bez zrywania metki higienicznej, zwykle nie wyklucza zwrotu." },
+      { q: "Sklep nie poinformował mnie w ogóle o prawie do zwrotu. Czy mimo to mogę oddać towar, nawet jeśli go używałam?", a: "Tak, i na wyjątkowo korzystnych zasadach. Jeśli sprzedawca nie spełnił obowiązku informacyjnego z art. 12 ust. 1 pkt 9 UPK, termin na odstąpienie wydłuża się z 14 dni aż do 12 miesięcy (art. 29 ust. 1 UPK), a dodatkowo — zgodnie z art. 34 ust. 4 UPK — nie ponosisz odpowiedzialności za zmniejszenie wartości rzeczy wynikające z korzystania z niej, nawet ponad miarę konieczną do sprawdzenia towaru." },
+    ],
+    faqEn: [
+      { q: "The store refused my return because the shoes show signs of being worn outside. Can they do that?", a: "No, as long as the item is eligible for return at all (i.e. not one of the exceptions under Art. 38 of the Consumer Rights Act). A store cannot refuse a return outright just because the product shows signs of use — at most it can deduct an amount corresponding to the actual loss in value (Art. 34(4) CRA), not reject the return entirely." },
+      { q: "How much can a store deduct for a missing tag or opened packaging?", a: "There is no statutory percentage. The store must demonstrate the actual, measurable loss of value of that specific item, not apply a flat rate like 'we always deduct 50%'. A missing tag alone, without visible signs of actual use, usually doesn't justify any deduction, since it doesn't reduce the item's real value." },
+      { q: "I bought cosmetics or underwear online, tried them on or opened them, and want to return them. Am I entitled to?", a: "It depends on whether you broke a sealed package protecting hygiene. Art. 38(5) CRA excludes the right of withdrawal for goods delivered in sealed packaging that cannot be returned after opening for health or hygiene reasons — but only if the store clearly informed you of this exception before purchase, and the packaging actually had an intact seal. Trying on underwear over your clothes, without removing a hygiene tag, usually does not rule out a return." },
+      { q: "The store never informed me about my right to return the item. Can I still return it even if I used it?", a: "Yes, and on unusually favorable terms. If the seller failed to meet the information duty under Art. 12(1)(9) CRA, the withdrawal period extends from 14 days to up to 12 months (Art. 29(1) CRA), and additionally, under Art. 34(4) CRA, you bear no liability for any loss in the item's value from using it, even beyond what was necessary to examine it." },
+    ],
+  },
+  {
     slug: "odszkodowanie-za-opozniony-pociag",
     title: "Odszkodowanie za opóźniony lub odwołany pociąg PKP: krok po kroku (2026)",
     description: "Pociąg PKP spóźnił się 2 godziny, a obsługa mówi że rekompensata to łaska przewoźnika? Nieprawda — należy Ci się 25–50% ceny biletu (rozporządzenie UE 2021/782).",
