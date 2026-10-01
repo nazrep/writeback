@@ -1,6 +1,7 @@
 import type { FC } from "react";
 
 // PL
+import ReklamacjaPrimark from "./reklamacja-primark";
 import ReklamacjaSamochoduZKomisu from "./reklamacja-samochodu-z-komisu";
 import ReklamacjaZalando from "./reklamacja-zalando";
 import ReklamacjaDoUbezpieczyciela from "./reklamacja-do-ubezpieczyciela";
@@ -77,6 +78,7 @@ import ReklamacjaFirmyEnergetycznejEn from "./reklamacja-firmy-energetycznej.en"
 import ReklamacjaKauflandEn from "./reklamacja-kaufland.en";
 
 const CONTENT: Record<string, FC> = {
+  "reklamacja-primark": ReklamacjaPrimark,
   "reklamacja-samochodu-z-komisu": ReklamacjaSamochoduZKomisu,
   "reklamacja-zalando": ReklamacjaZalando,
   "reklamacja-do-ubezpieczyciela": ReklamacjaDoUbezpieczyciela,

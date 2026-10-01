@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-primark",
+    title: "Reklamacja w Primark: kiedy przysługuje zwrot, a kiedy tylko wada towaru (2026)",
+    description: "Primark nie ma w Polsce sklepu internetowego, więc 14 dni na zwrot bez przyczyny nie przysługuje. Sprawdź, kiedy reklamować wadliwe ubranie nawet bez paragonu.",
+    date: "2026-10-01",
+    readTime: "6 min",
+    category: "Odzież",
+    titleEn: "Complaint at Primark: When You Get a Return, and When Only a Defect Claim (2026)",
+    descriptionEn: "Primark has no online store in Poland, so the 14-day no-reason return right doesn't apply. Here's when you can claim a refund for a defective item, receipt or not.",
+    categoryEn: "Clothing",
+    readTimeEn: "6 min",
+    faq: [
+      { q: "Primark nie ma w Polsce sklepu internetowego — czy mogę mimo to zwrócić towar bez podania przyczyny, tak jak przy zakupach online?", a: "Nie. Prawo do odstąpienia od umowy bez podania przyczyny w ciągu 14 dni (art. 27 UPK) dotyczy wyłącznie umów zawartych na odległość lub poza lokalem przedsiębiorstwa. Zakup w stacjonarnym sklepie Primark nie jest żadnym z nich, więc to prawo w ogóle nie powstaje. 28-dniowy zwrot, który oferuje Primark, to wyłącznie dobrowolna polityka handlowa sieci, uregulowana w jej własnym regulaminie." },
+      { q: "Zgubiłam paragon z Primark — czy mogę zareklamować wadliwy produkt?", a: "Tak. Dla reklamacji wady paragon nie jest jedynym dowodem zakupu — wystarczy wyciąg z konta bankowego, potwierdzenie płatności kartą lub BLIK, a nawet zdjęcie paragonu zrobione wcześniej. Inaczej jest przy dobrowolnym zwrocie pełnowartościowego towaru, gdzie Primark może wymagać paragonu, bo to jego wewnętrzna polityka, a nie ustawowe prawo." },
+      { q: "Minęło 28 dni od zakupu, a bluzka rozerwała się po pierwszym praniu zgodnym z metką — czy już za późno na reklamację?", a: "Nie. 28 dni to termin na dobrowolny zwrot towaru bez wady, ustalony wyłącznie przez Primark w jego regulaminie. Reklamacja wadliwego produktu ma ustawowy termin 2 lat od dnia zakupu (art. 43c ust. 1 UPK) i nie ma żadnego związku z 28-dniowym oknem zwrotowym." },
+      { q: "Primark twierdzi, że przy niskiej cenie produktu trudno oczekiwać wyższej jakości, i odmawia reklamacji. Czy mają rację?", a: "Nie. Cena towaru nie ma znaczenia prawnego — art. 43b UPK wymaga, by każdy towar był zgodny z umową, niezależnie od tego, czy kosztował 20 zł, czy 2000 zł. Jeśli produkt rozpadł się przy normalnym użytkowaniu zgodnym z instrukcją, to wada, a nie naturalna konsekwencja niskiej ceny." },
+    ],
+    faqEn: [
+      { q: "Primark has no online store in Poland — can I still return an item without giving a reason, like with online purchases?", a: "No. The 14-day right to withdraw without giving a reason (Art. 27 of the Consumer Rights Act) only applies to distance contracts or contracts concluded off business premises. A purchase in a physical Primark store is neither, so this right never arises. The 28-day return Primark offers is purely a voluntary commercial policy set out in its own store rules." },
+      { q: "I lost my receipt from Primark — can I still file a defect complaint?", a: "Yes. For a defect complaint, a receipt isn't the only proof of purchase — a bank statement, card or BLIK payment confirmation, or even a photo of the receipt taken earlier, is enough. It's different for a voluntary return of a non-defective item, where Primark can require a receipt, since that's its own internal policy, not a statutory right." },
+      { q: "It's been 28 days since purchase and my top tore apart after the first wash following the care label — is it too late to complain?", a: "No. 28 days is the window for a voluntary no-defect return, set entirely by Primark in its own terms. A defect complaint has a statutory 2-year deadline from the date of purchase (Art. 43c §1 of the Consumer Rights Act) and has nothing to do with the 28-day return window." },
+      { q: "Primark says that given the low price, you can't expect higher quality, and refuses my complaint. Are they right?", a: "No. A product's price has no legal relevance — Art. 43b of the Consumer Rights Act requires every item to conform to the contract, whether it cost 20 PLN or 2000 PLN. If a product fell apart under normal use following the care instructions, that's a defect, not a natural consequence of a low price." },
+    ],
+  },
+  {
     slug: "zwrot-towaru-uzywanego",
     title: "Zwrot towaru używanego kupionego online: ile sklep może potrącić? (2026)",
     description: "Sklep potrącił połowę zwrotu za brak metki albo odmówił przyjęcia noszonych butów? To bezprawne — art. 34 UPK pozwala odliczyć tylko realną utratę wartości.",
