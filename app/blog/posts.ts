@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-airbnb-booking",
+    title: "Reklamacja noclegu z Airbnb i Booking.com: mieszkanie niezgodne z opisem (2026)",
+    description: "Apartament z Airbnb lub Booking.com nie wygląda jak na zdjęciach? To nie impreza turystyczna — sprawdź, komu i na jakiej podstawie możesz go reklamować.",
+    date: "2026-10-08",
+    readTime: "7 min",
+    category: "Noclegi",
+    titleEn: "Complaint About an Airbnb or Booking.com Stay: Apartment Not as Described (2026)",
+    descriptionEn: "Your Airbnb or Booking.com apartment doesn't match the photos? It's not a package tour — here's who is liable and on what legal basis you can complain.",
+    categoryEn: "Accommodation",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Czy mogę zrezygnować z rezerwacji na Booking.com lub Airbnb w ciągu 14 dni bez podania przyczyny, tak jak przy zwykłych zakupach online?", a: "Nie. Art. 38 pkt 12 ustawy o prawach konsumenta wyłącza prawo do odstąpienia od umowy dla usług związanych z zakwaterowaniem innym niż do celów mieszkalnych, jeśli umowa określa dzień lub okres świadczenia usługi — a rezerwacja konkretnego apartamentu na konkretne daty taki warunek spełnia. Możesz skorzystać jedynie z polityki anulacji ustalonej dobrowolnie przez gospodarza lub platformę." },
+      { q: "Czy nocleg zarezerwowany samodzielnie przez Booking.com to impreza turystyczna i przysługuje mi zadośćuczynienie za zmarnowany urlop?", a: "Nie, jeśli to tylko nocleg bez innej usługi turystycznej (transportu, wynajmu samochodu) połączonej w jedną umowę przez jednego organizatora — ustawa o imprezach turystycznych, wymagająca połączenia co najmniej dwóch usług turystycznych, nie ma tu zastosowania. Masz jednak roszczenia z Kodeksu cywilnego za nienależyte wykonanie usługi (art. 471 KC) — obniżenie ceny lub zwrot zapłaty za niewykonaną część usługi." },
+      { q: "Gospodarz na Airbnb pobrał dodatkową opłatę za zniszczenia z mojej karty po wyjeździe, mimo że niczego nie zniszczyłam. Co mogę zrobić?", a: "Zgłoś to niezwłocznie przez Centrum Rozwiązywania Problemów (Resolution Center) na Airbnb i zażądaj dowodów szkody — zdjęć porównawczych, wyceny naprawy. Jeśli platforma nie uzna odwołania, a obciążenie jest bezpodstawne, możesz zainicjować chargeback u wydawcy karty, powołując się na nienależyte wykonanie usługi." },
+      { q: "Booking.com twierdzi, że za jakość apartamentu odpowiada tylko gospodarz, a nie platforma. Czy mogę coś zrobić bezpośrednio wobec Booking.com?", a: "Co do zasady platforma jest tylko pośrednikiem, więc odpowiedzialność za nienależyte wykonanie usługi zakwaterowania spoczywa na właścicielu lub zarządcy obiektu, z którym zawarłaś faktyczną umowę. W praktyce jednak Booking.com ma własny zespół obsługi klienta, który często mediuje lub zwraca środki, zwłaszcza gdy płatność szła przez platformę — warto zgłosić sprawę równolegle do gospodarza i do platformy." },
+    ],
+    faqEn: [
+      { q: "Can I cancel a Booking.com or Airbnb reservation within 14 days without giving a reason, like with regular online purchases?", a: "No. Art. 38(12) of the Consumer Rights Act excludes the right of withdrawal for accommodation services other than for residential purposes if the contract specifies the day or period of performance — and booking a specific apartment for specific dates meets that condition. You can only rely on the cancellation policy voluntarily set by the host or platform." },
+      { q: "Is a stay booked on my own through Booking.com a package tour, entitling me to compensation for a 'ruined holiday'?", a: "No, if it's just accommodation without another travel service (transport, car rental) combined into one contract by one organizer — the Package Travel Act, which requires combining at least two travel services, doesn't apply here. You do have claims under the Civil Code for improper performance of a service (Art. 471 CC) — a price reduction or a refund for the part of the service not delivered." },
+      { q: "My Airbnb host charged my card for damages after checkout even though I didn't damage anything. What can I do?", a: "Report it immediately through Airbnb's Resolution Center and demand proof of the damage — comparison photos, a repair estimate. If the platform rejects your dispute and the charge is unfounded, you can initiate a chargeback with your card issuer, citing improper performance of the service." },
+      { q: "Booking.com says only the host is liable for the apartment's quality, not the platform. Can I do anything directly against Booking.com?", a: "In principle the platform is only an intermediary, so liability for improper performance of the accommodation service rests with the property's owner or manager, with whom you actually contracted. In practice, though, Booking.com has its own customer service team that often mediates or issues refunds, especially when payment went through the platform — it's worth reporting the issue to both the host and the platform at the same time." },
+    ],
+  },
+  {
     slug: "reklamacja-primark",
     title: "Reklamacja w Primark: kiedy przysługuje zwrot, a kiedy tylko wada towaru (2026)",
     description: "Primark nie ma w Polsce sklepu internetowego, więc 14 dni na zwrot bez przyczyny nie przysługuje. Sprawdź, kiedy reklamować wadliwe ubranie nawet bez paragonu.",
