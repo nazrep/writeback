@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "prawo-do-naprawy",
+    title: "Prawo do naprawy w Polsce: co się zmienia i jak żądać naprawy, nie wymiany (2026)",
+    description: "Sprzęt zepsuł się po gwarancji, a sprzedawca mówi że nic nie może zrobić? Sprawdź, co już dziś możesz żądać z ustawy o prawach konsumenta, krok po kroku.",
+    date: "2026-10-15",
+    readTime: "7 min",
+    category: "AGD / Elektronika",
+    titleEn: "The Right to Repair in Poland: What's Changing and How to Demand Repair, Not Replacement (2026)",
+    descriptionEn: "Your appliance broke right after the warranty ended and the seller says there is nothing to do? See what you can already demand under Polish consumer law.",
+    categoryEn: "Appliances / Electronics",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Czy unijne prawo do naprawy już obowiązuje w Polsce?", a: "Nie w pełni. Dyrektywa (UE) 2024/1799 wymagała wdrożenia do prawa krajowego i stosowania od 31 lipca 2026 r., ale polska ustawa implementująca wciąż jest w toku prac legislacyjnych. Dopóki nie wejdzie w życie, nie możesz się jeszcze bezpośrednio powołać na nowy, samodzielny obowiązek pogwarancyjnej naprawy u producenta. Możesz jednak już teraz korzystać z prawa wyboru naprawy w ramach reklamacji na podstawie art. 43d ust. 1 ustawy o prawach konsumenta." },
+      { q: "Sprzedawca mówi, że to on decyduje, czy naprawi, czy wymieni mój towar. Czy to prawda?", a: "Nie. Art. 43d ust. 1 ustawy o prawach konsumenta jest jednoznaczny: to konsument wybiera sposób doprowadzenia towaru do zgodności z umową — naprawę albo wymianę. Sprzedawca może odmówić wybranego sposobu tylko wtedy, gdy jest on niemożliwy albo wymagałby nadmiernych kosztów w porównaniu z drugim sposobem, a nie z samej wygody dla sprzedawcy." },
+      { q: "Gwarancja producenta na mój sprzęt już się skończyła. Czy to oznacza, że nie mam żadnych praw?", a: "Nie. Gwarancja producenta i odpowiedzialność sprzedawcy za niezgodność towaru z umową (art. 43b UPK) to dwa niezależne mechanizmy. Jeśli jesteś w 2-letnim okresie od otrzymania towaru, koniec gwarancji producenta nie ma żadnego znaczenia dla Twojego prawa do reklamacji wobec sprzedawcy." },
+      { q: "Jakich produktów dotyczy nowy, pogwarancyjny obowiązek naprawy u producenta z unijnej dyrektywy?", a: "Kategorii objętych unijnymi przepisami o ekoprojekcie z wymogiem dostępności części zamiennych — między innymi pralek, zmywarek, lodówek, odkurzaczy, wyświetlaczy elektronicznych i telewizorów, smartfonów oraz tabletów. Okres obowiązkowej naprawy pogwarancyjnej różni się w zależności od kategorii urządzenia, zgodnie z konkretnym rozporządzeniem ekoprojektowym dla danej grupy sprzętu, a nie z jednego uniwersalnego terminu dla wszystkich produktów." },
+    ],
+    faqEn: [
+      { q: "Is the EU right to repair already in force in Poland?", a: "Not fully. Directive (EU) 2024/1799 required transposition into national law and application from 31 July 2026, but Poland's implementing act is still going through the legislative process. Until it takes effect, you cannot yet directly invoke the new, standalone post-warranty repair obligation against a manufacturer. You can, however, already use the right to choose repair during a complaint under Art. 43d §1 of the Consumer Rights Act." },
+      { q: "The seller says they decide whether to repair or replace my item. Is that true?", a: "No. Art. 43d §1 of the Consumer Rights Act is clear: the consumer chooses how to bring the item into conformity with the contract — repair or replacement. The seller can refuse the chosen method only if it is impossible or would require excessive costs compared to the other method, not merely for their own convenience." },
+      { q: "My manufacturer's warranty has already expired. Does that mean I have no rights left?", a: "No. The manufacturer's warranty and the seller's statutory liability for non-conformity (Art. 43b of the Consumer Rights Act) are two independent mechanisms. If you are within 2 years of receiving the item, the expiry of the manufacturer's warranty has no bearing on your right to file a complaint against the seller." },
+      { q: "Which products does the new post-warranty manufacturer repair obligation from the EU directive cover?", a: "Categories covered by EU ecodesign rules requiring spare-parts availability — including washing machines, dishwashers, refrigerators, vacuum cleaners, electronic displays and TVs, smartphones and tablets. The mandatory post-warranty repair period varies by product category, following the specific ecodesign regulation for that group of devices, rather than one universal deadline for all products." },
+    ],
+  },
+  {
     slug: "reklamacja-airbnb-booking",
     title: "Reklamacja noclegu z Airbnb i Booking.com: mieszkanie niezgodne z opisem (2026)",
     description: "Apartament z Airbnb lub Booking.com nie wygląda jak na zdjęciach? To nie impreza turystyczna — sprawdź, komu i na jakiej podstawie możesz go reklamować.",
