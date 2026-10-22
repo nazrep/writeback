@@ -2,6 +2,7 @@ import type { FC } from "react";
 
 // PL
 import ReklamacjaAirbnbBooking from "./reklamacja-airbnb-booking";
+import ReklamacjaKwiatyWszystkichSwietych from "./reklamacja-kwiaty-wszystkich-swietych";
 import ReklamacjaPrimark from "./reklamacja-primark";
 import ReklamacjaSamochoduZKomisu from "./reklamacja-samochodu-z-komisu";
 import ReklamacjaZalando from "./reklamacja-zalando";
@@ -128,6 +129,7 @@ const CONTENT: Record<string, FC> = {
   "reklamacja-castorama": ReklamacjaCastorama,
   "reklamacja-home-you": ReklamacjaHomeYou,
   "reklamacja-kaufland": ReklamacjaKaufland,
+  "reklamacja-kwiaty-wszystkich-swietych": ReklamacjaKwiatyWszystkichSwietych,
   "reklamacja-wycieczki": ReklamacjaWycieczki,
   "reklamacja-zabka": ReklamacjaZabka,
   "reklamacja-smyk": ReklamacjaSmyk,

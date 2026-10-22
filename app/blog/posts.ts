@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-kwiaty-wszystkich-swietych",
+    title: "Reklamacja kwiatów na Wszystkich Świętych: spóźniona lub zniszczona dostawa (2026)",
+    description: "Kwiaciarnia obiecała dostawę przed 1 listopada, a wiązanka przyjechała zwiędła albo po święcie? Sprawdź, kiedy możesz żądać całkowitego zwrotu pieniędzy.",
+    date: "2026-10-22",
+    readTime: "7 min",
+    category: "Usługi",
+    titleEn: "Complaint About a Flower Order for All Saints' Day: Late or Ruined Delivery (2026)",
+    descriptionEn: "A florist promised delivery before Nov 1, but the flowers arrived wilted or a day late? Here's when you can demand a full refund, not just a discount.",
+    categoryEn: "Services",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Czy mogę zrezygnować z zamówienia kwiatów online w ciągu 14 dni bez podania przyczyny?", a: "Nie, jeśli zamówienie zostało już przygotowane i wysłane. Art. 38 pkt 4 UPK wyłącza prawo do odstąpienia od umowy bez podania przyczyny dla towarów szybko ulegających zepsuciu, takich jak żywe kwiaty. To wyłączenie dotyczy jednak tylko dobrowolnej zmiany decyzji — nie ogranicza Twoich praw, gdy towar jest wadliwy, niezgodny z opisem albo dostarczony po terminie." },
+      { q: "Kwiaciarnia dostarczyła wiązankę dzień po Wszystkich Świętych — czy mogę żądać zwrotu pieniędzy, mimo że towar w końcu dojechał?", a: "Tak. Gdy termin dostawy miał istotne znaczenie dla celu umowy, a wskutek zwłoki świadczenie utraciło dla Ciebie wartość, na podstawie art. 477 § 2 Kodeksu cywilnego możesz odmówić przyjęcia spóźnionej dostawy i żądać zwrotu całej zapłaty oraz naprawienia poniesionej szkody, a nie tylko częściowego rabatu." },
+      { q: "Zapłaciłam za bukiet ze zdjęcia, a kurier przywiózł zupełnie inny, mniejszy i w innych kolorach — co mogę zrobić?", a: "To niezgodność towaru z umową w rozumieniu art. 43b UPK — opis i zdjęcie produktu stanowią część umowy. Możesz żądać obniżenia ceny, a gdy naprawa czy wymiana są obiektywnie niemożliwe (co przy zwiędniętych lub spóźnionych kwiatach jest zwykle oczywiste), od razu zwrotu pieniędzy na podstawie art. 43e UPK." },
+      { q: "Kwiaciarnia mówi, że za zniszczenie bukietu podczas transportu odpowiada firma kurierska, a nie ona — czy to prawda?", a: "Nie wobec Ciebie jako konsumenta. Stroną umowy sprzedaży jest kwiaciarnia, u której złożyłaś zamówienie, i to ona odpowiada przed Tobą za nienależyte wykonanie zobowiązania na podstawie art. 471 KC — niezależnie od tego, komu zleciła dostawę. Jej ewentualne roszczenia wobec kuriera są sprawą wewnętrzną między nimi i nie mają wpływu na Twoje prawo do reklamacji." },
+    ],
+    faqEn: [
+      { q: "Can I cancel a flower order placed online within 14 days without giving a reason?", a: "No, not once the order has already been prepared and shipped. Art. 38(4) of the Consumer Rights Act excludes the no-reason withdrawal right for goods that deteriorate quickly, such as fresh flowers. That exclusion only applies to a voluntary change of mind — it doesn't limit your rights when the goods are defective, don't match the description, or arrive late." },
+      { q: "The florist delivered the bouquet a day after All Saints' Day — can I still demand a refund even though it eventually arrived?", a: "Yes. When the delivery date was essential to the purpose of the contract, and the delay meant the performance lost its value for you, Art. 477 §2 of the Civil Code lets you refuse the late delivery and demand a full refund plus compensation for any resulting loss, not just a partial discount." },
+      { q: "I paid for a bouquet shown in a photo, but the courier delivered something completely different, smaller and in different colors — what can I do?", a: "This is non-conformity with the contract under Art. 43b of the Consumer Rights Act — the product description and photo are part of the contract. You can demand a price reduction, or, when repair or replacement is objectively impossible (usually obvious with wilted or late flowers), an immediate refund under Art. 43e." },
+      { q: "The florist says the courier company is liable for damage during transport, not them — is that true?", a: "Not toward you as a consumer. The seller you contracted with is the florist, and under Art. 471 of the Civil Code it is liable to you for improper performance regardless of who it hired to deliver. Any claims it has against the courier are an internal matter between them and don't affect your right to complain." },
+    ],
+  },
+  {
     slug: "prawo-do-naprawy",
     title: "Prawo do naprawy w Polsce: co się zmienia i jak żądać naprawy, nie wymiany (2026)",
     description: "Sprzęt zepsuł się po gwarancji, a sprzedawca mówi że nic nie może zrobić? Sprawdź, co już dziś możesz żądać z ustawy o prawach konsumenta, krok po kroku.",
