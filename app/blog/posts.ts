@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-wolt-glovo-uber-eats",
+    title: "Reklamacja zamówienia z Wolt, Glovo i Uber Eats: zepsute jedzenie, zła dostawa (2026)",
+    description: "Kurier oznaczył zamówienie jako dostarczone, choć nic nie przyjechało? Sprawdź, kto odpowiada za jedzenie, a kto za dostawę — i jak odzyskać pieniądze.",
+    date: "2026-10-29",
+    readTime: "7 min",
+    category: "Dostawa jedzenia",
+    titleEn: "Complaint About a Wolt, Glovo or Uber Eats Order: Spoiled Food, Failed Delivery (2026)",
+    descriptionEn: "Courier marked your order delivered, but nothing arrived? See who is liable for the food and who for the delivery — and how to actually get your money back.",
+    categoryEn: "Food Delivery",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Kurier oznaczył zamówienie jako dostarczone, a ja nigdy go nie otrzymałem/-am. Czy mogę żądać zwrotu pieniędzy?", a: "Tak. Zapłaciłeś/-aś za usługę dostawy konkretnego zamówienia, która nie została wykonana — to nienależyte wykonanie zobowiązania w rozumieniu art. 471 Kodeksu cywilnego. Status „dostarczone” w aplikacji nie jest dowodem rozstrzygającym; masz prawo żądać zwrotu całej zapłaconej kwoty, a platforma musi wykazać, że zamówienie faktycznie trafiło w Twoje ręce, np. zdjęciem z dostawy czy potwierdzeniem lokalizacji." },
+      { q: "Zamówione jedzenie przyjechało zimne, niekompletne albo zupełnie inne niż w zamówieniu. Kto za to odpowiada — restauracja czy aplikacja?", a: "Za jakość i kompletność samego jedzenia jako towaru odpowiada restauracja, która je przygotowała i sprzedała — na podstawie art. 43b ustawy o prawach konsumenta (niezgodność towaru z umową). Jeśli problemem jest wyłącznie sposób dostawy — np. kurier jechał nadmiernie długo i jedzenie wychłodło przez czas transportu, mimo prawidłowego przygotowania — odpowiedzialność za tę część usługi spoczywa na platformie organizującej dostawę, na zasadach art. 471 KC. W praktyce warto zgłosić reklamację do obu stron równolegle." },
+      { q: "Czy mogę odstąpić od zamówienia w aplikacji w ciągu 14 dni, tak jak przy zwykłych zakupach online, jeśli po prostu zmienię zdanie?", a: "Nie. Zamówienie jedzenia przez aplikację jest zawarte na odległość, ale art. 38 pkt 1 i pkt 4 ustawy o prawach konsumenta wyłączają prawo do odstąpienia dla towarów przygotowywanych na indywidualne zamówienie oraz szybko ulegających zepsuciu — a posiłek przygotowywany na bieżąco po złożeniu zamówienia spełnia oba te warunki. Możesz jedynie anulować zamówienie, zanim restauracja zacznie je przygotowywać, zgodnie z zasadami konkretnej aplikacji." },
+      { q: "Aplikacja odmawia zwrotu pieniędzy i proponuje tylko punkty lub kod rabatowy na kolejne zamówienie. Czy muszę się zgodzić?", a: "Nie. Punkty lojalnościowe czy kod rabatowy to propozycja handlowa, a nie wykonanie Twojego ustawowego roszczenia. Jeśli żądasz zwrotu pieniędzy za niewykonaną lub nienależycie wykonaną usługę (art. 471 KC) albo za niezgodny z umową towar (art. 43b UPK), platforma lub restauracja muszą zwrócić środki w pieniądzu, tym samym sposobem płatności, jakim zapłaciłeś/-aś — możesz przyjąć punkty, ale nie musisz." },
+    ],
+    faqEn: [
+      { q: "The courier marked my order as delivered, but I never received it. Can I demand a refund?", a: "Yes. You paid for a delivery service for a specific order that was never performed — that is improper performance of an obligation under Art. 471 of the Civil Code. The 'delivered' status in the app is not conclusive proof; you're entitled to a full refund, and the platform must show the order actually reached you, e.g. with a delivery photo or confirmed location." },
+      { q: "My food arrived cold, incomplete, or completely different from my order. Who is liable — the restaurant or the app?", a: "The restaurant that prepared and sold the food is liable for its quality and completeness as goods, under Art. 43b of the Consumer Rights Act (non-conformity of goods). If the problem is purely the delivery itself — e.g. the courier took an unusually long time and the food cooled during transport despite being properly prepared — liability for that part shifts to the platform organizing the delivery, under Art. 471 of the Civil Code. In practice, it's worth filing with both at once." },
+      { q: "Can I withdraw from an app order within 14 days, like with regular online shopping, if I simply change my mind?", a: "No. Ordering food through an app is a distance contract, but Art. 38(1) and (4) of the Consumer Rights Act exclude the right of withdrawal for goods made to the consumer's individual specification and for goods that deteriorate quickly — a meal prepared on demand after you order meets both conditions. You can only cancel before the restaurant starts preparing it, per that app's own rules." },
+      { q: "The app refuses a refund and only offers points or a discount code for a future order. Do I have to accept that?", a: "No. Loyalty points or a discount code are a commercial offer, not fulfillment of your statutory claim. If you demand a cash refund for a service that wasn't performed properly (Art. 471 Civil Code) or for goods that don't conform to the contract (Art. 43b Consumer Rights Act), the platform or restaurant must return the money by the same payment method you used — you may accept points, but you don't have to." },
+    ],
+  },
+  {
     slug: "reklamacja-kwiaty-wszystkich-swietych",
     title: "Reklamacja kwiatów na Wszystkich Świętych: spóźniona lub zniszczona dostawa (2026)",
     description: "Kwiaciarnia obiecała dostawę przed 1 listopada, a wiązanka przyjechała zwiędła albo po święcie? Sprawdź, kiedy możesz żądać całkowitego zwrotu pieniędzy.",
