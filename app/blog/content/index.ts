@@ -58,6 +58,7 @@ import ReklamacjaVintedOlx from "./reklamacja-vinted-olx";
 import ZwrotTowaruUzywanego from "./zwrot-towaru-uzywanego";
 import PrawoDoNaprawy from "./prawo-do-naprawy";
 import ReklamacjaWoltGlovoUberEats from "./reklamacja-wolt-glovo-uber-eats";
+import ReklamacjaZakupyBlackFriday from "./reklamacja-zakupy-black-friday";
 
 // EN
 import ReklamacjaSamochoduZKomisuEn from "./reklamacja-samochodu-z-komisu.en";
@@ -139,6 +140,7 @@ const CONTENT: Record<string, FC> = {
   "zwrot-towaru-uzywanego": ZwrotTowaruUzywanego,
   "prawo-do-naprawy": PrawoDoNaprawy,
   "reklamacja-wolt-glovo-uber-eats": ReklamacjaWoltGlovoUberEats,
+  "reklamacja-zakupy-black-friday": ReklamacjaZakupyBlackFriday,
 };
 
 const CONTENT_EN: Record<string, FC> = {

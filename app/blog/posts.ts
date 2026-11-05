@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "reklamacja-zakupy-black-friday",
+    title: "Reklamacja zakupów z Black Friday: fałszywe rabaty i odmowa zwrotu (2026)",
+    description: "Cena przed Black Friday była sztucznie podniesiona, a sklep odmawia zwrotu towaru z wyprzedaży, bo był przeceniony? Sprawdź, jakie prawa naprawdę masz.",
+    date: "2026-11-05",
+    readTime: "7 min",
+    category: "Promocje",
+    titleEn: "Black Friday Shopping Complaints: Fake Discounts and Refund Refusals (2026)",
+    descriptionEn: "Was the 'before' price quietly inflated right before Black Friday, and the store now refuses your return? Here is what Polish consumer law really gives you.",
+    categoryEn: "Sales & Promotions",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Sklep podniósł cenę produktu na dwa dni przed Black Friday, żeby potem pokazać większy rabat. Czy to legalne?", a: "Nie. Od 1 stycznia 2023 r. art. 4 ust. 4 ustawy o informowaniu o cenach towarów i usług wymaga, by przy informacji o obniżce sprzedawca podawał najniższą cenę towaru obowiązującą w ciągu 30 dni przed wprowadzeniem tej obniżki. Jednorazowy, kilkudniowy skok ceny tuż przed promocją nie zmienia tego, że właściwą ceną referencyjną jest najniższa cena z całego 30-dniowego okresu — pokazywanie innej jest obejściem przepisu i może być zgłoszone do UOKiK jako nieuczciwa praktyka rynkowa." },
+      { q: "Sprzedawca mówi, że produkt kupiony w promocji Black Friday nie podlega reklamacji. Czy mogę się z tym nie zgodzić?", a: "Tak, i słusznie, bo to twierdzenie jest nieprawdziwe. Przepisy o niezgodności towaru z umową (art. 43b ustawy o prawach konsumenta) nie zawierają wyjątku dla towarów przecenionych czy wyprzedażowych. Masz 2 lata od otrzymania towaru na zgłoszenie wady (art. 43c ust. 1 UPK) i prawo wyboru naprawy albo wymiany (art. 43d UPK), niezależnie od tego, ile zapłaciłeś." },
+      { q: "Kupiłem towar stacjonarnie podczas Black Friday, a teraz chcę go po prostu oddać, bez wady. Czy mam na to 14 dni z ustawy?", a: "Nie. Ustawowe 14 dni na odstąpienie bez podania przyczyny (art. 27 UPK) dotyczy tylko umów zawartych na odległość albo poza lokalem przedsiębiorstwa. Przy zwykłym zakupie osobiście w sklepie możliwość zwrotu sprawnego towaru zależy wyłącznie od dobrowolnej polityki danej sieci, nie od przepisów — warto to sprawdzić przed zakupem, jeśli nie jesteś pewny/-a decyzji." },
+      { q: "Sklep oferuje zwrot pieniędzy za zakup online tylko w postaci kodu rabatowego, a ja chcę pieniądze na konto. Czy muszę się zgodzić na kod?", a: "Nie. Art. 32 ust. 1 UPK wymaga, by zwrot przy odstąpieniu od umowy nastąpił tym samym sposobem płatności, jakim zapłaciłeś, chyba że wyraźnie i dobrowolnie zgodzisz się na inny sposób. Kod rabatowy czy voucher możesz przyjąć, jeśli Ci to odpowiada, ale sklep nie może Ci go narzucić jako jedynej opcji zwrotu." },
+    ],
+    faqEn: [
+      { q: "The store raised the price two days before Black Friday just to show a bigger discount. Is that legal?", a: "No. Since 1 January 2023, Art. 4(4) of the Polish Act on Informing About Prices of Goods and Services requires that any announced price reduction be shown alongside the lowest price charged for that item in the 30 days before the reduction. A brief price spike right before the sale doesn't change that the correct reference price is the lowest one from the full 30-day window — showing a different figure is a workaround that can be reported to the Office of Competition and Consumer Protection (UOKiK) as an unfair market practice." },
+      { q: "The seller says an item bought during a Black Friday promotion can't be complained about. Can I push back?", a: "Yes, and you should, because that claim is false. The rules on non-conformity of goods (Art. 43b of the Consumer Rights Act) contain no exception for discounted or clearance items. You have 2 years from receiving the goods to report a defect (Art. 43c §1) and the right to choose repair or replacement (Art. 43d), regardless of the price you paid." },
+      { q: "I bought something in-store during Black Friday and now just want to return it, no defect involved. Do I get the statutory 14 days?", a: "No. The statutory 14-day no-reason withdrawal right (Art. 27 of the Consumer Rights Act) only applies to distance contracts or contracts made away from business premises. For an ordinary in-person store purchase, returning a non-defective item depends entirely on that retailer's own voluntary policy, not on the law — worth checking before you buy if you're unsure." },
+      { q: "The store only offers a discount code as a refund for my online purchase, but I want my money back to my account. Do I have to accept the code?", a: "No. Art. 32(1) of the Consumer Rights Act requires a refund on withdrawal to be made using the same payment method you used, unless you clearly and voluntarily agree to something else. You can accept a discount code or voucher if it suits you, but the store cannot force it on you as the only option." },
+    ],
+  },
+  {
     slug: "reklamacja-wolt-glovo-uber-eats",
     title: "Reklamacja zamówienia z Wolt, Glovo i Uber Eats: zepsute jedzenie, zła dostawa (2026)",
     description: "Kurier oznaczył zamówienie jako dostarczone, choć nic nie przyjechało? Sprawdź, kto odpowiada za jedzenie, a kto za dostawę — i jak odzyskać pieniądze.",
