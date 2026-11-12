@@ -22,6 +22,7 @@ import ReklamacjaMediaExpert from "./reklamacja-media-expert";
 import ReklamacjaRtvEuroAgd from "./reklamacja-rtv-euro-agd";
 import ReklamacjaTelefonu from "./reklamacja-telefonu";
 import ZwrotOdKuriera from "./zwrot-od-kuriera";
+import ZwrotPrezentuSwiatecznego from "./zwrot-prezentu-swiatecznego";
 import WypowiedzenieSilownia from "./wypowiedzenie-silownia";
 import ReklamacjaOperatora from "./reklamacja-operatora";
 import ReklamacjaFirmyEnergetycznej from "./reklamacja-firmy-energetycznej";
@@ -103,6 +104,7 @@ const CONTENT: Record<string, FC> = {
   "reklamacja-rtv-euro-agd": ReklamacjaRtvEuroAgd,
   "reklamacja-telefonu": ReklamacjaTelefonu,
   "zwrot-od-kuriera": ZwrotOdKuriera,
+  "zwrot-prezentu-swiatecznego": ZwrotPrezentuSwiatecznego,
   "wypowiedzenie-silownia": WypowiedzenieSilownia,
   "reklamacja-operatora": ReklamacjaOperatora,
   "reklamacja-firmy-energetycznej": ReklamacjaFirmyEnergetycznej,

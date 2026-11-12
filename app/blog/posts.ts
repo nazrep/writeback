@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "zwrot-prezentu-swiatecznego",
+    title: "Zwrot prezentu świątecznego: czy możesz oddać albo zareklamować prezent, którego nie kupiłeś/-aś? (2026)",
+    description: "Prezent od cioci nie trafił w gust, a sklep mówi, że nie jesteś jego klientem? Sprawdź, kto naprawdę może oddać albo zareklamować prezent świąteczny (2026).",
+    date: "2026-11-12",
+    readTime: "7 min",
+    category: "Prezenty",
+    titleEn: "Returning a Christmas Gift: Can You Return or Complain About One You Didn't Buy? (2026)",
+    descriptionEn: "The store says you cannot return a gift because you are not its customer. Here is who legally can return or complain about a Christmas gift in Poland.",
+    categoryEn: "Gifts",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Czy mogę zwrócić prezent, którego nie kupiłem/-am, jeśli sklep twierdzi, że nie jestem jego klientem?", a: "Formalnie stroną umowy sprzedaży jest osoba, która kupiła prezent, więc to jej przysługują ustawowe uprawnienia — prawo do odstąpienia (art. 27 ustawy o prawach konsumenta, UPK) i do reklamacji (art. 43b–43e UPK). Może Cię jednak upoważnić do działania w jej imieniu bez żadnego formalnego dokumentu, bo pełnomocnictwo do czynności niewymagającej szczególnej formy również takiej formy nie wymaga (art. 99 § 1 Kodeksu cywilnego a contrario) — wystarczy jej zgoda przekazana zwykłą wiadomością." },
+      { q: "Prezent kupiony online ma wadę. Czy mogę sam/-a złożyć reklamację, czy musi to zrobić osoba, która go kupiła?", a: "Prawo do reklamacji formalnie przysługuje kupującemu jako stronie umowy, ale może on upoważnić Cię do złożenia reklamacji w jego imieniu — bez formalnego dokumentu, bo reklamacja nie wymaga szczególnej formy. W praktyce wystarczy, że kupujący potwierdzi zgodę mailem, a Ty w piśmie reklamacyjnym wskażesz, że działasz w jego imieniu i podasz swoje dane kontaktowe." },
+      { q: "Czy mam ustawowe 14 dni na oddanie prezentu kupionego w sklepie stacjonarnym, jeśli po prostu nie pasuje?", a: "Nie. Art. 27 UPK, dający 14 dni na odstąpienie bez podania przyczyny, dotyczy wyłącznie umów zawartych na odległość lub poza lokalem przedsiębiorstwa. Zakup osobiście w sklepie, nawet jeśli towar jest prezentem, nie daje ustawowego prawa do zwrotu sprawnego towaru — możliwość oddania zależy wyłącznie od dobrowolnej polityki danego sklepu, często rozszerzanej w okresie świątecznym (np. gift receipt)." },
+      { q: "Dostałam w prezencie dwa identyczne swetry kupione online przez dwie różne osoby. Czy mogę odesłać jeden z nich sama?", a: "Prawo do odstąpienia od każdej z tych dwóch umów przysługuje osobie, która ją zawarła (art. 27 UPK), a zwrot pieniędzy trafi na jej konto (art. 32 ust. 1 UPK), bo to ona płaciła. Możesz zapakować i nadać przesyłkę zwrotną w jej imieniu, ale samo oświadczenie o odstąpieniu — najlepiej mailem, w ciągu 14 dni od dnia, w którym sweter trafił w Twoje ręce jako wskazanego odbiorcy — powinno wskazywać, że pochodzi od kupującego albo jest składane w jego imieniu za jego zgodą." },
+    ],
+    faqEn: [
+      { q: "Can I return a gift I didn't buy myself if the store says I'm not its customer?", a: "Formally, the party to the sales contract is whoever bought the gift, so the statutory rights belong to them — the right of withdrawal (Art. 27 of the Consumer Rights Act) and the right to complain (Art. 43b–43e). They can authorize you to act on their behalf without any formal document, since a power of attorney for an act that itself needs no special form also needs none (Art. 99 §1 of the Civil Code, by implication) — their consent given in an ordinary message is enough." },
+      { q: "A gift bought online is defective. Can I file the complaint myself, or does the buyer have to do it?", a: "The right to complain formally belongs to the buyer as the party to the contract, but they can authorize you to file the complaint on their behalf — with no formal document required, since a complaint needs no special form. In practice, it's enough that the buyer confirms their consent by email, while you state in the complaint that you're acting on their behalf and give your own contact details." },
+      { q: "Do I get the statutory 14 days to return a gift bought in a physical store if it simply doesn't fit?", a: "No. Art. 27 of the Consumer Rights Act, which gives 14 days to withdraw without a reason, applies only to distance contracts or contracts made away from business premises. An in-person store purchase, even as a gift, carries no statutory right to return a non-defective item — that depends entirely on the store's own voluntary policy, often extended during the holiday season (e.g. via a gift receipt)." },
+      { q: "I received two identical sweaters as gifts, bought online by two different people. Can I send one back myself?", a: "The right of withdrawal for each of those two contracts belongs to whoever concluded it (Art. 27), and the refund goes to their account (Art. 32 §1), since they paid. You can pack and ship the return on their behalf, but the withdrawal statement itself — ideally by email, within 14 days of the sweater reaching you as the designated recipient — should make clear it comes from the buyer or is submitted on their behalf with their consent." },
+    ],
+  },
+  {
     slug: "reklamacja-zakupy-black-friday",
     title: "Reklamacja zakupów z Black Friday: fałszywe rabaty i odmowa zwrotu (2026)",
     description: "Cena przed Black Friday była sztucznie podniesiona, a sklep odmawia zwrotu towaru z wyprzedaży, bo był przeceniony? Sprawdź, jakie prawa naprawdę masz.",
