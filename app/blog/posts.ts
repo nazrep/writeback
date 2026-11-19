@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "spozniona-dostawa-przed-swietami",
+    title: "Spóźniona dostawa przed świętami: kiedy odstąpić od umowy i odzyskać pieniądze (2026)",
+    description: "Zamówiłeś prezent z dostawą gwarantowaną przed świętami, a paczki wciąż nie ma? Sprawdź, kiedy możesz odstąpić od umowy i odzyskać pieniądze bez czekania.",
+    date: "2026-11-19",
+    readTime: "7 min",
+    category: "Dostawa",
+    titleEn: "Late Pre-Christmas Delivery: When You Can Cancel the Purchase and Get a Refund (2026)",
+    descriptionEn: "Ordered a gift with guaranteed pre-Christmas delivery, but the parcel never showed up? See when you can cancel the purchase and get a refund without waiting.",
+    categoryEn: "Delivery",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Sklep obiecał dostawę przed świętami i się nie wyrobił. Czy muszę czekać na dodatkowy termin, żeby odstąpić od umowy?", a: "Nie zawsze. Sprzedaż jest umową wzajemną, więc stosują się do niej ogólne przepisy Kodeksu cywilnego o takich umowach. Jeśli termin dostawy przed świętami był elementem oferty (np. płatna opcja „wysyłka świąteczna” albo informacja na stronie produktu) i sprzedawca wiedział, że spóźnione świadczenie nie będzie Ci już potrzebne, możesz odstąpić od umowy natychmiast, bez wyznaczania dodatkowego terminu (art. 492 Kodeksu cywilnego). Bez takiej wcześniejszej deklaracji standardowa ścieżka wymaga najpierw wyznaczenia sprzedawcy dodatkowego, rozsądnego terminu na dostawę (art. 543¹ § 2 Kodeksu cywilnego)." },
+      { q: "Paczka jeszcze jedzie, ale już wiem, że nie dotrze na czas. Czy mogę odstąpić od umowy, zanim ją dostanę?", a: "Tak. Prawo do odstąpienia z art. 543¹ § 2 oraz art. 492 Kodeksu cywilnego nie jest uzależnione od fizycznego otrzymania towaru — możesz złożyć oświadczenie o odstąpieniu, zanim paczka dojedzie. Jeśli mimo to dotrze później, odsyłasz ją nieużywaną, a sprzedawca i tak musi zwrócić całą zapłaconą kwotę (art. 494 Kodeksu cywilnego)." },
+      { q: "Sklep tłumaczy opóźnienie winą kuriera i mówi, że nie odpowiada za terminy dostawy. Czy to prawda?", a: "Nie. Zgodnie z art. 474 Kodeksu cywilnego sprzedawca odpowiada za działania i zaniechania osób, z których pomocą wykonuje zobowiązanie — w tym wybranej przez siebie firmy kurierskiej — tak, jak za własne działania. Stroną umowy wobec Ciebie jest sklep, nie kurier, i to sklep pozostaje w opóźnieniu niezależnie od tego, kto faktycznie zawinił." },
+      { q: "Czy po odstąpieniu od umowy z powodu spóźnionej dostawy mogę też żądać zwrotu kosztu prezentu zastępczego, który musiałem kupić w ostatniej chwili?", a: "To trudniejsza droga niż sam zwrot zapłaconej ceny. Pełny zwrot pieniędzy za niedostarczony towar przysługuje Ci na podstawie art. 494 Kodeksu cywilnego i jest praktycznie bezwarunkowy. Dodatkowa szkoda, np. wyższy koszt zastępczego prezentu, wymaga już powołania się na ogólne zasady odpowiedzialności kontraktowej (art. 471 Kodeksu cywilnego) i wykazania konkretnej straty oraz związku przyczynowego ze zwłoką sprzedawcy — w przeciwieństwie do imprez turystycznych, ustawa nie przewiduje tu automatycznej rekompensaty za „zepsute święta”." },
+    ],
+    faqEn: [
+      { q: "The store promised delivery before Christmas and missed it. Do I have to wait out an extra deadline before I can cancel?", a: "Not always. If the pre-Christmas delivery date was part of the offer (e.g. a paid 'holiday shipping' option or a stated date on the product page) and the seller knew that a late delivery would no longer serve any purpose for you, you can cancel the contract immediately, without setting any additional deadline (Art. 492 of the Civil Code). Without that prior declaration, the standard path requires first giving the seller a reasonable additional deadline to deliver (Art. 543¹ §2 of the Civil Code)." },
+      { q: "The parcel is still in transit, but I already know it won't arrive on time. Can I cancel before I actually receive it?", a: "Yes. The right to cancel under Art. 543¹ §2 and Art. 492 of the Civil Code does not depend on physically receiving the goods — you can submit your cancellation statement before the parcel arrives. If it arrives anyway afterward, you send it back unused, and the seller still has to refund the full amount paid (Art. 494 of the Civil Code)." },
+      { q: "The store blames the courier for the delay and says it isn't responsible for delivery dates. Is that true?", a: "No. Under Art. 474 of the Civil Code, a seller is liable for the acts and omissions of anyone it uses to perform its obligation — including the courier company it chose — as if they were its own. The store, not the courier, is the other party to your contract, and the store remains in default regardless of who was actually at fault." },
+      { q: "After cancelling over a late delivery, can I also claim back the cost of a replacement gift I had to buy at the last minute?", a: "That's a harder claim than the refund itself. A full refund of the price paid for undelivered goods follows from Art. 494 of the Civil Code and is practically unconditional. Additional damages, such as the higher cost of a replacement gift, require relying on the general rules of contractual liability (Art. 471 of the Civil Code) and proving a concrete loss and causal link to the seller's delay — unlike package travel, the law gives no automatic compensation here for a 'ruined Christmas'." },
+    ],
+  },
+  {
     slug: "zwrot-prezentu-swiatecznego",
     title: "Zwrot prezentu świątecznego: czy możesz oddać albo zareklamować prezent, którego nie kupiłeś/-aś? (2026)",
     description: "Prezent od cioci nie trafił w gust, a sklep mówi, że nie jesteś jego klientem? Sprawdź, kto naprawdę może oddać albo zareklamować prezent świąteczny (2026).",
