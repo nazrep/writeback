@@ -61,6 +61,7 @@ import PrawoDoNaprawy from "./prawo-do-naprawy";
 import ReklamacjaWoltGlovoUberEats from "./reklamacja-wolt-glovo-uber-eats";
 import ReklamacjaZakupyBlackFriday from "./reklamacja-zakupy-black-friday";
 import SpoznionaDostawaPrzedSwietami from "./spozniona-dostawa-przed-swietami";
+import OdwolanyKoncertZwrotBiletu from "./odwolany-koncert-zwrot-biletu";
 
 // EN
 import ReklamacjaSamochoduZKomisuEn from "./reklamacja-samochodu-z-komisu.en";
@@ -145,6 +146,7 @@ const CONTENT: Record<string, FC> = {
   "reklamacja-wolt-glovo-uber-eats": ReklamacjaWoltGlovoUberEats,
   "reklamacja-zakupy-black-friday": ReklamacjaZakupyBlackFriday,
   "spozniona-dostawa-przed-swietami": SpoznionaDostawaPrzedSwietami,
+  "odwolany-koncert-zwrot-biletu": OdwolanyKoncertZwrotBiletu,
 };
 
 const CONTENT_EN: Record<string, FC> = {

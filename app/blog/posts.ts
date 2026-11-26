@@ -20,6 +20,30 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "odwolany-koncert-zwrot-biletu",
+    title: "Odwołany koncert albo bal sylwestrowy: jak odzyskać pieniądze za bilet (2026)",
+    description: "Koncert albo bal sylwestrowy odwołany tydzień przed wydarzeniem, a organizator proponuje tylko voucher? Sprawdź, kiedy masz prawo do pełnego zwrotu za bilet.",
+    date: "2026-11-26",
+    readTime: "7 min",
+    category: "Wydarzenia",
+    titleEn: "Cancelled Concert or New Year's Eve Ball: How to Get Your Ticket Money Back (2026)",
+    descriptionEn: "A concert or New Year Eve ball cancelled days before the event, and the organizer only offers a voucher? Here is when you are entitled to a full refund.",
+    categoryEn: "Events",
+    readTimeEn: "7 min",
+    faq: [
+      { q: "Czy mogę zrezygnować z biletu na bal sylwestrowy, jeśli po prostu zmienię plany?", a: "Nie z tytułu ustawowego prawa do odstąpienia. Art. 38 pkt 12 ustawy o prawach konsumenta (UPK) wyłącza 14-dniowe prawo do odstąpienia bez podania przyczyny dla usług związanych z wydarzeniami rozrywkowymi, sportowymi lub kulturalnymi z oznaczonym dniem świadczenia. Możliwość zwrotu w takiej sytuacji zależy wyłącznie od dobrowolnej polityki organizatora czy platformy sprzedażowej." },
+      { q: "Organizator mówi, że odwołanie wydarzenia z powodu siły wyższej zwalnia go z obowiązku zwrotu pieniędzy. Czy to prawda?", a: "Nie. Zgodnie z art. 495 § 1 Kodeksu cywilnego, gdy świadczenie stało się niemożliwe z przyczyn, za które żadna ze stron nie odpowiada, strona, która miała je wykonać, musi zwrócić to, co już otrzymała — czyli Twoje pieniądze za bilet — na zasadach bezpodstawnego wzbogacenia. Brak winy nie oznacza braku obowiązku zwrotu, dotyczy tylko ewentualnej odpowiedzialności za dodatkową szkodę." },
+      { q: "Bal sylwestrowy, na który mam bilet, został przeniesiony na inny dzień. Czy mogę żądać zwrotu, mimo że wydarzenie formalnie się odbędzie?", a: "Tak, jeśli konkretna data miała dla Ciebie kluczowe znaczenie, a organizator o tym wiedział — co przy balu sylwestrowym jest oczywiste z samej natury usługi. Na podstawie art. 492 i art. 477 § 2 Kodeksu cywilnego możesz odmówić przyjęcia świadczenia w nowym terminie i żądać zwrotu pełnej zapłaconej kwoty, a nie tylko przyjęcia biletu na inną datę." },
+      { q: "Kupiłem bilet przez platformę sprzedażową, nie od samego organizatora. Kto ma mi zwrócić pieniądze, gdy wydarzenie się nie odbędzie?", a: "Zależy od tego, czy platforma sprzedała bilet w swoim imieniu, czy jako pełnomocnik organizatora na podstawie art. 95 § 2 Kodeksu cywilnego — sprawdź to w regulaminie zakupu. W praktyce najskuteczniej jest zgłosić żądanie zwrotu do obu podmiotów równocześnie, wskazując, że to one muszą ustalić między sobą, kto technicznie wypłaca środki." },
+    ],
+    faqEn: [
+      { q: "Can I back out of a New Year's Eve ball ticket if I simply change my plans?", a: "Not under the statutory right of withdrawal. Art. 38(12) of the Consumer Rights Act excludes the 14-day no-reason withdrawal right for services tied to entertainment, sports or cultural events with a specified date. Whether you get a refund in that case depends entirely on the organizer's or ticketing platform's own voluntary policy." },
+      { q: "The organizer says cancelling the event due to force majeure releases them from having to refund me. Is that true?", a: "No. Under Art. 495 §1 of the Civil Code, when performance becomes impossible for reasons neither party is responsible for, the party that was to perform must return what it already received — your ticket money — under the rules of unjust enrichment. Lack of fault doesn't remove the duty to refund; it only affects possible liability for additional damages." },
+      { q: "The New Year's Eve ball I have a ticket for was moved to a different day. Can I demand a refund even though the event will technically still happen?", a: "Yes, if the specific date was essential to you and the organizer knew it — which is obvious for a New Year's Eve ball given the nature of the service. Under Art. 492 and Art. 477 §2 of the Civil Code, you can refuse the rescheduled performance and demand a full refund rather than just accepting a ticket for a different date." },
+      { q: "I bought my ticket through a sales platform, not directly from the organizer. Who owes me the refund if the event doesn't happen?", a: "It depends on whether the platform sold the ticket in its own name or as the organizer's agent under Art. 95 §2 of the Civil Code — check the purchase terms. In practice, it's most effective to send the refund demand to both parties at once and let them settle between themselves who actually pays out." },
+    ],
+  },
+  {
     slug: "spozniona-dostawa-przed-swietami",
     title: "Spóźniona dostawa przed świętami: kiedy odstąpić od umowy i odzyskać pieniądze (2026)",
     description: "Zamówiłeś prezent z dostawą gwarantowaną przed świętami, a paczki wciąż nie ma? Sprawdź, kiedy możesz odstąpić od umowy i odzyskać pieniądze bez czekania.",
